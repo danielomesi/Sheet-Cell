@@ -1,10 +1,13 @@
 package service.operations;
 
+import service.entities.Sheet;
+
 import java.util.List;
 
-public class PLUSFunction extends Function {
+public class PLUSOperation extends Operation {
 
-    public PLUSFunction(List<Object> arguments) {
+    public PLUSOperation(Sheet sheet, List<Object> arguments) {
+        super.sheet = sheet;
         super.name = "PLUS";
         super.arguments = arguments;
     }

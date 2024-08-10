@@ -4,16 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/service/entities/Cell.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/service/entities/Sheet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/service/operations/Function.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/service/operations/PLUSFunction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ui/console/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added basic entities">
+      <change afterPath="$PROJECT_DIR$/src/service/EngineImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/service/entities/CellCoordinates.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/service/operations/DIVIDEOperation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/service/operations/MINUSOperation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/service/operations/TIMESOperation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/service/utils/Utils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/Engine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/entities/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/entities/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/entities/Sheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/entities/Sheet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/operations/Function.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/operations/Operation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/operations/PLUSFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/operations/PLUSOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/console/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/console/Application.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +58,8 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Application.executor": "Debug",
+    "Application.Unnamed.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
@@ -67,6 +73,15 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ui.console.Application" />
+      <module name="Sheet-Cell" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -84,11 +99,51 @@
       <option name="presentableId" value="Default" />
       <updated>1723284172578</updated>
       <workItem from="1723284173758" duration="651000" />
-      <workItem from="1723284946651" duration="11934000" />
+      <workItem from="1723284946651" duration="33037000" />
     </task>
+    <task id="LOCAL‎-00001" summary="Added basic entities">
+      <option name="closed" value="true" />
+      <created>1723297319576</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL‎-00001" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1723297319576</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added basic entities" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added basic entities" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/service/entities/Cell.java</url>
+          <line>167</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="service.operations.PLUSOperation" memberName="sheet" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>
