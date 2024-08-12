@@ -1,6 +1,6 @@
-package service.operations;
+package operations;
 
-import service.entities.Sheet;
+import entities.Sheet;
 
 import java.util.List;
 

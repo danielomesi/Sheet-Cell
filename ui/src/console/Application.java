@@ -1,9 +1,9 @@
-package ui.console;
+package console;
 
-import service.Engine;
-import service.entities.Cell;
-import service.entities.Sheet;
-import service.EngineImpl;
+import engine.Engine;
+import engine.EngineImpl;
+import entities.Sheet;
+import entities.Cell;
 
 public class Application {
 

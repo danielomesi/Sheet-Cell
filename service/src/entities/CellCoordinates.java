@@ -1,6 +1,4 @@
-package service.entities;
-
-import service.utils.Utils;
+package entities;
 
 public class CellCoordinates
 {

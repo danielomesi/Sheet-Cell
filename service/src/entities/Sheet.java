@@ -1,9 +1,6 @@
-package service.entities;
+package entities;
 
-import service.operations.Operation;
-
-import java.util.ArrayList;
-import java.util.List;
+import operations.Operation;
 
 public class Sheet implements Cloneable {
     private Cell[][] cellsTable;

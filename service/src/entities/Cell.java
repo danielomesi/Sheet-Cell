@@ -1,7 +1,7 @@
-package service.entities;
+package entities;
 
-import service.operations.Operation;
-import service.utils.Utils;
+import operations.Operation;
+import utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;

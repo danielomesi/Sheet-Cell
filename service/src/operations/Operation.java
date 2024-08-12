@@ -1,8 +1,8 @@
-package service.operations;
+package operations;
 
-import service.entities.CellCoordinates;
-import service.entities.Sheet;
-import service.utils.Utils;
+import entities.CellCoordinates;
+import entities.Sheet;
+import utils.Utils;
 
 import java.util.HashMap;
 import java.util.List;

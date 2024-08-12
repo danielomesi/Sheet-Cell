@@ -1,8 +1,8 @@
-package service.utils;
+package utils;
 
-import service.entities.Cell;
-import service.entities.CellCoordinates;
-import service.entities.Sheet;
+import entities.Cell;
+import entities.CellCoordinates;
+import entities.Sheet;
 
 public class Utils {
     public static Cell getCellObjectFromCellName(Sheet sheet, String cellName) {

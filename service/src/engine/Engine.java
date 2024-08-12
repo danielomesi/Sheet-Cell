@@ -1,7 +1,7 @@
-package service;
+package engine;
 
-import service.entities.Cell;
-import service.entities.Sheet;
+import entities.Cell;
+import entities.Sheet;
 
 public interface Engine {
 
