@@ -1,7 +1,7 @@
 package engine;
 
-import entities.Cell;
 import entities.Sheet;
+import entities.core.CoreCell;
 
 public interface Engine {
 
@@ -11,7 +11,7 @@ public interface Engine {
 
     public void loadSheetFromDummyData();
 
-    public Cell getSpecificCell(String cellName);
+    public CoreCell getSpecificCell(String cellName);
 
-    public void UpdateSpecificCell(String cellName, String originalExpression) throws CloneNotSupportedException;
+    public void updateSpecificCell(String cellName, String originalExpression) throws CloneNotSupportedException;
 }

@@ -4,23 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added another features">
-      <change afterPath="$PROJECT_DIR$/service/service.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui/ui.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Project splitted into different modules">
+      <change afterPath="$PROJECT_DIR$/service/src/entities/core/CoreCell.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/entities/core/CoreSheet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/entities/dto/DTOCell.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/entities/dto/DTOSheet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/operations/OperationInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/operations/REFOperation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/EngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/entities/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/Cell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/entities/CellCoordinates.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/CellCoordinates.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/entities/Sheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/Sheet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/operations/DIVIDEOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/DIVIDEOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/operations/MINUSOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/MINUSOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/operations/Operation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/Operation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/operations/PLUSOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/PLUSOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/operations/TIMESOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/TIMESOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/utils/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/console/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/console/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/Engine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/CellCoordinates.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/CellCoordinates.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/Sheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/Sheet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/DIVIDEOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/DIVIDEOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/MINUSOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/MINUSOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/Operation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/Operation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/PLUSOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/PLUSOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/TIMESOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/TIMESOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/utils/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/console/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/console/Application.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +33,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -61,7 +65,8 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Application.executor": "Debug",
+    "Application.App.executor": "Run",
+    "Application.Application.executor": "Run",
     "Application.Unnamed.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -79,6 +84,15 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="App" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="console.Application" />
+      <module name="ui" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -98,7 +112,7 @@
       <workItem from="1723284173758" duration="651000" />
       <workItem from="1723284946651" duration="33106000" />
       <workItem from="1723319691434" duration="31000" />
-      <workItem from="1723478780196" duration="1920000" />
+      <workItem from="1723478780196" duration="16299000" />
     </task>
     <task id="LOCAL‎-00001" summary="Added basic entities">
       <option name="closed" value="true" />
@@ -116,7 +130,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1723319529153</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL‎-00003" summary="Project splitted into different modules">
+      <option name="closed" value="true" />
+      <created>1723480952529</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL‎-00003" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1723480952529</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -136,15 +158,16 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added basic entities" />
     <MESSAGE value="Added another features" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added another features" />
+    <MESSAGE value="Project splitted into different modules" />
+    <option name="LAST_COMMIT_MESSAGE" value="Project splitted into different modules" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/service/src/entities/Cell.java</url>
-          <line>167</line>
-          <option name="timeStamp" value="32" />
+          <url>file://$PROJECT_DIR$/service/src/operations/Operation.java</url>
+          <line>78</line>
+          <option name="timeStamp" value="43" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -1,12 +1,12 @@
 package operations;
 
-import entities.Sheet;
+import entities.core.CoreSheet;
 
 import java.util.List;
 
 public class PLUSOperation extends Operation {
 
-    public PLUSOperation(Sheet sheet, List<Object> arguments) {
+    public PLUSOperation(CoreSheet sheet, List<Object> arguments) {
         super.sheet = sheet;
         super.name = "PLUS";
         super.arguments = arguments;
@@ -14,18 +14,9 @@ public class PLUSOperation extends Operation {
 
     @Override
     public Double execute() {
-        double result = 0;
+        List<Object> nonOperationObjects = convertToNonOperationObjects();
+        List<Double> doubles = convertToDouble(nonOperationObjects);
 
-        for (int i = 0; i < arguments.size(); i++) {
-            Object value = getArgValue(arguments.get(i));
-            if (value instanceof Number) {
-                result += ((Number) value).doubleValue();
-            }
-            else {
-                throw new IllegalArgumentException("One of the arguments is not a number");
-            }
-        }
-
-        return result;
+        return doubles.get(0)+doubles.get(1);
     }
 }

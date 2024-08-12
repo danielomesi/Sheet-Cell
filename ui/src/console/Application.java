@@ -2,8 +2,8 @@ package console;
 
 import engine.Engine;
 import engine.EngineImpl;
-import entities.Sheet;
 import entities.Cell;
+import entities.Sheet;
 
 public class Application {
 
@@ -13,19 +13,15 @@ public class Application {
         try {
             System.out.println("Before: ");
             printSheet(engine.getSheet());
-            engine.UpdateSpecificCell("E6", "{MINUS, {PLUS,A4,5},{TIMES,D7,G2}}");
-            engine.UpdateSpecificCell("E7", "{TIMES, A4,A4}");
+            engine.updateSpecificCell("E6", "{MINUS, 8,5}");
             System.out.println("After: ");
             printSheet(engine.getSheet());
-            engine.UpdateSpecificCell("A4", "6");
-            System.out.println("After 2: ");
-            printSheet(engine.getSheet());
+
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
+            e.printStackTrace();
         }
-
-
     }
 
     public static void printSheet(Sheet sheet) {
@@ -37,7 +33,7 @@ public class Application {
         for (int i = 0; i < cellsTable.length; i++) {
             for (int j = 0; j < numOfColumns; j++) {
                 Object value = cellsTable[i][j].getEffectiveValue();
-                int valueLength = (value != null ? value.toString().length() : 4); // 4 for "NULL"
+                int valueLength = (value != null ? objectValueAsString(value).length() : 4); // 4 for "NULL"
                 if (valueLength > columnWidths[j]) {
                     columnWidths[j] = valueLength;
                 }
@@ -46,6 +42,9 @@ public class Application {
 
         // Determine width for the row index column
         int rowIndexWidth = Integer.toString(cellsTable.length).length();
+
+        //Prints the Version
+        System.out.println("Version: " + sheet.getVersion());
 
         // Print the column headers with row index space
         System.out.print(" ".repeat(rowIndexWidth) + " | ");  // Space for row index
@@ -65,7 +64,7 @@ public class Application {
 
             for (int j = 0; j < numOfColumns; j++) {
                 Object value = cellsTable[i][j].getEffectiveValue();
-                String valueString = value != null ? value.toString() : "NULL";
+                String valueString = value != null ? objectValueAsString(value) : "NULL";
                 System.out.print(centerText(valueString, columnWidths[j]));
                 if (j < numOfColumns - 1) {
                     System.out.print(" | ");
@@ -93,4 +92,14 @@ public class Application {
         }
         return columnName.toString();
     }
+
+    private static String objectValueAsString(Object obj) {
+        if (obj instanceof Double doubleNum) {
+            if (doubleNum % 1 == 0) {
+                return String.format("%.0f", doubleNum);
+            }
+        }
+        return obj.toString();
+    }
+
 }

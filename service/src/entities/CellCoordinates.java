@@ -1,6 +1,9 @@
 package entities;
 
-public class CellCoordinates
+import entities.core.CoreCell;
+import utils.Utils;
+
+public class CellCoordinates implements Cloneable
 {
     private int row;
     private int col;
@@ -10,32 +13,28 @@ public class CellCoordinates
         this.col = col;
     }
 
-    public CellCoordinates(Cell cell) {
-        this.row = cell.getRow();
-        this.col = cell.getCol();
+    public CellCoordinates(CoreCell cell) {
+        this.row = cell.getCoordinates().getRow();
+        this.col = cell.getCoordinates().getCol();
+    }
+
+    @Override
+    public CellCoordinates clone() throws CloneNotSupportedException {
+        CellCoordinates cellCoordinates = (CellCoordinates) super.clone();
+        cellCoordinates.row = this.row;
+        cellCoordinates.col = this.col;
+        return cellCoordinates;
     }
 
     public int getCol() {return col;}
-    public void setCol(int col) {this.col = col;}
     public int getRow() {return row;}
-    public void setRow(int row) {this.row = row;}
 
-    public static String getCellNameFromIndices(int rowIndex, int colIndex) {
-        StringBuilder columnLetters = new StringBuilder();
-        int dividend = colIndex + 1; // Adding 1 to handle zero-based index
-        while (dividend > 0) {
-            int modulo = (dividend - 1) % 26;
-            columnLetters.insert(0, (char) (modulo + 'A'));
-            dividend = (dividend - modulo) / 26;
-        }
-
-        int rowNumber = rowIndex + 1;
-
-        return columnLetters.append(rowNumber).toString();
+    public String getCellID(int row, int col)  {
+        return Utils.getCellIDFromIndices(row, col);
     }
 
     @Override
     public String toString() {
-        return getCellNameFromIndices(row,col);
+        return Utils.getCellIDFromIndices(row,col);
     }
 }

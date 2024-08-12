@@ -1,11 +1,11 @@
 package utils;
 
-import entities.Cell;
+import entities.core.CoreCell;
 import entities.CellCoordinates;
-import entities.Sheet;
+import entities.core.CoreSheet;
 
 public class Utils {
-    public static Cell getCellObjectFromCellName(Sheet sheet, String cellName) {
+    public static CoreCell getCellObjectFromCellID(CoreSheet sheet, String cellName) {
         if (cellName == null || cellName.isEmpty()) {
             throw new IllegalArgumentException("Cell name cannot be null or empty");
         }
@@ -40,22 +40,31 @@ public class Utils {
     }
 
 
-    public static int[] getIndicesFromCellObject(Cell cell) {
-        int[] indices = new int[2];
-        indices[0] = cell.getRow();
-        indices[1] = cell.getCol();
-
-        return indices;
+    public static CellCoordinates getIndicesFromCellObject(CoreCell cell) {
+        return new CellCoordinates(cell.getCoordinates().getRow(), cell.getCoordinates().getCol());
     }
 
-    public static String getCellNameFromCellObject(Cell cell) {
-        int[] indices = getIndicesFromCellObject(cell);
-        return CellCoordinates.getCellNameFromIndices(indices[0], indices[1]);
+    public static String getCellIDFromCellObject(CoreCell cell) {
+        CellCoordinates coordinates = getIndicesFromCellObject(cell);
+        return Utils.getCellIDFromIndices(cell.getCoordinates().getRow(), cell.getCoordinates().getCol());
     }
 
-    public static Cell getCellObjectFromIndices(Sheet sheet, int rowIndex, int colIndex) {
+    public static CoreCell getCellObjectFromIndices(CoreSheet sheet, int rowIndex, int colIndex) {
         return sheet.getCellsTable()[rowIndex][colIndex];
     }
 
+    public static String getCellIDFromIndices(int rowIndex, int colIndex) {
+        StringBuilder columnLetters = new StringBuilder();
+        int dividend = colIndex + 1; // Adding 1 to handle zero-based index
+        while (dividend > 0) {
+            int modulo = (dividend - 1) % 26;
+            columnLetters.insert(0, (char) (modulo + 'A'));
+            dividend = (dividend - modulo) / 26;
+        }
+
+        int rowNumber = rowIndex + 1;
+
+        return columnLetters.append(rowNumber).toString();
+    }
 
 }
