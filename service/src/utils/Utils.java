@@ -3,18 +3,20 @@ package utils;
 import entities.core.CoreCell;
 import entities.CellCoordinates;
 import entities.core.CoreSheet;
+import exceptions.CellOutOfBoundsException;
+import exceptions.InvalidArgumentException;
 
 public class Utils {
     public static CoreCell getCellObjectFromCellID(CoreSheet sheet, String cellName) {
         if (cellName == null || cellName.isEmpty()) {
-            throw new IllegalArgumentException("Cell name cannot be null or empty");
+            throw new InvalidArgumentException("Cell name cannot be null or empty", cellName);
         }
 
         String rowPart = cellName.replaceAll("\\D", "");
         String columnPart = cellName.replaceAll("\\d", "");
 
         if (columnPart.isEmpty() || rowPart.isEmpty()) {
-            throw new IllegalArgumentException("Invalid cell format");
+            throw new InvalidArgumentException("Invalid cell format", columnPart+rowPart);
         }
 
         int colIndex = convertColumnLettersToIndex(columnPart);
@@ -23,7 +25,8 @@ public class Utils {
 
         if (rowIndex < 0 || rowIndex >= sheet.getNumOfRows() ||
                 colIndex < 0 || colIndex >= sheet.getNumOfColumns()) {
-            throw new IllegalArgumentException("Cell out of bounds");
+            throw new CellOutOfBoundsException("Cell is out bounds. Maximum number of rows is " + sheet.getNumOfRows()
+                    + ", maximum number of columns is " + sheet.getNumOfColumns(), columnPart+rowPart);
         }
 
         return sheet.getCellsTable()[rowIndex][colIndex];

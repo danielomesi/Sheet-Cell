@@ -2,6 +2,7 @@ package operations;
 
 import entities.core.CoreCell;
 import entities.core.CoreSheet;
+import exceptions.InvalidArgumentException;
 import utils.Utils;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class REFOperation extends Operation {
             obj = Utils.getCellObjectFromCellID(sheet, (String) arg).getEffectiveValue();
         }
         catch (Exception e) {
-            throw new IllegalArgumentException("The value '" + arg + "' is not a valid cell ID");
+            throw new InvalidArgumentException("The value '" + arg + "' is not a valid cell ID");
         }
 
         return obj;

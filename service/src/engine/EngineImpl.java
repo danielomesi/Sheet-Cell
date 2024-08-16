@@ -4,27 +4,27 @@ import entities.Sheet;
 import entities.core.CoreCell;
 import entities.core.CoreSheet;
 import entities.dto.DTOSheet;
+import exceptions.NoExistenceException;
 import utils.Utils;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Optional;
+
 public class EngineImpl implements Engine {
-    CoreSheet coreSheet;
-    DTOSheet sheet;
+    List<CoreSheet> coreSheets;
 
-    public Sheet getSheet() {
-        if (coreSheet != null)
-        {
-            if (sheet == null || sheet.getVersion() != coreSheet.getVersion()) {
-                sheet = generateSheetToUI();
-            }
-        }
-        else {
-            sheet = null;
-        }
-
-        return sheet;
+    public EngineImpl() {
+        this.coreSheets = new LinkedList<>();
     }
 
-    private DTOSheet generateSheetToUI() {
+    public Sheet getSheet() {
+        return Optional.ofNullable(coreSheets.getLast())
+                .map(this::generateDTOSheet)
+                .orElseThrow(() -> new NoExistenceException("No sheet is available to load data from"));
+    }
+
+    private DTOSheet generateDTOSheet(CoreSheet coreSheet) {
         return new DTOSheet(coreSheet);
     }
 
@@ -34,66 +34,66 @@ public class EngineImpl implements Engine {
 
     @Override
     public void loadSheetFromDummyData() {
-        CoreSheet sheet = new CoreSheet(7, 7); // 7 rows, 7 columns
+        CoreSheet coreSheets = new CoreSheet(7, 7); // 7 rows, 7 columns
 
         // Populate with explicit dummy data
-        Utils.getCellObjectFromCellID(sheet, "A1").executeCalculationProcedure("3");
-        Utils.getCellObjectFromCellID(sheet, "B1").executeCalculationProcedure("Hello");
-        Utils.getCellObjectFromCellID(sheet, "C1").executeCalculationProcedure("true");
-        Utils.getCellObjectFromCellID(sheet, "D1").executeCalculationProcedure("8.5");
-        Utils.getCellObjectFromCellID(sheet, "E1").executeCalculationProcedure("World");
-        Utils.getCellObjectFromCellID(sheet, "F1").executeCalculationProcedure("false");
-        Utils.getCellObjectFromCellID(sheet, "G1").executeCalculationProcedure("1.5");
+        Utils.getCellObjectFromCellID(coreSheets, "A1").executeCalculationProcedure("3");
+        Utils.getCellObjectFromCellID(coreSheets, "B1").executeCalculationProcedure("Hello");
+        Utils.getCellObjectFromCellID(coreSheets, "C1").executeCalculationProcedure("true");
+        Utils.getCellObjectFromCellID(coreSheets, "D1").executeCalculationProcedure("8.5");
+        Utils.getCellObjectFromCellID(coreSheets, "E1").executeCalculationProcedure("World");
+        Utils.getCellObjectFromCellID(coreSheets, "F1").executeCalculationProcedure("false");
+        Utils.getCellObjectFromCellID(coreSheets, "G1").executeCalculationProcedure("1.5");
 
-        Utils.getCellObjectFromCellID(sheet, "A2").executeCalculationProcedure("7");
-        Utils.getCellObjectFromCellID(sheet, "B2").executeCalculationProcedure("Test");
-        Utils.getCellObjectFromCellID(sheet, "C2").executeCalculationProcedure("true");
-        Utils.getCellObjectFromCellID(sheet, "D2").executeCalculationProcedure("9.0");
-        Utils.getCellObjectFromCellID(sheet, "E2").executeCalculationProcedure("Data");
-        Utils.getCellObjectFromCellID(sheet, "F2").executeCalculationProcedure("false");
-        Utils.getCellObjectFromCellID(sheet, "G2").executeCalculationProcedure("2.5");
+        Utils.getCellObjectFromCellID(coreSheets, "A2").executeCalculationProcedure("7");
+        Utils.getCellObjectFromCellID(coreSheets, "B2").executeCalculationProcedure("Test");
+        Utils.getCellObjectFromCellID(coreSheets, "C2").executeCalculationProcedure("true");
+        Utils.getCellObjectFromCellID(coreSheets, "D2").executeCalculationProcedure("9.0");
+        Utils.getCellObjectFromCellID(coreSheets, "E2").executeCalculationProcedure("Data");
+        Utils.getCellObjectFromCellID(coreSheets, "F2").executeCalculationProcedure("false");
+        Utils.getCellObjectFromCellID(coreSheets, "G2").executeCalculationProcedure("2.5");
 
-        Utils.getCellObjectFromCellID(sheet, "A3").executeCalculationProcedure("4");
-        Utils.getCellObjectFromCellID(sheet, "B3").executeCalculationProcedure("Sample");
-        Utils.getCellObjectFromCellID(sheet, "C3").executeCalculationProcedure("false");
-        Utils.getCellObjectFromCellID(sheet, "D3").executeCalculationProcedure("7.7");
-        Utils.getCellObjectFromCellID(sheet, "E3").executeCalculationProcedure("Value");
-        Utils.getCellObjectFromCellID(sheet, "F3").executeCalculationProcedure("true");
-        Utils.getCellObjectFromCellID(sheet, "G3").executeCalculationProcedure("3.0");
+        Utils.getCellObjectFromCellID(coreSheets, "A3").executeCalculationProcedure("4");
+        Utils.getCellObjectFromCellID(coreSheets, "B3").executeCalculationProcedure("Sample");
+        Utils.getCellObjectFromCellID(coreSheets, "C3").executeCalculationProcedure("false");
+        Utils.getCellObjectFromCellID(coreSheets, "D3").executeCalculationProcedure("7.7");
+        Utils.getCellObjectFromCellID(coreSheets, "E3").executeCalculationProcedure("Value");
+        Utils.getCellObjectFromCellID(coreSheets, "F3").executeCalculationProcedure("true");
+        Utils.getCellObjectFromCellID(coreSheets, "G3").executeCalculationProcedure("3.0");
 
-        Utils.getCellObjectFromCellID(sheet, "A4").executeCalculationProcedure("5");
-        Utils.getCellObjectFromCellID(sheet, "B4").executeCalculationProcedure("Example");
-        Utils.getCellObjectFromCellID(sheet, "C4").executeCalculationProcedure("true");
-        Utils.getCellObjectFromCellID(sheet, "D4").executeCalculationProcedure("6.2");
-        Utils.getCellObjectFromCellID(sheet, "E4").executeCalculationProcedure("Test");
-        Utils.getCellObjectFromCellID(sheet, "F4").executeCalculationProcedure("false");
-        Utils.getCellObjectFromCellID(sheet, "G4").executeCalculationProcedure("4.5");
+        Utils.getCellObjectFromCellID(coreSheets, "A4").executeCalculationProcedure("5");
+        Utils.getCellObjectFromCellID(coreSheets, "B4").executeCalculationProcedure("Example");
+        Utils.getCellObjectFromCellID(coreSheets, "C4").executeCalculationProcedure("true");
+        Utils.getCellObjectFromCellID(coreSheets, "D4").executeCalculationProcedure("6.2");
+        Utils.getCellObjectFromCellID(coreSheets, "E4").executeCalculationProcedure("Test");
+        Utils.getCellObjectFromCellID(coreSheets, "F4").executeCalculationProcedure("false");
+        Utils.getCellObjectFromCellID(coreSheets, "G4").executeCalculationProcedure("4.5");
 
-        Utils.getCellObjectFromCellID(sheet, "A5").executeCalculationProcedure("6");
-        Utils.getCellObjectFromCellID(sheet, "B5").executeCalculationProcedure("Data");
-        Utils.getCellObjectFromCellID(sheet, "C5").executeCalculationProcedure("false");
-        Utils.getCellObjectFromCellID(sheet, "D5").executeCalculationProcedure("8.0");
-        Utils.getCellObjectFromCellID(sheet, "E5").executeCalculationProcedure("Info");
-        Utils.getCellObjectFromCellID(sheet, "F5").executeCalculationProcedure("true");
-        Utils.getCellObjectFromCellID(sheet, "G5").executeCalculationProcedure("5.5");
+        Utils.getCellObjectFromCellID(coreSheets, "A5").executeCalculationProcedure("6");
+        Utils.getCellObjectFromCellID(coreSheets, "B5").executeCalculationProcedure("Data");
+        Utils.getCellObjectFromCellID(coreSheets, "C5").executeCalculationProcedure("false");
+        Utils.getCellObjectFromCellID(coreSheets, "D5").executeCalculationProcedure("8.0");
+        Utils.getCellObjectFromCellID(coreSheets, "E5").executeCalculationProcedure("Info");
+        Utils.getCellObjectFromCellID(coreSheets, "F5").executeCalculationProcedure("true");
+        Utils.getCellObjectFromCellID(coreSheets, "G5").executeCalculationProcedure("5.5");
 
-        Utils.getCellObjectFromCellID(sheet, "A6").executeCalculationProcedure("8");
-        Utils.getCellObjectFromCellID(sheet, "B6").executeCalculationProcedure("String");
-        Utils.getCellObjectFromCellID(sheet, "C6").executeCalculationProcedure("true");
-        Utils.getCellObjectFromCellID(sheet, "D6").executeCalculationProcedure("10.1");
-        Utils.getCellObjectFromCellID(sheet, "E6").executeCalculationProcedure("More");
-        Utils.getCellObjectFromCellID(sheet, "F6").executeCalculationProcedure("false");
-        Utils.getCellObjectFromCellID(sheet, "G6").executeCalculationProcedure("6.7");
+        Utils.getCellObjectFromCellID(coreSheets, "A6").executeCalculationProcedure("8");
+        Utils.getCellObjectFromCellID(coreSheets, "B6").executeCalculationProcedure("String");
+        Utils.getCellObjectFromCellID(coreSheets, "C6").executeCalculationProcedure("true");
+        Utils.getCellObjectFromCellID(coreSheets, "D6").executeCalculationProcedure("10.1");
+        Utils.getCellObjectFromCellID(coreSheets, "E6").executeCalculationProcedure("More");
+        Utils.getCellObjectFromCellID(coreSheets, "F6").executeCalculationProcedure("false");
+        Utils.getCellObjectFromCellID(coreSheets, "G6").executeCalculationProcedure("6.7");
 
-        Utils.getCellObjectFromCellID(sheet, "A7").executeCalculationProcedure("9");
-        Utils.getCellObjectFromCellID(sheet, "B7").executeCalculationProcedure("Value");
-        Utils.getCellObjectFromCellID(sheet, "C7").executeCalculationProcedure("false");
-        Utils.getCellObjectFromCellID(sheet, "D7").executeCalculationProcedure("5.5");
-        Utils.getCellObjectFromCellID(sheet, "E7").executeCalculationProcedure("End");
-        Utils.getCellObjectFromCellID(sheet, "F7").executeCalculationProcedure("true");
-        Utils.getCellObjectFromCellID(sheet, "G7").executeCalculationProcedure("7.8");
+        Utils.getCellObjectFromCellID(coreSheets, "A7").executeCalculationProcedure("9");
+        Utils.getCellObjectFromCellID(coreSheets, "B7").executeCalculationProcedure("Value");
+        Utils.getCellObjectFromCellID(coreSheets, "C7").executeCalculationProcedure("false");
+        Utils.getCellObjectFromCellID(coreSheets, "D7").executeCalculationProcedure("5.5");
+        Utils.getCellObjectFromCellID(coreSheets, "E7").executeCalculationProcedure("End");
+        Utils.getCellObjectFromCellID(coreSheets, "F7").executeCalculationProcedure("true");
+        Utils.getCellObjectFromCellID(coreSheets, "G7").executeCalculationProcedure("7.8");
 
-        this.coreSheet = sheet;
+        this.coreSheets.addLast(coreSheets);
     }
 
 
@@ -104,8 +104,8 @@ public class EngineImpl implements Engine {
 
     @Override
     public void updateSpecificCell(String cellName, String originalExpression) throws CloneNotSupportedException {
-        CoreSheet cloned = coreSheet.clone();
+        CoreSheet cloned = coreSheets.getLast().clone();
         Utils.getCellObjectFromCellID(cloned, cellName).executeCalculationProcedure(originalExpression);
-        coreSheet = cloned;
+        coreSheets.addLast(cloned);
     }
 }

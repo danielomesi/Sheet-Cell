@@ -2,6 +2,9 @@ package entities.core;
 
 import entities.CellCoordinates;
 import entities.Cell;
+import exceptions.CircleReferenceException;
+import exceptions.InvalidArgumentException;
+import exceptions.NoExistenceException;
 import operations.Operation;
 import utils.Utils;
 
@@ -95,7 +98,7 @@ public class CoreCell implements Cell,Cloneable {
             notifyAffectedCells();
         }
         else {
-            throw new IllegalStateException("Circular reference identified");
+            throw new CircleReferenceException("Circular reference identified", coordinates);
         }
 
     }
@@ -117,14 +120,15 @@ public class CoreCell implements Cell,Cloneable {
 
         int firstCommaIndex = originalExpression.indexOf(',');
         if (firstCommaIndex == -1) {
-            throw new IllegalArgumentException("Invalid function format");
+            throw new InvalidArgumentException("Invalid function format",coordinates, originalExpression);
         }
         String functionName = originalExpression.substring(0, firstCommaIndex).trim();
 
         String argumentsString = originalExpression.substring(firstCommaIndex + 1).trim();
         List<Object> arguments = parseArguments(argumentsString);
         if (arguments.size() != Operation.getOperationsMap().get(functionName).getNumOfArgsRequired()){
-            throw new IllegalArgumentException("Number of arguments given in function " + functionName + " does not match expected number of arguments");
+            throw new InvalidArgumentException("Number of arguments given in function "
+                    + functionName + " does not match expected number of arguments", coordinates);
         }
 
         return Operation.createFunctionHandler(sheet, functionName, arguments);

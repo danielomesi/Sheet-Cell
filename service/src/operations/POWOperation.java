@@ -4,10 +4,10 @@ import entities.core.CoreSheet;
 
 import java.util.List;
 
-public class TIMESOperation extends Operation {
-    public TIMESOperation(CoreSheet sheet, List<Object> arguments) {
+public class POWOperation extends Operation {
+    public POWOperation(CoreSheet sheet, List<Object> arguments) {
         super.sheet = sheet;
-        super.name = "TIMES";
+        super.name = "POW";
         super.arguments = arguments;
     }
 
@@ -18,6 +18,6 @@ public class TIMESOperation extends Operation {
         validateArgumentsTypes(expectedClazzes, nonOperationObjects);
         List<Double> doubles = convertToDouble(nonOperationObjects);
 
-        return doubles.get(0)*doubles.get(1);
+        return Math.pow(doubles.get(0),doubles.get(1));
     }
 }

@@ -29,6 +29,9 @@ public class CellCoordinates implements Cloneable
     public int getCol() {return col;}
     public int getRow() {return row;}
 
+    public String getCellID()  {
+        return Utils.getCellIDFromIndices(row, col);
+    }
     public String getCellID(int row, int col)  {
         return Utils.getCellIDFromIndices(row, col);
     }
