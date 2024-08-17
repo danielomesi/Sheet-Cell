@@ -9,6 +9,14 @@ public class CoreSheet implements Sheet,Cloneable {
     private final int numOfColumns;
     private int version;
 
+    public CoreSheet(int numOfRows, int numOfColumns) {
+        cellsTable = new CoreCell[numOfRows][numOfColumns];
+        this.numOfRows = numOfRows;
+        this.numOfColumns = numOfColumns;
+        this.version = 1;
+        initializeSheet();
+    }
+
     @Override
     public CoreSheet clone() throws CloneNotSupportedException {
         CoreSheet cloned = (CoreSheet) super.clone();
@@ -34,12 +42,7 @@ public class CoreSheet implements Sheet,Cloneable {
     public int getNumOfColumns() {return numOfColumns;}
     public void incrementVersion() {version++;}
 
-    public CoreSheet(int numOfRows, int numOfColumns) {
-        cellsTable = new CoreCell[numOfRows][numOfColumns];
-        this.numOfRows = numOfRows;
-        this.numOfColumns = numOfColumns;
-        initializeSheet();
-    }
+
 
     private void initializeSheet() {
         for (int i = 0; i < cellsTable.length; i++) {

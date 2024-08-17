@@ -1,6 +1,7 @@
 package operations;
 
 import entities.core.CoreSheet;
+import exceptions.StringIndexOutOfBoundsException;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class SUBOperation extends Operation {
            result = str.substring(startIndex, endIndex);
         }
         catch (Exception e) {
-            result = "!UNDEFINED!";
+            result = "!UNDEFINED";
         }
 
         return result;

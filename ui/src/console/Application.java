@@ -11,7 +11,7 @@ public class Application {
         try {
             System.out.println("Before: ");
             ConsoleUtils.printSheet(engine.getSheet());
-            engine.updateSpecificCell("E7", "{CONCAT,HELLO,  WORLD}");
+            engine.updateSpecificCell("E7", "{TIMES,800005,  6.3}");
             System.out.println("After: ");
             ConsoleUtils.printSheet(engine.getSheet());
 

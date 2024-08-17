@@ -4,7 +4,6 @@ import entities.CellCoordinates;
 import entities.Cell;
 import exceptions.CircleReferenceException;
 import exceptions.InvalidArgumentException;
-import exceptions.NoExistenceException;
 import operations.Operation;
 import utils.Utils;
 
@@ -29,7 +28,7 @@ public class CoreCell implements Cell,Cloneable {
     public CoreCell(CoreSheet sheet, int row, int col)
     {
         this.sheet = sheet;
-        this.version = 1;
+        this.version = sheet.getVersion();
         this.coordinates = new CellCoordinates(row, col);
         this.visitColor = Status.WHITE;
     }
@@ -51,32 +50,30 @@ public class CoreCell implements Cell,Cloneable {
     @Override
     public int getVersion() {return version;}
     @Override
-    public Object getEffectiveValue() {return effectiveValue;}
-    @Override
     public String getOriginalExpression() {return originalExpression;}
     public Operation getOperation() {return operation;}
     @Override
     public List<CellCoordinates> getCellsAffectedByMe() {return cellsAffectedByMe;}
     @Override
     public List<CellCoordinates> getCellsAffectingMe() {return cellsAffectingMe;}
-    public void setVisited(Status isVisited) {this.visitColor = Status.WHITE;}
+    public void setVisited(Status isVisited) {this.visitColor = isVisited;}
+    @Override
+    public Object getEffectiveValue() {return effectiveValue;};
 
     public void executeCalculationProcedure(String expression) {
         resetListOfCellsThatAffectMe();
         expression = expression.trim();
+        originalExpression = expression;
         if (expression.startsWith("{") && expression.endsWith("}")) {
             operation = parseFunctionExpression(expression);
-            effectiveValue = operation.execute();
 
         } else
         {
+            operation = null;
             effectiveValue = parseArgument(expression);
         }
-        originalExpression = expression;
-        version++;
-        notifyAffectedCells();
+        update();
         sheet.cleanVisits();
-        sheet.incrementVersion();
     }
 
     private void notifyAffectedCells()
@@ -93,8 +90,10 @@ public class CoreCell implements Cell,Cloneable {
     {
         if (visitColor != Status.GREY)
         {
-            this.effectiveValue = operation.execute();
-            version++;
+            if (operation!=null) {
+                this.effectiveValue = operation.execute();
+            }
+            version = sheet.getVersion();
             notifyAffectedCells();
         }
         else {
@@ -165,11 +164,7 @@ public class CoreCell implements Cell,Cloneable {
             return parseFunctionExpression(arg);
         }
         else if (arg.matches("-?\\d+(\\.\\d+)?")) {
-            if (arg.contains(".")) {
-                return Double.parseDouble(arg);
-            } else {
-                return Integer.parseInt(arg);
-            }
+            return Double.parseDouble(arg);
         } else if (arg.equalsIgnoreCase("true") || arg.equalsIgnoreCase("false")) {
             return Boolean.parseBoolean(arg);
         }

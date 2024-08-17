@@ -4,30 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Refactored most classes">
-      <change afterPath="$PROJECT_DIR$/service/src/exceptions/CellOutOfBoundsException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/src/exceptions/CircleReferenceException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/src/exceptions/InvalidArgumentException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/src/exceptions/NoExistenceException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/src/exceptions/ServiceException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/src/operations/ABSOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/src/operations/ConcatOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/src/operations/MODOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/src/operations/POWOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/src/operations/SUBOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui/src/console/ConsoleUtils.java" afterDir="false" />
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added exceptions classes and added operations POW,ABS,CONCAT,SUB and more">
+      <change afterPath="$PROJECT_DIR$/service/src/exceptions/StringIndexOutOfBoundsException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/exceptions/ZeroDivisionException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/Engine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/CellCoordinates.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/CellCoordinates.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/entities/core/CoreCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/core/CoreCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/core/CoreSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/core/CoreSheet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/operations/DIVIDEOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/DIVIDEOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/MINUSOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/MINUSOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/Operation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/Operation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/PLUSOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/PLUSOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/REFOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/REFOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/TIMESOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/TIMESOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/utils/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/SUBOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/SUBOperation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/console/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/console/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/console/ConsoleUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/console/ConsoleUtils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +26,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -117,7 +106,8 @@
       <workItem from="1723284946651" duration="33106000" />
       <workItem from="1723319691434" duration="31000" />
       <workItem from="1723478780196" duration="16336000" />
-      <workItem from="1723817682048" duration="11413000" />
+      <workItem from="1723817682048" duration="11465000" />
+      <workItem from="1723882496568" duration="6640000" />
     </task>
     <task id="LOCAL‎-00001" summary="Added basic entities">
       <option name="closed" value="true" />
@@ -151,7 +141,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1723495286777</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL‎-00005" summary="Added exceptions classes and added operations POW,ABS,CONCAT,SUB and more">
+      <option name="closed" value="true" />
+      <created>1723830411410</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL‎-00005" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1723830411410</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -173,9 +171,19 @@
     <MESSAGE value="Added another features" />
     <MESSAGE value="Project splitted into different modules" />
     <MESSAGE value="Refactored most classes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored most classes" />
+    <MESSAGE value="Added exceptions classes and added operations POW,ABS,CONCAT,SUB and more" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added exceptions classes and added operations POW,ABS,CONCAT,SUB and more" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ui/src/console/Application.java</url>
+          <line>13</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="service.operations.PLUSOperation" memberName="sheet" />

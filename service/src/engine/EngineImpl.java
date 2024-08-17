@@ -18,14 +18,16 @@ public class EngineImpl implements Engine {
         this.coreSheets = new LinkedList<>();
     }
 
+    @Override
     public Sheet getSheet() {
-        return Optional.ofNullable(coreSheets.getLast())
-                .map(this::generateDTOSheet)
-                .orElseThrow(() -> new NoExistenceException("No sheet is available to load data from"));
+        return getSheet(coreSheets.size() - 1);
     }
 
-    private DTOSheet generateDTOSheet(CoreSheet coreSheet) {
-        return new DTOSheet(coreSheet);
+    @Override
+    public Sheet getSheet(int version) {
+        return Optional.ofNullable(coreSheets.get(version))
+                .map(this::generateDTOSheet)
+                .orElseThrow(() -> new NoExistenceException("No sheet is available to load data from"));
     }
 
     @Override
@@ -77,13 +79,13 @@ public class EngineImpl implements Engine {
         Utils.getCellObjectFromCellID(coreSheets, "F5").executeCalculationProcedure("true");
         Utils.getCellObjectFromCellID(coreSheets, "G5").executeCalculationProcedure("5.5");
 
-        Utils.getCellObjectFromCellID(coreSheets, "A6").executeCalculationProcedure("8");
-        Utils.getCellObjectFromCellID(coreSheets, "B6").executeCalculationProcedure("String");
-        Utils.getCellObjectFromCellID(coreSheets, "C6").executeCalculationProcedure("true");
-        Utils.getCellObjectFromCellID(coreSheets, "D6").executeCalculationProcedure("10.1");
-        Utils.getCellObjectFromCellID(coreSheets, "E6").executeCalculationProcedure("More");
-        Utils.getCellObjectFromCellID(coreSheets, "F6").executeCalculationProcedure("false");
-        Utils.getCellObjectFromCellID(coreSheets, "G6").executeCalculationProcedure("6.7");
+//        Utils.getCellObjectFromCellID(coreSheets, "A6").executeCalculationProcedure("8");
+//        Utils.getCellObjectFromCellID(coreSheets, "B6").executeCalculationProcedure("String");
+//        Utils.getCellObjectFromCellID(coreSheets, "C6").executeCalculationProcedure("true");
+//        Utils.getCellObjectFromCellID(coreSheets, "D6").executeCalculationProcedure("10.1");
+//        Utils.getCellObjectFromCellID(coreSheets, "E6").executeCalculationProcedure("More");
+//        Utils.getCellObjectFromCellID(coreSheets, "F6").executeCalculationProcedure("false");
+//        Utils.getCellObjectFromCellID(coreSheets, "G6").executeCalculationProcedure("6.7");
 
         Utils.getCellObjectFromCellID(coreSheets, "A7").executeCalculationProcedure("9");
         Utils.getCellObjectFromCellID(coreSheets, "B7").executeCalculationProcedure("Value");
@@ -96,7 +98,6 @@ public class EngineImpl implements Engine {
         this.coreSheets.addLast(coreSheets);
     }
 
-
     @Override
     public CoreCell getSpecificCell(String cellName) {
         return null;
@@ -105,7 +106,12 @@ public class EngineImpl implements Engine {
     @Override
     public void updateSpecificCell(String cellName, String originalExpression) throws CloneNotSupportedException {
         CoreSheet cloned = coreSheets.getLast().clone();
+        cloned.incrementVersion();
         Utils.getCellObjectFromCellID(cloned, cellName).executeCalculationProcedure(originalExpression);
         coreSheets.addLast(cloned);
+    }
+
+    private DTOSheet generateDTOSheet(CoreSheet coreSheet) {
+        return new DTOSheet(coreSheet);
     }
 }

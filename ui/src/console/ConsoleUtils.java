@@ -5,6 +5,7 @@ import entities.CellCoordinates;
 import entities.Sheet;
 import exceptions.ServiceException;
 
+import java.text.DecimalFormat;
 import java.util.Optional;
 
 public class ConsoleUtils {
@@ -48,7 +49,7 @@ public class ConsoleUtils {
 
             for (int j = 0; j < numOfColumns; j++) {
                 Object value = cellsTable[i][j].getEffectiveValue();
-                String valueString = value != null ? objectValueAsString(value) : "NULL";
+                String valueString = value != null ? objectValueAsString(value) : "";
                 System.out.print(centerText(valueString, columnWidths[j]));
                 if (j < numOfColumns - 1) {
                     System.out.print(" | ");
@@ -78,9 +79,14 @@ public class ConsoleUtils {
     }
 
     private static String objectValueAsString(Object obj) {
+        DecimalFormat wholeNumberFormatter = new DecimalFormat("#,###");
+        DecimalFormat decimalFormatter = new DecimalFormat("#,###.00");
+
         if (obj instanceof Double doubleNum) {
             if (doubleNum % 1 == 0) {
-                return String.format("%.0f", doubleNum);
+                return wholeNumberFormatter.format(doubleNum);
+            } else {
+                return decimalFormatter.format(doubleNum);
             }
         }
         return obj.toString();

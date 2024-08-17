@@ -7,6 +7,8 @@ public interface Engine {
 
     public Sheet getSheet();
 
+    public Sheet getSheet(int version);
+
     public void loadSheetFromXMLFile(String fullFilePath);
 
     public void loadSheetFromDummyData();
