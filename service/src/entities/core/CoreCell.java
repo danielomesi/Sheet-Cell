@@ -2,6 +2,7 @@ package entities.core;
 
 import entities.CellCoordinates;
 import entities.Cell;
+import entities.stl.STLCell;
 import exceptions.CircleReferenceException;
 import exceptions.InvalidArgumentException;
 import operations.Operation;
@@ -9,6 +10,9 @@ import utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static utils.Utils.parseArgument;
+import static utils.Utils.parseFunctionExpression;
 
 public class CoreCell implements Cell,Cloneable {
     public enum Status {
@@ -51,6 +55,7 @@ public class CoreCell implements Cell,Cloneable {
     public int getVersion() {return version;}
     @Override
     public String getOriginalExpression() {return originalExpression;}
+    public void setOriginalExpression(String originalExpression) {this.originalExpression = originalExpression;}
     public Operation getOperation() {return operation;}
     @Override
     public List<CellCoordinates> getCellsAffectedByMe() {return cellsAffectedByMe;}
@@ -65,12 +70,12 @@ public class CoreCell implements Cell,Cloneable {
         expression = expression.trim();
         originalExpression = expression;
         if (expression.startsWith("{") && expression.endsWith("}")) {
-            operation = parseFunctionExpression(expression);
+            operation = parseFunctionExpression(sheet,coordinates, expression);
 
         } else
         {
             operation = null;
-            effectiveValue = parseArgument(expression);
+            effectiveValue = parseArgument(sheet, coordinates, expression);
         }
         update();
         sheet.cleanVisits();
@@ -109,68 +114,6 @@ public class CoreCell implements Cell,Cloneable {
             Utils.getCellObjectFromIndices(sheet, cellCoordinates.getRow(), cellCoordinates.getCol()).cellsAffectedByMe.remove(this);
         }
         cellsAffectingMe.clear();
-    }
-
-    public Operation parseFunctionExpression(String originalExpression) {
-        originalExpression = originalExpression.trim();
-        if (originalExpression.startsWith("{") && originalExpression.endsWith("}")) {
-            originalExpression = originalExpression.substring(1, originalExpression.length() - 1).trim();
-        }
-
-        int firstCommaIndex = originalExpression.indexOf(',');
-        if (firstCommaIndex == -1) {
-            throw new InvalidArgumentException("Invalid function format",coordinates, originalExpression);
-        }
-        String functionName = originalExpression.substring(0, firstCommaIndex).trim();
-
-        String argumentsString = originalExpression.substring(firstCommaIndex + 1).trim();
-        List<Object> arguments = parseArguments(argumentsString);
-        if (arguments.size() != Operation.getOperationsMap().get(functionName).getNumOfArgsRequired()){
-            throw new InvalidArgumentException("Number of arguments given in function "
-                    + functionName + " does not match expected number of arguments", coordinates);
-        }
-
-        return Operation.createFunctionHandler(sheet, functionName, arguments);
-    }
-
-    private List<Object> parseArguments(String input) {
-        List<Object> arguments = new ArrayList<>();
-        StringBuilder currentArg = new StringBuilder();
-        int braceCount = 0;
-        boolean inString = false;
-
-        for (char c : input.toCharArray()) {
-            if (c == ',' && braceCount == 0 && !inString) {
-                arguments.add(parseArgument(currentArg.toString().trim()));
-                currentArg = new StringBuilder();
-            } else {
-                if (c == '{') braceCount++;
-                if (c == '}') braceCount--;
-                if (c == '"') inString = !inString;
-                currentArg.append(c);
-            }
-        }
-
-        if (!currentArg.isEmpty()) {
-            arguments.add(parseArgument(currentArg.toString().trim()));
-        }
-
-        return arguments;
-    }
-
-    public Object parseArgument(String arg) {
-        arg = arg.trim();
-        if (arg.startsWith("{") && arg.endsWith("}")) {
-            return parseFunctionExpression(arg);
-        }
-        else if (arg.matches("-?\\d+(\\.\\d+)?")) {
-            return Double.parseDouble(arg);
-        } else if (arg.equalsIgnoreCase("true") || arg.equalsIgnoreCase("false")) {
-            return Boolean.parseBoolean(arg);
-        }
-        else {
-            return arg;
-        }
     }
 
     @Override

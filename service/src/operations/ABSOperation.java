@@ -1,12 +1,14 @@
 package operations;
 
+import entities.CellCoordinates;
 import entities.core.CoreSheet;
 
 import java.util.List;
 
 public class ABSOperation extends Operation {
-    public ABSOperation(CoreSheet sheet, List<Object> arguments) {
+    public ABSOperation(CoreSheet sheet, CellCoordinates coordinates, List<Object> arguments) {
         super.sheet = sheet;
+        this.coordinates = coordinates;
         super.name = "ABS";
         super.arguments = arguments;
     }

@@ -1,12 +1,14 @@
 package operations;
 
+import entities.CellCoordinates;
 import entities.core.CoreSheet;
 
 import java.util.List;
 
 public class MINUSOperation extends Operation {
-    public MINUSOperation(CoreSheet sheet, List<Object> arguments) {
+    public MINUSOperation(CoreSheet sheet, CellCoordinates coordinates, List<Object> arguments) {
         super.sheet = sheet;
+        this.coordinates = coordinates;
         super.name = "MINUS";
         super.arguments = arguments;
     }

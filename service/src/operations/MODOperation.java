@@ -1,12 +1,14 @@
 package operations;
 
+import entities.CellCoordinates;
 import entities.core.CoreSheet;
 
 import java.util.List;
 
 public class MODOperation extends Operation {
-    public MODOperation(CoreSheet sheet, List<Object> arguments) {
+    public MODOperation(CoreSheet sheet, CellCoordinates coordinates, List<Object> arguments) {
         super.sheet = sheet;
+        this.coordinates = coordinates;
         super.name = "MOD";
         super.arguments = arguments;
     }

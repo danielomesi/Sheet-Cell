@@ -1,5 +1,7 @@
 package operations;
 
+import entities.CellCoordinates;
+import entities.core.CoreCell;
 import entities.core.CoreSheet;
 import exceptions.InvalidArgumentException;
 
@@ -7,6 +9,7 @@ import java.util.*;
 
 public abstract class Operation {
     protected CoreSheet sheet;
+    protected CellCoordinates coordinates;
     protected String name;
     protected List<Object> arguments;
     protected static final Map<String, OperationInfo> funcName2OperationInfo = new HashMap<>();
@@ -38,11 +41,11 @@ public abstract class Operation {
 
     }
 
-    public static Operation createFunctionHandler(CoreSheet sheet, String name, List<Object> arguments) {
+    public static Operation createFunctionHandler(CoreSheet sheet,CellCoordinates coordinates, String name, List<Object> arguments) {
         Class<? extends Operation> functionHandler = Operation.funcName2OperationInfo.get(name).getOperationClass();
         if (functionHandler != null) {
             try {
-                return functionHandler.getDeclaredConstructor(CoreSheet.class, List.class).newInstance(sheet, arguments);
+                return functionHandler.getDeclaredConstructor(CoreSheet.class,CellCoordinates.class,List.class).newInstance(sheet,coordinates,arguments);
             } catch (Exception e) {
                 throw new RuntimeException("Error creating instance of " + name, e);
             }
@@ -80,7 +83,7 @@ public abstract class Operation {
             if (object instanceof Number) {
                 doubles.add(((Number) object).doubleValue());
             } else {
-                throw new InvalidArgumentException("One of the arguments in the function " + name + " is not a number");
+                throw new InvalidArgumentException("One of the arguments in the function " + name + " is not a number", coordinates);
             }
         }
 
@@ -94,7 +97,7 @@ public abstract class Operation {
                 result.add(classType.cast(object));
             }
             else {
-                throw new InvalidArgumentException("One of the arguments in the function " + name + " is not matching the required type");
+                throw new InvalidArgumentException("One of the arguments in the function " + name + " is not matching the required type",coordinates);
             }
         }
 
@@ -107,7 +110,7 @@ public abstract class Operation {
             Object obj = nonOperationArguments.get(i);
             if (!clazz.isInstance(obj)) {
                 throw new InvalidArgumentException("Argument #" +(i+1) + " in the function " + name +
-                        " is not a " + clazz.getSimpleName(), String.valueOf(obj));
+                        " is not a " + clazz.getSimpleName(),coordinates, String.valueOf(obj));
             }
         }
     }

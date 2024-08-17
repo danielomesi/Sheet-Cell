@@ -4,7 +4,10 @@ import entities.Sheet;
 import entities.core.CoreCell;
 import entities.core.CoreSheet;
 import entities.dto.DTOSheet;
+import entities.stl.STLSheet;
 import exceptions.NoExistenceException;
+import exceptions.StringIndexOutOfBoundsException;
+import jakarta.xml.bind.JAXBException;
 import utils.Utils;
 
 import java.util.LinkedList;
@@ -32,6 +35,17 @@ public class EngineImpl implements Engine {
 
     @Override
     public void loadSheetFromXMLFile(String fullFilePath) {
+        STLSheet stlSheet;
+        try {
+            stlSheet = XMLHandler.loadXmlToObject(fullFilePath, STLSheet.class);
+        }
+        catch (JAXBException e) {
+            throw new StringIndexOutOfBoundsException(null);
+        }
+        CoreSheet coreSheet = new CoreSheet(stlSheet);
+
+        coreSheets.clear();
+        coreSheets.add(coreSheet);
     }
 
     @Override

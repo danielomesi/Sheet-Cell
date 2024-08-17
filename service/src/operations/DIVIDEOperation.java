@@ -1,13 +1,15 @@
 package operations;
 
+import entities.CellCoordinates;
 import entities.core.CoreSheet;
 import exceptions.ZeroDivisionException;
 
 import java.util.List;
 
 public class DIVIDEOperation extends Operation {
-    public DIVIDEOperation(CoreSheet sheet, List<Object> arguments) {
+    public DIVIDEOperation(CoreSheet sheet, CellCoordinates coordinates, List<Object> arguments) {
         super.sheet = sheet;
+        this.coordinates = coordinates;
         super.name = "DIVIDE";
         super.arguments = arguments;
     }

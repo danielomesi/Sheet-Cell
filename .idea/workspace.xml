@@ -4,18 +4,47 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added exceptions classes and added operations POW,ABS,CONCAT,SUB and more">
-      <change afterPath="$PROJECT_DIR$/service/src/exceptions/StringIndexOutOfBoundsException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/src/exceptions/ZeroDivisionException.java" afterDir="false" />
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Mainly Logic Changes">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/jakarta_activation_api.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/jakarta_xml_bind_api.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/jaxb_core.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/jaxb_impl.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/jaxb_jxc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/jaxb_xjc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external-libraries/jaxb/angus-activation.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external-libraries/jaxb/jakarta.activation-api.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external-libraries/jaxb/jakarta.xml.bind-api.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external-libraries/jaxb/jaxb-core.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external-libraries/jaxb/jaxb-impl.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external-libraries/jaxb/jaxb-jxc.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external-libraries/jaxb/jaxb-xjc.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/engine/XMLHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/entities/stl/ObjectFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/entities/stl/STLCell.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/entities/stl/STLCells.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/entities/stl/STLLayout.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/entities/stl/STLSheet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/entities/stl/STLSize.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/utils/TopologicalSorter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/service.iml" beforeDir="false" afterPath="$PROJECT_DIR$/service/service.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/Engine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/entities/core/CoreCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/core/CoreCell.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/entities/core/CoreSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/core/CoreSheet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/ABSOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/ABSOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/ConcatOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/ConcatOperation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/operations/DIVIDEOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/DIVIDEOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/MINUSOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/MINUSOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/MODOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/MODOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/Operation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/Operation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/PLUSOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/PLUSOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/POWOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/POWOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/REFOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/REFOperation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/operations/SUBOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/SUBOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/TIMESOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/TIMESOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/utils/Utils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/console/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/console/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/console/ConsoleUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/console/ConsoleUtils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +87,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "Application.App.executor": "Run",
     "Application.Application.executor": "Run",
     "Application.Unnamed.executor": "Run",
@@ -65,13 +95,13 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/omesi/IdeaProjects/Sheet-Cell",
+    "last_opened_file_path": "C:/Users/omesi/IdeaProjects/Sheet-Cell/external-libraries/jaxb/jaxb-xjc.jar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "vue.rearranger.settings.migration": "true"
@@ -107,7 +137,7 @@
       <workItem from="1723319691434" duration="31000" />
       <workItem from="1723478780196" duration="16336000" />
       <workItem from="1723817682048" duration="11465000" />
-      <workItem from="1723882496568" duration="6640000" />
+      <workItem from="1723882496568" duration="24311000" />
     </task>
     <task id="LOCAL‎-00001" summary="Added basic entities">
       <option name="closed" value="true" />
@@ -149,7 +179,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1723830411410</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL‎-00006" summary="Mainly Logic Changes">
+      <option name="closed" value="true" />
+      <created>1723890517612</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL‎-00006" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1723890517612</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -167,26 +205,20 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Added basic entities" />
     <MESSAGE value="Added another features" />
     <MESSAGE value="Project splitted into different modules" />
     <MESSAGE value="Refactored most classes" />
     <MESSAGE value="Added exceptions classes and added operations POW,ABS,CONCAT,SUB and more" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added exceptions classes and added operations POW,ABS,CONCAT,SUB and more" />
+    <MESSAGE value="Mainly Logic Changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mainly Logic Changes" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/ui/src/console/Application.java</url>
-          <line>13</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="service.operations.PLUSOperation" memberName="sheet" />
+        <PinnedItemInfo parentTag="java.lang.ClassCastException" memberName="stackTrace" />
       </pinned-members>
     </pin-to-top-manager>
   </component>

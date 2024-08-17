@@ -1,12 +1,14 @@
 package operations;
 
+import entities.CellCoordinates;
 import entities.core.CoreSheet;
 
 import java.util.List;
 
 public class TIMESOperation extends Operation {
-    public TIMESOperation(CoreSheet sheet, List<Object> arguments) {
+    public TIMESOperation(CoreSheet sheet, CellCoordinates coordinates, List<Object> arguments) {
         super.sheet = sheet;
+        this.coordinates = coordinates;
         super.name = "TIMES";
         super.arguments = arguments;
     }

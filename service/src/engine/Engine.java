@@ -2,6 +2,7 @@ package engine;
 
 import entities.Sheet;
 import entities.core.CoreCell;
+import jakarta.xml.bind.JAXBException;
 
 public interface Engine {
 

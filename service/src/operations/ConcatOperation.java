@@ -1,13 +1,15 @@
 package operations;
 
+import entities.CellCoordinates;
 import entities.core.CoreSheet;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ConcatOperation extends Operation {
-    public ConcatOperation(CoreSheet sheet, List<Object> arguments) {
+    public ConcatOperation(CoreSheet sheet, CellCoordinates coordinates, List<Object> arguments) {
         super.sheet = sheet;
+        this.coordinates = coordinates;
         super.name = "CONCAT";
         super.arguments = arguments;
     }
