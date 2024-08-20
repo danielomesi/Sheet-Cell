@@ -1,11 +1,9 @@
 package exceptions;
 
-import entities.CellCoordinates;
+import entities.cell.CellCoordinates;
 
 public class CellOutOfBoundsException extends ServiceException{
-    static {
-        exceptionName = "Cell Out Of Bounds";
-    }
+    public String getExceptionName() {return "Cell Out Of Bounds";}
     public CellOutOfBoundsException(String message) {
         super(message);
     }

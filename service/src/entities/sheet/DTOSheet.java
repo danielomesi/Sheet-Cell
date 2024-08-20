@@ -1,19 +1,21 @@
-package entities.dto;
+package entities.sheet;
 
-import entities.Sheet;
-import entities.core.CoreSheet;
+import entities.cell.DTOCell;
 
 public class DTOSheet implements Sheet {
     private DTOCell[][] cellsTable;
     private final int numOfRows;
     private final int numOfColumns;
     private final int version;
+    private final Layout layout;
+    private final String name;
 
     public DTOSheet(CoreSheet coreSheet) {
         this.numOfRows = coreSheet.getNumOfRows();
         this.numOfColumns = coreSheet.getNumOfColumns();
         this.version = coreSheet.getVersion();
-
+        this.layout = coreSheet.getLayout();
+        this.name = coreSheet.getName();
         if (coreSheet.getCellsTable() != null) {
             this.cellsTable = new DTOCell[numOfRows][numOfColumns];
             for (int i = 0; i < coreSheet.getCellsTable().length; i++) {
@@ -29,4 +31,8 @@ public class DTOSheet implements Sheet {
     public int getNumOfRows() {return this.numOfRows;}
     public int getNumOfColumns() {return this.numOfColumns;}
     public int getVersion() {return this.version;}
+    @Override
+    public Layout getLayout() {return layout;}
+    @Override
+    public String getName() {return name;}
 }

@@ -1,8 +1,4 @@
-package entities.dto;
-
-import entities.CellCoordinates;
-import entities.Cell;
-import entities.core.CoreCell;
+package entities.cell;
 
 import java.util.ArrayList;
 import java.util.List;

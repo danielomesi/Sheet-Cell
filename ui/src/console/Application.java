@@ -1,34 +1,20 @@
 package console;
 
-import engine.Engine;
-import engine.EngineImpl;
+import console.menu.Menu;
 
 //to do:
-//fix layout thing of spacing - i need to retrieve from STL data the proper width of collums and rows
+//make sure that I am making a validating check on the XML I get according to the requests
+//make the print sheet function to present every row index as 2 digits, for example - 01 instead of 1
 //add menu
 //add versions handling
 //refactor
 //try to divide the code to more functions, make it more readable
 //think about encapsulation - working with types
-//
+//C:\\Users\\omesi\\Desktop\\examples\\insurance.xml
+
 public class Application {
 
     public static void main(String[] args) throws CloneNotSupportedException {
-        Engine engine = new EngineImpl();
-
-        try {
-            engine.loadSheetFromXMLFile("C:\\Users\\omesi\\Desktop\\examples\\insurance.xml");
-            ConsoleUtils.printSheet(engine.getSheet());
-//            System.out.println("Before: ");
-//            ConsoleUtils.printSheet(engine.getSheet());
-//            engine.updateSpecificCell("E7", "{TIMES,800005,  6.3}");
-//            System.out.println("After: ");
-//            ConsoleUtils.printSheet(engine.getSheet());
-
-        }
-        catch (Exception e) {
-            ConsoleUtils.printExceptionInfo(e);
-            e.printStackTrace();
-        }
+         Menu.start();
     }
 }

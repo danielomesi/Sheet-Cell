@@ -1,8 +1,10 @@
 package exceptions;
 
-import entities.CellCoordinates;
+import entities.cell.CellCoordinates;
 
 public class ZeroDivisionException extends ServiceException{
+    public String getExceptionName() {return "Zero Division";}
+
     public ZeroDivisionException(String message) {
         super(message);
     }

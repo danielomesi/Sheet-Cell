@@ -1,9 +1,8 @@
 package operations;
 
-import entities.CellCoordinates;
-import entities.core.CoreSheet;
+import entities.cell.CellCoordinates;
+import entities.sheet.CoreSheet;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ConcatOperation extends Operation {

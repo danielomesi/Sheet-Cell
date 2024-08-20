@@ -4,34 +4,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Mainly Logic Changes">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/jakarta_activation_api.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/jakarta_xml_bind_api.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/jaxb_core.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/jaxb_impl.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/jaxb_jxc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/jaxb_xjc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/external-libraries/jaxb/angus-activation.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/external-libraries/jaxb/jakarta.activation-api.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/external-libraries/jaxb/jakarta.xml.bind-api.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/external-libraries/jaxb/jaxb-core.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/external-libraries/jaxb/jaxb-impl.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/external-libraries/jaxb/jaxb-jxc.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/external-libraries/jaxb/jaxb-xjc.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/src/engine/XMLHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/src/entities/stl/ObjectFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/src/entities/stl/STLCell.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/src/entities/stl/STLCells.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/src/entities/stl/STLLayout.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/src/entities/stl/STLSheet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/src/entities/stl/STLSize.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/src/utils/TopologicalSorter.java" afterDir="false" />
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added topological sort mechanism and xml reading">
+      <change afterPath="$PROJECT_DIR$/service/src/entities/sheet/Layout.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/exceptions/CloneFailureException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/src/console/ConsolePrintHelper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/src/console/exceptions/ConsoleException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/src/console/exceptions/InvalidPathDetectedException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/src/console/exceptions/NoExistenceException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/src/console/exceptions/NotANumberException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/src/console/exceptions/OutOfRangeException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/src/console/menu/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/service.iml" beforeDir="false" afterPath="$PROJECT_DIR$/service/service.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/Engine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/core/CoreCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/core/CoreCell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/core/CoreSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/core/CoreSheet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/cell/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/CellCoordinates.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/cell/CellCoordinates.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/Sheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/sheet/Sheet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/core/CoreCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/cell/CoreCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/core/CoreSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/dto/DTOCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/cell/DTOCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/dto/DTOSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/sheet/DTOSheet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/exceptions/CellOutOfBoundsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/exceptions/CellOutOfBoundsException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/exceptions/CircleReferenceException.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/exceptions/CircleReferenceException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/exceptions/InvalidArgumentException.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/exceptions/InvalidArgumentException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/exceptions/NoExistenceException.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/exceptions/NoExistenceException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/exceptions/ServiceException.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/exceptions/ServiceException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/exceptions/StringIndexOutOfBoundsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/exceptions/StringIndexOutOfBoundsException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/exceptions/ZeroDivisionException.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/exceptions/ZeroDivisionException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/operations/ABSOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/ABSOperation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/operations/ConcatOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/ConcatOperation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/operations/DIVIDEOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/DIVIDEOperation.java" afterDir="false" />
@@ -43,8 +42,10 @@
       <change beforePath="$PROJECT_DIR$/service/src/operations/REFOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/REFOperation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/operations/SUBOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/SUBOperation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/operations/TIMESOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/TIMESOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/utils/TopologicalSorter.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/utils/TopologicalSorter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/utils/Utils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/console/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/console/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/console/ConsoleUtils.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,7 +138,8 @@
       <workItem from="1723319691434" duration="31000" />
       <workItem from="1723478780196" duration="16336000" />
       <workItem from="1723817682048" duration="11465000" />
-      <workItem from="1723882496568" duration="24311000" />
+      <workItem from="1723882496568" duration="24334000" />
+      <workItem from="1724149849612" duration="15931000" />
     </task>
     <task id="LOCAL‎-00001" summary="Added basic entities">
       <option name="closed" value="true" />
@@ -187,7 +189,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1723890517612</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL‎-00007" summary="Added topological sort mechanism and xml reading">
+      <option name="closed" value="true" />
+      <created>1723909474931</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL‎-00007" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1723909474931</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,7 +222,8 @@
     <MESSAGE value="Refactored most classes" />
     <MESSAGE value="Added exceptions classes and added operations POW,ABS,CONCAT,SUB and more" />
     <MESSAGE value="Mainly Logic Changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Mainly Logic Changes" />
+    <MESSAGE value="Added topological sort mechanism and xml reading" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added topological sort mechanism and xml reading" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

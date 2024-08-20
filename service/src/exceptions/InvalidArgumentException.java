@@ -1,11 +1,11 @@
 package exceptions;
 
-import entities.CellCoordinates;
+import entities.cell.CellCoordinates;
 
 public class InvalidArgumentException extends ServiceException{
-    static {
-        exceptionName = "Invalid Argument";
-    }
+
+    public String getExceptionName() {return "Invalid Argument";}
+
     public InvalidArgumentException(String message) {
         super(message);
     }

@@ -1,10 +1,14 @@
 package engine;
 
-import entities.Sheet;
-import entities.core.CoreCell;
-import entities.core.CoreSheet;
-import entities.dto.DTOSheet;
+import entities.cell.Cell;
+import entities.cell.DTOCell;
+import entities.sheet.Layout;
+import entities.sheet.Sheet;
+import entities.cell.CoreCell;
+import entities.sheet.CoreSheet;
+import entities.sheet.DTOSheet;
 import entities.stl.STLSheet;
+import exceptions.CloneFailureException;
 import exceptions.NoExistenceException;
 import exceptions.StringIndexOutOfBoundsException;
 import jakarta.xml.bind.JAXBException;
@@ -23,6 +27,9 @@ public class EngineImpl implements Engine {
 
     @Override
     public Sheet getSheet() {
+        if (coreSheets.isEmpty()) {
+            return null;
+        }
         return getSheet(coreSheets.size() - 1);
     }
 
@@ -50,7 +57,7 @@ public class EngineImpl implements Engine {
 
     @Override
     public void loadSheetFromDummyData() {
-        CoreSheet coreSheets = new CoreSheet(7, 7); // 7 rows, 7 columns
+        CoreSheet coreSheets = new CoreSheet(7, 7, new Layout(4,4), "Hey"); // 7 rows, 7 columns
 
         // Populate with explicit dummy data
         Utils.getCellObjectFromCellID(coreSheets, "A1").executeCalculationProcedure("3");
@@ -113,13 +120,19 @@ public class EngineImpl implements Engine {
     }
 
     @Override
-    public CoreCell getSpecificCell(String cellName) {
-        return null;
+    public Cell getSpecificCell(String cellName) {
+        return Utils.getCellObjectFromCellID(coreSheets.getLast(), cellName);
     }
 
     @Override
-    public void updateSpecificCell(String cellName, String originalExpression) throws CloneNotSupportedException {
-        CoreSheet cloned = coreSheets.getLast().clone();
+    public void updateSpecificCell(String cellName, String originalExpression) {
+        CoreSheet cloned = null;
+        try {
+            cloned = coreSheets.getLast().clone();
+        } catch (CloneNotSupportedException e) {
+            throw new CloneFailureException("Failed to make a clone of the last sheet");
+        }
+
         cloned.incrementVersion();
         Utils.getCellObjectFromCellID(cloned, cellName).executeCalculationProcedure(originalExpression);
         coreSheets.addLast(cloned);

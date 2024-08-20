@@ -1,4 +1,4 @@
-package entities;
+package entities.cell;
 
 import java.util.List;
 

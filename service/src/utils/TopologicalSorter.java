@@ -1,8 +1,8 @@
 package utils;
 
-import entities.CellCoordinates;
-import entities.core.CoreCell;
-import entities.core.CoreSheet;
+import entities.cell.CellCoordinates;
+import entities.cell.CoreCell;
+import entities.sheet.CoreSheet;
 import exceptions.CircleReferenceException;
 
 import java.util.*;

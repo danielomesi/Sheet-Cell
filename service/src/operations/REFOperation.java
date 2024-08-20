@@ -1,9 +1,8 @@
 package operations;
 
-import entities.Cell;
-import entities.CellCoordinates;
-import entities.core.CoreCell;
-import entities.core.CoreSheet;
+import entities.cell.CellCoordinates;
+import entities.cell.CoreCell;
+import entities.sheet.CoreSheet;
 import exceptions.InvalidArgumentException;
 import utils.Utils;
 

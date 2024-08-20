@@ -1,12 +1,10 @@
 package exceptions;
 
-import entities.CellCoordinates;
+import entities.cell.CellCoordinates;
 
 public class NoExistenceException extends ServiceException {
 
-    static {
-        exceptionName = "No Existence";
-    }
+    public String getExceptionName() {return "No Existence";}
     public NoExistenceException(String message) {
         super(message);
     }

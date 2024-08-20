@@ -1,6 +1,5 @@
-package entities;
+package entities.cell;
 
-import entities.core.CoreCell;
 import utils.Utils;
 
 public class CellCoordinates implements Cloneable
@@ -39,5 +38,17 @@ public class CellCoordinates implements Cloneable
     @Override
     public String toString() {
         return Utils.getCellIDFromIndices(row,col);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        CellCoordinates other = (CellCoordinates) o;
+        return row == other.row && col == other.col;
     }
 }

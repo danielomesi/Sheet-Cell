@@ -1,10 +1,7 @@
-package entities.core;
+package entities.cell;
 
-import entities.CellCoordinates;
-import entities.Cell;
-import entities.stl.STLCell;
+import entities.sheet.CoreSheet;
 import exceptions.CircleReferenceException;
-import exceptions.InvalidArgumentException;
 import operations.Operation;
 import utils.Utils;
 
@@ -111,7 +108,7 @@ public class CoreCell implements Cell,Cloneable {
     {
         for(CellCoordinates cellCoordinates : cellsAffectingMe)
         {
-            Utils.getCellObjectFromIndices(sheet, cellCoordinates.getRow(), cellCoordinates.getCol()).cellsAffectedByMe.remove(this);
+            Utils.getCellObjectFromIndices(sheet, cellCoordinates.getRow(), cellCoordinates.getCol()).cellsAffectedByMe.remove(this.coordinates);
         }
         cellsAffectingMe.clear();
     }

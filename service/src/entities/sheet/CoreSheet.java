@@ -1,8 +1,7 @@
-package entities.core;
+package entities.sheet;
 
-import entities.Cell;
-import entities.CellCoordinates;
-import entities.Sheet;
+import entities.cell.CellCoordinates;
+import entities.cell.CoreCell;
 import entities.stl.STLCell;
 import entities.stl.STLSheet;
 import operations.Operation;
@@ -16,17 +15,24 @@ public class CoreSheet implements Sheet,Cloneable {
     private final int numOfRows;
     private final int numOfColumns;
     private int version = 1;
+    private final Layout layout;
+    private final String name;
 
-    public CoreSheet(int numOfRows, int numOfColumns) {
+    public CoreSheet(int numOfRows, int numOfColumns, Layout layout, String name) {
         cellsTable = new CoreCell[numOfRows][numOfColumns];
         this.numOfRows = numOfRows;
         this.numOfColumns = numOfColumns;
+        this.layout = layout;
+        this.name = name;
         initializeSheet();
     }
 
     public CoreSheet(STLSheet stlSheet) {
         this.numOfRows = stlSheet.getSTLLayout().getRows();
         this.numOfColumns = stlSheet.getSTLLayout().getColumns();
+        this.layout = new Layout(stlSheet.getSTLLayout().getSTLSize().getRowsHeightUnits(),
+                stlSheet.getSTLLayout().getSTLSize().getColumnWidthUnits());
+        this.name = stlSheet.getName();
         cellsTable = new CoreCell[numOfRows][numOfColumns];
         List<STLCell> STLCells = stlSheet.getSTLCells().getSTLCell();
         initializeSheet();
@@ -60,11 +66,14 @@ public class CoreSheet implements Sheet,Cloneable {
     }
 
     public CoreCell[][] getCellsTable() {return cellsTable;}
-    //public CellInterface[][] getCellsTable() {return cellsTable;}
     public int getVersion() {return version;}
     public int getNumOfRows() {return numOfRows;}
     public int getNumOfColumns() {return numOfColumns;}
     public void incrementVersion() {version++;}
+    @Override
+    public Layout getLayout() {return layout;}
+    @Override
+    public String getName() {return name;}
 
     private void initializeSheet() {
         for (int i = 0; i < cellsTable.length; i++) {
@@ -74,6 +83,7 @@ public class CoreSheet implements Sheet,Cloneable {
             }
         }
     }
+
 
     private boolean isCellInsideSTLList(int i, int j, List<STLCell> stlCells) {
         for (STLCell stlCell : stlCells) {

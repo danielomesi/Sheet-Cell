@@ -1,11 +1,12 @@
 package utils;
 
-import entities.core.CoreCell;
-import entities.CellCoordinates;
-import entities.core.CoreSheet;
+import entities.cell.CoreCell;
+import entities.cell.CellCoordinates;
+import entities.sheet.CoreSheet;
 import exceptions.CellOutOfBoundsException;
 import exceptions.InvalidArgumentException;
 import operations.Operation;
+import operations.OperationInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,7 +71,7 @@ public class Utils {
         }
 
         Integer rowNumber = rowIndex + 1;
-        return rowNumber.toString() + columnLetters;
+        return  columnLetters + rowNumber.toString();
     }
 
     public static Operation parseFunctionExpression(CoreSheet sheet, CellCoordinates coordinates, String originalExpression) {
@@ -84,10 +85,14 @@ public class Utils {
             throw new InvalidArgumentException("Invalid function format",coordinates, originalExpression);
         }
         String functionName = originalExpression.substring(0, firstCommaIndex).trim();
+        OperationInfo operationInfo = Operation.getOperationsMap().get(functionName);
+        if (operationInfo == null) {
+            throw new InvalidArgumentException("Function name is not recognized",coordinates, functionName);
+        }
 
-        String argumentsString = originalExpression.substring(firstCommaIndex + 1).trim();
+        String argumentsString = originalExpression.substring(firstCommaIndex + 1);
         List<Object> arguments = parseArguments(sheet, coordinates, argumentsString);
-        if (arguments.size() != Operation.getOperationsMap().get(functionName).getNumOfArgsRequired()){
+        if (arguments.size() != operationInfo.getNumOfArgsRequired()){
             throw new InvalidArgumentException("Number of arguments given in function "
                     + functionName + " does not match expected number of arguments", coordinates);
         }
@@ -99,29 +104,26 @@ public class Utils {
         List<Object> arguments = new ArrayList<>();
         StringBuilder currentArg = new StringBuilder();
         int braceCount = 0;
-        boolean inString = false;
 
         for (char c : input.toCharArray()) {
-            if (c == ',' && braceCount == 0 && !inString) {
-                arguments.add(parseArgument(sheet, coordinates, currentArg.toString().trim()));
+            if (c == ',' && braceCount == 0) {
+                arguments.add(parseArgument(sheet, coordinates, currentArg.toString()));
                 currentArg = new StringBuilder();
             } else {
                 if (c == '{') braceCount++;
                 if (c == '}') braceCount--;
-                if (c == '"') inString = !inString;
                 currentArg.append(c);
             }
         }
 
         if (!currentArg.isEmpty()) {
-            arguments.add(parseArgument(sheet,coordinates,  currentArg.toString().trim()));
+            arguments.add(parseArgument(sheet,coordinates,  currentArg.toString()));
         }
 
         return arguments;
     }
 
     public static Object parseArgument(CoreSheet sheet, CellCoordinates coordinates, String arg) {
-        arg = arg.trim();
         if (arg.startsWith("{") && arg.endsWith("}")) {
             return parseFunctionExpression(sheet, coordinates, arg);
         }
