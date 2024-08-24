@@ -26,6 +26,7 @@ public class ConsolePrintHelper {
         int rightPadding = (int) Math.ceil(rowPadding);
 
         // Print version
+        System.out.println("Sheet Name: " + sheet.getName());
         System.out.println("Version: " + sheet.getVersion());
 
         // Print column headers
@@ -113,8 +114,8 @@ public class ConsolePrintHelper {
 //    }
 
     private static String centerText(String text, int width) {
-        if (text.length() >= width) {
-            return text.substring(width);
+        if (text.length() > width) {
+            return text.substring(0, width-1);
         }
         double padding = ((double)width - (double)text.length())/2;
         int leftPadding = (int) Math.floor(padding);

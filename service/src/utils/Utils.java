@@ -39,6 +39,7 @@ public class Utils {
 
     public static int convertColumnLettersToIndex(String letters) {
         int columnIndex = 0;
+        letters = letters.toUpperCase();
         int length = letters.length();
         for (int i = 0; i < length; i++) {
             char letter = letters.charAt(i);
@@ -219,5 +220,12 @@ public class Utils {
         }
 
         return parts.toArray(new String[0]);
+    }
+
+    public static void validateInRange(int toCheck, int start, int end) {
+        if (!(start <= toCheck && toCheck <= end)) {
+            throw new CellOutOfBoundsException("Expected a number between "
+                    + String.valueOf(start+1) + " and " + String.valueOf(end + 1), String.valueOf(toCheck + 1));
+        }
     }
 }

@@ -3,12 +3,11 @@ package console;
 import console.menu.Menu;
 
 //to do:
-//add a name when presenting a version (needed to add to a sheet)
+//test the references cases - im not sure if it works well
 //think wether a new sheet loaded should have numOfCellsChanged = 0 ?
 //make dto an interface and make the core implement it?
 //make it a map from coordinates to cells instead of
 //make sure that I am making a validating check on the XML I get according to the requests
-//make the print sheet function to present every row index as 2 digits, for example - 01 instead of 1
 //add menu
 //add versions handling
 //refactor

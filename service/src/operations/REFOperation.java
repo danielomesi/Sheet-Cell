@@ -22,7 +22,7 @@ public class REFOperation extends Operation {
         Object obj = null;
         CoreCell referencingCell = Utils.getCellObjectFromCellID(sheet, coordinates.getCellID());
         try {
-            CoreCell referencedCell = Utils.getCellObjectFromCellID(sheet, (String) arg);
+            CoreCell referencedCell = Utils.getCellObjectFromCellID(sheet, arg.toString().toUpperCase());
             obj = referencedCell.getEffectiveValue();
             referencingCell.getCellsAffectingMe().add(referencedCell.getCoordinates());
             referencedCell.getCellsAffectedByMe().add(referencingCell.getCoordinates());

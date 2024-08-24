@@ -4,22 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added menu">
-      <change afterPath="$PROJECT_DIR$/service/src/exceptions/InvalidXMLException.java" afterDir="false" />
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added versions handling and fixed sheet show">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/cell/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/cell/Cell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/cell/CellCoordinates.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/cell/CellCoordinates.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/cell/CoreCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/cell/CoreCell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/cell/DTOCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/cell/DTOCell.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/sheet/DTOSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/sheet/DTOSheet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/sheet/Sheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/sheet/Sheet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/REFOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/REFOperation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/utils/Utils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/console/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/console/Application.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/console/ConsolePrintHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/console/ConsolePrintHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/console/menu/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/console/menu/Menu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +105,8 @@
       <workItem from="1723817682048" duration="11465000" />
       <workItem from="1723882496568" duration="24334000" />
       <workItem from="1724149849612" duration="15976000" />
-      <workItem from="1724490328446" duration="11966000" />
+      <workItem from="1724490328446" duration="11981000" />
+      <workItem from="1724509817456" duration="3434000" />
     </task>
     <task id="LOCAL‎-00001" summary="Added basic entities">
       <option name="closed" value="true" />
@@ -180,7 +172,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1724165968895</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL‎-00009" summary="Added versions handling and fixed sheet show">
+      <option name="closed" value="true" />
+      <created>1724502418065</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL‎-00009" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1724502418066</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -207,9 +207,24 @@
     <MESSAGE value="Mainly Logic Changes" />
     <MESSAGE value="Added topological sort mechanism and xml reading" />
     <MESSAGE value="Added menu" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added menu" />
+    <MESSAGE value="Added versions handling and fixed sheet show" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added versions handling and fixed sheet show" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ui/src/console/menu/Menu.java</url>
+          <line>129</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ui/src/console/menu/Menu.java</url>
+          <line>95</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="service.operations.PLUSOperation" memberName="sheet" />

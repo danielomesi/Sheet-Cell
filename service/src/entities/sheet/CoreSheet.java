@@ -41,6 +41,8 @@ public class CoreSheet implements Sheet,Cloneable {
         for (STLCell stlCell : STLCells) {
             int i = stlCell.getRow() - 1;
             int j = Utils.convertColumnLettersToIndex(stlCell.getColumn());
+            Utils.validateInRange(i, 0, numOfRows);
+            Utils.validateInRange(j, 0, numOfColumns);
             cellsTable[i][j].setOriginalExpression(stlCell.getSTLOriginalValue());
             Utils.updateDependencies(this, cellsTable[i][j]);
         }
