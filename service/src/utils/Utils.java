@@ -127,7 +127,7 @@ public class Utils {
         if (arg.startsWith("{") && arg.endsWith("}")) {
             return parseFunctionExpression(sheet, coordinates, arg);
         }
-        else if (arg.matches("-?\\d+(\\.\\d+)?")) {
+        else if (arg.trim().matches("-?\\d+(\\.\\d+)?")) {
             return Double.parseDouble(arg);
         } else if (arg.equalsIgnoreCase("true") || arg.equalsIgnoreCase("false")) {
             return Boolean.parseBoolean(arg);

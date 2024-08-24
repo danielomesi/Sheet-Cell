@@ -8,6 +8,7 @@ import exceptions.ServiceException;
 
 import java.text.DecimalFormat;
 import java.util.List;
+import java.util.Set;
 
 public class ConsolePrintHelper {
 
@@ -18,49 +19,107 @@ public class ConsolePrintHelper {
 
         int columnWidth = sheet.getLayout().getColumnWidthUnits();
         int rowHeight = sheet.getLayout().getRowHeightUnits();
+        int rowIndexWidth = Math.max(Integer.toString(numOfRows).length(), 2);
 
-        int rowIndexWidth = Integer.toString(numOfRows).length();
+        double rowPadding = ((double)rowHeight - (double)1) / 2;
+        int leftPadding = (int) Math.floor(rowPadding);
+        int rightPadding = (int) Math.ceil(rowPadding);
 
+        // Print version
         System.out.println("Version: " + sheet.getVersion());
 
-        System.out.print(" ".repeat(rowIndexWidth) + " | ");  // Space for row index
+        // Print column headers
+        System.out.print(" ".repeat(rowIndexWidth)); // Leading spaces for row index
         for (int j = 0; j < numOfColumns; j++) {
             String colName = getColumnName(j);
-            System.out.print(centerText(colName, columnWidth));
+            System.out.print(centerText(colName, columnWidth)); // Centered column name
             if (j < numOfColumns - 1) {
-                System.out.print(" | ");
+                System.out.print("|"); // Separator between columns
             }
         }
         System.out.println();
 
-        for (int i = 0; i < numOfRows; i++) {
-            for (int heightIndex = 0; heightIndex < rowHeight; heightIndex++) {
-                if (heightIndex == rowHeight / 2) {
-                    String rowIndex = Integer.toString(i + 1);
-                    System.out.print(centerText(rowIndex, rowIndexWidth) + " | ");  // Row index
-                } else {
-                    System.out.print(" ".repeat(rowIndexWidth) + " | ");
-                }
+        // Print cell contents
 
-                for (int j = 0; j < numOfColumns; j++) {
-                    Object value = cellsTable[i][j].getEffectiveValue();
-                    String valueString = value != null ? objectValueAsString(value) : "";
-                    System.out.print(centerText(valueString, columnWidth));
-                    if (j < numOfColumns - 1) {
-                        System.out.print(" | ");
-                    }
-                }
-                System.out.println();
+        for (int i = 0; i < numOfRows; i++) {
+            moveDown(leftPadding);
+            String rowIndex = String.format("%0" + rowIndexWidth + "d", i + 1);
+            System.out.print(rowIndex);
+            // Print spaces for row index in other lines
+            System.out.print(" ".repeat(rowIndexWidth-rowIndex.length()));
+
+        // Print cell values
+            for (int j = 0; j < numOfColumns; j++) {
+                Object value = cellsTable[i][j].getEffectiveValue();
+                String valueString = value != null ? objectValueAsString(value) : "";
+                System.out.print(centerText(valueString, columnWidth+1));
+                //added 1 to prepare the next text to be inserted after a |
             }
+            System.out.println(); // Move to the next line
+            moveDown(rightPadding);
         }
     }
 
+    public static void moveDown(int lines) {
+        for (int i = 0; i < lines; i++) {
+            System.out.println();
+        }
+    }
+
+
+//    public static void printSheet(Sheet sheet) {
+//        Cell[][] cellsTable = sheet.getCellsTable();
+//        int numOfColumns = cellsTable[0].length;
+//        int numOfRows = cellsTable.length;
+//
+//        int columnWidth = sheet.getLayout().getColumnWidthUnits();
+//        int rowHeight = sheet.getLayout().getRowHeightUnits();
+//
+//        int rowIndexWidth = Math.max(Integer.toString(numOfRows).length(),2);
+//
+//
+//        System.out.println("Version: " + sheet.getVersion());
+//
+//        System.out.print(" ".repeat(rowIndexWidth) + " | ");  // Space for row index
+//        for (int j = 0; j < numOfColumns; j++) {
+//            String colName = getColumnName(j);
+//            System.out.print(centerText(colName, columnWidth));
+//            if (j < numOfColumns - 1) {
+//                System.out.print(" | ");
+//            }
+//        }
+//        System.out.println();
+//
+//        for (int i = 0; i < numOfRows; i++) {
+//            for (int heightIndex = 0; heightIndex < rowHeight; heightIndex++) {
+//                if (heightIndex == rowHeight / 2) {
+//                    String rowIndex = String.format("%0" + rowIndexWidth + "d", i + 1);
+//                    System.out.print(centerText(rowIndex, rowIndexWidth) + " | ");  // Row index
+//                } else {
+//                    System.out.print(" ".repeat(rowIndexWidth) + " | ");
+//                }
+//
+//                for (int j = 0; j < numOfColumns; j++) {
+//                    Object value = cellsTable[i][j].getEffectiveValue();
+//                    String valueString = value != null ? objectValueAsString(value) : "";
+//                    System.out.print(centerText(valueString, columnWidth));
+//                    if (j < numOfColumns - 1) {
+//                        System.out.print(" | ");
+//                    }
+//                }
+//                System.out.println();
+//            }
+//        }
+//    }
+
     private static String centerText(String text, int width) {
         if (text.length() >= width) {
-            return text;
+            return text.substring(width);
         }
-        int padding = (width - text.length()) / 2;
-        return " ".repeat(padding) + text + " ".repeat(width - text.length() - padding);
+        double padding = ((double)width - (double)text.length())/2;
+        int leftPadding = (int) Math.floor(padding);
+        int rightPadding = (int) Math.ceil(padding);
+        return " ".repeat(leftPadding) + text + " ".repeat(rightPadding);
     }
 
     private static String getColumnName(int index) {
@@ -105,8 +164,8 @@ public class ConsolePrintHelper {
 
 
         int version = cell.getVersion();
-        List<CellCoordinates> cellsAffectedByMe = cell.getCellsAffectedByMe();
-        List<CellCoordinates> cellsAffectingMe = cell.getCellsAffectingMe();
+        Set<CellCoordinates> cellsAffectedByMe = cell.getCellsAffectedByMe();
+        Set<CellCoordinates> cellsAffectingMe = cell.getCellsAffectingMe();
 
         printBasicCellInfo(cell);
         System.out.println("Last Modified Version: " + version);
@@ -140,6 +199,24 @@ public class ConsolePrintHelper {
         System.out.println("Cell Identifier: " + coordinates);
         System.out.println("Original Expression: " + originalExpression);
         System.out.println("Effective Value: " + effectiveValue);
+    }
+
+    public static void printSheetVersionsInfo(List<Sheet> sheetList) {
+        if (sheetList == null || sheetList.isEmpty()) {
+            System.out.println("No sheets available.");
+            return;
+        }
+
+        System.out.printf("%-10s | %-20s\n", "Version", "Cells Changed");
+        System.out.println("-----------------------------");
+
+        for (int i = 0; i < sheetList.size(); i++) {
+            Sheet sheet = sheetList.get(i);
+            int version = i + 1; // Assuming version is based on index, adjust as needed
+            int cellsChanged = sheet.getNumOfCellsChanged();
+
+            System.out.printf("%-10d | %-20d\n", version, cellsChanged);
+        }
     }
 
 }

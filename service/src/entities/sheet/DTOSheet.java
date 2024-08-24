@@ -7,6 +7,7 @@ public class DTOSheet implements Sheet {
     private final int numOfRows;
     private final int numOfColumns;
     private final int version;
+    private final int numOfCellsChanged;
     private final Layout layout;
     private final String name;
 
@@ -16,6 +17,7 @@ public class DTOSheet implements Sheet {
         this.version = coreSheet.getVersion();
         this.layout = coreSheet.getLayout();
         this.name = coreSheet.getName();
+        this.numOfCellsChanged = coreSheet.getNumOfCellsChanged();
         if (coreSheet.getCellsTable() != null) {
             this.cellsTable = new DTOCell[numOfRows][numOfColumns];
             for (int i = 0; i < coreSheet.getCellsTable().length; i++) {
@@ -35,4 +37,5 @@ public class DTOSheet implements Sheet {
     public Layout getLayout() {return layout;}
     @Override
     public String getName() {return name;}
+    public int getNumOfCellsChanged() {return this.numOfCellsChanged;}
 }

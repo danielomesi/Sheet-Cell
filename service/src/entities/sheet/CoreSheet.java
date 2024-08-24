@@ -15,6 +15,7 @@ public class CoreSheet implements Sheet,Cloneable {
     private final int numOfRows;
     private final int numOfColumns;
     private int version = 1;
+    private int numOfCellsChanged;
     private final Layout layout;
     private final String name;
 
@@ -33,6 +34,7 @@ public class CoreSheet implements Sheet,Cloneable {
         this.layout = new Layout(stlSheet.getSTLLayout().getSTLSize().getRowsHeightUnits(),
                 stlSheet.getSTLLayout().getSTLSize().getColumnWidthUnits());
         this.name = stlSheet.getName();
+        this.numOfCellsChanged = 0;
         cellsTable = new CoreCell[numOfRows][numOfColumns];
         List<STLCell> STLCells = stlSheet.getSTLCells().getSTLCell();
         initializeSheet();
@@ -50,6 +52,7 @@ public class CoreSheet implements Sheet,Cloneable {
     @Override
     public CoreSheet clone() throws CloneNotSupportedException {
         CoreSheet cloned = (CoreSheet) super.clone();
+        cloned.numOfCellsChanged = 0;
         cloned.cellsTable = new CoreCell[numOfRows][numOfColumns];
         for (int i = 0; i < numOfRows; i++) {
             for (int j = 0; j < numOfColumns; j++) {
@@ -74,6 +77,8 @@ public class CoreSheet implements Sheet,Cloneable {
     public Layout getLayout() {return layout;}
     @Override
     public String getName() {return name;}
+    public int getNumOfCellsChanged() {return numOfCellsChanged;}
+    public void incrementNumOfCellsChanged() {numOfCellsChanged++;}
 
     private void initializeSheet() {
         for (int i = 0; i < cellsTable.length; i++) {

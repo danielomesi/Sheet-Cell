@@ -6,7 +6,9 @@ import operations.Operation;
 import utils.Utils;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static utils.Utils.parseArgument;
 import static utils.Utils.parseFunctionExpression;
@@ -22,8 +24,8 @@ public class CoreCell implements Cell,Cloneable {
     private Object effectiveValue;
     private String originalExpression;
     private Operation operation;
-    private List<CellCoordinates> cellsAffectedByMe = new ArrayList<>(0);
-    private List<CellCoordinates> cellsAffectingMe = new ArrayList<>(0);
+    private Set<CellCoordinates> cellsAffectedByMe = new HashSet<>(0);
+    private Set<CellCoordinates> cellsAffectingMe = new HashSet<>(0);
     private Status visitColor;
 
     public CoreCell(CoreSheet sheet, int row, int col)
@@ -38,8 +40,8 @@ public class CoreCell implements Cell,Cloneable {
     public CoreCell clone() throws CloneNotSupportedException {
         CoreCell cloned = (CoreCell) super.clone();
         cloned.operation = this.operation;
-        cloned.cellsAffectingMe = new ArrayList<>(cellsAffectingMe);
-        cloned.cellsAffectedByMe = new ArrayList<>(cellsAffectedByMe);
+        cloned.cellsAffectingMe = new HashSet<>(cellsAffectingMe);
+        cloned.cellsAffectedByMe = new HashSet<>(cellsAffectedByMe);
 
         return cloned;
     }
@@ -55,9 +57,9 @@ public class CoreCell implements Cell,Cloneable {
     public void setOriginalExpression(String originalExpression) {this.originalExpression = originalExpression;}
     public Operation getOperation() {return operation;}
     @Override
-    public List<CellCoordinates> getCellsAffectedByMe() {return cellsAffectedByMe;}
+    public Set<CellCoordinates> getCellsAffectedByMe() {return cellsAffectedByMe;}
     @Override
-    public List<CellCoordinates> getCellsAffectingMe() {return cellsAffectingMe;}
+    public Set<CellCoordinates> getCellsAffectingMe() {return cellsAffectingMe;}
     public void setVisited(Status isVisited) {this.visitColor = isVisited;}
     @Override
     public Object getEffectiveValue() {return effectiveValue;};
@@ -92,6 +94,7 @@ public class CoreCell implements Cell,Cloneable {
     {
         if (visitColor != Status.GREY)
         {
+            sheet.incrementNumOfCellsChanged();
             if (operation!=null) {
                 this.effectiveValue = operation.execute();
             }

@@ -21,6 +21,7 @@ public class Menu {
         PRINT_SHEET,
         SHOW_INFO_OF_SPECIFIC_CELL,
         UPDATE_VALUE_OF_SPECIFIC_CELL,
+        SHOW_VERSIONS,
         EXIT
     }
 
@@ -32,6 +33,7 @@ public class Menu {
         option2Runnable.put(MENU_OPTION.PRINT_SHEET, Menu::printSheet);
         option2Runnable.put(MENU_OPTION.SHOW_INFO_OF_SPECIFIC_CELL, Menu::showInfoOfSpecificCell);
         option2Runnable.put(MENU_OPTION.UPDATE_VALUE_OF_SPECIFIC_CELL, Menu::updateValueOfSpecificCell);
+        option2Runnable.put(MENU_OPTION.SHOW_VERSIONS, Menu::showVersions);
     }
 
     public static Map<MENU_OPTION, Runnable> getOption2Runnable() {return option2Runnable;}
@@ -126,5 +128,13 @@ public class Menu {
         System.out.println("Please enter the expression value that you want to insert into the cell:");
         String expression = scanner.nextLine();
         engine.updateSpecificCell(cellID,expression);
+    }
+
+    private static void showVersions() {
+        ConsolePrintHelper.printSheetVersionsInfo(engine.getSheetList());
+        System.out.println("Please choose a sheet to show by typing its number:");
+        String input = scanner.nextLine();
+        int choice = Integer.parseInt(input) - 1; //decrementing 1 to make it 0-based
+        ConsolePrintHelper.printSheet(engine.getSheet(choice));
     }
 }

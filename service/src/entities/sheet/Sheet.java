@@ -9,4 +9,5 @@ public interface Sheet {
     public int getVersion();
     public Layout getLayout();
     public String getName();
+    public int getNumOfCellsChanged();
 }

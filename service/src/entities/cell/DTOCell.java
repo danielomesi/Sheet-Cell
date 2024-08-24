@@ -1,15 +1,17 @@
 package entities.cell;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class DTOCell implements Cell {
     private final CellCoordinates coordinates;
     private final int version;
     private final Object effectiveValue;
     private String originalExpression;
-    private List<CellCoordinates> cellsAffectedByMe;
-    private List<CellCoordinates> cellsAffectingMe;
+    private Set<CellCoordinates> cellsAffectedByMe;
+    private Set<CellCoordinates> cellsAffectingMe;
 
     public DTOCell(CoreCell coreCell)
     {
@@ -17,10 +19,10 @@ public class DTOCell implements Cell {
         version = coreCell.getVersion();
         effectiveValue = coreCell.getEffectiveValue();
         originalExpression = coreCell.getOriginalExpression();
-        List<CellCoordinates> outerCellsAffectedByMe = coreCell.getCellsAffectedByMe();
-        List<CellCoordinates> outerCellsAffectingMe = coreCell.getCellsAffectingMe();
-        cellsAffectedByMe = outerCellsAffectedByMe != null? new ArrayList<>(outerCellsAffectedByMe) : null;
-        cellsAffectingMe = outerCellsAffectingMe != null? new ArrayList<>(outerCellsAffectingMe) : null;
+        Set<CellCoordinates> outerCellsAffectedByMe = coreCell.getCellsAffectedByMe();
+        Set<CellCoordinates> outerCellsAffectingMe = coreCell.getCellsAffectingMe();
+        cellsAffectedByMe = outerCellsAffectedByMe != null? new HashSet<>(outerCellsAffectedByMe) : null;
+        cellsAffectingMe = outerCellsAffectingMe != null? new HashSet<>(outerCellsAffectingMe) : null;
     }
 
     @Override
@@ -32,7 +34,7 @@ public class DTOCell implements Cell {
     @Override
     public String getOriginalExpression() {return originalExpression;}
     @Override
-    public List<CellCoordinates> getCellsAffectedByMe() {return cellsAffectedByMe;}
+    public Set<CellCoordinates> getCellsAffectedByMe() {return cellsAffectedByMe;}
     @Override
-    public List<CellCoordinates> getCellsAffectingMe() {return cellsAffectingMe;}
+    public Set<CellCoordinates> getCellsAffectingMe() {return cellsAffectingMe;}
 }

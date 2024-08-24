@@ -51,4 +51,9 @@ public class CellCoordinates implements Cloneable
         CellCoordinates other = (CellCoordinates) o;
         return row == other.row && col == other.col;
     }
+
+    @Override
+    public int hashCode() {
+        return 31*row + col; //31 is a prime number and it will make this function generate a unique id for each
+    }
 }

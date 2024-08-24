@@ -1,12 +1,13 @@
 package entities.cell;
 
 import java.util.List;
+import java.util.Set;
 
 public interface Cell {
     public CellCoordinates getCoordinates();
     public int getVersion();
     public Object getEffectiveValue();
     public String getOriginalExpression();
-    public List<CellCoordinates> getCellsAffectedByMe();
-    public List<CellCoordinates> getCellsAffectingMe();
+    public Set<CellCoordinates> getCellsAffectedByMe();
+    public Set<CellCoordinates> getCellsAffectingMe();
 }

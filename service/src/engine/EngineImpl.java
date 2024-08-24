@@ -7,8 +7,10 @@ import entities.sheet.Sheet;
 import entities.cell.CoreCell;
 import entities.sheet.CoreSheet;
 import entities.sheet.DTOSheet;
+import entities.stl.STLLayout;
 import entities.stl.STLSheet;
 import exceptions.CloneFailureException;
+import exceptions.InvalidXMLException;
 import exceptions.NoExistenceException;
 import exceptions.StringIndexOutOfBoundsException;
 import jakarta.xml.bind.JAXBException;
@@ -24,6 +26,8 @@ public class EngineImpl implements Engine {
     public EngineImpl() {
         this.coreSheets = new LinkedList<>();
     }
+    private final int maxRows = 50;
+    private final int maxCols = 20;
 
     @Override
     public Sheet getSheet() {
@@ -37,7 +41,18 @@ public class EngineImpl implements Engine {
     public Sheet getSheet(int version) {
         return Optional.ofNullable(coreSheets.get(version))
                 .map(this::generateDTOSheet)
-                .orElseThrow(() -> new NoExistenceException("No sheet is available to load data from"));
+                .orElseThrow(() -> new NoExistenceException("No sheet found"));
+    }
+
+    @Override
+    public List<Sheet> getSheetList() {
+        List<Sheet> sheets = new LinkedList<>();
+        coreSheets.forEach(coreSheet -> {
+            DTOSheet dtoSheet = generateDTOSheet(coreSheet);
+            sheets.add(dtoSheet);
+        });
+
+        return sheets;
     }
 
     @Override
@@ -47,12 +62,25 @@ public class EngineImpl implements Engine {
             stlSheet = XMLHandler.loadXmlToObject(fullFilePath, STLSheet.class);
         }
         catch (JAXBException e) {
-            throw new StringIndexOutOfBoundsException(null);
+            throw new InvalidXMLException("Invalid XML file");
         }
+        validateXMLSheetLayout(stlSheet);
         CoreSheet coreSheet = new CoreSheet(stlSheet);
 
         coreSheets.clear();
         coreSheets.add(coreSheet);
+    }
+
+    private void validateXMLSheetLayout(STLSheet stlSheet) {
+        Optional<STLSheet> optionalSTLSheet = Optional.ofNullable(stlSheet);
+        if (optionalSTLSheet.isPresent()) {
+            STLLayout stlLayout = optionalSTLSheet.get().getSTLLayout();
+            int rows = stlLayout.getRows();
+            int columns = stlLayout.getColumns();
+            if (rows > maxRows || columns > maxCols || rows < 1 || columns < 1 ) {
+                throw new InvalidXMLException("Sheet layout is invalid", String.valueOf(rows) + "," + String.valueOf(columns));
+            }
+        }
     }
 
     @Override
