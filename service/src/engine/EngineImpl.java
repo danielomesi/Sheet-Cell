@@ -72,7 +72,6 @@ public class EngineImpl implements Engine {
         }
         validateXMLSheetLayout(stlSheet);
         CoreSheet coreSheet = new CoreSheet(stlSheet);
-        coreSheet.initializeNumOfCellsChanged();
         coreSheets.clear();
         coreSheets.add(coreSheet);
     }
