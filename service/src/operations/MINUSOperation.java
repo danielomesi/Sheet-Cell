@@ -1,6 +1,6 @@
 package operations;
 
-import entities.cell.CellCoordinates;
+import entities.coordinates.CellCoordinates;
 import entities.sheet.CoreSheet;
 
 import java.util.List;
@@ -12,6 +12,7 @@ public class MINUSOperation extends Operation {
         super.name = "MINUS";
         super.arguments = arguments;
     }
+
 
     @Override
     public Double execute() {

@@ -1,6 +1,6 @@
 package exceptions;
 
-import entities.cell.CellCoordinates;
+import entities.coordinates.CellCoordinates;
 
 public class StringIndexOutOfBoundsException extends ServiceException{
     public String getExceptionName() {return "String Index Out Of Bounds";}

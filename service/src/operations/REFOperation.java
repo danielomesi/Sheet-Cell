@@ -1,10 +1,9 @@
 package operations;
 
-import entities.cell.CellCoordinates;
+import entities.coordinates.CellCoordinates;
 import entities.cell.CoreCell;
 import entities.sheet.CoreSheet;
 import exceptions.InvalidArgumentException;
-import utils.Utils;
 
 import java.util.List;
 
@@ -20,9 +19,9 @@ public class REFOperation extends Operation {
     public Object execute() {
         Object arg = getArgValue(arguments.getFirst());
         Object obj = null;
-        CoreCell referencingCell = Utils.getCellObjectFromCellID(sheet, coordinates.getCellID());
+        CoreCell referencingCell = CellCoordinates.getCellObjectFromCellID(sheet, coordinates.getCellID());
         try {
-            CoreCell referencedCell = Utils.getCellObjectFromCellID(sheet, arg.toString().toUpperCase());
+            CoreCell referencedCell = CellCoordinates.getCellObjectFromCellID(sheet, arg.toString().toUpperCase());
             obj = referencedCell.getEffectiveValue();
             referencingCell.getCellsAffectingMe().add(referencedCell.getCoordinates());
             referencedCell.getCellsAffectedByMe().add(referencingCell.getCoordinates());

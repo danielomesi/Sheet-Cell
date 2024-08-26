@@ -1,6 +1,6 @@
 package operations;
 
-import entities.cell.CellCoordinates;
+import entities.coordinates.CellCoordinates;
 import entities.sheet.CoreSheet;
 
 import java.util.List;

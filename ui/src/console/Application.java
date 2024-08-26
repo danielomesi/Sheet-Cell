@@ -13,7 +13,7 @@ import console.menu.Menu;
 //refactor
 //try to divide the code to more functions, make it more readable
 //think about encapsulation - working with types
-//C:\\Users\\omesi\\Desktop\\examples\\basic.xml
+//C:\\Users\\omesi\\Desktop\\examples\\insurance.xml
 
 public class Application {
 

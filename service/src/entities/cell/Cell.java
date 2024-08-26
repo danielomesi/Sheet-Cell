@@ -1,6 +1,7 @@
 package entities.cell;
 
-import java.util.List;
+import entities.coordinates.CellCoordinates;
+
 import java.util.Set;
 
 public interface Cell {

@@ -2,7 +2,7 @@ package console;
 
 import console.exceptions.ConsoleException;
 import entities.cell.Cell;
-import entities.cell.CellCoordinates;
+import entities.coordinates.CellCoordinates;
 import entities.sheet.Sheet;
 import exceptions.ServiceException;
 

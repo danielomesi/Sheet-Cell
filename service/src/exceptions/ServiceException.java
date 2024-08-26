@@ -1,6 +1,6 @@
 package exceptions;
 
-import entities.cell.CellCoordinates;
+import entities.coordinates.CellCoordinates;
 
 import java.util.Optional;
 

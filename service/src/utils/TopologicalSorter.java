@@ -1,6 +1,6 @@
 package utils;
 
-import entities.cell.CellCoordinates;
+import entities.coordinates.CellCoordinates;
 import entities.cell.CoreCell;
 import entities.sheet.CoreSheet;
 import exceptions.CircleReferenceException;
@@ -42,7 +42,7 @@ public class TopologicalSorter {
 
             // Reduce the in-degree of cells that depend on the current cell
             for (CellCoordinates dependentCoordinates : currentCell.getCellsAffectedByMe()) {
-                CoreCell dependentCell = Utils.getCellObjectFromCellID(sheet, dependentCoordinates.toString());
+                CoreCell dependentCell = CellCoordinates.getCellObjectFromCellID(sheet, dependentCoordinates.toString());
 
                 // Reduce the in-degree of the dependent cell
                 int newInDegree = inDegreeMap.get(dependentCoordinates) - 1;

@@ -1,8 +1,8 @@
 package entities.cell;
 
-import java.util.ArrayList;
+import entities.coordinates.CellCoordinates;
+
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class DTOCell implements Cell {

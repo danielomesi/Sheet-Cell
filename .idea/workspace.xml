@@ -4,13 +4,42 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added versions handling and fixed sheet show">
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added version names and minor changes">
+      <change afterPath="$PROJECT_DIR$/service/src/entities/coordinates/CellCoordinates.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/operations/OperationFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/cell/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/cell/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/cell/CellCoordinates.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/cell/CoreCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/cell/CoreCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/cell/DTOCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/cell/DTOCell.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/exceptions/CellOutOfBoundsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/exceptions/CellOutOfBoundsException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/exceptions/CircleReferenceException.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/exceptions/CircleReferenceException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/exceptions/CloneFailureException.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/exceptions/CloneFailureException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/exceptions/InvalidArgumentException.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/exceptions/InvalidArgumentException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/exceptions/InvalidXMLException.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/exceptions/InvalidXMLException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/exceptions/NoExistenceException.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/exceptions/NoExistenceException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/exceptions/ServiceException.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/exceptions/ServiceException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/exceptions/StringIndexOutOfBoundsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/exceptions/StringIndexOutOfBoundsException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/exceptions/ZeroDivisionException.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/exceptions/ZeroDivisionException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/ABSOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/ABSOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/ConcatOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/ConcatOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/DIVIDEOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/DIVIDEOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/MINUSOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/MINUSOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/MODOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/MODOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/Operation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/Operation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/OperationInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/OperationInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/PLUSOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/PLUSOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/POWOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/POWOperation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/operations/REFOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/REFOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/utils/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/SUBOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/SUBOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/TIMESOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/TIMESOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/utils/TopologicalSorter.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/utils/TopologicalSorter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/utils/FunctionParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/console/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/console/Application.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/console/ConsolePrintHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/console/ConsolePrintHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/console/exceptions/ConsoleException.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/console/exceptions/ConsoleException.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,28 +80,28 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.App.executor": "Run",
-    "Application.Application.executor": "Run",
-    "Application.Unnamed.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/omesi/IdeaProjects/Sheet-Cell/external-libraries/jaxb/jaxb-xjc.jar",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.App.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Application.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/omesi/IdeaProjects/Sheet-Cell/external-libraries/jaxb/jaxb-xjc.jar&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="App" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="console.Application" />
@@ -106,7 +135,8 @@
       <workItem from="1723882496568" duration="24334000" />
       <workItem from="1724149849612" duration="15976000" />
       <workItem from="1724490328446" duration="11981000" />
-      <workItem from="1724509817456" duration="3434000" />
+      <workItem from="1724509817456" duration="3470000" />
+      <workItem from="1724662838676" duration="4945000" />
     </task>
     <task id="LOCAL‎-00001" summary="Added basic entities">
       <option name="closed" value="true" />
@@ -180,7 +210,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1724502418066</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL‎-00010" summary="Added version names and minor changes">
+      <option name="closed" value="true" />
+      <created>1724513312210</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL‎-00010" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1724513312210</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -208,7 +246,8 @@
     <MESSAGE value="Added topological sort mechanism and xml reading" />
     <MESSAGE value="Added menu" />
     <MESSAGE value="Added versions handling and fixed sheet show" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added versions handling and fixed sheet show" />
+    <MESSAGE value="Added version names and minor changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added version names and minor changes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -1,6 +1,6 @@
 package operations;
 
-import entities.cell.CellCoordinates;
+import entities.coordinates.CellCoordinates;
 import entities.sheet.CoreSheet;
 import exceptions.InvalidArgumentException;
 
@@ -11,7 +11,7 @@ public abstract class Operation {
     protected CellCoordinates coordinates;
     protected String name;
     protected List<Object> arguments;
-    protected static final Map<String, OperationInfo> funcName2OperationInfo = new HashMap<>();
+
 
     public String getName() {return name;}
     public List<Object> getArguments() {return arguments;}
@@ -24,34 +24,6 @@ public abstract class Operation {
         }
     }
 
-    //try to make this code self-maintainable
-    static {
-        funcName2OperationInfo.put("PLUS", new OperationInfo(PLUSOperation.class, 2));
-        funcName2OperationInfo.put("MINUS", new OperationInfo(MINUSOperation.class, 2));
-        funcName2OperationInfo.put("TIMES", new OperationInfo(TIMESOperation.class, 2));
-        funcName2OperationInfo.put("DIVIDE", new OperationInfo(DIVIDEOperation.class, 2));
-        funcName2OperationInfo.put("MOD", new OperationInfo(MODOperation.class, 2));
-        funcName2OperationInfo.put("POW", new OperationInfo(POWOperation.class, 2));
-        funcName2OperationInfo.put("ABS", new OperationInfo(ABSOperation.class, 1));
-        funcName2OperationInfo.put("CONCAT", new OperationInfo(ConcatOperation.class, 2));
-        funcName2OperationInfo.put("SUB", new OperationInfo(SUBOperation.class, 3));
-        funcName2OperationInfo.put("REF", new OperationInfo(REFOperation.class, 1));
-
-
-    }
-
-    public static Operation createFunctionHandler(CoreSheet sheet,CellCoordinates coordinates, String name, List<Object> arguments) {
-        Class<? extends Operation> functionHandler = Operation.funcName2OperationInfo.get(name).getOperationClass();
-        if (functionHandler != null) {
-            try {
-                return functionHandler.getDeclaredConstructor(CoreSheet.class,CellCoordinates.class,List.class).newInstance(sheet,coordinates,arguments);
-            } catch (Exception e) {
-                throw new RuntimeException("Error creating instance of " + name, e);
-            }
-        } else {
-            throw new IllegalArgumentException("No handler found for " + name);
-        }
-    }
 
     public abstract Object execute();
 
@@ -66,7 +38,7 @@ public abstract class Operation {
         }
         return result;
     }
-    public static Map<String, OperationInfo> getOperationsMap() {return funcName2OperationInfo; }
+
 
     protected List<Object> convertToNonOperationObjects()
     {

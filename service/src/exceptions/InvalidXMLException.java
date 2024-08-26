@@ -1,6 +1,6 @@
 package exceptions;
 
-import entities.cell.CellCoordinates;
+import entities.coordinates.CellCoordinates;
 
 public class InvalidXMLException extends ServiceException{
     public InvalidXMLException(String message) {

@@ -1,12 +1,12 @@
 package entities.sheet;
 
-import entities.cell.CellCoordinates;
+import entities.coordinates.CellCoordinates;
 import entities.cell.CoreCell;
 import entities.stl.STLCell;
 import entities.stl.STLSheet;
 import operations.Operation;
 import utils.TopologicalSorter;
-import utils.Utils;
+import utils.FunctionParser;
 
 import java.util.List;
 
@@ -40,11 +40,11 @@ public class CoreSheet implements Sheet,Cloneable {
         initializeSheet();
         for (STLCell stlCell : STLCells) {
             int i = stlCell.getRow() - 1;
-            int j = Utils.convertColumnLettersToIndex(stlCell.getColumn());
-            Utils.validateInRange(i, 0, numOfRows);
-            Utils.validateInRange(j, 0, numOfColumns);
+            int j = CellCoordinates.convertColumnLettersToIndex(stlCell.getColumn());
+            FunctionParser.validateInRange(i, 0, numOfRows);
+            FunctionParser.validateInRange(j, 0, numOfColumns);
             cellsTable[i][j].setOriginalExpression(stlCell.getSTLOriginalValue());
-            Utils.updateDependencies(this, cellsTable[i][j]);
+            FunctionParser.updateDependencies(this, cellsTable[i][j]);
         }
         List<CellCoordinates> topologicalSort = TopologicalSorter.topologicalSort(this);
         cleanDependencies();
@@ -94,7 +94,7 @@ public class CoreSheet implements Sheet,Cloneable {
 
     private boolean isCellInsideSTLList(int i, int j, List<STLCell> stlCells) {
         for (STLCell stlCell : stlCells) {
-            if ( (i == stlCell.getRow()-1) && (j == Utils.convertColumnLettersToIndex(stlCell.getColumn())) ) {
+            if ( (i == stlCell.getRow()-1) && (j == CellCoordinates.convertColumnLettersToIndex(stlCell.getColumn())) ) {
                 return true;
             }
         }
@@ -104,7 +104,7 @@ public class CoreSheet implements Sheet,Cloneable {
 
     private void executeSheet(List<CellCoordinates> topologicalSort) {
         for (CellCoordinates coordinates : topologicalSort) {
-            CoreCell cell = Utils.getCellObjectFromCellID(this, coordinates.getCellID());
+            CoreCell cell = CellCoordinates.getCellObjectFromCellID(this, coordinates.getCellID());
             String originalExpression = cell.getOriginalExpression();
             if (originalExpression != null) {
                 cell.executeCalculationProcedure(originalExpression);

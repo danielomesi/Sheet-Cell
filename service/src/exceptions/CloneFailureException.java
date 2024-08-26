@@ -1,6 +1,6 @@
 package exceptions;
 
-import entities.cell.CellCoordinates;
+import entities.coordinates.CellCoordinates;
 
 public class CloneFailureException extends ServiceException{
     public CloneFailureException(String message) {

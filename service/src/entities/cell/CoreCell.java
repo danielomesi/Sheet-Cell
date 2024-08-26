@@ -1,17 +1,15 @@
 package entities.cell;
 
+import entities.coordinates.CellCoordinates;
 import entities.sheet.CoreSheet;
 import exceptions.CircleReferenceException;
 import operations.Operation;
-import utils.Utils;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-import static utils.Utils.parseArgument;
-import static utils.Utils.parseFunctionExpression;
+import static utils.FunctionParser.parseArgument;
+import static utils.FunctionParser.parseFunctionExpression;
 
 public class CoreCell implements Cell,Cloneable {
     public enum Status {
@@ -85,7 +83,7 @@ public class CoreCell implements Cell,Cloneable {
         visitColor = Status.GREY;
         for (CellCoordinates cellCoordinates : cellsAffectedByMe)
         {
-            Utils.getCellObjectFromIndices(sheet, cellCoordinates.getRow(), cellCoordinates.getCol()).update();
+            CellCoordinates.getCellObjectFromIndices(sheet, cellCoordinates.getRow(), cellCoordinates.getCol()).update();
         }
         visitColor = Status.BLACK;
     }
@@ -111,13 +109,13 @@ public class CoreCell implements Cell,Cloneable {
     {
         for(CellCoordinates cellCoordinates : cellsAffectingMe)
         {
-            Utils.getCellObjectFromIndices(sheet, cellCoordinates.getRow(), cellCoordinates.getCol()).cellsAffectedByMe.remove(this.coordinates);
+            CellCoordinates.getCellObjectFromIndices(sheet, cellCoordinates.getRow(), cellCoordinates.getCol()).cellsAffectedByMe.remove(this.coordinates);
         }
         cellsAffectingMe.clear();
     }
 
     @Override
     public String toString() {
-        return "["+ Utils.getCellIDFromIndices(coordinates.getRow(), coordinates.getCol()) +"]: "+effectiveValue.toString();
+        return "["+ CellCoordinates.getCellIDFromIndices(coordinates.getRow(), coordinates.getCol()) +"]: "+effectiveValue.toString();
     }
 }

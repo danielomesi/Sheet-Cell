@@ -1,7 +1,5 @@
 package console.exceptions;
 
-import entities.cell.CellCoordinates;
-
 import java.util.Optional;
 
 public abstract class ConsoleException extends RuntimeException {

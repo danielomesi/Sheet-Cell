@@ -1,12 +1,11 @@
 package operations;
 
-import entities.cell.CellCoordinates;
+import entities.coordinates.CellCoordinates;
 import entities.sheet.CoreSheet;
 
 import java.util.List;
 
 public class PLUSOperation extends Operation {
-
     public PLUSOperation(CoreSheet sheet, CellCoordinates coordinates, List<Object> arguments) {
         super.sheet = sheet;
         this.coordinates = coordinates;
