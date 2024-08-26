@@ -9,9 +9,9 @@ public class DTOCell implements Cell {
     private final CellCoordinates coordinates;
     private final int version;
     private final Object effectiveValue;
-    private String originalExpression;
-    private Set<CellCoordinates> cellsAffectedByMe;
-    private Set<CellCoordinates> cellsAffectingMe;
+    private final String originalExpression;
+    private final Set<CellCoordinates> cellsAffectedByMe;
+    private final Set<CellCoordinates> cellsAffectingMe;
 
     public DTOCell(CoreCell coreCell)
     {

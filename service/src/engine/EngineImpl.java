@@ -8,7 +8,6 @@ import entities.sheet.CoreSheet;
 import entities.sheet.DTOSheet;
 import entities.stl.STLLayout;
 import entities.stl.STLSheet;
-import exceptions.CloneFailureException;
 import exceptions.InvalidXMLException;
 import exceptions.NoExistenceException;
 import jakarta.xml.bind.JAXBException;
@@ -53,21 +52,20 @@ public class EngineImpl implements Engine {
     }
 
     @Override
-    public void saveToFile(String fullFilePath) {
+    public void saveStateToFile(String fullFilePath) {
         FileIOHandler.saveCoreSheetsToFile(coreSheets, fullFilePath);
     }
 
     @Override
-    public void loadFromFile(String fullFilePath) {
+    public void loadStateFromFile(String fullFilePath) {
         coreSheets = FileIOHandler.loadCoreSheetsFromFile(fullFilePath);
     }
 
     @Override
     public void loadSheetFromXMLFile(String fullFilePath) {
         STLSheet stlSheet;
-        FileIOHandler.validatePathToXMLFile(fullFilePath);
         try {
-            stlSheet = FileIOHandler.loadXmlToObject(fullFilePath, STLSheet.class);
+            stlSheet = FileIOHandler.loadXMLToObject(fullFilePath, STLSheet.class);
         }
         catch (JAXBException e) {
             throw new InvalidXMLException("Invalid XML file");
@@ -162,14 +160,9 @@ public class EngineImpl implements Engine {
 
     @Override
     public void updateSpecificCell(String cellName, String originalExpression) {
-        CoreSheet cloned = null;
-        try {
-            cloned = coreSheets.getLast().clone();
-        } catch (CloneNotSupportedException e) {
-            throw new CloneFailureException("Failed to make a clone of the last sheet");
-        }
-
+        CoreSheet cloned = coreSheets.getLast().cloneWithSerialization();
         cloned.incrementVersion();
+        cloned.initializeNumOfCellsChanged();
         CellCoordinates.getCellObjectFromCellID(cloned, cellName).executeCalculationProcedure(originalExpression);
         coreSheets.addLast(cloned);
     }
@@ -177,6 +170,5 @@ public class EngineImpl implements Engine {
     private DTOSheet generateDTOSheet(CoreSheet coreSheet) {
         return new DTOSheet(coreSheet);
     }
-
 
 }

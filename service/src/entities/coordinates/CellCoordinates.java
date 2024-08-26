@@ -7,10 +7,10 @@ import exceptions.InvalidArgumentException;
 
 import java.io.Serializable;
 
-public class CellCoordinates implements Cloneable, Serializable
+public class CellCoordinates implements Serializable
 {
-    private int row;
-    private int col;
+    private final int row;
+    private final int col;
 
     public CellCoordinates(int row, int col) {
         this.row = row;
@@ -20,14 +20,6 @@ public class CellCoordinates implements Cloneable, Serializable
     public CellCoordinates(CoreCell cell) {
         this.row = cell.getCoordinates().getRow();
         this.col = cell.getCoordinates().getCol();
-    }
-
-    @Override
-    public CellCoordinates clone() throws CloneNotSupportedException {
-        CellCoordinates cellCoordinates = (CellCoordinates) super.clone();
-        cellCoordinates.row = this.row;
-        cellCoordinates.col = this.col;
-        return cellCoordinates;
     }
 
     public int getCol() {return col;}

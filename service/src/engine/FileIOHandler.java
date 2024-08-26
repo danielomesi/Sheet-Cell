@@ -1,7 +1,6 @@
 package engine;
 
 import entities.sheet.CoreSheet;
-import entities.sheet.Sheet;
 import exceptions.InvalidPathDetectedException;
 import exceptions.NoExistenceException;
 import exceptions.SheetLoadFailureException;
@@ -14,7 +13,9 @@ import java.io.*;
 import java.util.List;
 
 public class FileIOHandler {
-    public static <T> T loadXmlToObject(String xmlFilePath, Class<T> clazz) throws JAXBException {
+    public static <T> T loadXMLToObject(String xmlFilePath, Class<T> clazz) throws JAXBException {
+        xmlFilePath +=".xml";
+        validatePathToXMLFile(xmlFilePath);
         JAXBContext context = JAXBContext.newInstance(clazz);
         Unmarshaller unmarshaller = context.createUnmarshaller();
         File xmlFile = new File(xmlFilePath);
@@ -49,7 +50,6 @@ public class FileIOHandler {
     }
 
     public static void validatePathToXMLFile(String path) {
-        path +=".xml";
 
         File file = new File(path);
         validateExistenceOfParentDirectory(file.getParentFile(), file.getName());

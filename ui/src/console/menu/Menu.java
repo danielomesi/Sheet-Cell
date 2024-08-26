@@ -20,8 +20,8 @@ public class Menu {
         SHOW_INFO_OF_SPECIFIC_CELL,
         UPDATE_VALUE_OF_SPECIFIC_CELL,
         SHOW_VERSIONS,
-        SAVE_TO_FILE,
-        LOAD_FROM_FILE,
+        SAVE_STATE_TO_FILE,
+        LOAD_STATE_FROM_FILE,
         EXIT
     }
 
@@ -34,8 +34,8 @@ public class Menu {
         option2Runnable.put(MENU_OPTION.SHOW_INFO_OF_SPECIFIC_CELL, Menu::showInfoOfSpecificCell);
         option2Runnable.put(MENU_OPTION.UPDATE_VALUE_OF_SPECIFIC_CELL, Menu::updateValueOfSpecificCell);
         option2Runnable.put(MENU_OPTION.SHOW_VERSIONS, Menu::showVersions);
-        option2Runnable.put(MENU_OPTION.SAVE_TO_FILE, Menu::saveToFile);
-        option2Runnable.put(MENU_OPTION.LOAD_FROM_FILE, Menu::loadFromFile);
+        option2Runnable.put(MENU_OPTION.SAVE_STATE_TO_FILE, Menu::saveStateToFile);
+        option2Runnable.put(MENU_OPTION.LOAD_STATE_FROM_FILE, Menu::loadStateFromFile);
         option2Runnable.put(MENU_OPTION.EXIT, Menu::exit);
     }
 
@@ -67,9 +67,9 @@ public class Menu {
         System.out.println("2 - Display Sheet");
         System.out.println("3 - Show Info of Specific Cell");
         System.out.println("4 - Update Value of Specific Cell");
-        System.out.println("5 - Show Versions");
-        System.out.println("6 - Save To File");
-        System.out.println("7 - Load From File");
+        System.out.println("5 - Show All Versions");
+        System.out.println("6 - Save State to File");
+        System.out.println("7 - Load State from File");
         System.out.println("8 - Exit System");
     }
 
@@ -83,7 +83,7 @@ public class Menu {
     }
 
     private static void validateSheetExistenceIfNeeded(MENU_OPTION menuOption) {
-        if (menuOption != MENU_OPTION.LOAD_SHEET_FROM_XML && menuOption != MENU_OPTION.LOAD_FROM_FILE && menuOption != MENU_OPTION.EXIT) {
+        if (menuOption != MENU_OPTION.LOAD_SHEET_FROM_XML && menuOption != MENU_OPTION.LOAD_STATE_FROM_FILE && menuOption != MENU_OPTION.EXIT) {
             if (engine.getSheet() == null) {
                 throw new NoExistenceException("No sheet found. This option requires a sheet to be loaded first");
             }
@@ -127,14 +127,14 @@ public class Menu {
         ConsolePrintHelper.printSheet(engine.getSheet(choice));
     }
 
-    private static void saveToFile() {
+    private static void saveStateToFile() {
         String fullFileName = getFullFilePathFromuUser();
-        engine.saveToFile(fullFileName);
+        engine.saveStateToFile(fullFileName);
     }
 
-    private static void loadFromFile() {
+    private static void loadStateFromFile() {
         String fullFileName = getFullFilePathFromuUser();
-        engine.loadFromFile(fullFileName);
+        engine.loadStateFromFile(fullFileName);
     }
 
     private static String getFullFilePathFromuUser() {

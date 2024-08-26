@@ -1,9 +1,7 @@
 package engine;
 
 import entities.cell.Cell;
-import entities.sheet.CoreSheet;
 import entities.sheet.Sheet;
-import entities.cell.CoreCell;
 
 import java.util.List;
 
@@ -23,8 +21,8 @@ public interface Engine {
 
     public List<Sheet> getSheetList();
 
-    public void saveToFile(String fullFilePath);
+    public void saveStateToFile(String fullFilePath);
 
-    public void loadFromFile(String fullFilePath);
+    public void loadStateFromFile(String fullFilePath);
 
 }

@@ -11,7 +11,7 @@ import java.util.Set;
 import static utils.FunctionParser.parseArgument;
 import static utils.FunctionParser.parseFunctionExpression;
 
-public class CoreCell implements Cell,Cloneable {
+public class CoreCell implements Cell {
     public enum Status {
     WHITE, GREY, BLACK
     }
@@ -22,8 +22,8 @@ public class CoreCell implements Cell,Cloneable {
     private Object effectiveValue;
     private String originalExpression;
     private Operation operation;
-    private Set<CellCoordinates> cellsAffectedByMe = new HashSet<>(0);
-    private Set<CellCoordinates> cellsAffectingMe = new HashSet<>(0);
+    private final Set<CellCoordinates> cellsAffectedByMe = new HashSet<>(0);
+    private final Set<CellCoordinates> cellsAffectingMe = new HashSet<>(0);
     private Status visitColor;
 
     public CoreCell(CoreSheet sheet, int row, int col)
@@ -32,16 +32,6 @@ public class CoreCell implements Cell,Cloneable {
         this.version = sheet.getVersion();
         this.coordinates = new CellCoordinates(row, col);
         this.visitColor = Status.WHITE;
-    }
-
-    @Override
-    public CoreCell clone() throws CloneNotSupportedException {
-        CoreCell cloned = (CoreCell) super.clone();
-        cloned.operation = this.operation;
-        cloned.cellsAffectingMe = new HashSet<>(cellsAffectingMe);
-        cloned.cellsAffectedByMe = new HashSet<>(cellsAffectedByMe);
-
-        return cloned;
     }
 
     public CoreSheet getSheet() {return sheet;}

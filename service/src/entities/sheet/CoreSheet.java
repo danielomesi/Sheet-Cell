@@ -4,14 +4,15 @@ import entities.coordinates.CellCoordinates;
 import entities.cell.CoreCell;
 import entities.stl.STLCell;
 import entities.stl.STLSheet;
-import operations.core.Operation;
+import exceptions.CloneFailureException;
 import utils.TopologicalSorter;
 import utils.FunctionParser;
 
 import java.util.List;
+import java.io.*;
 
-public class CoreSheet implements Sheet,Cloneable {
-    private CoreCell[][] cellsTable;
+public class CoreSheet implements Sheet {
+    private final CoreCell[][] cellsTable;
     private final int numOfRows;
     private final int numOfColumns;
     private int version = 1;
@@ -51,23 +52,19 @@ public class CoreSheet implements Sheet,Cloneable {
         executeSheet(topologicalSort);
     }
 
-    @Override
-    public CoreSheet clone() throws CloneNotSupportedException {
-        CoreSheet cloned = (CoreSheet) super.clone();
-        cloned.numOfCellsChanged = 0;
-        cloned.cellsTable = new CoreCell[numOfRows][numOfColumns];
-        for (int i = 0; i < numOfRows; i++) {
-            for (int j = 0; j < numOfColumns; j++) {
-                cloned.cellsTable[i][j] = cellsTable[i][j].clone();
-                cloned.cellsTable[i][j].setSheet(cloned);
-                Operation op = this.cellsTable[i][j].getOperation();
-                if (op != null) {
-                    op.setSheet(cloned);
-                }
+    public CoreSheet cloneWithSerialization() {
+        try {
+            ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
+            try (ObjectOutputStream out = new ObjectOutputStream(byteOut)) {
+                out.writeObject(this);
             }
+            ByteArrayInputStream byteIn = new ByteArrayInputStream(byteOut.toByteArray());
+            try (ObjectInputStream in = new ObjectInputStream(byteIn)) {
+                return (CoreSheet) in.readObject();
+            }
+        } catch (Exception e) {
+            throw new CloneFailureException("Failed to clone sheet: " + this.name);
         }
-
-        return cloned;
     }
 
     public CoreCell[][] getCellsTable() {return cellsTable;}
