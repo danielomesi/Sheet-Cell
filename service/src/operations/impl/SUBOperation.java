@@ -19,13 +19,13 @@ public class SUBOperation extends Operation {
         List<Object> nonOperationObjects = convertToNonOperationObjects();
         Class<?>[] expectedClazzes ={String.class, Number.class, Number.class};
         validateArgumentsTypes(expectedClazzes, nonOperationObjects);
-        String str = (String) arguments.getFirst();
+        String str = (String) nonOperationObjects.getFirst();
         int startIndex = ((Number) nonOperationObjects.get(1)).intValue();
         int endIndex =((Number) nonOperationObjects.get(2)).intValue();
         String result;
 
         try {
-           result = str.substring(startIndex, endIndex);
+           result = str.substring(startIndex, endIndex + 1);
         }
         catch (Exception e) {
             result = "!UNDEFINED";

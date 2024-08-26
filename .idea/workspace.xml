@@ -4,17 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added bonus - saving and loading a sheet (version history included) to/from a file">
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Changed sheet cloning mechanism - instead of clone, using serialization">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/engine/FileIOHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/FileIOHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/cell/CoreCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/cell/CoreCell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/cell/DTOCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/cell/DTOCell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/coordinates/CellCoordinates.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/coordinates/CellCoordinates.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/SUBOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/SUBOperation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/console/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/console/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/console/menu/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/console/menu/Menu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +105,7 @@
       <workItem from="1724490328446" duration="11981000" />
       <workItem from="1724509817456" duration="3470000" />
       <workItem from="1724662838676" duration="12609000" />
-      <workItem from="1724676882075" duration="1956000" />
+      <workItem from="1724676882075" duration="4667000" />
     </task>
     <task id="LOCAL‎-00001" summary="Added basic entities">
       <option name="closed" value="true" />
@@ -210,7 +203,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1724675504175</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL‎-00013" summary="Changed sheet cloning mechanism - instead of clone, using serialization">
+      <option name="closed" value="true" />
+      <created>1724679093365</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL‎-00013" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1724679093365</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -241,19 +242,16 @@
     <MESSAGE value="Added version names and minor changes" />
     <MESSAGE value="Changed operation creating by adding a new class OperationFactory" />
     <MESSAGE value="Added bonus - saving and loading a sheet (version history included) to/from a file" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added bonus - saving and loading a sheet (version history included) to/from a file" />
+    <MESSAGE value="Changed sheet cloning mechanism - instead of clone, using serialization" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed sheet cloning mechanism - instead of clone, using serialization" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
+        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/service/src/engine/EngineImpl.java</url>
-          <line>64</line>
-          <properties class="engine.EngineImpl" method="loadSheetFromXMLFile">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="2" />
+          <line>165</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
