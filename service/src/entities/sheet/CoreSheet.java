@@ -14,7 +14,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.io.*;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class CoreSheet implements Sheet {
     private final Map<CellCoordinates, CoreCell> cellsMap;
@@ -94,8 +93,6 @@ public class CoreSheet implements Sheet {
     public void initializeNumOfCellsChanged() {numOfCellsChanged = 0;}
     @Override
     public Cell getCell(int row, int col) {return CoordinateFactory.getCellObjectFromIndices(this, row, col);}
-
-
 
     private boolean isCellInsideSTLList(int i, int j, List<STLCell> stlCells) {
         for (STLCell stlCell : stlCells) {

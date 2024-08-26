@@ -33,7 +33,6 @@ public class CoordinateFactory {
         return columnIndex;
     }
 
-
     public static CellCoordinates getIndicesFromCellObject(CoreCell cell) {
         return new CellCoordinates(cell.getCoordinates().getRow(), cell.getCoordinates().getCol());
     }

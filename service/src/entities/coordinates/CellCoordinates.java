@@ -1,9 +1,6 @@
 package entities.coordinates;
 
 import entities.cell.CoreCell;
-import entities.sheet.CoreSheet;
-import exceptions.CellOutOfBoundsException;
-import exceptions.InvalidArgumentException;
 
 import java.io.Serializable;
 
