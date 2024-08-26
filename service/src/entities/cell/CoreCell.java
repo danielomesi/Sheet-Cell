@@ -1,9 +1,11 @@
 package entities.cell;
 
 import entities.coordinates.CellCoordinates;
+import entities.coordinates.CoordinateFactory;
 import entities.sheet.CoreSheet;
 import exceptions.CircleReferenceException;
 import operations.core.Operation;
+import utils.FunctionParser;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -30,6 +32,8 @@ public class CoreCell implements Cell {
     {
         this.sheet = sheet;
         this.version = sheet.getVersion();
+        FunctionParser.validateInRange(row, 0, sheet.getNumOfRows());
+        FunctionParser.validateInRange(col, 0, sheet.getNumOfColumns());
         this.coordinates = new CellCoordinates(row, col);
         this.visitColor = Status.WHITE;
     }
@@ -73,7 +77,7 @@ public class CoreCell implements Cell {
         visitColor = Status.GREY;
         for (CellCoordinates cellCoordinates : cellsAffectedByMe)
         {
-            CellCoordinates.getCellObjectFromIndices(sheet, cellCoordinates.getRow(), cellCoordinates.getCol()).update();
+            CoordinateFactory.getCellObjectFromIndices(sheet, cellCoordinates.getRow(), cellCoordinates.getCol()).update();
         }
         visitColor = Status.BLACK;
     }
@@ -99,13 +103,13 @@ public class CoreCell implements Cell {
     {
         for(CellCoordinates cellCoordinates : cellsAffectingMe)
         {
-            CellCoordinates.getCellObjectFromIndices(sheet, cellCoordinates.getRow(), cellCoordinates.getCol()).cellsAffectedByMe.remove(this.coordinates);
+            CoordinateFactory.getCellObjectFromIndices(sheet, cellCoordinates.getRow(), cellCoordinates.getCol()).cellsAffectedByMe.remove(this.coordinates);
         }
         cellsAffectingMe.clear();
     }
 
     @Override
     public String toString() {
-        return "["+ CellCoordinates.getCellIDFromIndices(coordinates.getRow(), coordinates.getCol()) +"]: "+effectiveValue.toString();
+        return "["+ CoordinateFactory.getCellIDFromIndices(coordinates.getRow(), coordinates.getCol()) +"]: "+effectiveValue.toString();
     }
 }

@@ -2,6 +2,7 @@ package operations.impl;
 
 import entities.coordinates.CellCoordinates;
 import entities.cell.CoreCell;
+import entities.coordinates.CoordinateFactory;
 import entities.sheet.CoreSheet;
 import exceptions.InvalidArgumentException;
 import operations.core.Operation;
@@ -20,9 +21,17 @@ public class REFOperation extends Operation {
     public Object execute() {
         Object arg = getArgValue(arguments.getFirst());
         Object obj = null;
-        CoreCell referencingCell = CellCoordinates.getCellObjectFromCellID(sheet, coordinates.getCellID());
+        CoreCell referencingCell = CoordinateFactory.getCellObjectFromCellID(sheet, coordinates.getCellID());
         try {
-            CoreCell referencedCell = CellCoordinates.getCellObjectFromCellID(sheet, arg.toString().toUpperCase());
+            CellCoordinates referencedCoordinates = new CellCoordinates(arg.toString().toUpperCase());
+            CoreCell referencedCell;
+            if (sheet.getCoreCellsMap().containsKey(referencedCoordinates)) {
+                referencedCell = sheet.getCoreCellsMap().get(referencedCoordinates);
+            }
+            else {
+                referencedCell = new CoreCell(sheet,referencedCoordinates.getRow(),referencedCoordinates.getCol());
+                sheet.getCoreCellsMap().put(referencedCoordinates,referencedCell);
+            }
             obj = referencedCell.getEffectiveValue();
             referencingCell.getCellsAffectingMe().add(referencedCell.getCoordinates());
             referencedCell.getCellsAffectedByMe().add(referencingCell.getCoordinates());

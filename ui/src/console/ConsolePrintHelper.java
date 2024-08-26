@@ -3,19 +3,20 @@ package console;
 import console.exceptions.ConsoleException;
 import entities.cell.Cell;
 import entities.coordinates.CellCoordinates;
+import entities.coordinates.CoordinateFactory;
 import entities.sheet.Sheet;
 import exceptions.ServiceException;
 
 import java.text.DecimalFormat;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class ConsolePrintHelper {
 
     public static void printSheet(Sheet sheet) {
-        Cell[][] cellsTable = sheet.getCellsTable();
-        int numOfColumns = cellsTable[0].length;
-        int numOfRows = cellsTable.length;
+        int numOfColumns = sheet.getNumOfColumns();
+        int numOfRows = sheet.getNumOfRows();
 
         int columnWidth = sheet.getLayout().getColumnWidthUnits();
         int rowHeight = sheet.getLayout().getRowHeightUnits();
@@ -51,7 +52,8 @@ public class ConsolePrintHelper {
 
         // Print cell values
             for (int j = 0; j < numOfColumns; j++) {
-                Object value = cellsTable[i][j].getEffectiveValue();
+                Cell cell = sheet.getCell(i,j);
+                Object value =  cell != null ? cell.getEffectiveValue() : null;
                 String valueString = value != null ? objectValueAsString(value) : "";
                 System.out.print(centerText(valueString, columnWidth+1));
                 //added 1 to prepare the next text to be inserted after a |
@@ -113,17 +115,14 @@ public class ConsolePrintHelper {
     }
 
     public static void printCellInfo(Cell cell) {
+        printBasicCellInfo(cell);
         if (cell == null) {
-            System.out.println("The cell is null");
             return;
         }
-
-
         int version = cell.getVersion();
         Set<CellCoordinates> cellsAffectedByMe = cell.getCellsAffectedByMe();
         Set<CellCoordinates> cellsAffectingMe = cell.getCellsAffectingMe();
 
-        printBasicCellInfo(cell);
         System.out.println("Last Modified Version: " + version);
 
         System.out.print("Cells Affected By Me: ");
@@ -148,13 +147,17 @@ public class ConsolePrintHelper {
     }
 
     public static void printBasicCellInfo(Cell cell) {
-        CellCoordinates coordinates = cell.getCoordinates();
-        Object effectiveValue = cell.getEffectiveValue();
-        String originalExpression = cell.getOriginalExpression();
-
-        System.out.println("Cell Identifier: " + coordinates);
-        System.out.println("Original Expression: " + originalExpression);
-        System.out.println("Effective Value: " + effectiveValue);
+        if (cell != null) {
+            CellCoordinates coordinates = cell.getCoordinates();
+            Object effectiveValue = cell.getEffectiveValue();
+            String originalExpression = cell.getOriginalExpression();
+            System.out.println("Cell Identifier: " + coordinates);
+            System.out.println("Original Expression: " + originalExpression);
+            System.out.println("Effective Value: " + effectiveValue);
+        }
+        else {
+            System.out.println("No info on this cell, since it wasn't created/referenced yet");
+        }
     }
 
     public static void printSheetVersionsInfo(List<Sheet> sheetList) {

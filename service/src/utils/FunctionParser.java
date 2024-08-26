@@ -4,6 +4,7 @@ import entities.cell.CoreCell;
 import entities.coordinates.CellCoordinates;
 import entities.sheet.CoreSheet;
 import exceptions.CellOutOfBoundsException;
+import exceptions.CircleReferenceException;
 import exceptions.InvalidArgumentException;
 import operations.core.Operation;
 import operations.core.OperationFactory;
@@ -98,19 +99,21 @@ public class FunctionParser {
                 // Extract the referenced cell's ID (skip "REF," which is 4 characters + 1 for the comma)
                 String referencedCellID = originalExpression.substring(4).trim();
 
-                // Get the coordinates of the referenced cell
-                CoreCell referencedCell = CellCoordinates.getCellObjectFromCellID(sheet, referencedCellID);
-
-                if (referencedCell != null) {
-                    // Add current cell to referenced cell's affected-by-me list
-                    referencedCell.getCellsAffectedByMe().add(coreCell.getCoordinates());
-
-                    // Add referenced cell to current cell's affecting-me list
-                    coreCell.getCellsAffectingMe().add(referencedCell.getCoordinates());
+                CellCoordinates cellCoordinates = new CellCoordinates(referencedCellID);
+                CoreCell referencedCell = sheet.getCoreCellsMap().get(cellCoordinates);
+                if (referencedCell == null) {
+                    referencedCell = new CoreCell(sheet,cellCoordinates.getRow(),cellCoordinates.getCol());
+                    sheet.getCoreCellsMap().put(cellCoordinates, referencedCell);
                 }
+
+                // Add current cell to referenced cell's affected-by-me list
+                referencedCell.getCellsAffectedByMe().add(coreCell.getCoordinates());
+
+                // Add referenced cell to current cell's affecting-me list
+                coreCell.getCellsAffectingMe().add(referencedCell.getCoordinates());
+
             } else {
                 // Handle possible nested functions
-                // Split the expression by commas to handle possible nested functions
                 String[] parts = splitByCommas(originalExpression);
 
                 for (String part : parts) {
@@ -129,8 +132,16 @@ public class FunctionParser {
         expression = expression.substring(1, expression.length() - 1).trim();
 
         if (expression.startsWith("REF,")) {
-            String referencedCellID = expression.substring(4).trim();
-            CoreCell referencedCell = CellCoordinates.getCellObjectFromCellID(sheet, referencedCellID);
+            String referencedCellID = expression.substring(4).trim().toUpperCase();
+            CellCoordinates referencedCoordinates = new CellCoordinates(referencedCellID);
+            CoreCell referencedCell;
+            if (sheet.getCoreCellsMap().containsKey(referencedCoordinates)) {
+                referencedCell = sheet.getCoreCellsMap().get(referencedCoordinates);
+            }
+            else {
+                referencedCell = new CoreCell(sheet,referencedCoordinates.getRow(),referencedCoordinates.getCol());
+                sheet.getCoreCellsMap().put(referencedCoordinates,referencedCell);
+            }
 
             if (referencedCell != null) {
                 referencedCell.getCellsAffectedByMe().add(coreCell.getCoordinates());

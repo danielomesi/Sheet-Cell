@@ -1,18 +1,23 @@
 package entities.sheet;
 
+import entities.cell.Cell;
 import entities.coordinates.CellCoordinates;
 import entities.cell.CoreCell;
+import entities.coordinates.CoordinateFactory;
 import entities.stl.STLCell;
 import entities.stl.STLSheet;
 import exceptions.CloneFailureException;
 import utils.TopologicalSorter;
 import utils.FunctionParser;
 
+import java.util.HashMap;
 import java.util.List;
 import java.io.*;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class CoreSheet implements Sheet {
-    private final CoreCell[][] cellsTable;
+    private final Map<CellCoordinates, CoreCell> cellsMap;
     private final int numOfRows;
     private final int numOfColumns;
     private int version = 1;
@@ -21,12 +26,11 @@ public class CoreSheet implements Sheet {
     private final String name;
 
     public CoreSheet(int numOfRows, int numOfColumns, Layout layout, String name) {
-        cellsTable = new CoreCell[numOfRows][numOfColumns];
+        cellsMap = new HashMap<>();
         this.numOfRows = numOfRows;
         this.numOfColumns = numOfColumns;
         this.layout = layout;
         this.name = name;
-        initializeSheet();
     }
 
     public CoreSheet(STLSheet stlSheet) {
@@ -36,16 +40,25 @@ public class CoreSheet implements Sheet {
                 stlSheet.getSTLLayout().getSTLSize().getColumnWidthUnits());
         this.name = stlSheet.getName();
         this.numOfCellsChanged = 0;
-        cellsTable = new CoreCell[numOfRows][numOfColumns];
+        cellsMap = new HashMap<>();
+        CoreCell coreCell;
         List<STLCell> STLCells = stlSheet.getSTLCells().getSTLCell();
-        initializeSheet();
         for (STLCell stlCell : STLCells) {
             int i = stlCell.getRow() - 1;
-            int j = CellCoordinates.convertColumnLettersToIndex(stlCell.getColumn());
+            int j = CoordinateFactory.convertColumnLettersToIndex(stlCell.getColumn());
             FunctionParser.validateInRange(i, 0, numOfRows);
             FunctionParser.validateInRange(j, 0, numOfColumns);
-            cellsTable[i][j].setOriginalExpression(stlCell.getSTLOriginalValue());
-            FunctionParser.updateDependencies(this, cellsTable[i][j]);
+            CellCoordinates cellCoordinates = new CellCoordinates(i, j);
+            if (cellsMap.containsKey(cellCoordinates)) {
+                coreCell = cellsMap.get(cellCoordinates);
+            }
+            else {
+                coreCell = new CoreCell(this,i,j);
+                cellsMap.put(cellCoordinates, coreCell);
+            }
+            coreCell.setOriginalExpression(stlCell.getSTLOriginalValue());
+            FunctionParser.updateDependencies(this, coreCell);
+            //this function might create itself a core cell in the sheet so it will update its dependencies
         }
         List<CellCoordinates> topologicalSort = TopologicalSorter.topologicalSort(this);
         cleanDependencies();
@@ -67,7 +80,7 @@ public class CoreSheet implements Sheet {
         }
     }
 
-    public CoreCell[][] getCellsTable() {return cellsTable;}
+    public Map<CellCoordinates, CoreCell> getCoreCellsMap() {return cellsMap;}
     public int getVersion() {return version;}
     public int getNumOfRows() {return numOfRows;}
     public int getNumOfColumns() {return numOfColumns;}
@@ -79,20 +92,14 @@ public class CoreSheet implements Sheet {
     public int getNumOfCellsChanged() {return numOfCellsChanged;}
     public void incrementNumOfCellsChanged() {numOfCellsChanged++;}
     public void initializeNumOfCellsChanged() {numOfCellsChanged = 0;}
+    @Override
+    public Cell getCell(int row, int col) {return CoordinateFactory.getCellObjectFromIndices(this, row, col);}
 
-    private void initializeSheet() {
-        for (int i = 0; i < cellsTable.length; i++) {
-            for (int j = 0; j < cellsTable[i].length; j++) {
-                CoreCell cell = new CoreCell(this, i,j);
-                cellsTable[i][j] = cell;
-            }
-        }
-    }
 
 
     private boolean isCellInsideSTLList(int i, int j, List<STLCell> stlCells) {
         for (STLCell stlCell : stlCells) {
-            if ( (i == stlCell.getRow()-1) && (j == CellCoordinates.convertColumnLettersToIndex(stlCell.getColumn())) ) {
+            if ( (i == stlCell.getRow()-1) && (j == CoordinateFactory.convertColumnLettersToIndex(stlCell.getColumn())) ) {
                 return true;
             }
         }
@@ -102,7 +109,7 @@ public class CoreSheet implements Sheet {
 
     private void executeSheet(List<CellCoordinates> topologicalSort) {
         for (CellCoordinates coordinates : topologicalSort) {
-            CoreCell cell = CellCoordinates.getCellObjectFromCellID(this, coordinates.getCellID());
+            CoreCell cell = CoordinateFactory.getCellObjectFromCellID(this, coordinates.getCellID());
             String originalExpression = cell.getOriginalExpression();
             if (originalExpression != null) {
                 cell.executeCalculationProcedure(originalExpression);
@@ -112,20 +119,14 @@ public class CoreSheet implements Sheet {
 
     //Similar to DFS, this is a method that makes all the cells "WHITE"
     public void cleanVisits() {
-        for (int i = 0; i < cellsTable.length; i++) {
-            for (int j = 0; j < cellsTable[i].length; j++) {
-                cellsTable[i][j].setVisited(CoreCell.Status.WHITE);
-            }
-        }
+        cellsMap.forEach((coordinates,cell) -> cell.setVisited(CoreCell.Status.WHITE));
     }
 
     public void cleanDependencies() {
-        for (int i = 0; i < cellsTable.length; i++) {
-            for (int j = 0; j < cellsTable[i].length; j++) {
-                cellsTable[i][j].getCellsAffectedByMe().clear();
-                cellsTable[i][j].getCellsAffectingMe().clear();
-            }
-        }
+        cellsMap.forEach((coordinates,cell) -> {
+            cell.getCellsAffectedByMe().clear();
+            cell.getCellsAffectingMe().clear();
+        });
     }
 
     @Override

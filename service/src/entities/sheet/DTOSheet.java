@@ -1,9 +1,15 @@
 package entities.sheet;
 
+import entities.cell.Cell;
 import entities.cell.DTOCell;
+import entities.coordinates.CellCoordinates;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class DTOSheet implements Sheet {
-    private DTOCell[][] cellsTable;
+    private Map<CellCoordinates,DTOCell> cellsMap;
     private final int numOfRows;
     private final int numOfColumns;
     private final int version;
@@ -18,18 +24,12 @@ public class DTOSheet implements Sheet {
         this.layout = coreSheet.getLayout();
         this.name = coreSheet.getName();
         this.numOfCellsChanged = coreSheet.getNumOfCellsChanged();
-        if (coreSheet.getCellsTable() != null) {
-            this.cellsTable = new DTOCell[numOfRows][numOfColumns];
-            for (int i = 0; i < coreSheet.getCellsTable().length; i++) {
-                for (int j = 0; j < coreSheet.getCellsTable()[i].length; j++) {
-                    this.cellsTable[i][j] = new DTOCell(coreSheet.getCellsTable()[i][j]);
-                }
-            }
+        if (coreSheet.getCoreCellsMap() != null) {
+            this.cellsMap = new HashMap<>();
+            coreSheet.getCoreCellsMap().forEach((coordinates, cell) -> cellsMap.put(coordinates, new DTOCell(cell)));
         }
     }
 
-    @Override
-    public DTOCell[][] getCellsTable() {return this.cellsTable;}
     public int getNumOfRows() {return this.numOfRows;}
     public int getNumOfColumns() {return this.numOfColumns;}
     public int getVersion() {return this.version;}
@@ -38,4 +38,5 @@ public class DTOSheet implements Sheet {
     @Override
     public String getName() {return name;}
     public int getNumOfCellsChanged() {return this.numOfCellsChanged;}
+    public Cell getCell(int row, int col) {return cellsMap.get(new CellCoordinates(row, col));}
 }
