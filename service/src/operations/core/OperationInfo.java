@@ -1,4 +1,4 @@
-package operations;
+package operations.core;
 
 public class OperationInfo {
     private final Class<? extends Operation> operationClass;

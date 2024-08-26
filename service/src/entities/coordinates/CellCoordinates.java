@@ -5,7 +5,9 @@ import entities.sheet.CoreSheet;
 import exceptions.CellOutOfBoundsException;
 import exceptions.InvalidArgumentException;
 
-public class CellCoordinates implements Cloneable
+import java.io.Serializable;
+
+public class CellCoordinates implements Cloneable, Serializable
 {
     private int row;
     private int col;

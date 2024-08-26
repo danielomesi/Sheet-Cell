@@ -68,51 +68,6 @@ public class ConsolePrintHelper {
     }
 
 
-//    public static void printSheet(Sheet sheet) {
-//        Cell[][] cellsTable = sheet.getCellsTable();
-//        int numOfColumns = cellsTable[0].length;
-//        int numOfRows = cellsTable.length;
-//
-//        int columnWidth = sheet.getLayout().getColumnWidthUnits();
-//        int rowHeight = sheet.getLayout().getRowHeightUnits();
-//
-//        int rowIndexWidth = Math.max(Integer.toString(numOfRows).length(),2);
-//
-//
-//        System.out.println("Version: " + sheet.getVersion());
-//
-//        System.out.print(" ".repeat(rowIndexWidth) + " | ");  // Space for row index
-//        for (int j = 0; j < numOfColumns; j++) {
-//            String colName = getColumnName(j);
-//            System.out.print(centerText(colName, columnWidth));
-//            if (j < numOfColumns - 1) {
-//                System.out.print(" | ");
-//            }
-//        }
-//        System.out.println();
-//
-//        for (int i = 0; i < numOfRows; i++) {
-//            for (int heightIndex = 0; heightIndex < rowHeight; heightIndex++) {
-//                if (heightIndex == rowHeight / 2) {
-//                    String rowIndex = String.format("%0" + rowIndexWidth + "d", i + 1);
-//                    System.out.print(centerText(rowIndex, rowIndexWidth) + " | ");  // Row index
-//                } else {
-//                    System.out.print(" ".repeat(rowIndexWidth) + " | ");
-//                }
-//
-//                for (int j = 0; j < numOfColumns; j++) {
-//                    Object value = cellsTable[i][j].getEffectiveValue();
-//                    String valueString = value != null ? objectValueAsString(value) : "";
-//                    System.out.print(centerText(valueString, columnWidth));
-//                    if (j < numOfColumns - 1) {
-//                        System.out.print(" | ");
-//                    }
-//                }
-//                System.out.println();
-//            }
-//        }
-//    }
-
     private static String centerText(String text, int width) {
         if (text.length() > width) {
             return text.substring(0, width-1);

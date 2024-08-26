@@ -1,9 +1,10 @@
-package operations;
+package operations.impl;
 
 import entities.coordinates.CellCoordinates;
 import entities.cell.CoreCell;
 import entities.sheet.CoreSheet;
 import exceptions.InvalidArgumentException;
+import operations.core.Operation;
 
 import java.util.List;
 

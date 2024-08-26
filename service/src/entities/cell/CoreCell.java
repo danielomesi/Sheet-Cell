@@ -3,7 +3,7 @@ package entities.cell;
 import entities.coordinates.CellCoordinates;
 import entities.sheet.CoreSheet;
 import exceptions.CircleReferenceException;
-import operations.Operation;
+import operations.core.Operation;
 
 import java.util.HashSet;
 import java.util.Set;

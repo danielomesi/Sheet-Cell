@@ -4,7 +4,7 @@ import entities.coordinates.CellCoordinates;
 import entities.cell.CoreCell;
 import entities.stl.STLCell;
 import entities.stl.STLSheet;
-import operations.Operation;
+import operations.core.Operation;
 import utils.TopologicalSorter;
 import utils.FunctionParser;
 
@@ -81,6 +81,7 @@ public class CoreSheet implements Sheet,Cloneable {
     public String getName() {return name;}
     public int getNumOfCellsChanged() {return numOfCellsChanged;}
     public void incrementNumOfCellsChanged() {numOfCellsChanged++;}
+    public void initializeNumOfCellsChanged() {numOfCellsChanged = 0;}
 
     private void initializeSheet() {
         for (int i = 0; i < cellsTable.length; i++) {

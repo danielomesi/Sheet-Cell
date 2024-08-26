@@ -5,9 +5,9 @@ import entities.coordinates.CellCoordinates;
 import entities.sheet.CoreSheet;
 import exceptions.CellOutOfBoundsException;
 import exceptions.InvalidArgumentException;
-import operations.Operation;
-import operations.OperationFactory;
-import operations.OperationInfo;
+import operations.core.Operation;
+import operations.core.OperationFactory;
+import operations.core.OperationInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,6 +72,9 @@ public class FunctionParser {
             return Double.parseDouble(arg);
         } else if (arg.equalsIgnoreCase("true") || arg.equalsIgnoreCase("false")) {
             return Boolean.parseBoolean(arg);
+        }
+        else if (arg.isEmpty()) {
+            return null;
         }
         else {
             return arg;

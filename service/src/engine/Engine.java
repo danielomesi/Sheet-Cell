@@ -22,4 +22,9 @@ public interface Engine {
     public void updateSpecificCell(String cellName, String originalExpression);
 
     public List<Sheet> getSheetList();
+
+    public void saveToFile(String fullFilePath);
+
+    public void loadFromFile(String fullFilePath);
+
 }

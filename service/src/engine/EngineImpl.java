@@ -53,17 +53,28 @@ public class EngineImpl implements Engine {
     }
 
     @Override
+    public void saveToFile(String fullFilePath) {
+        FileIOHandler.saveCoreSheetsToFile(coreSheets, fullFilePath);
+    }
+
+    @Override
+    public void loadFromFile(String fullFilePath) {
+        coreSheets = FileIOHandler.loadCoreSheetsFromFile(fullFilePath);
+    }
+
+    @Override
     public void loadSheetFromXMLFile(String fullFilePath) {
         STLSheet stlSheet;
+        FileIOHandler.validatePathToXMLFile(fullFilePath);
         try {
-            stlSheet = XMLHandler.loadXmlToObject(fullFilePath, STLSheet.class);
+            stlSheet = FileIOHandler.loadXmlToObject(fullFilePath, STLSheet.class);
         }
         catch (JAXBException e) {
             throw new InvalidXMLException("Invalid XML file");
         }
         validateXMLSheetLayout(stlSheet);
         CoreSheet coreSheet = new CoreSheet(stlSheet);
-
+        coreSheet.initializeNumOfCellsChanged();
         coreSheets.clear();
         coreSheets.add(coreSheet);
     }
@@ -166,4 +177,6 @@ public class EngineImpl implements Engine {
     private DTOSheet generateDTOSheet(CoreSheet coreSheet) {
         return new DTOSheet(coreSheet);
     }
+
+
 }

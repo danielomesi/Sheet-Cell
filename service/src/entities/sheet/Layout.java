@@ -1,6 +1,8 @@
 package entities.sheet;
 
-public class Layout {
+import java.io.Serializable;
+
+public class Layout implements Serializable {
     private final int rowHeightUnits;
     private final int columnWidthUnits;
 

@@ -2,7 +2,9 @@ package entities.sheet;
 
 import entities.cell.Cell;
 
-public interface Sheet {
+import java.io.Serializable;
+
+public interface Sheet extends Serializable {
     public Cell[][] getCellsTable();
     public int getNumOfRows();
     public int getNumOfColumns();

@@ -2,9 +2,10 @@ package entities.cell;
 
 import entities.coordinates.CellCoordinates;
 
+import java.io.Serializable;
 import java.util.Set;
 
-public interface Cell {
+public interface Cell extends Serializable {
     public CellCoordinates getCoordinates();
     public int getVersion();
     public Object getEffectiveValue();

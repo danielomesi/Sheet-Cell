@@ -14,6 +14,8 @@ import console.menu.Menu;
 //try to divide the code to more functions, make it more readable
 //think about encapsulation - working with types
 //C:\\Users\\omesi\\Desktop\\examples\\insurance.xml
+//save/load:
+//C:\\Users\\omesi\\Desktop\\examples\\saves\\save1
 
 public class Application {
 

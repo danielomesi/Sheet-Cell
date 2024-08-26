@@ -1,7 +1,8 @@
-package operations;
+package operations.core;
 
 import entities.coordinates.CellCoordinates;
 import entities.sheet.CoreSheet;
+import operations.impl.*;
 
 import java.util.HashMap;
 import java.util.List;

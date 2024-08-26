@@ -1,18 +1,18 @@
-package operations;
+package operations.impl;
 
 import entities.coordinates.CellCoordinates;
 import entities.sheet.CoreSheet;
+import operations.core.Operation;
 
 import java.util.List;
 
-public class MINUSOperation extends Operation {
-    public MINUSOperation(CoreSheet sheet, CellCoordinates coordinates, List<Object> arguments) {
+public class MODOperation extends Operation {
+    public MODOperation(CoreSheet sheet, CellCoordinates coordinates, List<Object> arguments) {
         super.sheet = sheet;
         this.coordinates = coordinates;
-        super.name = "MINUS";
+        super.name = "MOD";
         super.arguments = arguments;
     }
-
 
     @Override
     public Double execute() {
@@ -21,6 +21,6 @@ public class MINUSOperation extends Operation {
         validateArgumentsTypes(expectedClazzes, nonOperationObjects);
         List<Double> doubles = convertToDouble(nonOperationObjects);
 
-        return doubles.get(0)-doubles.get(1);
+        return doubles.get(0)%doubles.get(1);
     }
 }

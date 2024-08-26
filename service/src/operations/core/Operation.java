@@ -1,12 +1,13 @@
-package operations;
+package operations.core;
 
 import entities.coordinates.CellCoordinates;
 import entities.sheet.CoreSheet;
 import exceptions.InvalidArgumentException;
 
+import java.io.Serializable;
 import java.util.*;
 
-public abstract class Operation {
+public abstract class Operation implements Serializable {
     protected CoreSheet sheet;
     protected CellCoordinates coordinates;
     protected String name;
