@@ -10,7 +10,7 @@ import console.menu.Menu;
 //C:\\Users\\omesi\\Desktop\\examples\\insurance
 //save/load:
 //C:\\Users\\omesi\\Desktop\\examples\\data
-//{SUb,{rEf,d2},0,4}
+//{SUb,{rEf,d2},0,4}h
 
 public class Application {
 

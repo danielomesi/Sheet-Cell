@@ -4,20 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Created new branch">
-      <change afterPath="$PROJECT_DIR$/service/src/entities/coordinates/CoordinateFactory.java" afterDir="false" />
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Created new branch, made a change from using a 2d array to a map">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/cell/CoreCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/cell/CoreCell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/coordinates/CellCoordinates.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/coordinates/CellCoordinates.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/sheet/DTOSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/sheet/DTOSheet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/sheet/Sheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/sheet/Sheet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/REFOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/REFOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/utils/FunctionParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/utils/FunctionParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/utils/TopologicalSorter.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/utils/TopologicalSorter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/console/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/console/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/console/ConsolePrintHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/console/ConsolePrintHelper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +60,7 @@
     "Application.Unnamed.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Refactortry",
+    "git-widget-placeholder": "master2",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/omesi/IdeaProjects/Sheet-Cell/external-libraries/jaxb/jaxb-xjc.jar",
     "node.js.detected.package.eslint": "true",
@@ -121,7 +110,7 @@
       <workItem from="1724509817456" duration="3470000" />
       <workItem from="1724662838676" duration="12609000" />
       <workItem from="1724676882075" duration="5048000" />
-      <workItem from="1724693464220" duration="10379000" />
+      <workItem from="1724693464220" duration="10584000" />
     </task>
     <task id="LOCAL‎-00001" summary="Added basic entities">
       <option name="closed" value="true" />
@@ -243,7 +232,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1724693615934</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL‎-00016" summary="Created new branch, made a change from using a 2d array to a map">
+      <option name="closed" value="true" />
+      <created>1724703981955</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL‎-00016" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1724703981956</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -277,7 +274,8 @@
     <MESSAGE value="Changed sheet cloning mechanism - instead of clone, using serialization" />
     <MESSAGE value="Fixed minor bug in SUBOperation" />
     <MESSAGE value="Created new branch" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created new branch" />
+    <MESSAGE value="Created new branch, made a change from using a 2d array to a map" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created new branch, made a change from using a 2d array to a map" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
