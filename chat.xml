@@ -7,7 +7,7 @@
     <STL-Cells>
         <!-- Simple Values -->
         <STL-Cell row="1" column="A">
-            <STL-Original-Value>5</STL-Original-Value>
+            <STL-Original-Value>-5</STL-Original-Value>
         </STL-Cell>
         <STL-Cell row="1" column="B">
             <STL-Original-Value>10.5</STL-Original-Value>
