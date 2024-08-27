@@ -15,8 +15,8 @@ public class CoordinateFactory {
 
         if (rowIndex < 0 || rowIndex >= sheet.getNumOfRows() ||
                 colIndex < 0 || colIndex >= sheet.getNumOfColumns()) {
-            throw new CellOutOfBoundsException("Cell is out bounds. Maximum number of rows is " + sheet.getNumOfRows()
-                    + ", maximum number of columns is " + sheet.getNumOfColumns(), rowIndex + "," + colIndex );
+            throw new CellOutOfBoundsException("Cell is out bounds. Valid row range: [1-" + sheet.getNumOfRows()
+                    + "], Valid column range: [1-" + sheet.getNumOfColumns() + "]", (rowIndex+1) + "," + (colIndex+1) );
         }
 
         return getCellObjectFromIndices(sheet,rowIndex,colIndex);

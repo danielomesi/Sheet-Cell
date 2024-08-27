@@ -6,6 +6,7 @@ import console.exceptions.OutOfRangeException;
 import engine.Engine;
 import engine.EngineImpl;
 import entities.cell.Cell;
+import entities.sheet.Sheet;
 
 import java.util.*;
 
@@ -74,9 +75,7 @@ public class Menu {
     }
 
     private static MENU_OPTION validateAndCastToEnum(int choice) {
-        if (choice <= 0 || choice > option2Runnable.size()) {
-            throw new OutOfRangeException("Choice must be between 1 and " + option2Runnable.size());
-        }
+        validateInRange(choice,1, option2Runnable.size());
 
         //since choice originally came from user side which is 1-based, Converting to 0-based is necessary
         return MENU_OPTION.values()[choice-1];
@@ -120,10 +119,13 @@ public class Menu {
     }
 
     private static void showVersions() {
-        ConsolePrintHelper.printSheetVersionsInfo(engine.getSheetList());
+        List<Sheet> sheetList = engine.getSheetList();
+        ConsolePrintHelper.printSheetVersionsInfo(sheetList);
         System.out.println("Please choose a sheet to show by typing its number:");
         String input = scanner.nextLine();
-        int choice = Integer.parseInt(input) - 1; //decrementing 1 to make it 0-based
+        int choice = Integer.parseInt(input);
+        validateInRange(choice,1,sheetList.size());
+        choice-=1; //decrementing 1 to make it 0-based
         ConsolePrintHelper.printSheet(engine.getSheet(choice));
     }
 
@@ -143,4 +145,10 @@ public class Menu {
     }
 
     private static void exit() {}
+
+    private static void validateInRange(int toCheck, int start, int end) {
+        if (toCheck < start || toCheck > end) {
+            throw new OutOfRangeException("Range must be between " + start + " and " + end);
+        }
+    }
 }
