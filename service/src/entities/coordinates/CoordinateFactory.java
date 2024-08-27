@@ -8,10 +8,10 @@ import exceptions.InvalidArgumentException;
 public class CoordinateFactory {
 
     public static CoreCell getCellObjectFromCellID(CoreSheet sheet, String cellName) {
-        CellCoordinates cellCoordinates = new CellCoordinates(cellName);
+        Coordinates coordinates = new Coordinates(cellName);
 
-        int rowIndex = cellCoordinates.getRow();
-        int colIndex = cellCoordinates.getCol();
+        int rowIndex = coordinates.getRow();
+        int colIndex = coordinates.getCol();
 
         if (rowIndex < 0 || rowIndex >= sheet.getNumOfRows() ||
                 colIndex < 0 || colIndex >= sheet.getNumOfColumns()) {
@@ -33,19 +33,19 @@ public class CoordinateFactory {
         return columnIndex;
     }
 
-    public static CellCoordinates getIndicesFromCellObject(CoreCell cell) {
-        return new CellCoordinates(cell.getCoordinates().getRow(), cell.getCoordinates().getCol());
+    public static Coordinates getIndicesFromCellObject(CoreCell cell) {
+        return new Coordinates(cell.getCoordinates().getRow(), cell.getCoordinates().getCol());
     }
 
     public static String getCellIDFromCellObject(CoreCell cell) {
-        CellCoordinates coordinates = getIndicesFromCellObject(cell);
+        Coordinates coordinates = getIndicesFromCellObject(cell);
         return getCellIDFromIndices(cell.getCoordinates().getRow(), cell.getCoordinates().getCol());
     }
 
     public static CoreCell getCellObjectFromIndices(CoreSheet sheet, int rowIndex, int colIndex) {
-        CellCoordinates cellCoordinates = new CellCoordinates(rowIndex, colIndex);
+        Coordinates coordinates = new Coordinates(rowIndex, colIndex);
 
-        return sheet.getCoreCellsMap().get(cellCoordinates);
+        return sheet.getCoreCellsMap().get(coordinates);
     }
 
     public static String getCellIDFromIndices(int rowIndex, int colIndex) {

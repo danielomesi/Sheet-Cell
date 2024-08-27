@@ -15,7 +15,7 @@ import java.util.List;
 public class FileIOHandler {
     public static <T> T loadXMLToObject(String xmlFilePath, Class<T> clazz) throws JAXBException {
         xmlFilePath +=".xml";
-        validatePathToXMLFile(xmlFilePath);
+        validateFileExistence(xmlFilePath);
         JAXBContext context = JAXBContext.newInstance(clazz);
         Unmarshaller unmarshaller = context.createUnmarshaller();
         File xmlFile = new File(xmlFilePath);
@@ -25,7 +25,14 @@ public class FileIOHandler {
     public static void saveCoreSheetsToFile(List<CoreSheet> coreSheets, String filePath) {
         filePath +=".dat";
         File file = new File(filePath);
-        validateExistenceOfParentDirectory(file.getParentFile(), file.getName());
+        File parentDir = file.getParentFile();
+        if (parentDir != null) {
+            validateExistenceOfParentDirectory(parentDir, file.getName());
+        }
+        else {
+            File cwd = new File(System.getProperty("user.dir"));
+            file = new File(cwd,file.getName());
+        }
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
             oos.writeObject(coreSheets);
         } catch (Exception e) {
@@ -35,12 +42,9 @@ public class FileIOHandler {
 
     public static List<CoreSheet> loadCoreSheetsFromFile(String filePath) {
         filePath +=".dat";
+        validateFileExistence(filePath);
         File file = new File(filePath);
-        validateExistenceOfParentDirectory(file.getParentFile(), file.getName());
         List<CoreSheet> coreSheets = null;
-        if (!file.exists()) {
-            throw new NoExistenceException("File not found", filePath);
-        }
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
             coreSheets = (List<CoreSheet>) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
@@ -49,13 +53,12 @@ public class FileIOHandler {
         return coreSheets;
     }
 
-    public static void validatePathToXMLFile(String path) {
+    public static void validateFileExistence(String fullFilePath) {
 
-        File file = new File(path);
-        validateExistenceOfParentDirectory(file.getParentFile(), file.getName());
+        File file = new File(fullFilePath);
 
         if (!file.exists()) {
-            throw new InvalidPathDetectedException("File does does not exist", path);
+            throw new InvalidPathDetectedException("File does does not exist", fullFilePath);
         }
     }
 

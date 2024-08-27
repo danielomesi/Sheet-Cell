@@ -1,22 +1,22 @@
 package exceptions;
 
-import entities.coordinates.CellCoordinates;
+import entities.coordinates.Coordinates;
 
 public class SheetLoadFailureException extends ServiceException{
     public SheetLoadFailureException(String message) {
         super(message);
     }
 
-    public SheetLoadFailureException(String message, CellCoordinates cellCoordinates) {
-        super(message, cellCoordinates);
+    public SheetLoadFailureException(String message, Coordinates coordinates) {
+        super(message, coordinates);
     }
 
     public SheetLoadFailureException(String message, String input) {
         super(message, input);
     }
 
-    public SheetLoadFailureException(String message, CellCoordinates cellCoordinates, String input) {
-        super(message, cellCoordinates, input);
+    public SheetLoadFailureException(String message, Coordinates coordinates, String input) {
+        super(message, coordinates, input);
     }
 
     @Override

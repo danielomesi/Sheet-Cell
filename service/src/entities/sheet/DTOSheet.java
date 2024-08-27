@@ -2,14 +2,13 @@ package entities.sheet;
 
 import entities.cell.Cell;
 import entities.cell.DTOCell;
-import entities.coordinates.CellCoordinates;
+import entities.coordinates.Coordinates;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class DTOSheet implements Sheet {
-    private Map<CellCoordinates,DTOCell> cellsMap;
+    private Map<Coordinates,DTOCell> cellsMap;
     private final int numOfRows;
     private final int numOfColumns;
     private final int version;
@@ -38,5 +37,5 @@ public class DTOSheet implements Sheet {
     @Override
     public String getName() {return name;}
     public int getNumOfCellsChanged() {return this.numOfCellsChanged;}
-    public Cell getCell(int row, int col) {return cellsMap.get(new CellCoordinates(row, col));}
+    public Cell getCell(int row, int col) {return cellsMap.get(new Coordinates(row, col));}
 }

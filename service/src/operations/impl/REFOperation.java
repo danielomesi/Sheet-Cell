@@ -1,6 +1,6 @@
 package operations.impl;
 
-import entities.coordinates.CellCoordinates;
+import entities.coordinates.Coordinates;
 import entities.cell.CoreCell;
 import entities.coordinates.CoordinateFactory;
 import entities.sheet.CoreSheet;
@@ -10,7 +10,7 @@ import operations.core.Operation;
 import java.util.List;
 
 public class REFOperation extends Operation {
-    public REFOperation(CoreSheet sheet, CellCoordinates coordinates, List<Object> arguments) {
+    public REFOperation(CoreSheet sheet, Coordinates coordinates, List<Object> arguments) {
         super.sheet = sheet;
         super.coordinates = coordinates;
         super.name = "REF";
@@ -23,7 +23,7 @@ public class REFOperation extends Operation {
         Object obj = null;
         CoreCell referencingCell = CoordinateFactory.getCellObjectFromCellID(sheet, coordinates.getCellID());
         try {
-            CellCoordinates referencedCoordinates = new CellCoordinates(arg.toString().toUpperCase());
+            Coordinates referencedCoordinates = new Coordinates(arg.toString().toUpperCase());
             CoreCell referencedCell;
             if (sheet.getCoreCellsMap().containsKey(referencedCoordinates)) {
                 referencedCell = sheet.getCoreCellsMap().get(referencedCoordinates);

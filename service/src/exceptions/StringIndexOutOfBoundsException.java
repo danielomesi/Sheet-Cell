@@ -1,6 +1,6 @@
 package exceptions;
 
-import entities.coordinates.CellCoordinates;
+import entities.coordinates.Coordinates;
 
 public class StringIndexOutOfBoundsException extends ServiceException{
     public String getExceptionName() {return "String Index Out Of Bounds";}
@@ -9,15 +9,15 @@ public class StringIndexOutOfBoundsException extends ServiceException{
         super(message);
     }
 
-    public StringIndexOutOfBoundsException(String message, CellCoordinates cellCoordinates) {
-        super(message, cellCoordinates);
+    public StringIndexOutOfBoundsException(String message, Coordinates coordinates) {
+        super(message, coordinates);
     }
 
     public StringIndexOutOfBoundsException(String message, String input) {
         super(message, input);
     }
 
-    public StringIndexOutOfBoundsException(String message, CellCoordinates cellCoordinates, String input) {
-        super(message, cellCoordinates, input);
+    public StringIndexOutOfBoundsException(String message, Coordinates coordinates, String input) {
+        super(message, coordinates, input);
     }
 }

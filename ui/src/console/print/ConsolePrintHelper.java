@@ -1,15 +1,13 @@
-package console;
+package console.print;
 
 import console.exceptions.ConsoleException;
 import entities.cell.Cell;
-import entities.coordinates.CellCoordinates;
-import entities.coordinates.CoordinateFactory;
+import entities.coordinates.Coordinates;
 import entities.sheet.Sheet;
 import exceptions.ServiceException;
 
 import java.text.DecimalFormat;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 public class ConsolePrintHelper {
@@ -31,23 +29,23 @@ public class ConsolePrintHelper {
         System.out.println("Version: " + sheet.getVersion());
 
         // Print column headers
-        System.out.print(" ".repeat(rowIndexWidth)); // Leading spaces for row index
+        System.out.print(" ".repeat(rowIndexWidth));
         for (int j = 0; j < numOfColumns; j++) {
             String colName = getColumnName(j);
-            System.out.print(centerText(colName, columnWidth)); // Centered column name
+            System.out.print(centerText(colName, columnWidth));
             if (j < numOfColumns - 1) {
-                System.out.print("|"); // Separator between columns
+                System.out.print("|");
             }
         }
         System.out.println();
 
-        // Print cell contents
+
 
         for (int i = 0; i < numOfRows; i++) {
             moveDown(leftPadding);
             String rowIndex = String.format("%0" + rowIndexWidth + "d", i + 1);
             System.out.print(rowIndex);
-            // Print spaces for row index in other lines
+
             System.out.print(" ".repeat(rowIndexWidth-rowIndex.length()));
 
         // Print cell values
@@ -58,7 +56,7 @@ public class ConsolePrintHelper {
                 System.out.print(centerText(valueString, columnWidth+1));
                 //added 1 to prepare the next text to be inserted after a |
             }
-            System.out.println(); // Move to the next line
+            System.out.println();
             moveDown(rightPadding);
         }
     }
@@ -120,8 +118,8 @@ public class ConsolePrintHelper {
             return;
         }
         int version = cell.getVersion();
-        Set<CellCoordinates> cellsAffectedByMe = cell.getCellsAffectedByMe();
-        Set<CellCoordinates> cellsAffectingMe = cell.getCellsAffectingMe();
+        Set<Coordinates> cellsAffectedByMe = cell.getCellsAffectedByMe();
+        Set<Coordinates> cellsAffectingMe = cell.getCellsAffectingMe();
 
         System.out.println("Last Modified Version: " + version);
 
@@ -129,8 +127,8 @@ public class ConsolePrintHelper {
         if (cellsAffectedByMe.isEmpty()) {
             System.out.println("None");
         } else {
-            for (CellCoordinates coord : cellsAffectedByMe) {
-                System.out.print(coord + " ");
+            for (Coordinates coordinates : cellsAffectedByMe) {
+                System.out.print(coordinates + " ");
             }
             System.out.println();
         }
@@ -139,8 +137,8 @@ public class ConsolePrintHelper {
         if (cellsAffectingMe.isEmpty()) {
             System.out.println("None");
         } else {
-            for (CellCoordinates coord : cellsAffectingMe) {
-                System.out.print(coord + " ");
+            for (Coordinates coordinates : cellsAffectingMe) {
+                System.out.print(coordinates + " ");
             }
             System.out.println();
         }
@@ -148,7 +146,7 @@ public class ConsolePrintHelper {
 
     public static void printBasicCellInfo(Cell cell) {
         if (cell != null) {
-            CellCoordinates coordinates = cell.getCoordinates();
+            Coordinates coordinates = cell.getCoordinates();
             Object effectiveValue = cell.getEffectiveValue();
             String originalExpression = cell.getOriginalExpression();
             System.out.println("Cell Identifier: " + coordinates);

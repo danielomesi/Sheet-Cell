@@ -1,7 +1,7 @@
 package entities.sheet;
 
 import entities.cell.Cell;
-import entities.coordinates.CellCoordinates;
+import entities.coordinates.Coordinates;
 import entities.cell.CoreCell;
 import entities.coordinates.CoordinateFactory;
 import entities.stl.STLCell;
@@ -9,6 +9,7 @@ import entities.stl.STLSheet;
 import exceptions.CloneFailureException;
 import utils.TopologicalSorter;
 import utils.FunctionParser;
+import utils.Utils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,7 +17,7 @@ import java.io.*;
 import java.util.Map;
 
 public class CoreSheet implements Sheet {
-    private final Map<CellCoordinates, CoreCell> cellsMap;
+    private final Map<Coordinates, CoreCell> cellsMap;
     private final int numOfRows;
     private final int numOfColumns;
     private int version = 1;
@@ -45,21 +46,21 @@ public class CoreSheet implements Sheet {
         for (STLCell stlCell : STLCells) {
             int i = stlCell.getRow() - 1;
             int j = CoordinateFactory.convertColumnLettersToIndex(stlCell.getColumn());
-            FunctionParser.validateInRange(i, 0, numOfRows);
-            FunctionParser.validateInRange(j, 0, numOfColumns);
-            CellCoordinates cellCoordinates = new CellCoordinates(i, j);
-            if (cellsMap.containsKey(cellCoordinates)) {
-                coreCell = cellsMap.get(cellCoordinates);
+            Utils.validateInRange(i, 0, numOfRows);
+            Utils.validateInRange(j, 0, numOfColumns);
+            Coordinates coordinates = new Coordinates(i, j);
+            if (cellsMap.containsKey(coordinates)) {
+                coreCell = cellsMap.get(coordinates);
             }
             else {
                 coreCell = new CoreCell(this,i,j);
-                cellsMap.put(cellCoordinates, coreCell);
+                cellsMap.put(coordinates, coreCell);
             }
             coreCell.setOriginalExpression(stlCell.getSTLOriginalValue());
             FunctionParser.updateDependencies(this, coreCell);
             //this function might create itself a core cell in the sheet so it will update its dependencies
         }
-        List<CellCoordinates> topologicalSort = TopologicalSorter.topologicalSort(this);
+        List<Coordinates> topologicalSort = TopologicalSorter.topologicalSort(this);
         cleanDependencies();
         executeSheet(topologicalSort);
     }
@@ -79,7 +80,7 @@ public class CoreSheet implements Sheet {
         }
     }
 
-    public Map<CellCoordinates, CoreCell> getCoreCellsMap() {return cellsMap;}
+    public Map<Coordinates, CoreCell> getCoreCellsMap() {return cellsMap;}
     public int getVersion() {return version;}
     public int getNumOfRows() {return numOfRows;}
     public int getNumOfColumns() {return numOfColumns;}
@@ -104,8 +105,8 @@ public class CoreSheet implements Sheet {
         return false;
     }
 
-    private void executeSheet(List<CellCoordinates> topologicalSort) {
-        for (CellCoordinates coordinates : topologicalSort) {
+    private void executeSheet(List<Coordinates> topologicalSort) {
+        for (Coordinates coordinates : topologicalSort) {
             CoreCell cell = CoordinateFactory.getCellObjectFromCellID(this, coordinates.getCellID());
             String originalExpression = cell.getOriginalExpression();
             if (originalExpression != null) {

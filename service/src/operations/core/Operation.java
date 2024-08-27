@@ -1,6 +1,6 @@
 package operations.core;
 
-import entities.coordinates.CellCoordinates;
+import entities.coordinates.Coordinates;
 import entities.sheet.CoreSheet;
 import exceptions.InvalidArgumentException;
 
@@ -9,7 +9,7 @@ import java.util.*;
 
 public abstract class Operation implements Serializable {
     protected CoreSheet sheet;
-    protected CellCoordinates coordinates;
+    protected Coordinates coordinates;
     protected String name;
     protected List<Object> arguments;
 

@@ -1,22 +1,22 @@
 package exceptions;
 
-import entities.coordinates.CellCoordinates;
+import entities.coordinates.Coordinates;
 
 public class InvalidPathDetectedException extends ServiceException{
     public InvalidPathDetectedException(String message) {
         super(message);
     }
 
-    public InvalidPathDetectedException(String message, CellCoordinates cellCoordinates) {
-        super(message, cellCoordinates);
+    public InvalidPathDetectedException(String message, Coordinates coordinates) {
+        super(message, coordinates);
     }
 
     public InvalidPathDetectedException(String message, String input) {
         super(message, input);
     }
 
-    public InvalidPathDetectedException(String message, CellCoordinates cellCoordinates, String input) {
-        super(message, cellCoordinates, input);
+    public InvalidPathDetectedException(String message, Coordinates coordinates, String input) {
+        super(message, coordinates, input);
     }
 
     @Override

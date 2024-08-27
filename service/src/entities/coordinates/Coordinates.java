@@ -4,22 +4,22 @@ import entities.cell.CoreCell;
 
 import java.io.Serializable;
 
-public class CellCoordinates implements Serializable
+public class Coordinates implements Serializable
 {
     private final int row;
     private final int col;
 
-    public CellCoordinates(int row, int col) {
+    public Coordinates(int row, int col) {
         this.row = row;
         this.col = col;
     }
 
-    public CellCoordinates(CoreCell cell) {
+    public Coordinates(CoreCell cell) {
         this.row = cell.getCoordinates().getRow();
         this.col = cell.getCoordinates().getCol();
     }
 
-    public CellCoordinates(String cellID) {
+    public Coordinates(String cellID) {
         this(CoordinateFactory.getRowIndexFromCellID(cellID), CoordinateFactory.getColIndexFromCellID(cellID));
     }
 
@@ -43,7 +43,7 @@ public class CellCoordinates implements Serializable
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        CellCoordinates other = (CellCoordinates) o;
+        Coordinates other = (Coordinates) o;
         return row == other.row && col == other.col;
     }
 

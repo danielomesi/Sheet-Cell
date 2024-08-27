@@ -1,4 +1,4 @@
-package console;
+package console.app;
 
 import console.menu.Menu;
 

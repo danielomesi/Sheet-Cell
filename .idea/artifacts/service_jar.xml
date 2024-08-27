@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="service:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/service_jar</output-path>
+    <root id="archive" name="service.jar">
+      <element id="module-output" name="service" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/external-libraries/jaxb/jaxb-impl.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/external-libraries/jaxb/jaxb-xjc.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/external-libraries/jaxb/jakarta.activation-api.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/external-libraries/jaxb/jaxb-core.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/external-libraries/jaxb/jaxb-jxc.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/external-libraries/jaxb/jakarta.xml.bind-api.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

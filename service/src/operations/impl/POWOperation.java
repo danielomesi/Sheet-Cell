@@ -1,13 +1,13 @@
 package operations.impl;
 
-import entities.coordinates.CellCoordinates;
+import entities.coordinates.Coordinates;
 import entities.sheet.CoreSheet;
 import operations.core.Operation;
 
 import java.util.List;
 
 public class POWOperation extends Operation {
-    public POWOperation(CoreSheet sheet, CellCoordinates coordinates, List<Object> arguments) {
+    public POWOperation(CoreSheet sheet, Coordinates coordinates, List<Object> arguments) {
         super.sheet = sheet;
         this.coordinates = coordinates;
         super.name = "POW";

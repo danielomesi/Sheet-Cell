@@ -1,10 +1,8 @@
 package utils;
 
 import entities.cell.CoreCell;
-import entities.coordinates.CellCoordinates;
+import entities.coordinates.Coordinates;
 import entities.sheet.CoreSheet;
-import exceptions.CellOutOfBoundsException;
-import exceptions.CircleReferenceException;
 import exceptions.InvalidArgumentException;
 import operations.core.Operation;
 import operations.core.OperationFactory;
@@ -14,9 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FunctionParser {
-
-
-    public static Operation parseFunctionExpression(CoreSheet sheet, CellCoordinates coordinates, String originalExpression) {
+    public static Operation parseFunctionExpression(CoreSheet sheet, Coordinates coordinates, String originalExpression) {
         originalExpression = originalExpression.trim();
         if (originalExpression.startsWith("{") && originalExpression.endsWith("}")) {
             originalExpression = originalExpression.substring(1, originalExpression.length() - 1).trim();
@@ -42,7 +38,7 @@ public class FunctionParser {
         return OperationFactory.createSpecificOperationUsingReflection(sheet,coordinates, operationInfo, arguments);
     }
 
-    private static List<Object> parseArguments(CoreSheet sheet, CellCoordinates coordinates, String input) {
+    private static List<Object> parseArguments(CoreSheet sheet, Coordinates coordinates, String input) {
         List<Object> arguments = new ArrayList<>();
         StringBuilder currentArg = new StringBuilder();
         int braceCount = 0;
@@ -65,7 +61,7 @@ public class FunctionParser {
         return arguments;
     }
 
-    public static Object parseArgument(CoreSheet sheet, CellCoordinates coordinates, String arg) {
+    public static Object parseArgument(CoreSheet sheet, Coordinates coordinates, String arg) {
         if (arg.startsWith("{") && arg.endsWith("}")) {
             return parseFunctionExpression(sheet, coordinates, arg);
         }
@@ -99,11 +95,11 @@ public class FunctionParser {
                 // Extract the referenced cell's ID (skip "REF," which is 4 characters + 1 for the comma)
                 String referencedCellID = originalExpression.substring(4).trim();
 
-                CellCoordinates cellCoordinates = new CellCoordinates(referencedCellID);
-                CoreCell referencedCell = sheet.getCoreCellsMap().get(cellCoordinates);
+                Coordinates coordinates = new Coordinates(referencedCellID);
+                CoreCell referencedCell = sheet.getCoreCellsMap().get(coordinates);
                 if (referencedCell == null) {
-                    referencedCell = new CoreCell(sheet,cellCoordinates.getRow(),cellCoordinates.getCol());
-                    sheet.getCoreCellsMap().put(cellCoordinates, referencedCell);
+                    referencedCell = new CoreCell(sheet, coordinates.getRow(), coordinates.getCol());
+                    sheet.getCoreCellsMap().put(coordinates, referencedCell);
                 }
 
                 // Add current cell to referenced cell's affected-by-me list
@@ -128,12 +124,11 @@ public class FunctionParser {
     }
 
     private static void updateDependencies(CoreSheet sheet, CoreCell coreCell, String expression) {
-        // Parse nested {REF,****} references
         expression = expression.substring(1, expression.length() - 1).trim();
 
         if (expression.startsWith("REF,")) {
             String referencedCellID = expression.substring(4).trim().toUpperCase();
-            CellCoordinates referencedCoordinates = new CellCoordinates(referencedCellID);
+            Coordinates referencedCoordinates = new Coordinates(referencedCellID);
             CoreCell referencedCell;
             if (sheet.getCoreCellsMap().containsKey(referencedCoordinates)) {
                 referencedCell = sheet.getCoreCellsMap().get(referencedCoordinates);
@@ -176,10 +171,5 @@ public class FunctionParser {
         return parts.toArray(new String[0]);
     }
 
-    public static void validateInRange(int toCheck, int start, int end) {
-        if (!(start <= toCheck && toCheck <= end)) {
-            throw new CellOutOfBoundsException("Expected a number between "
-                    + String.valueOf(start+1) + " and " + String.valueOf(end + 1), String.valueOf(toCheck + 1));
-        }
-    }
+
 }

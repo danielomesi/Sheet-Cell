@@ -1,6 +1,6 @@
 package console.menu;
 
-import console.ConsolePrintHelper;
+import console.print.ConsolePrintHelper;
 import console.exceptions.NoExistenceException;
 import console.exceptions.OutOfRangeException;
 import engine.Engine;
@@ -90,8 +90,7 @@ public class Menu {
     }
 
     private static void loadSheetFromXMLFile() {
-        System.out.println("Please enter the path to the XML file, including the file name (no .xml extension included):");
-        String fullFilePath = scanner.nextLine();
+        String fullFilePath = getFilePathFromUser();
         engine.loadSheetFromXMLFile(fullFilePath);
     }
 
@@ -130,17 +129,20 @@ public class Menu {
     }
 
     private static void saveStateToFile() {
-        String fullFileName = getFullFilePathFromuUser();
+        System.out.println("***The folder in which you wish to save the file must exist before performing this save***");
+        String fullFileName = getFilePathFromUser();
         engine.saveStateToFile(fullFileName);
     }
 
     private static void loadStateFromFile() {
-        String fullFileName = getFullFilePathFromuUser();
+        String fullFileName = getFilePathFromUser();
         engine.loadStateFromFile(fullFileName);
     }
 
-    private static String getFullFilePathFromuUser() {
-        System.out.println("Please enter the path to the file, including the file name (no extension included):");
+    private static String getFilePathFromUser() {
+        System.out.println("Please enter the full path or relative path to the file, including the file name (no extension included):");
+        System.out.println("Keep in mind that relative path will start in the current working directory: " + System.getProperty("user.dir"));
+        System.out.println("Example for relative path input: folder/file");
         return scanner.nextLine();
     }
 

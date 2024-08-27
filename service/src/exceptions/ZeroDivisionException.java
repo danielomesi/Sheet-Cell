@@ -1,6 +1,6 @@
 package exceptions;
 
-import entities.coordinates.CellCoordinates;
+import entities.coordinates.Coordinates;
 
 public class ZeroDivisionException extends ServiceException{
     public String getExceptionName() {return "Zero Division";}
@@ -9,15 +9,15 @@ public class ZeroDivisionException extends ServiceException{
         super(message);
     }
 
-    public ZeroDivisionException(String message, CellCoordinates cellCoordinates) {
-        super(message, cellCoordinates);
+    public ZeroDivisionException(String message, Coordinates coordinates) {
+        super(message, coordinates);
     }
 
     public ZeroDivisionException(String message, String input) {
         super(message, input);
     }
 
-    public ZeroDivisionException(String message, CellCoordinates cellCoordinates, String input) {
-        super(message, cellCoordinates, input);
+    public ZeroDivisionException(String message, Coordinates coordinates, String input) {
+        super(message, coordinates, input);
     }
 }

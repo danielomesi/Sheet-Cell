@@ -2,7 +2,7 @@ package engine;
 
 import entities.cell.Cell;
 import entities.cell.CoreCell;
-import entities.coordinates.CellCoordinates;
+import entities.coordinates.Coordinates;
 import entities.coordinates.CoordinateFactory;
 import entities.sheet.Layout;
 import entities.sheet.Sheet;
@@ -13,6 +13,7 @@ import entities.stl.STLSheet;
 import exceptions.InvalidXMLException;
 import exceptions.NoExistenceException;
 import jakarta.xml.bind.JAXBException;
+import utils.Utils;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -55,17 +56,20 @@ public class EngineImpl implements Engine {
 
     @Override
     public void saveStateToFile(String fullFilePath) {
+        fullFilePath = Utils.trimQuotes(fullFilePath);
         FileIOHandler.saveCoreSheetsToFile(coreSheets, fullFilePath);
     }
 
     @Override
     public void loadStateFromFile(String fullFilePath) {
+        fullFilePath = Utils.trimQuotes(fullFilePath);
         coreSheets = FileIOHandler.loadCoreSheetsFromFile(fullFilePath);
     }
 
     @Override
     public void loadSheetFromXMLFile(String fullFilePath) {
         STLSheet stlSheet;
+        fullFilePath = Utils.trimQuotes(fullFilePath);
         try {
             stlSheet = FileIOHandler.loadXMLToObject(fullFilePath, STLSheet.class);
         }
@@ -92,56 +96,12 @@ public class EngineImpl implements Engine {
 
     @Override
     public void loadSheetFromDummyData() {
-        CoreSheet coreSheets = new CoreSheet(7, 7, new Layout(4,4), "Hey"); // 7 rows, 7 columns
+        CoreSheet coreSheets = new CoreSheet(2, 2, new Layout(4,4), "Hey"); // 7 rows, 7 columns
 
-        // Populate with explicit dummy data
         CoordinateFactory.getCellObjectFromCellID(coreSheets, "A1").executeCalculationProcedure("3");
         CoordinateFactory.getCellObjectFromCellID(coreSheets, "B1").executeCalculationProcedure("Hello");
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "C1").executeCalculationProcedure("true");
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "D1").executeCalculationProcedure("8.5");
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "E1").executeCalculationProcedure("World");
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "F1").executeCalculationProcedure("false");
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "G1").executeCalculationProcedure("1.5");
-
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "A2").executeCalculationProcedure("7");
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "B2").executeCalculationProcedure("Test");
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "C2").executeCalculationProcedure("true");
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "D2").executeCalculationProcedure("9.0");
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "E2").executeCalculationProcedure("Data");
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "F2").executeCalculationProcedure("false");
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "G2").executeCalculationProcedure("2.5");
-
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "A3").executeCalculationProcedure("4");
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "B3").executeCalculationProcedure("Sample");
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "C3").executeCalculationProcedure("false");
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "D3").executeCalculationProcedure("7.7");
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "E3").executeCalculationProcedure("Value");
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "F3").executeCalculationProcedure("true");
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "G3").executeCalculationProcedure("3.0");
-
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "A4").executeCalculationProcedure("5");
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "B4").executeCalculationProcedure("Example");
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "C4").executeCalculationProcedure("true");
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "D4").executeCalculationProcedure("6.2");
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "E4").executeCalculationProcedure("Test");
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "F4").executeCalculationProcedure("false");
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "G4").executeCalculationProcedure("4.5");
-
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "A5").executeCalculationProcedure("6");
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "B5").executeCalculationProcedure("Data");
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "C5").executeCalculationProcedure("false");
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "D5").executeCalculationProcedure("8.0");
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "E5").executeCalculationProcedure("Info");
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "F5").executeCalculationProcedure("true");
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "G5").executeCalculationProcedure("5.5");
-
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "A7").executeCalculationProcedure("9");
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "B7").executeCalculationProcedure("Value");
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "C7").executeCalculationProcedure("false");
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "D7").executeCalculationProcedure("5.5");
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "E7").executeCalculationProcedure("End");
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "F7").executeCalculationProcedure("true");
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "G7").executeCalculationProcedure("7.8");
+        CoordinateFactory.getCellObjectFromCellID(coreSheets, "A2").executeCalculationProcedure("true");
+        CoordinateFactory.getCellObjectFromCellID(coreSheets, "B2").executeCalculationProcedure("8.5");
 
         this.coreSheets.addLast(coreSheets);
     }
@@ -162,9 +122,9 @@ public class EngineImpl implements Engine {
             toUpdate = coreCell;
         }
         else {
-            CellCoordinates cellCoordinates = new CellCoordinates(cellName);
-            toUpdate = new CoreCell(cloned,cellCoordinates.getRow(), cellCoordinates.getCol());
-            cloned.getCoreCellsMap().put(cellCoordinates,toUpdate);
+            Coordinates coordinates = new Coordinates(cellName);
+            toUpdate = new CoreCell(cloned, coordinates.getRow(), coordinates.getCol());
+            cloned.getCoreCellsMap().put(coordinates,toUpdate);
         }
         toUpdate.executeCalculationProcedure(originalExpression);
         coreSheets.addLast(cloned);

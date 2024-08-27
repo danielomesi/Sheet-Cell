@@ -1,6 +1,6 @@
 package exceptions;
 
-import entities.coordinates.CellCoordinates;
+import entities.coordinates.Coordinates;
 
 public class NoExistenceException extends ServiceException {
 
@@ -9,15 +9,15 @@ public class NoExistenceException extends ServiceException {
         super(message);
     }
 
-    public NoExistenceException(String message, CellCoordinates cellCoordinates) {
-        super(message, cellCoordinates);
+    public NoExistenceException(String message, Coordinates coordinates) {
+        super(message, coordinates);
     }
 
     public NoExistenceException(String message, String input) {
         super(message, input);
     }
 
-    public NoExistenceException(String message, CellCoordinates cellCoordinates, String input) {
-        super(message, cellCoordinates, input);
+    public NoExistenceException(String message, Coordinates coordinates, String input) {
+        super(message, coordinates, input);
     }
 }

@@ -1,6 +1,6 @@
 package operations.core;
 
-import entities.coordinates.CellCoordinates;
+import entities.coordinates.Coordinates;
 import entities.sheet.CoreSheet;
 import operations.impl.*;
 
@@ -25,11 +25,11 @@ public class OperationFactory {
         funcName2OperationInfo.put("REF", new OperationInfo(REFOperation.class, 1));
     }
 
-    public static Operation createSpecificOperationUsingReflection(CoreSheet sheet, CellCoordinates coordinates, OperationInfo operationInfo, List<Object> arguments) {
+    public static Operation createSpecificOperationUsingReflection(CoreSheet sheet, Coordinates coordinates, OperationInfo operationInfo, List<Object> arguments) {
         Class<? extends Operation> operationSpecificClazz = operationInfo.getOperationClass();
         if (operationSpecificClazz != null) {
             try {
-                return operationSpecificClazz.getDeclaredConstructor(CoreSheet.class,CellCoordinates.class,List.class).newInstance(sheet,coordinates,arguments);
+                return operationSpecificClazz.getDeclaredConstructor(CoreSheet.class, Coordinates.class,List.class).newInstance(sheet,coordinates,arguments);
             } catch (Exception e) {
                 throw new RuntimeException("Error creating instance of " + operationSpecificClazz.getSimpleName(), e);
             }
