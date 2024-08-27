@@ -10,10 +10,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Fixed bug in ABSOpeation">
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Fixed bug in expression spacing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/cell/CoreCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/cell/CoreCell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/utils/FunctionParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/utils/FunctionParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/console/app/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/console/app/Application.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +120,8 @@
       <workItem from="1724757438909" duration="7194000" />
       <workItem from="1724766579193" duration="9131000" />
       <workItem from="1724775836389" duration="18000" />
-      <workItem from="1724776018199" duration="472000" />
+      <workItem from="1724776018199" duration="2040000" />
+      <workItem from="1724779120298" duration="20000" />
     </task>
     <task id="LOCAL‎-00001" summary="Added basic entities">
       <option name="closed" value="true" />
@@ -299,7 +299,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1724775790029</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL‎-00023" summary="Fixed bug in expression spacing">
+      <option name="closed" value="true" />
+      <created>1724776509445</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL‎-00023" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1724776509445</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -340,7 +348,8 @@
     <MESSAGE value="Changed CellCoordinates to Coordinates. Added support for relative path" />
     <MESSAGE value="Refactored ref handling - now you can reference any valid cell in a function, even if the value who sits in the cell is currently not defined/matching" />
     <MESSAGE value="Fixed bug in ABSOpeation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug in ABSOpeation" />
+    <MESSAGE value="Fixed bug in expression spacing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug in expression spacing" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
