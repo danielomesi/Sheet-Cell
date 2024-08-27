@@ -58,7 +58,6 @@ public class CoreCell implements Cell {
 
     public void executeCalculationProcedure(String expression) {
         resetListOfCellsThatAffectMe();
-        expression = expression.trim();
         originalExpression = expression;
         if (expression.startsWith("{") && expression.endsWith("}")) {
             operation = parseFunctionExpression(sheet,coordinates, expression);

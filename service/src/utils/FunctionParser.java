@@ -15,10 +15,7 @@ import java.util.List;
 
 public class FunctionParser {
     public static Operation parseFunctionExpression(CoreSheet sheet, Coordinates coordinates, String originalExpression) {
-        originalExpression = originalExpression.trim();
-        if (originalExpression.startsWith("{") && originalExpression.endsWith("}")) {
-            originalExpression = originalExpression.substring(1, originalExpression.length() - 1).trim();
-        }
+        originalExpression = originalExpression.substring(1, originalExpression.length() - 1).trim();
 
         int firstCommaIndex = originalExpression.indexOf(',');
         if (firstCommaIndex == -1) {
