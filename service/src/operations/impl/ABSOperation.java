@@ -23,9 +23,9 @@ public class ABSOperation extends Operation {
         List<ObjectBooleanPair> effectiveValues = convertToNonOperationObjects();
         Class<?>[] expectedClazzes ={NumberWrapper.class};
         if (areArgumentsTypesValid(expectedClazzes,effectiveValues)) {
-            List<Double> doubles = convertToDouble(effectiveValues);
+            NumberWrapper number = (NumberWrapper)(effectiveValues.getFirst().getObj());
 
-            return new NumberWrapper(doubles.getFirst());
+            return new NumberWrapper(Math.abs(number.getDoubleValue()));
         }
         else {
             return new UndefinedNumber();
