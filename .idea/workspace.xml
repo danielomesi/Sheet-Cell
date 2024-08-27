@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="refactored app to work with map instead of 2d array">
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Minor change of printing in case of error">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/coordinates/CoordinateFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/coordinates/CoordinateFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/console/menu/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/console/menu/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/console/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/console/Application.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +111,7 @@
       <workItem from="1724662838676" duration="12609000" />
       <workItem from="1724676882075" duration="5048000" />
       <workItem from="1724693464220" duration="10584000" />
-      <workItem from="1724757438909" duration="1254000" />
+      <workItem from="1724757438909" duration="2781000" />
     </task>
     <task id="LOCAL‎-00001" summary="Added basic entities">
       <option name="closed" value="true" />
@@ -250,7 +249,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1724705084024</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL‎-00018" summary="Minor change of printing in case of error">
+      <option name="closed" value="true" />
+      <created>1724759172407</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL‎-00018" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1724759172407</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -286,7 +293,8 @@
     <MESSAGE value="Created new branch" />
     <MESSAGE value="Created new branch, made a change from using a 2d array to a map" />
     <MESSAGE value="refactored app to work with map instead of 2d array" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactored app to work with map instead of 2d array" />
+    <MESSAGE value="Minor change of printing in case of error" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor change of printing in case of error" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
