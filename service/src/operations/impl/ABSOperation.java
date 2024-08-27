@@ -2,6 +2,9 @@ package operations.impl;
 
 import entities.coordinates.Coordinates;
 import entities.sheet.CoreSheet;
+import entities.types.NumberWrapper;
+import entities.types.undefined.UndefinedNumber;
+import operations.core.ObjectBooleanPair;
 import operations.core.Operation;
 
 import java.util.List;
@@ -16,12 +19,16 @@ public class ABSOperation extends Operation {
     }
 
     @Override
-    public Double execute() {
-        List<Object> nonOperationObjects = convertToNonOperationObjects();
-        Class<?>[] expectedClazzes ={Number.class};
-        validateArgumentsTypes(expectedClazzes, nonOperationObjects);
-        List<Double> doubles = convertToDouble(nonOperationObjects);
+    public Object execute() {
+        List<ObjectBooleanPair> effectiveValues = convertToNonOperationObjects();
+        Class<?>[] expectedClazzes ={NumberWrapper.class};
+        if (areArgumentsTypesValid(expectedClazzes,effectiveValues)) {
+            List<Double> doubles = convertToDouble(effectiveValues);
 
-        return Math.abs(doubles.getFirst());
+            return new NumberWrapper(doubles.getFirst());
+        }
+        else {
+            return new UndefinedNumber();
+        }
     }
 }

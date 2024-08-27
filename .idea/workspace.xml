@@ -10,39 +10,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added name">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/service_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/ui_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/basic.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/letstry.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nigga/check.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/src/utils/Utils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui/src/META-INF/MANIFEST.MF" afterDir="false" />
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Changed CellCoordinates to Coordinates. Added support for relative path">
+      <change afterPath="$PROJECT_DIR$/chat.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/entities/types/BooleanWrapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/entities/types/NumberWrapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/entities/types/undefined/Undefined.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/entities/types/undefined/UndefinedNumber.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/entities/types/undefined/UndefinedString.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/operations/core/ObjectBooleanPair.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/engine/FileIOHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/FileIOHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/cell/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/cell/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/basic.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/letstry.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nigga/check.dat" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/entities/cell/CoreCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/cell/CoreCell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/cell/DTOCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/cell/DTOCell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/coordinates/CellCoordinates.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/coordinates/Coordinates.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/coordinates/CoordinateFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/coordinates/CoordinateFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/sheet/DTOSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/sheet/DTOSheet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/sheet/Sheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/sheet/Sheet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/exceptions/CellOutOfBoundsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/exceptions/CellOutOfBoundsException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/exceptions/CircleReferenceException.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/exceptions/CircleReferenceException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/exceptions/CloneFailureException.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/exceptions/CloneFailureException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/exceptions/InvalidArgumentException.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/exceptions/InvalidArgumentException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/exceptions/InvalidPathDetectedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/exceptions/InvalidPathDetectedException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/exceptions/InvalidXMLException.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/exceptions/InvalidXMLException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/exceptions/NoExistenceException.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/exceptions/NoExistenceException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/exceptions/ServiceException.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/exceptions/ServiceException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/exceptions/SheetLoadFailureException.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/exceptions/SheetLoadFailureException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/exceptions/SheetSaveFailureException.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/exceptions/SheetSaveFailureException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/exceptions/StringIndexOutOfBoundsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/exceptions/StringIndexOutOfBoundsException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/exceptions/ZeroDivisionException.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/exceptions/ZeroDivisionException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/operations/core/Operation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/core/Operation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/core/OperationFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/core/OperationFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/operations/impl/ABSOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/ABSOperation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/operations/impl/ConcatOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/ConcatOperation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/operations/impl/DIVIDEOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/DIVIDEOperation.java" afterDir="false" />
@@ -54,10 +35,7 @@
       <change beforePath="$PROJECT_DIR$/service/src/operations/impl/SUBOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/SUBOperation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/operations/impl/TIMESOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/TIMESOperation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/utils/FunctionParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/utils/FunctionParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/utils/TopologicalSorter.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/utils/TopologicalSorter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/console/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/console/app/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/console/ConsolePrintHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/console/print/ConsolePrintHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/console/menu/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/console/menu/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/console/print/ConsolePrintHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/console/print/ConsolePrintHelper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +84,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.App.executor": "Run",
+    "Application.App.executor": "Debug",
     "Application.Application.executor": "Run",
     "Application.Unnamed.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -162,7 +140,8 @@
       <workItem from="1724662838676" duration="12609000" />
       <workItem from="1724676882075" duration="5048000" />
       <workItem from="1724693464220" duration="10584000" />
-      <workItem from="1724757438909" duration="7091000" />
+      <workItem from="1724757438909" duration="7194000" />
+      <workItem from="1724766579193" duration="7680000" />
     </task>
     <task id="LOCAL‎-00001" summary="Added basic entities">
       <option name="closed" value="true" />
@@ -316,7 +295,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1724761472335</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL‎-00020" summary="Changed CellCoordinates to Coordinates. Added support for relative path">
+      <option name="closed" value="true" />
+      <created>1724765874111</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL‎-00020" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1724765874111</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -354,7 +341,8 @@
     <MESSAGE value="refactored app to work with map instead of 2d array" />
     <MESSAGE value="Minor change of printing in case of error" />
     <MESSAGE value="Added name" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added name" />
+    <MESSAGE value="Changed CellCoordinates to Coordinates. Added support for relative path" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed CellCoordinates to Coordinates. Added support for relative path" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -363,6 +351,16 @@
           <url>file://$PROJECT_DIR$/service/src/entities/coordinates/CoordinateFactory.java</url>
           <line>18</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/service/src/operations/impl/ConcatOperation.java</url>
+          <line>20</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/service/src/operations/impl/PLUSOperation.java</url>
+          <line>21</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

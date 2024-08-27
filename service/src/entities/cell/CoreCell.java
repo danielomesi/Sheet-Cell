@@ -63,8 +63,7 @@ public class CoreCell implements Cell {
         if (expression.startsWith("{") && expression.endsWith("}")) {
             operation = parseFunctionExpression(sheet,coordinates, expression);
 
-        } else
-        {
+        } else {
             operation = null;
             effectiveValue = parseArgument(sheet, coordinates, expression);
         }

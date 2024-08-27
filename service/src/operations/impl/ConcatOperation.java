@@ -2,6 +2,8 @@ package operations.impl;
 
 import entities.coordinates.Coordinates;
 import entities.sheet.CoreSheet;
+import entities.types.undefined.UndefinedString;
+import operations.core.ObjectBooleanPair;
 import operations.core.Operation;
 
 import java.util.List;
@@ -15,12 +17,17 @@ public class ConcatOperation extends Operation {
     }
 
     @Override
-    public String execute() {
-        List<Object> nonOperationObjects = convertToNonOperationObjects();
+    public Object execute() {
+        List<ObjectBooleanPair> effectiveValues = convertToNonOperationObjects();
         Class<?>[] expectedClazzes ={String.class, String.class};
-        validateArgumentsTypes(expectedClazzes, nonOperationObjects);
-        List<String> strings = convertToList(nonOperationObjects, String.class);
+        if (areArgumentsTypesValid(expectedClazzes,effectiveValues)) {
+            List<String> strings = convertToList(effectiveValues, String.class);
 
-        return strings.get(0) + strings.get(1);
+            return strings.get(0) + strings.get(1);
+        }
+        else {
+            return new UndefinedString();
+        }
+
     }
 }

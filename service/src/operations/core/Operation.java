@@ -2,7 +2,9 @@ package operations.core;
 
 import entities.coordinates.Coordinates;
 import entities.sheet.CoreSheet;
+import entities.types.NumberWrapper;
 import exceptions.InvalidArgumentException;
+import operations.impl.REFOperation;
 
 import java.io.Serializable;
 import java.util.*;
@@ -12,8 +14,6 @@ public abstract class Operation implements Serializable {
     protected Coordinates coordinates;
     protected String name;
     protected List<Object> arguments;
-
-
     public String getName() {return name;}
     public List<Object> getArguments() {return arguments;}
     public void setSheet(CoreSheet sheet) {
@@ -28,32 +28,38 @@ public abstract class Operation implements Serializable {
 
     public abstract Object execute();
 
-    protected Object getArgValue(Object arg) {
+    protected ObjectBooleanPair getArgValue(Object arg) {
         Object result;
+        boolean isRefOperation = false;
 
         if (arg instanceof Operation operation) {
             result = operation.execute();
+            if (arg instanceof REFOperation) {
+                isRefOperation = true;
+            }
+
         }
         else {
             result = arg;
         }
-        return result;
+        return new ObjectBooleanPair(result,isRefOperation);
     }
 
 
-    protected List<Object> convertToNonOperationObjects()
+    protected List<ObjectBooleanPair> convertToNonOperationObjects()
     {
-        List<Object> result = new ArrayList<>();
+        List<ObjectBooleanPair> result = new ArrayList<>();
         for (Object argument : arguments) {
             result.add(getArgValue(argument));
         }
         return result;
     }
-    protected List<Double> convertToDouble(List<Object> objects) {
+    protected List<Double> convertToDouble(List<ObjectBooleanPair> list) {
         List<Double> doubles = new ArrayList<>();
-        for (Object object : objects) {
-            if (object instanceof Number) {
-                doubles.add(((Number) object).doubleValue());
+        for (ObjectBooleanPair pair : list) {
+            Object obj = pair.getObj();
+            if (obj instanceof NumberWrapper numberWrapper) {
+                doubles.add(numberWrapper.getDoubleValue());
             } else {
                 throw new InvalidArgumentException("One of the arguments in the function " + name + " is not a number", coordinates);
             }
@@ -62,11 +68,12 @@ public abstract class Operation implements Serializable {
         return doubles;
     }
 
-    protected <T> List<T> convertToList(List<Object> objects, Class<T> classType) {
+    protected <T> List<T> convertToList(List<ObjectBooleanPair> list, Class<T> classType) {
         List<T> result = new ArrayList<>();
-        for (Object object : objects) {
-            if (classType.isInstance(object)) {
-                result.add(classType.cast(object));
+        for (ObjectBooleanPair pair : list) {
+            Object obj = pair.getObj();
+            if (classType.isInstance(obj)) {
+                result.add(classType.cast(obj));
             }
             else {
                 throw new InvalidArgumentException("One of the arguments in the function " + name + " is not matching the required type",coordinates);
@@ -76,14 +83,23 @@ public abstract class Operation implements Serializable {
         return result;
     }
 
-    protected void validateArgumentsTypes(Class<?>[] clazzes, List<Object> nonOperationArguments) {
+    protected boolean areArgumentsTypesValid(Class<?>[] clazzes, List<ObjectBooleanPair> list) {
         for (int i = 0; i < clazzes.length; i++) {
             Class<?> clazz = clazzes[i];
-            Object obj = nonOperationArguments.get(i);
-            if (!clazz.isInstance(obj)) {
-                throw new InvalidArgumentException("Argument #" +(i+1) + " in the function " + name +
-                        " is not a " + clazz.getSimpleName(),coordinates, String.valueOf(obj));
+            Object obj = list.get(i).getObj();
+            if (!list.get(i).getIsRefOperation()) {
+                if (!clazz.isInstance(obj)) {
+                    throw new InvalidArgumentException("Argument #" +(i+1) + " in the function " + name +
+                            " is not a " + clazz.getSimpleName(),coordinates, String.valueOf(obj));
+                }
+            }
+            else {
+                if (!clazz.isInstance(obj)) {
+                    return false;
+                }
             }
         }
+
+        return true;
     }
 }

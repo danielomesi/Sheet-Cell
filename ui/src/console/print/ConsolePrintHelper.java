@@ -52,7 +52,7 @@ public class ConsolePrintHelper {
             for (int j = 0; j < numOfColumns; j++) {
                 Cell cell = sheet.getCell(i,j);
                 Object value =  cell != null ? cell.getEffectiveValue() : null;
-                String valueString = value != null ? objectValueAsString(value) : "";
+                String valueString = value != null ? value.toString() : "";
                 System.out.print(centerText(valueString, columnWidth+1));
                 //added 1 to prepare the next text to be inserted after a |
             }
@@ -85,20 +85,6 @@ public class ConsolePrintHelper {
             index = index / 26 - 1;
         }
         return columnName.toString();
-    }
-
-    private static String objectValueAsString(Object obj) {
-        DecimalFormat wholeNumberFormatter = new DecimalFormat("#,###");
-        DecimalFormat decimalFormatter = new DecimalFormat("#,###.00");
-
-        if (obj instanceof Double doubleNum) {
-            if (doubleNum % 1 == 0) {
-                return wholeNumberFormatter.format(doubleNum);
-            } else {
-                return decimalFormatter.format(doubleNum);
-            }
-        }
-        return obj.toString();
     }
 
 
