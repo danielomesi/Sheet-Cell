@@ -18,7 +18,7 @@ public class Utils {
     public static void validateInRange(int toCheck, int start, int end) {
         if (!(start <= toCheck && toCheck <= end)) {
             throw new CellOutOfBoundsException("Expected a number between "
-                    + String.valueOf(start+1) + " and " + String.valueOf(end + 1), String.valueOf(toCheck + 1));
+                    + String.valueOf(start+1) + " and " + String.valueOf(end), String.valueOf(toCheck + 1));
         }
     }
 }

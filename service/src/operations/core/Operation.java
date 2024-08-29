@@ -4,7 +4,6 @@ import entities.coordinates.Coordinates;
 import entities.sheet.CoreSheet;
 import entities.types.NumberWrapper;
 import exceptions.InvalidArgumentException;
-import operations.impl.REFOperation;
 
 import java.io.Serializable;
 import java.util.*;
@@ -26,37 +25,34 @@ public abstract class Operation implements Serializable {
     }
 
 
-    public abstract Object execute();
+    public abstract ObjectWrapper execute();
 
-    protected ObjectBooleanPair getArgValue(Object arg) {
-        Object result;
+    protected ObjectWrapper getArgValue(Object arg) {
+        ObjectWrapper result;
         boolean isRefOperation = false;
 
         if (arg instanceof Operation operation) {
             result = operation.execute();
-            if (arg instanceof REFOperation) {
-                isRefOperation = true;
-            }
 
         }
         else {
-            result = arg;
+            result = new ObjectWrapper(arg,false);
         }
-        return new ObjectBooleanPair(result,isRefOperation);
+        return result;
     }
 
 
-    protected List<ObjectBooleanPair> convertToNonOperationObjects()
+    protected List<ObjectWrapper> convertToNonOperationObjects()
     {
-        List<ObjectBooleanPair> result = new ArrayList<>();
+        List<ObjectWrapper> result = new ArrayList<>();
         for (Object argument : arguments) {
             result.add(getArgValue(argument));
         }
         return result;
     }
-    protected List<Double> convertToDouble(List<ObjectBooleanPair> list) {
+    protected List<Double> convertToDouble(List<ObjectWrapper> list) {
         List<Double> doubles = new ArrayList<>();
-        for (ObjectBooleanPair pair : list) {
+        for (ObjectWrapper pair : list) {
             Object obj = pair.getObj();
             if (obj instanceof NumberWrapper numberWrapper) {
                 doubles.add(numberWrapper.getDoubleValue());
@@ -68,9 +64,9 @@ public abstract class Operation implements Serializable {
         return doubles;
     }
 
-    protected <T> List<T> convertToList(List<ObjectBooleanPair> list, Class<T> classType) {
+    protected <T> List<T> convertToList(List<ObjectWrapper> list, Class<T> classType) {
         List<T> result = new ArrayList<>();
-        for (ObjectBooleanPair pair : list) {
+        for (ObjectWrapper pair : list) {
             Object obj = pair.getObj();
             if (classType.isInstance(obj)) {
                 result.add(classType.cast(obj));
@@ -83,7 +79,7 @@ public abstract class Operation implements Serializable {
         return result;
     }
 
-    protected boolean areArgumentsTypesValid(Class<?>[] clazzes, List<ObjectBooleanPair> list) {
+    protected boolean areArgumentsTypesValid(Class<?>[] clazzes, List<ObjectWrapper> list) {
         for (int i = 0; i < clazzes.length; i++) {
             Class<?> clazz = clazzes[i];
             Object obj = list.get(i).getObj();
@@ -101,5 +97,15 @@ public abstract class Operation implements Serializable {
         }
 
         return true;
+    }
+
+    protected boolean isOneOfTheArgumentsAReference(List<ObjectWrapper> list) {
+        for (ObjectWrapper pair : list) {
+            boolean isRefOperation = pair.getIsRefOperation();
+            if (isRefOperation) {
+                return true;
+            }
+        }
+        return false;
     }
 }

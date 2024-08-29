@@ -4,7 +4,7 @@ import entities.coordinates.Coordinates;
 import entities.sheet.CoreSheet;
 import entities.types.NumberWrapper;
 import entities.types.undefined.UndefinedNumber;
-import operations.core.ObjectBooleanPair;
+import operations.core.ObjectWrapper;
 import operations.core.Operation;
 
 import java.util.List;
@@ -19,16 +19,20 @@ public class ABSOperation extends Operation {
     }
 
     @Override
-    public Object execute() {
-        List<ObjectBooleanPair> effectiveValues = convertToNonOperationObjects();
+    public ObjectWrapper execute() {
+        Object resultObj;
+        List<ObjectWrapper> effectiveValues = convertToNonOperationObjects();
+        boolean isRefNested = isOneOfTheArgumentsAReference(effectiveValues);
         Class<?>[] expectedClazzes ={NumberWrapper.class};
         if (areArgumentsTypesValid(expectedClazzes,effectiveValues)) {
             NumberWrapper number = (NumberWrapper)(effectiveValues.getFirst().getObj());
 
-            return new NumberWrapper(Math.abs(number.getDoubleValue()));
+            resultObj = new NumberWrapper(Math.abs(number.getDoubleValue()));
         }
         else {
-            return new UndefinedNumber();
+            resultObj = new UndefinedNumber();
         }
+
+        return new ObjectWrapper(resultObj,isRefNested);
     }
 }

@@ -3,7 +3,7 @@ package operations.impl;
 import entities.coordinates.Coordinates;
 import entities.sheet.CoreSheet;
 import entities.types.undefined.UndefinedString;
-import operations.core.ObjectBooleanPair;
+import operations.core.ObjectWrapper;
 import operations.core.Operation;
 
 import java.util.List;
@@ -17,17 +17,20 @@ public class ConcatOperation extends Operation {
     }
 
     @Override
-    public Object execute() {
-        List<ObjectBooleanPair> effectiveValues = convertToNonOperationObjects();
+    public ObjectWrapper execute() {
+        Object resultObj;
+        List<ObjectWrapper> effectiveValues = convertToNonOperationObjects();
+        boolean isRefNested = isOneOfTheArgumentsAReference(effectiveValues);
         Class<?>[] expectedClazzes ={String.class, String.class};
         if (areArgumentsTypesValid(expectedClazzes,effectiveValues)) {
             List<String> strings = convertToList(effectiveValues, String.class);
 
-            return strings.get(0) + strings.get(1);
+            resultObj = strings.get(0) + strings.get(1);
         }
         else {
-            return new UndefinedString();
+            resultObj = new UndefinedString();
         }
 
+        return new ObjectWrapper(resultObj, isRefNested);
     }
 }

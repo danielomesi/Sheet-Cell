@@ -86,7 +86,7 @@ public class CoreCell implements Cell {
         {
             sheet.incrementNumOfCellsChanged();
             if (operation!=null) {
-                this.effectiveValue = operation.execute();
+                this.effectiveValue = operation.execute().getObj();
             }
             version = sheet.getVersion();
             notifyAffectedCells();

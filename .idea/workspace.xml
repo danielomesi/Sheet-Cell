@@ -10,11 +10,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Minor change">
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Fixed bug in printing negative numbers">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat.xml" beforeDir="false" afterPath="$PROJECT_DIR$/chat.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/types/NumberWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/types/NumberWrapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/cell/CoreCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/cell/CoreCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/core/ObjectBooleanPair.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/core/ObjectWrapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/core/Operation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/core/Operation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/ABSOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/ABSOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/ConcatOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/ConcatOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/DIVIDEOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/DIVIDEOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/MINUSOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/MINUSOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/MODOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/MODOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/PLUSOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/PLUSOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/POWOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/POWOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/REFOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/REFOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/SUBOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/SUBOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/TIMESOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/TIMESOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/utils/Utils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +135,8 @@
       <workItem from="1724766579193" duration="9131000" />
       <workItem from="1724775836389" duration="18000" />
       <workItem from="1724776018199" duration="2040000" />
-      <workItem from="1724779120298" duration="3119000" />
+      <workItem from="1724779120298" duration="3205000" />
+      <workItem from="1724954934640" duration="4891000" />
     </task>
     <task id="LOCAL‎-00001" summary="Added basic entities">
       <option name="closed" value="true" />
@@ -317,7 +330,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1724779150443</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL‎-00025" summary="Fixed bug in printing negative numbers">
+      <option name="closed" value="true" />
+      <created>1724782291523</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL‎-00025" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1724782291523</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -360,7 +381,8 @@
     <MESSAGE value="Fixed bug in ABSOpeation" />
     <MESSAGE value="Fixed bug in expression spacing" />
     <MESSAGE value="Minor change" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor change" />
+    <MESSAGE value="Fixed bug in printing negative numbers" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug in printing negative numbers" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -371,9 +393,9 @@
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/ui/src/console/print/ConsolePrintHelper.java</url>
-          <line>135</line>
-          <option name="timeStamp" value="4" />
+          <url>file://$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -2,10 +2,10 @@ package operations.core;
 
 import java.io.Serializable;
 
-public class ObjectBooleanPair implements Serializable {
+public class ObjectWrapper implements Serializable {
     private final Object obj;
     private final boolean isCreatedByRefOperation;
-    public ObjectBooleanPair(Object obj, Boolean isCreatedByRefOperation) {
+    public ObjectWrapper(Object obj, Boolean isCreatedByRefOperation) {
         this.obj = obj;
         this.isCreatedByRefOperation = isCreatedByRefOperation;
     }

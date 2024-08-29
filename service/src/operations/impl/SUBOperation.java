@@ -4,7 +4,7 @@ import entities.coordinates.Coordinates;
 import entities.sheet.CoreSheet;
 import entities.types.NumberWrapper;
 import entities.types.undefined.UndefinedString;
-import operations.core.ObjectBooleanPair;
+import operations.core.ObjectWrapper;
 import operations.core.Operation;
 
 import java.util.List;
@@ -18,8 +18,9 @@ public class SUBOperation extends Operation {
     }
 
     @Override
-    public Object execute() {
-        List<ObjectBooleanPair> effectiveValues = convertToNonOperationObjects();
+    public ObjectWrapper execute() {
+        List<ObjectWrapper> effectiveValues = convertToNonOperationObjects();
+        boolean isRefNested = isOneOfTheArgumentsAReference(effectiveValues);
         Class<?>[] expectedClazzes ={String.class, NumberWrapper.class, NumberWrapper.class};
         if (areArgumentsTypesValid(expectedClazzes,effectiveValues)) {
             String str = (String) effectiveValues.getFirst().getObj();
@@ -31,13 +32,13 @@ public class SUBOperation extends Operation {
                 result = str.substring(startIndex, endIndex + 1);
             }
             catch (Exception e) {
-                return new UndefinedString();
+                return new ObjectWrapper(new UndefinedString(),isRefNested);
             }
 
-            return result;
+            return new ObjectWrapper(result,isRefNested);
         }
         else {
-            return new UndefinedString();
+            return new ObjectWrapper(new UndefinedString(),isRefNested);
         }
 
     }

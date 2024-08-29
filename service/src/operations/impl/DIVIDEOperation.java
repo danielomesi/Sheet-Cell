@@ -4,7 +4,7 @@ import entities.coordinates.Coordinates;
 import entities.sheet.CoreSheet;
 import entities.types.NumberWrapper;
 import entities.types.undefined.UndefinedNumber;
-import operations.core.ObjectBooleanPair;
+import operations.core.ObjectWrapper;
 import operations.core.Operation;
 
 import java.util.List;
@@ -19,8 +19,10 @@ public class DIVIDEOperation extends Operation {
 
 
     @Override
-    public Object execute() {
-        List<ObjectBooleanPair> effectiveValues = convertToNonOperationObjects();
+    public ObjectWrapper execute() {
+        Object resultObj;
+        List<ObjectWrapper> effectiveValues = convertToNonOperationObjects();
+        boolean isRefNested = isOneOfTheArgumentsAReference(effectiveValues);
         Class<?>[] expectedClazzes ={NumberWrapper.class, NumberWrapper.class};
         if (areArgumentsTypesValid(expectedClazzes,effectiveValues)) {
             List<Double> doubles = convertToDouble(effectiveValues);
@@ -30,16 +32,16 @@ public class DIVIDEOperation extends Operation {
 
             if (num2 == 0)
             {
-                return new UndefinedNumber();
+                return new ObjectWrapper(new UndefinedNumber(),isRefNested);
             }
             else {
                 result = num1/num2;
             }
 
-            return new NumberWrapper(result);
+            return new ObjectWrapper(new NumberWrapper(result),isRefNested);
         }
         else {
-            return new UndefinedNumber();
+            return new ObjectWrapper(new UndefinedNumber(),isRefNested);
         }
     }
 }
