@@ -80,6 +80,7 @@ public abstract class Operation implements Serializable {
     }
 
     protected boolean areArgumentsTypesValid(Class<?>[] clazzes, List<ObjectWrapper> list) {
+        boolean result = true;
         for (int i = 0; i < clazzes.length; i++) {
             Class<?> clazz = clazzes[i];
             Object obj = list.get(i).getObj();
@@ -91,12 +92,12 @@ public abstract class Operation implements Serializable {
             }
             else {
                 if (!clazz.isInstance(obj)) {
-                    return false;
+                    result = false;
                 }
             }
         }
 
-        return true;
+        return result;
     }
 
     protected boolean isOneOfTheArgumentsAReference(List<ObjectWrapper> list) {
