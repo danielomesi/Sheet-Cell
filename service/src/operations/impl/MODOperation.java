@@ -2,7 +2,6 @@ package operations.impl;
 
 import entities.coordinates.Coordinates;
 import entities.sheet.CoreSheet;
-import entities.types.NumberWrapper;
 import entities.types.undefined.UndefinedNumber;
 import operations.core.ObjectWrapper;
 import operations.core.Operation;
@@ -22,11 +21,11 @@ public class MODOperation extends Operation {
         Object resultObj;
         List<ObjectWrapper> effectiveValues = convertToNonOperationObjects();
         boolean isRefNested = isOneOfTheArgumentsAReference(effectiveValues);
-        Class<?>[] expectedClazzes ={NumberWrapper.class, NumberWrapper.class};
+        Class<?>[] expectedClazzes ={Number.class, Number.class};
         if (areArgumentsTypesValid(expectedClazzes,effectiveValues)) {
             List<Double> doubles = convertToDouble(effectiveValues);
 
-            resultObj = new NumberWrapper(doubles.get(0)%doubles.get(1));
+            resultObj = doubles.get(0)%doubles.get(1);
         }
         else {
             resultObj = new UndefinedNumber();

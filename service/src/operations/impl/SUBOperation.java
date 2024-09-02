@@ -2,7 +2,6 @@ package operations.impl;
 
 import entities.coordinates.Coordinates;
 import entities.sheet.CoreSheet;
-import entities.types.NumberWrapper;
 import entities.types.undefined.UndefinedString;
 import operations.core.ObjectWrapper;
 import operations.core.Operation;
@@ -21,11 +20,11 @@ public class SUBOperation extends Operation {
     public ObjectWrapper execute() {
         List<ObjectWrapper> effectiveValues = convertToNonOperationObjects();
         boolean isRefNested = isOneOfTheArgumentsAReference(effectiveValues);
-        Class<?>[] expectedClazzes ={String.class, NumberWrapper.class, NumberWrapper.class};
+        Class<?>[] expectedClazzes ={String.class, Number.class, Number.class};
         if (areArgumentsTypesValid(expectedClazzes,effectiveValues)) {
             String str = (String) effectiveValues.getFirst().getObj();
-            int startIndex = ((NumberWrapper) effectiveValues.get(1).getObj()).getIntValue();
-            int endIndex = ((NumberWrapper) effectiveValues.get(2).getObj()).getIntValue();
+            int startIndex = ((Number) effectiveValues.get(1).getObj()).intValue();
+            int endIndex = ((Number) effectiveValues.get(2).getObj()).intValue();
             String result;
 
             try {

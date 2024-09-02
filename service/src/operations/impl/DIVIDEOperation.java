@@ -2,7 +2,6 @@ package operations.impl;
 
 import entities.coordinates.Coordinates;
 import entities.sheet.CoreSheet;
-import entities.types.NumberWrapper;
 import entities.types.undefined.UndefinedNumber;
 import operations.core.ObjectWrapper;
 import operations.core.Operation;
@@ -23,7 +22,7 @@ public class DIVIDEOperation extends Operation {
         Object resultObj;
         List<ObjectWrapper> effectiveValues = convertToNonOperationObjects();
         boolean isRefNested = isOneOfTheArgumentsAReference(effectiveValues);
-        Class<?>[] expectedClazzes ={NumberWrapper.class, NumberWrapper.class};
+        Class<?>[] expectedClazzes ={Number.class, Number.class};
         if (areArgumentsTypesValid(expectedClazzes,effectiveValues)) {
             List<Double> doubles = convertToDouble(effectiveValues);
             double num1, num2, result;
@@ -38,7 +37,7 @@ public class DIVIDEOperation extends Operation {
                 result = num1/num2;
             }
 
-            return new ObjectWrapper(new NumberWrapper(result),isRefNested);
+            return new ObjectWrapper(result,isRefNested);
         }
         else {
             return new ObjectWrapper(new UndefinedNumber(),isRefNested);

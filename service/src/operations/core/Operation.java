@@ -2,7 +2,6 @@ package operations.core;
 
 import entities.coordinates.Coordinates;
 import entities.sheet.CoreSheet;
-import entities.types.NumberWrapper;
 import exceptions.InvalidArgumentException;
 
 import java.io.Serializable;
@@ -54,8 +53,8 @@ public abstract class Operation implements Serializable {
         List<Double> doubles = new ArrayList<>();
         for (ObjectWrapper pair : list) {
             Object obj = pair.getObj();
-            if (obj instanceof NumberWrapper numberWrapper) {
-                doubles.add(numberWrapper.getDoubleValue());
+            if (obj instanceof Number number) {
+                doubles.add(number.doubleValue());
             } else {
                 throw new InvalidArgumentException("One of the arguments in the function " + name + " is not a number", coordinates);
             }

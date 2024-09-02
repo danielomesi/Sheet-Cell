@@ -3,8 +3,6 @@ package utils;
 import entities.cell.CoreCell;
 import entities.coordinates.Coordinates;
 import entities.sheet.CoreSheet;
-import entities.types.BooleanWrapper;
-import entities.types.NumberWrapper;
 import exceptions.InvalidArgumentException;
 import operations.core.Operation;
 import operations.core.OperationFactory;
@@ -65,9 +63,9 @@ public class FunctionParser {
             return parseFunctionExpression(sheet, coordinates, arg);
         }
         else if (arg.trim().matches("-?\\d+(\\.\\d+)?")) {
-            return new NumberWrapper(Double.parseDouble(arg));
+            return Double.parseDouble(arg);
         } else if (arg.equalsIgnoreCase("true") || arg.equalsIgnoreCase("false")) {
-            return new BooleanWrapper(Boolean.parseBoolean(arg));
+            return Boolean.parseBoolean(arg);
         }
         else if (arg.isEmpty()) {
             return null;

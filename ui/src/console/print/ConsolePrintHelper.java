@@ -4,6 +4,9 @@ import console.exceptions.ConsoleException;
 import entities.cell.Cell;
 import entities.coordinates.Coordinates;
 import entities.sheet.Sheet;
+import entities.types.undefined.Undefined;
+import entities.types.undefined.UndefinedNumber;
+import entities.types.undefined.UndefinedString;
 import exceptions.ServiceException;
 
 import java.text.DecimalFormat;
@@ -52,7 +55,7 @@ public class ConsolePrintHelper {
             for (int j = 0; j < numOfColumns; j++) {
                 Cell cell = sheet.getCell(i,j);
                 Object value =  cell != null ? cell.getEffectiveValue() : null;
-                String valueString = value != null ? value.toString() : "";
+                String valueString = value != null ? valueToString(value) : "";
                 System.out.print(centerText(valueString, columnWidth+1));
                 //added 1 to prepare the next text to be inserted after a |
             }
@@ -85,6 +88,37 @@ public class ConsolePrintHelper {
             index = index / 26 - 1;
         }
         return columnName.toString();
+    }
+
+    private static String valueToString(Object obj) {
+        String result;
+
+        if (obj instanceof Number number) {
+            if (number.doubleValue() % 1 == 0) {
+                result = String.format("%,d", number.longValue());
+            } else {
+                result = String.format("%,.2f", number.doubleValue());
+            }
+        }
+        else if (obj instanceof Boolean bool) {
+            result = bool.toString().toUpperCase();
+        }
+        else if (obj instanceof Undefined) {
+            if (obj instanceof UndefinedNumber){
+                result = "NaN";
+            }
+            else if (obj instanceof UndefinedString){
+                result = "!UNDEFINED!";
+            }
+            else {
+                result = "Unknown Type of " + obj.getClass().getSimpleName();
+            }
+        }
+        else {
+            result = obj.toString();
+        }
+
+        return result;
     }
 
 

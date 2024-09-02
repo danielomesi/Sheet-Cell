@@ -2,7 +2,6 @@ package operations.impl;
 
 import entities.coordinates.Coordinates;
 import entities.sheet.CoreSheet;
-import entities.types.NumberWrapper;
 import entities.types.undefined.UndefinedNumber;
 import operations.core.ObjectWrapper;
 import operations.core.Operation;
@@ -23,11 +22,11 @@ public class ABSOperation extends Operation {
         Object resultObj;
         List<ObjectWrapper> effectiveValues = convertToNonOperationObjects();
         boolean isRefNested = isOneOfTheArgumentsAReference(effectiveValues);
-        Class<?>[] expectedClazzes ={NumberWrapper.class};
+        Class<?>[] expectedClazzes ={Number.class};
         if (areArgumentsTypesValid(expectedClazzes,effectiveValues)) {
-            NumberWrapper number = (NumberWrapper)(effectiveValues.getFirst().getObj());
+            Number number = (Number)(effectiveValues.getFirst().getObj());
 
-            resultObj = new NumberWrapper(Math.abs(number.getDoubleValue()));
+            resultObj = Math.abs(number.doubleValue());
         }
         else {
             resultObj = new UndefinedNumber();

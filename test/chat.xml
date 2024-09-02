@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<STL-Sheet name="Test Sheet" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="shtisel-v1.xsd">
+	<STL-Layout rows="7" columns="7">
+		<STL-Size column-width-units="10" rows-height-units="1"/>
+	</STL-Layout>
+	<STL-Cells>
+		<STL-Cell row="1" column="A">
+			<STL-Original-Value>Header1</STL-Original-Value>
+		</STL-Cell>
+		<STL-Cell row="2" column="A">
+			<STL-Original-Value>{PLUS,5,10}</STL-Original-Value>
+		</STL-Cell>
+		<STL-Cell row="3" column="B">
+			<STL-Original-Value>{MINUS,20,10}</STL-Original-Value>
+		</STL-Cell>
+		<STL-Cell row="4" column="C">
+			<STL-Original-Value>{REF,A1}</STL-Original-Value>
+		</STL-Cell>
+		<STL-Cell row="5" column="D">
+			<STL-Original-Value>{TIMES,2,3}</STL-Original-Value>
+		</STL-Cell>
+		<STL-Cell row="6" column="E">
+			<STL-Original-Value>{DIVIDE,10,2}</STL-Original-Value>
+		</STL-Cell>
+		<STL-Cell row="7" column="F">
+			<STL-Original-Value>{REF,C3}</STL-Original-Value> <!-- Valid reference within bounds -->
+		</STL-Cell>
+		<STL-Cell row="7" column="G">
+			<STL-Original-Value>{REF,B2}</STL-Original-Value>
+		</STL-Cell>
+	</STL-Cells>
+</STL-Sheet>
