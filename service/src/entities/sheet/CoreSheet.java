@@ -45,7 +45,7 @@ public class CoreSheet implements Sheet {
         List<STLCell> STLCells = stlSheet.getSTLCells().getSTLCell();
         for (STLCell stlCell : STLCells) {
             int i = stlCell.getRow() - 1;
-            int j = CoordinateFactory.convertColumnLettersToIndex(stlCell.getColumn());
+            int j = CoordinateFactory.convertColumnStringToIndex(stlCell.getColumn());
             Utils.validateInRange(i, 0, numOfRows);
             Utils.validateInRange(j, 0, numOfColumns);
             Coordinates coordinates = new Coordinates(i, j);
@@ -97,7 +97,7 @@ public class CoreSheet implements Sheet {
 
     private boolean isCellInsideSTLList(int i, int j, List<STLCell> stlCells) {
         for (STLCell stlCell : stlCells) {
-            if ( (i == stlCell.getRow()-1) && (j == CoordinateFactory.convertColumnLettersToIndex(stlCell.getColumn())) ) {
+            if ( (i == stlCell.getRow()-1) && (j == CoordinateFactory.convertColumnStringToIndex(stlCell.getColumn())) ) {
                 return true;
             }
         }

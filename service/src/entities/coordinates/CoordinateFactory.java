@@ -22,15 +22,9 @@ public class CoordinateFactory {
         return getCellObjectFromIndices(sheet,rowIndex,colIndex);
     }
 
-    public static int convertColumnLettersToIndex(String letters) {
-        int columnIndex = 0;
-        letters = letters.toUpperCase();
-        int length = letters.length();
-        for (int i = 0; i < length; i++) {
-            char letter = letters.charAt(i);
-            columnIndex = columnIndex * 26 + (letter - 'A');
-        }
-        return columnIndex;
+    public static int convertColumnCharToIndex(Character ch) {
+        ch = Character.toUpperCase(ch);
+        return ch - 'A';
     }
 
     public static Coordinates getIndicesFromCellObject(CoreCell cell) {
@@ -49,16 +43,10 @@ public class CoordinateFactory {
     }
 
     public static String getCellIDFromIndices(int rowIndex, int colIndex) {
-        StringBuilder columnLetters = new StringBuilder();
-        int dividend = colIndex + 1; // Adding 1 to handle zero-based index
-        while (dividend > 0) {
-            int modulo = (dividend - 1) % 26;
-            columnLetters.insert(0, (char) (modulo + 'A'));
-            dividend = (dividend - modulo) / 26;
-        }
+        char colChar = (char) ('A' + colIndex);
+        int rowNumber = rowIndex + 1;
 
-        Integer rowNumber = rowIndex + 1;
-        return  columnLetters + rowNumber.toString();
+        return colChar + Integer.toString(rowNumber);
     }
 
     public static int[] getIndicesFromCellID(String cellID) {
@@ -86,10 +74,31 @@ public class CoordinateFactory {
 
     public static int getColIndexFromCellID(String cellID) {
         String columnPart = cellID.replaceAll("\\d", "");
-        if (columnPart.isEmpty()) {
+        if (columnPart.length() != 1) {
             throw new InvalidArgumentException("Invalid cell format", cellID);
         }
+        Character colChar = columnPart.charAt(0);
 
-        return convertColumnLettersToIndex(columnPart);
+        return convertColumnCharToIndex(colChar);
     }
+
+    public static int convertColumnStringToIndex(String columnString) {
+        int result;
+        if (columnString !=null && columnString.length() == 1) {
+            char colChar = columnString.charAt(0);
+            colChar = Character.toUpperCase(colChar);
+            if (colChar >= 'A' && colChar <= 'Z') {
+                result = convertColumnCharToIndex(colChar);
+            }
+            else {
+                throw new InvalidArgumentException("Column id must be an alphabetical letter", columnString);
+            }
+        }
+        else {
+            throw new InvalidArgumentException("Invalid column id representation format", columnString);
+        }
+
+        return result;
+    }
+
 }
