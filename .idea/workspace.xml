@@ -10,10 +10,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Fixed bug in ref operation handling">
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Fixed bug in ref">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/cell/CoreCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/cell/CoreCell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/core/Operation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/core/Operation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/console/app/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/console/app/Application.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +66,7 @@
     "Application.Unnamed.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "console-app",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/omesi/IdeaProjects/Sheet-Cell/external-libraries/jaxb/jaxb-xjc.jar",
     "node.js.detected.package.eslint": "true",
@@ -124,7 +123,8 @@
       <workItem from="1724776018199" duration="2040000" />
       <workItem from="1724779120298" duration="3205000" />
       <workItem from="1724954934640" duration="4961000" />
-      <workItem from="1724961081747" duration="1182000" />
+      <workItem from="1724961081747" duration="1200000" />
+      <workItem from="1725277166324" duration="113000" />
     </task>
     <task id="LOCAL‎-00001" summary="Added basic entities">
       <option name="closed" value="true" />
@@ -334,7 +334,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1724959894009</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL‎-00027" summary="Fixed bug in ref">
+      <option name="closed" value="true" />
+      <created>1724962279405</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL‎-00027" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1724962279405</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -353,7 +361,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added another features" />
     <MESSAGE value="Project splitted into different modules" />
     <MESSAGE value="Refactored most classes" />
     <MESSAGE value="Added exceptions classes and added operations POW,ABS,CONCAT,SUB and more" />
@@ -378,7 +385,8 @@
     <MESSAGE value="Minor change" />
     <MESSAGE value="Fixed bug in printing negative numbers" />
     <MESSAGE value="Fixed bug in ref operation handling" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug in ref operation handling" />
+    <MESSAGE value="Fixed bug in ref" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug in ref" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

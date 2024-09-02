@@ -2,7 +2,7 @@ package console.app;
 
 import console.menu.Menu;
 
-//Daniel Omesi, 207689092
+//Console App
 public class Application {
 
     public static void main(String[] args) {
