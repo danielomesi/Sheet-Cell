@@ -1,19 +1,20 @@
-package operations.impl;
+package operations.impl.logical;
 
 import entities.coordinates.Coordinates;
 import entities.sheet.CoreSheet;
+import entities.types.undefined.UndefinedBoolean;
 import entities.types.undefined.UndefinedNumber;
 import operations.core.ObjectWrapper;
 import operations.core.Operation;
 
 import java.util.List;
 
-public class ABSOperation extends Operation {
+public class OROperation extends Operation {
 
-    public ABSOperation(CoreSheet sheet, Coordinates coordinates, List<Object> arguments) {
+    public OROperation(CoreSheet sheet, Coordinates coordinates, List<Object> arguments) {
         super.sheet = sheet;
         this.coordinates = coordinates;
-        super.name = "ABS";
+        super.name = "OR";
         super.arguments = arguments;
     }
 
@@ -22,16 +23,17 @@ public class ABSOperation extends Operation {
         Object resultObj;
         List<ObjectWrapper> effectiveValues = convertToNonOperationObjects();
         boolean isRefNested = isOneOfTheArgumentsAReference(effectiveValues);
-        Class<?>[] expectedClazzes ={Number.class};
+        Class<?>[] expectedClazzes ={Boolean.class, Boolean.class};
         if (areArgumentsTypesValid(expectedClazzes,effectiveValues)) {
-            Number number = (Number)(effectiveValues.getFirst().getObj());
-
-            resultObj = Math.abs(number.doubleValue());
+            Boolean firstArg = (Boolean) effectiveValues.getFirst().getObj();
+            Boolean secondArg = (Boolean) effectiveValues.get(1).getObj();
+            resultObj = (Boolean) firstArg || secondArg;
         }
         else {
-            resultObj = new UndefinedNumber();
+            resultObj = new UndefinedBoolean();
         }
 
         return new ObjectWrapper(resultObj,isRefNested);
     }
 }
+

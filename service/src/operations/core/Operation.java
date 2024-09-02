@@ -12,6 +12,8 @@ public abstract class Operation implements Serializable {
     protected Coordinates coordinates;
     protected String name;
     protected List<Object> arguments;
+
+
     public String getName() {return name;}
     public List<Object> getArguments() {return arguments;}
     public void setSheet(CoreSheet sheet) {

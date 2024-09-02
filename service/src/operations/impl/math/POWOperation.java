@@ -1,4 +1,4 @@
-package operations.impl;
+package operations.impl.math;
 
 import entities.coordinates.Coordinates;
 import entities.sheet.CoreSheet;
@@ -8,14 +8,13 @@ import operations.core.Operation;
 
 import java.util.List;
 
-public class DIVIDEOperation extends Operation {
-    public DIVIDEOperation(CoreSheet sheet, Coordinates coordinates, List<Object> arguments) {
+public class POWOperation extends Operation {
+    public POWOperation(CoreSheet sheet, Coordinates coordinates, List<Object> arguments) {
         super.sheet = sheet;
         this.coordinates = coordinates;
-        super.name = "DIVIDE";
+        super.name = "POW";
         super.arguments = arguments;
     }
-
 
     @Override
     public ObjectWrapper execute() {
@@ -25,22 +24,13 @@ public class DIVIDEOperation extends Operation {
         Class<?>[] expectedClazzes ={Number.class, Number.class};
         if (areArgumentsTypesValid(expectedClazzes,effectiveValues)) {
             List<Double> doubles = convertToDouble(effectiveValues);
-            double num1, num2, result;
-            num1 = doubles.get(0);
-            num2 = doubles.get(1);
 
-            if (num2 == 0)
-            {
-                return new ObjectWrapper(new UndefinedNumber(),isRefNested);
-            }
-            else {
-                result = num1/num2;
-            }
-
-            return new ObjectWrapper(result,isRefNested);
+            resultObj = Math.pow(doubles.get(0),doubles.get(1));
         }
         else {
-            return new ObjectWrapper(new UndefinedNumber(),isRefNested);
+            resultObj = new UndefinedNumber();
         }
+
+        return new ObjectWrapper(resultObj, isRefNested);
     }
 }

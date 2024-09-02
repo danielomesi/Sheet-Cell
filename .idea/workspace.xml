@@ -10,10 +10,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Took out tostrings out of the service module, to the ui module">
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Simplified coordinates handling and and convertion">
+      <change afterPath="$PROJECT_DIR$/service/src/entities/types/undefined/UndefinedBoolean.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/operations/impl/logical/ANDOperation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/operations/impl/logical/BIGGEROperation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/operations/impl/logical/EQUALOperation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/operations/impl/logical/LESSOperation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/operations/impl/logical/NOTOperation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/operations/impl/logical/OROperation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/operations/impl/math/PERCENTOperation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/coordinates/CoordinateFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/coordinates/CoordinateFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/core/Operation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/core/Operation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/core/OperationFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/core/OperationFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/core/OperationInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/core/OperationInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/ABSOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/math/ABSOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/ConcatOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/string/ConcatOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/DIVIDEOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/math/DIVIDEOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/MINUSOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/math/MINUSOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/MODOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/math/MODOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/PLUSOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/math/PLUSOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/POWOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/math/POWOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/SUBOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/string/SUBOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/TIMESOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/math/TIMESOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/console/print/ConsolePrintHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/console/print/ConsolePrintHelper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -342,7 +361,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1725278970834</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL‎-00028" summary="Simplified coordinates handling and and convertion">
+      <option name="closed" value="true" />
+      <created>1725281080412</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL‎-00028" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1725281080412</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -361,7 +388,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Project splitted into different modules" />
     <MESSAGE value="Refactored most classes" />
     <MESSAGE value="Added exceptions classes and added operations POW,ABS,CONCAT,SUB and more" />
     <MESSAGE value="Mainly Logic Changes" />
@@ -386,7 +412,8 @@
     <MESSAGE value="Fixed bug in printing negative numbers" />
     <MESSAGE value="Fixed bug in ref operation handling" />
     <MESSAGE value="Took out tostrings out of the service module, to the ui module" />
-    <option name="LAST_COMMIT_MESSAGE" value="Took out tostrings out of the service module, to the ui module" />
+    <MESSAGE value="Simplified coordinates handling and and convertion" />
+    <option name="LAST_COMMIT_MESSAGE" value="Simplified coordinates handling and and convertion" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

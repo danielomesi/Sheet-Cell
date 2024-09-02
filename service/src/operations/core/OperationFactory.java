@@ -3,6 +3,10 @@ package operations.core;
 import entities.coordinates.Coordinates;
 import entities.sheet.CoreSheet;
 import operations.impl.*;
+import operations.impl.logical.*;
+import operations.impl.math.*;
+import operations.impl.string.ConcatOperation;
+import operations.impl.string.SUBOperation;
 
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +27,14 @@ public class OperationFactory {
         funcName2OperationInfo.put("CONCAT", new OperationInfo(ConcatOperation.class, 2));
         funcName2OperationInfo.put("SUB", new OperationInfo(SUBOperation.class, 3));
         funcName2OperationInfo.put("REF", new OperationInfo(REFOperation.class, 1));
+        //
+        funcName2OperationInfo.put("AND", new OperationInfo(ANDOperation.class, 2));
+        funcName2OperationInfo.put("OR", new OperationInfo(OROperation.class, 2));
+        funcName2OperationInfo.put("EQUAL", new OperationInfo(EQUALOperation.class, 2));
+        funcName2OperationInfo.put("NOT", new OperationInfo(NOTOperation.class, 1));
+        funcName2OperationInfo.put("BIGGER", new OperationInfo(BIGGEROperation.class, 2));
+        funcName2OperationInfo.put("LESS", new OperationInfo(LESSOperation.class, 2));
+        funcName2OperationInfo.put("PERCENT", new OperationInfo(PERCENTOperation.class, 2));
     }
 
     public static Operation createSpecificOperationUsingReflection(CoreSheet sheet, Coordinates coordinates, OperationInfo operationInfo, List<Object> arguments) {

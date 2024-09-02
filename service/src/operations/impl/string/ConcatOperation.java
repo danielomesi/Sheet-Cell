@@ -1,18 +1,18 @@
-package operations.impl;
+package operations.impl.string;
 
 import entities.coordinates.Coordinates;
 import entities.sheet.CoreSheet;
-import entities.types.undefined.UndefinedNumber;
+import entities.types.undefined.UndefinedString;
 import operations.core.ObjectWrapper;
 import operations.core.Operation;
 
 import java.util.List;
 
-public class PLUSOperation extends Operation {
-    public PLUSOperation(CoreSheet sheet, Coordinates coordinates, List<Object> arguments) {
+public class ConcatOperation extends Operation {
+    public ConcatOperation(CoreSheet sheet, Coordinates coordinates, List<Object> arguments) {
         super.sheet = sheet;
         this.coordinates = coordinates;
-        super.name = "PLUS";
+        super.name = "CONCAT";
         super.arguments = arguments;
     }
 
@@ -21,14 +21,14 @@ public class PLUSOperation extends Operation {
         Object resultObj;
         List<ObjectWrapper> effectiveValues = convertToNonOperationObjects();
         boolean isRefNested = isOneOfTheArgumentsAReference(effectiveValues);
-        Class<?>[] expectedClazzes ={Number.class, Number.class};
+        Class<?>[] expectedClazzes ={String.class, String.class};
         if (areArgumentsTypesValid(expectedClazzes,effectiveValues)) {
-            List<Double> doubles = convertToDouble(effectiveValues);
+            List<String> strings = convertToList(effectiveValues, String.class);
 
-            resultObj =doubles.get(0)+doubles.get(1);
+            resultObj = strings.get(0) + strings.get(1);
         }
         else {
-            resultObj = new UndefinedNumber();
+            resultObj = new UndefinedString();
         }
 
         return new ObjectWrapper(resultObj, isRefNested);

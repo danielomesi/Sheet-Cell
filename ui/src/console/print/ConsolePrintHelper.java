@@ -5,6 +5,7 @@ import entities.cell.Cell;
 import entities.coordinates.Coordinates;
 import entities.sheet.Sheet;
 import entities.types.undefined.Undefined;
+import entities.types.undefined.UndefinedBoolean;
 import entities.types.undefined.UndefinedNumber;
 import entities.types.undefined.UndefinedString;
 import exceptions.ServiceException;
@@ -109,6 +110,9 @@ public class ConsolePrintHelper {
             }
             else if (obj instanceof UndefinedString){
                 result = "!UNDEFINED!";
+            }
+            else if (obj instanceof UndefinedBoolean) {
+                result = "UNKNOWN";
             }
             else {
                 result = "Unknown Type of " + obj.getClass().getSimpleName();

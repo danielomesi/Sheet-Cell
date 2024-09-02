@@ -1,18 +1,19 @@
-package operations.impl;
+package operations.impl.math;
 
 import entities.coordinates.Coordinates;
 import entities.sheet.CoreSheet;
-import entities.types.undefined.UndefinedString;
+import entities.types.undefined.UndefinedNumber;
 import operations.core.ObjectWrapper;
 import operations.core.Operation;
 
 import java.util.List;
 
-public class ConcatOperation extends Operation {
-    public ConcatOperation(CoreSheet sheet, Coordinates coordinates, List<Object> arguments) {
+public class ABSOperation extends Operation {
+
+    public ABSOperation(CoreSheet sheet, Coordinates coordinates, List<Object> arguments) {
         super.sheet = sheet;
         this.coordinates = coordinates;
-        super.name = "CONCAT";
+        super.name = "ABS";
         super.arguments = arguments;
     }
 
@@ -21,16 +22,16 @@ public class ConcatOperation extends Operation {
         Object resultObj;
         List<ObjectWrapper> effectiveValues = convertToNonOperationObjects();
         boolean isRefNested = isOneOfTheArgumentsAReference(effectiveValues);
-        Class<?>[] expectedClazzes ={String.class, String.class};
+        Class<?>[] expectedClazzes ={Number.class};
         if (areArgumentsTypesValid(expectedClazzes,effectiveValues)) {
-            List<String> strings = convertToList(effectiveValues, String.class);
+            Number number = (Number)(effectiveValues.getFirst().getObj());
 
-            resultObj = strings.get(0) + strings.get(1);
+            resultObj = Math.abs(number.doubleValue());
         }
         else {
-            resultObj = new UndefinedString();
+            resultObj = new UndefinedNumber();
         }
 
-        return new ObjectWrapper(resultObj, isRefNested);
+        return new ObjectWrapper(resultObj,isRefNested);
     }
 }

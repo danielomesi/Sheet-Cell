@@ -1,4 +1,4 @@
-package operations.impl;
+package operations.impl.math;
 
 import entities.coordinates.Coordinates;
 import entities.sheet.CoreSheet;
@@ -8,11 +8,11 @@ import operations.core.Operation;
 
 import java.util.List;
 
-public class POWOperation extends Operation {
-    public POWOperation(CoreSheet sheet, Coordinates coordinates, List<Object> arguments) {
+public class MODOperation extends Operation {
+    public MODOperation(CoreSheet sheet, Coordinates coordinates, List<Object> arguments) {
         super.sheet = sheet;
         this.coordinates = coordinates;
-        super.name = "POW";
+        super.name = "MOD";
         super.arguments = arguments;
     }
 
@@ -25,7 +25,7 @@ public class POWOperation extends Operation {
         if (areArgumentsTypesValid(expectedClazzes,effectiveValues)) {
             List<Double> doubles = convertToDouble(effectiveValues);
 
-            resultObj = Math.pow(doubles.get(0),doubles.get(1));
+            resultObj = doubles.get(0)%doubles.get(1);
         }
         else {
             resultObj = new UndefinedNumber();

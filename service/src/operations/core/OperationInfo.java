@@ -18,13 +18,5 @@ public class OperationInfo {
     public int getNumOfArgsRequired() {
         return numOfArgsRequired;
     }
-
-    @Override
-    public String toString() {
-        return "OperationInfo{" +
-                "operationClass=" + operationClass +
-                ", numOfArgsRequired=" + numOfArgsRequired +
-                '}';
-    }
 }
 

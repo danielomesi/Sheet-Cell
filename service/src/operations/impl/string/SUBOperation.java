@@ -1,4 +1,4 @@
-package operations.impl;
+package operations.impl.string;
 
 import entities.coordinates.Coordinates;
 import entities.sheet.CoreSheet;

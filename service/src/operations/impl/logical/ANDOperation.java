@@ -1,18 +1,20 @@
-package operations.impl;
+package operations.impl.logical;
 
 import entities.coordinates.Coordinates;
 import entities.sheet.CoreSheet;
+import entities.types.undefined.UndefinedBoolean;
 import entities.types.undefined.UndefinedNumber;
 import operations.core.ObjectWrapper;
 import operations.core.Operation;
 
 import java.util.List;
 
-public class TIMESOperation extends Operation {
-    public TIMESOperation(CoreSheet sheet, Coordinates coordinates, List<Object> arguments) {
+public class ANDOperation extends Operation {
+
+    public ANDOperation(CoreSheet sheet, Coordinates coordinates, List<Object> arguments) {
         super.sheet = sheet;
         this.coordinates = coordinates;
-        super.name = "TIMES";
+        super.name = "AND";
         super.arguments = arguments;
     }
 
@@ -21,16 +23,17 @@ public class TIMESOperation extends Operation {
         Object resultObj;
         List<ObjectWrapper> effectiveValues = convertToNonOperationObjects();
         boolean isRefNested = isOneOfTheArgumentsAReference(effectiveValues);
-        Class<?>[] expectedClazzes ={Number.class, Number.class};
+        Class<?>[] expectedClazzes ={Boolean.class, Boolean.class};
         if (areArgumentsTypesValid(expectedClazzes,effectiveValues)) {
-            List<Double> doubles = convertToDouble(effectiveValues);
-
-            resultObj = doubles.get(0)*doubles.get(1);
+            Boolean firstArg = (Boolean) effectiveValues.getFirst().getObj();
+            Boolean secondArg = (Boolean) effectiveValues.get(1).getObj();
+            resultObj = (Boolean) firstArg && secondArg;
         }
         else {
-            resultObj = new UndefinedNumber();
+            resultObj = new UndefinedBoolean();
         }
 
-        return new ObjectWrapper(resultObj, isRefNested);
+        return new ObjectWrapper(resultObj,isRefNested);
     }
 }
+
