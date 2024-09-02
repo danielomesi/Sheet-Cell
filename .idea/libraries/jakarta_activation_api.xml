@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="jakarta.activation-api">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/external-libraries/jaxb/jakarta.activation-api.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
