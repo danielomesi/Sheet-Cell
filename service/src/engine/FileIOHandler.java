@@ -14,7 +14,6 @@ import java.util.List;
 
 public class FileIOHandler {
     public static <T> T loadXMLToObject(String xmlFilePath, Class<T> clazz) throws JAXBException {
-        xmlFilePath +=".xml";
         validateFileExistence(xmlFilePath);
         JAXBContext context = JAXBContext.newInstance(clazz);
         Unmarshaller unmarshaller = context.createUnmarshaller();
@@ -23,7 +22,6 @@ public class FileIOHandler {
     }
 
     public static void saveCoreSheetsToFile(List<CoreSheet> coreSheets, String filePath) {
-        filePath +=".dat";
         File file = new File(filePath);
         File parentDir = file.getParentFile();
         if (parentDir != null) {
@@ -41,7 +39,6 @@ public class FileIOHandler {
     }
 
     public static List<CoreSheet> loadCoreSheetsFromFile(String filePath) {
-        filePath +=".dat";
         validateFileExistence(filePath);
         File file = new File(filePath);
         List<CoreSheet> coreSheets = null;
@@ -54,7 +51,6 @@ public class FileIOHandler {
     }
 
     public static void validateFileExistence(String fullFilePath) {
-
         File file = new File(fullFilePath);
 
         if (!file.exists()) {

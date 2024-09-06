@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<ScrollPane minHeight="200.0" minWidth="650.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.components.header.HeaderController">
+   <content>
+      <VBox alignment="TOP_CENTER" spacing="10.0">
+         <children>
+            <Label alignment="TOP_CENTER" text="Sheet-Cell">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <HBox spacing="10.0">
+               <children>
+                  <Button fx:id="loadFileButton" minHeight="20.0" minWidth="80.0" mnemonicParsing="false" onAction="#handleLoadFileButtonClick" text="Load File" />
+                  <Label fx:id="filePathLabel" minHeight="20.0" minWidth="80.0" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Reminder to make the progression bar here in this hbox .." />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <Label minHeight="20.0" minWidth="40.0" text="Cell ID:" />
+                  <Label fx:id="currentCellIDLabel" minHeight="20.0" minWidth="40.0" />
+                  <Label minHeight="20.0" minWidth="80.0" text="Original Value:" />
+                  <Label minHeight="20.0" minWidth="80.0" HBox.hgrow="SOMETIMES" />
+                  <Label minHeight="20.0" minWidth="60.0" text="New Value:" />
+                  <TextField fx:id="newValueTextField" minHeight="20.0" minWidth="80.0" HBox.hgrow="SOMETIMES" />
+                  <Button fx:id="updateButton" minHeight="20.0" minWidth="60.0" mnemonicParsing="false" onAction="#handleUpdateOnClick" text="Update" />
+                  <Label minHeight="20.0" minWidth="50.0" text="Version:" />
+                  <ComboBox fx:id="versionComboBox" minHeight="20.0" minWidth="40.0" onAction="#handleVersionOnChoose" />
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>

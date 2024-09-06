@@ -10,75 +10,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added logical operations">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/jaxb.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.base/ADDITIONAL_LICENSE_INFO" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.base/ASSEMBLY_EXCEPTION" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.base/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.controls/ADDITIONAL_LICENSE_INFO" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.controls/ASSEMBLY_EXCEPTION" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.controls/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.fxml/ADDITIONAL_LICENSE_INFO" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.fxml/ASSEMBLY_EXCEPTION" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.fxml/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.graphics/ADDITIONAL_LICENSE_INFO" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.graphics/ASSEMBLY_EXCEPTION" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.graphics/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.graphics/jpeg_fx.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.graphics/mesa3d.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.media/ADDITIONAL_LICENSE_INFO" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.media/ASSEMBLY_EXCEPTION" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.media/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.media/directshow.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.media/glib.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.media/gstreamer.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.media/libffi.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.swing/ADDITIONAL_LICENSE_INFO" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.swing/ASSEMBLY_EXCEPTION" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.swing/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.web/ADDITIONAL_LICENSE_INFO" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.web/ASSEMBLY_EXCEPTION" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.web/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.web/icu_web.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.web/libxml2.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.web/libxslt.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.web/webkit.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/lib/javafx-swt.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/lib/javafx.base.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/lib/javafx.controls.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/lib/javafx.fxml.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/lib/javafx.graphics.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/lib/javafx.media.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/lib/javafx.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/lib/javafx.swing.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/lib/javafx.web.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/src.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/src/entities/stl/STLBoundaries.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/src/entities/stl/STLRange.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/src/entities/stl/STLRanges.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui/src/gui/app/GUIApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/service_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/service_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/jakarta_activation_api.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/jakarta_xml_bind_api.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/jaxb_core.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/jaxb_impl.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/jaxb_jxc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/jaxb_xjc.xml" beforeDir="false" />
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Created new STL objects, added javafx libraries">
+      <change afterPath="$PROJECT_DIR$/ui/src/gui/components/header/HeaderController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/src/gui/components/header/header.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/src/gui/components/main/MainController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/src/gui/components/main/main.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external-libraries/jaxb/angus-activation.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/jaxb/angus-activation.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external-libraries/jaxb/jakarta.activation-api.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/jaxb/jakarta.activation-api.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external-libraries/jaxb/jakarta.xml.bind-api.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/jaxb/jakarta.xml.bind-api.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external-libraries/jaxb/jaxb-core.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/jaxb/jaxb-core.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external-libraries/jaxb/jaxb-impl.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/jaxb/jaxb-impl.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external-libraries/jaxb/jaxb-jxc.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/jaxb/jaxb-jxc.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external-libraries/jaxb/jaxb-xjc.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/jaxb/jaxb-xjc.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/service.iml" beforeDir="false" afterPath="$PROJECT_DIR$/service/service.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/stl/ObjectFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/stl/ObjectFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/stl/STLSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/stl/STLSheet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/console/app/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/console/app/ConsoleApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/ui.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/ui.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/engine/FileIOHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/FileIOHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/app/GUIApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/app/GUIApp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +74,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/omesi/IdeaProjects/Sheet-Cell/lib/javafx-sdk-22.0.2/lib",
+    "last_opened_file_path": "C:/Users/omesi/OneDrive - The Academic College of Tel-Aviv Jaffa - MTA/שנה 3/סמס קיץ/Java/דוגמאות הקורס/08. Java FX/08. Java FX",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -149,11 +88,12 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\omesi\IdeaProjects\Sheet-Cell\ui\src\gui\components\header" />
       <recent name="C:\Users\omesi\IdeaProjects\Sheet-Cell\service\src\entities\stl" />
       <recent name="C:\Users\omesi\IdeaProjects\Sheet-Cell\lib\javafx-sdk-22.0.2" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.App">
+  <component name="RunManager" selected="Application.GUI">
     <configuration name="App" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="console.app.ConsoleApp" />
       <module name="ui" />
@@ -211,6 +151,8 @@
       <workItem from="1724779120298" duration="3205000" />
       <workItem from="1724954934640" duration="4961000" />
       <workItem from="1724961081747" duration="1182000" />
+      <workItem from="1725632952800" duration="34000" />
+      <workItem from="1725633258496" duration="12419000" />
     </task>
     <task id="LOCAL‎-00001" summary="Added basic entities">
       <option name="closed" value="true" />
@@ -444,7 +386,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1725284086109</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL‎-00030" summary="Created new STL objects, added javafx libraries">
+      <option name="closed" value="true" />
+      <created>1725288747009</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL‎-00030" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1725288747009</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -463,7 +413,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added exceptions classes and added operations POW,ABS,CONCAT,SUB and more" />
     <MESSAGE value="Mainly Logic Changes" />
     <MESSAGE value="Added topological sort mechanism and xml reading" />
     <MESSAGE value="Added menu" />
@@ -488,9 +437,23 @@
     <MESSAGE value="Took out tostrings out of the service module, to the ui module" />
     <MESSAGE value="Simplified coordinates handling and and convertion" />
     <MESSAGE value="Added logical operations" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added logical operations" />
+    <MESSAGE value="Created new STL objects, added javafx libraries" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created new STL objects, added javafx libraries" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/service/src/engine/EngineImpl.java</url>
+          <line>69</line>
+          <properties class="engine.EngineImpl" method="loadSheetFromXMLFile">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="service.operations.PLUSOperation" memberName="sheet" />
@@ -499,7 +462,7 @@
     </pin-to-top-manager>
     <watches-manager>
       <configuration name="Application">
-        <watch expression="((HashMap)sheet.cellsMap).entrySet().toArray()[0]" custom="java.util.HashMap" />
+        <watch expression="MainController.engine" language="JAVA" custom="gui.components.main.MainController" />
       </configuration>
     </watches-manager>
   </component>
