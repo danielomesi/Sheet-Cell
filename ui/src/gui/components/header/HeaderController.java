@@ -1,49 +1,67 @@
 package gui.components.header;
 
 import engine.Engine;
+import entities.cell.Cell;
+import entities.sheet.Sheet;
 import gui.components.main.MainController;
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
+import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.IntStream;
 
 public class HeaderController {
 
-    @FXML
-    private Label currentCellIDLabel;
+    private MainController mainController;
 
+    @FXML
+    private StackPane stackPaneWrapper;
+
+    //load and save controls
     @FXML
     private Label filePathLabel;
-
     @FXML
     private Button loadFileButton;
+    @FXML
+    private Button saveToFileButton;
 
+    //task progress controls
+    @FXML
+    private ProgressBar taskProgressBar;
+    @FXML
+    private Label errorMessageLabel;
+
+    //action row controls
+    @FXML
+    private Label currentCellIDLabel;
+    @FXML
+    private Label originalValueLabel;
+    @FXML
+    private Label lastUpdatedVersionLabel;
     @FXML
     private TextField newValueTextField;
-
     @FXML
     private Button updateButton;
-
     @FXML
     private ComboBox<?> versionComboBox;
-
-    private MainController mainController;
 
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
         if (mainController != null) {
             updateButton.disableProperty().bind(mainController.getIsSheetLoaded().not());
             versionComboBox.disableProperty().bind(mainController.getIsSheetLoaded().not());
+            saveToFileButton.disableProperty().bind(mainController.getIsSheetLoaded().not());
         }
     }
 
@@ -58,6 +76,9 @@ public class HeaderController {
     }
 
     @FXML
+    void handleSaveToFileButton(ActionEvent event) {}
+
+    @FXML
     void handleLoadFileButtonClick(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
@@ -69,21 +90,9 @@ public class HeaderController {
         File file = fileChooser.showOpenDialog(stage);
 
         if (file != null) {
-            Task<Void> task = getTaskToExecuteFileLoading(file);
-
+            Task<Void> task = getTaskFromRunnable(() -> mainController.loadFile(file.getAbsolutePath()), true);
             task.setOnSucceeded(e -> {
-                // Code to execute on successful completion
-                filePathLabel.setText("File loaded successfully: " + file.getName());
-            });
-
-            task.setOnFailed(e -> {
-                // Code to execute if task fails
-                filePathLabel.setText("Failed to load file: " + task.getException().getMessage());
-            });
-
-            task.setOnCancelled(e -> {
-                // Code to execute if task is cancelled
-                filePathLabel.setText("File loading was cancelled.");
+                filePathLabel.setText(file.getName());
             });
 
             Thread thread = new Thread(task);
@@ -92,21 +101,51 @@ public class HeaderController {
         }
     }
 
-    private Task<Void> getTaskToExecuteFileLoading(File file) {
-        return new Task<Void>() {
+    public void updateMyControllersOnFileLoad(List<Sheet> sheetList) {
+        ComboBox<Integer> integerComboBox = (ComboBox<Integer>) versionComboBox;
+
+        // Set items of the ComboBox using a range from 1 to the size of the sheetList
+        integerComboBox.setItems(FXCollections.observableArrayList(
+                java.util.stream.IntStream.rangeClosed(1, sheetList.size()).boxed().toList()
+        ));
+
+        if (!integerComboBox.getItems().isEmpty()) {
+            integerComboBox.getSelectionModel().selectLast();
+        }
+    }
+
+    public void populateHeaderControlsOnCellChoose(Cell chosenCell) {
+        String cellID = chosenCell.getCoordinates().getCellID();
+        currentCellIDLabel.setText(cellID);
+        originalValueLabel.setText(chosenCell.getOriginalExpression());
+        lastUpdatedVersionLabel.setText(String.valueOf(chosenCell.getVersion()));
+    }
+
+    private Task<Void> getTaskFromRunnable(Runnable runnable, boolean isDelayed) {
+        Task<Void> task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
+                if (isDelayed) {
+                    for (int i = 1; i <= 100; i++) {
+                        Thread.sleep(50);
+                        updateProgress(i, 100);
+                    }
+                }
                 try {
-                    String path = file.getCanonicalPath();
-                    mainController.loadFile(path);
+                    runnable.run();
                 } catch (Exception e) {
-                    // Handle any exceptions thrown by mainController.loadFile
                     updateMessage("Error: " + e.getMessage());
                     throw e;
                 }
                 return null;
             }
         };
+
+        errorMessageLabel.textProperty().bind(task.messageProperty());
+        if (isDelayed) {
+            taskProgressBar.progressProperty().bind(task.progressProperty());
+        }
+        return task;
     }
 
 }

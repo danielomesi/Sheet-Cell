@@ -1,0 +1,19 @@
+/* Style for the StackPane */
+#cellStackPane {
+    -fx-background-color: #f0f0f0; /* Light gray background */
+    -fx-border-color: #cccccc; /* Light gray border */
+    -fx-border-width: 1px; /* Border width */
+    -fx-border-radius: 5px; /* Rounded corners */
+    -fx-padding: 10px; /* Padding inside the StackPane */
+    -fx-alignment: center; /* Center alignment for child nodes */
+    -fx-min-width: 50px; /* Minimum width */
+    -fx-min-height: 50px; /* Minimum height */
+}
+
+/* Style for the Label inside StackPane */
+#cellLabel {
+    -fx-text-fill: #333333; /* Dark gray text color */
+    -fx-font-size: 14px; /* Font size */
+    -fx-font-weight: bold; /* Bold text */
+    -fx-padding: 5px; /* Padding around the text */
+}

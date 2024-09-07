@@ -1,16 +1,22 @@
 package gui.app;
 
+import gui.components.center.CenterController;
 import gui.components.header.HeaderController;
 import gui.components.main.MainController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
+//delete all the printstacktrace all over the code
+//stop making sizetoscene call when choosing a cell because all the time because it constantly changes the size of the window
+//add a button "resize to natural size" to fix the sizetoscene thing
 public class GUIApp extends Application {
     private MainController mainController;
 
@@ -20,33 +26,43 @@ public class GUIApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        BorderPane root = loadMainLayout();
+        ScrollPane root = loadAndSetupMainPane(stage);
         Scene scene = new Scene(root);
         stage.setTitle("Sheet Cell");
         stage.setScene(scene);
         stage.show();
     }
 
-    private BorderPane loadMainLayout() throws IOException {
+    private ScrollPane loadAndSetupMainPane(Stage stage) throws IOException {
         FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("/gui/components/main/main.fxml"));
-        BorderPane root = mainLoader.load();
+        ScrollPane root = mainLoader.load();
         mainController = mainLoader.getController();
+        mainController.setStage(stage);
 
-        setupHeaderController();
+        loadSubControllers();
         return root;
     }
 
-    private void setupHeaderController() throws IOException {
+    private void loadSubControllers() throws IOException {
         FXMLLoader headerLoader = new FXMLLoader(getClass().getResource("/gui/components/header/header.fxml"));
-        ScrollPane headerPane = headerLoader.load();
+        StackPane headerPane = headerLoader.load();
         HeaderController headerController = headerLoader.getController();
 
-        // Set controllers to each other
+        FXMLLoader centerLoader = new FXMLLoader(getClass().getResource("/gui/components/center/center.fxml"));
+        AnchorPane centerPane = centerLoader.load();
+        CenterController centerController = centerLoader.getController();
+
+        // Make main controller know its sub controllers
         mainController.setHeaderController(headerController);
+        mainController.setCenterController(centerController);
+
+        //Make sub controllers know the main controller
         headerController.setMainController(mainController);
+        centerController.setMainController(mainController);
 
         // Add the headerPane to the top of the root layout
         BorderPane root = (BorderPane) mainController.getMainBorderPane();
         root.setTop(headerPane);
+        root.setCenter(centerPane);
     }
 }
