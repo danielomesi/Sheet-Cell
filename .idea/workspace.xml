@@ -10,23 +10,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Created dynamic table for sheet view">
-      <change afterPath="$PROJECT_DIR$/ui/src/gui/core/DataModule.java" afterDir="false" />
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added update option">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/console/app/ConsoleApp.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/console/exceptions/ConsoleException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/console/exceptions/NoExistenceException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/console/exceptions/NotANumberException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/console/exceptions/OutOfRangeException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/console/menu/Menu.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/console/print/ConsolePrintHelper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/app/GUIApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/core/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/gui/components/center/CenterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/center/CenterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/center/cell/CellController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/center/cell/CellController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/center/cell/cell.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/center/cell/cell.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/center/cell/cellStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/center/cell/cellStyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/header/HeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/header/HeaderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/main/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/utils/Utils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +64,7 @@
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "Application.App.executor": "Run",
     "Application.Application.executor": "Run",
-    "Application.GUI.executor": "Debug",
+    "Application.GUI.executor": "Run",
     "Application.Unnamed.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -153,7 +140,8 @@
       <workItem from="1725632952800" duration="34000" />
       <workItem from="1725633258496" duration="12469000" />
       <workItem from="1725704162673" duration="21440000" />
-      <workItem from="1725879777150" duration="11158000" />
+      <workItem from="1725879777150" duration="11182000" />
+      <workItem from="1725901396247" duration="2003000" />
     </task>
     <task id="LOCAL‎-00001" summary="Added basic entities">
       <option name="closed" value="true" />
@@ -411,7 +399,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1725726253453</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL‎-00033" summary="Added update option">
+      <option name="closed" value="true" />
+      <created>1725891402115</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL‎-00033" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1725891402115</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -430,7 +426,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added versions handling and fixed sheet show" />
     <MESSAGE value="Added version names and minor changes" />
     <MESSAGE value="Changed operation creating by adding a new class OperationFactory" />
     <MESSAGE value="Added bonus - saving and loading a sheet (version history included) to/from a file" />
@@ -455,7 +450,8 @@
     <MESSAGE value="First java app state on air" />
     <MESSAGE value="First javafx app state on air" />
     <MESSAGE value="Created dynamic table for sheet view" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created dynamic table for sheet view" />
+    <MESSAGE value="Added update option" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added update option" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

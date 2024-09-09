@@ -119,10 +119,10 @@ public class CenterController {
         selectedCell = clickedCellCoordinates;
         resetStyles();
         CellController cellController = cellControllersMap.get(clickedCellCoordinates);
+        cellController.replaceStyleClass("default-cell","selected-cell");
         if (cellController.getTableCellType() == TableCellType.DATA) {
             Cell clickedCell = mainController.getCurrentLoadedSheet().getCell(clickedCellCoordinates.getRow(), clickedCellCoordinates.getCol());
             if (clickedCell!= null) {
-                cellController.replaceStyleClass("default-cell","selected-cell");
 
                 clickedCell.getCellsAffectingMe().forEach(dependentCell ->
                         cellControllersMap.get(dependentCell).replaceStyleClass("default-cell","affecting-cell"));

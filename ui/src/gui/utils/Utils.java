@@ -13,7 +13,7 @@ import java.util.List;
 
 public class Utils {
     public static String objectToString(Object obj) {
-        String result;
+        String result = "";
 
         if (obj instanceof Number number) {
             if (number.doubleValue() % 1 == 0) {
@@ -39,10 +39,10 @@ public class Utils {
                 result = "Unknown Type of " + obj.getClass().getSimpleName();
             }
         }
-        else {
+        else if (obj!=null) {
             result = obj.toString();
         }
-
         return result;
     }
+
 }
