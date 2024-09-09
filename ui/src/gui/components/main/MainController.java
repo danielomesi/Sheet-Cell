@@ -7,6 +7,7 @@ import entities.coordinates.Coordinates;
 import entities.sheet.Sheet;
 import gui.components.center.CenterController;
 import gui.components.header.HeaderController;
+import gui.core.DataModule;
 import gui.exceptions.UnsupportedFileFormat;
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
@@ -15,10 +16,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 public class MainController {
 
@@ -32,6 +29,7 @@ public class MainController {
     private Engine engine;
     private Sheet currentLoadedSheet;
     private BooleanProperty isSheetLoaded;
+    private DataModule dataModule;
 
     //state
     private Stage stage;
@@ -40,16 +38,23 @@ public class MainController {
     private CenterController centerController;
     private HeaderController headerController;
 
+    //getters
     public Engine getEngine() {return engine;}
     public Sheet getCurrentLoadedSheet() {return currentLoadedSheet;}
+    public BorderPane getMainBorderPane() {return mainBorderPane;}
+    public CenterController getCenterController() {return centerController;}
+    public BooleanProperty getIsSheetLoaded() {return isSheetLoaded;}
+    public DataModule getDataModule() {return dataModule;}
+
+    //setters
     public void setStage(Stage stage) {this.stage = stage;}
     public void setHeaderController(HeaderController headerController) {this.headerController = headerController;}
     public void setCenterController(CenterController centerController) {this.centerController = centerController;}
-    public BorderPane getMainBorderPane() {return mainBorderPane;}
-    public BooleanProperty getIsSheetLoaded() {return isSheetLoaded;}
+
 
     public void initialize() {
         engine = new EngineImpl();
+        dataModule = new DataModule();
 
         //bind the buttons relevant for sheet
         isSheetLoaded = new SimpleBooleanProperty(false);
@@ -66,31 +71,30 @@ public class MainController {
             throw new UnsupportedFileFormat("The selected file is not supported");
         }
 
+        toDoOnSuccessfulFileLoad();
+    }
+
+    public void toDoOnSuccessfulFileLoad() {
         currentLoadedSheet = engine.getSheet();
-        notifySubComponentsOnFileLoad(engine.getSheetList());
-
-        isSheetLoaded.setValue(true);
-    }
-
-    public void notifySubComponentsOnFileLoad(List<Sheet> sheetList) {
         Platform.runLater(() -> {
-            centerController.buildCellsTableDynamically(sheetList.getLast());
-            headerController.updateMyControllersOnFileLoad(sheetList);
-            stage.sizeToScene();
+            dataModule.buildModule(currentLoadedSheet.getNumOfRows(),currentLoadedSheet.getNumOfColumns());
+            centerController.buildCellsTableDynamically(currentLoadedSheet);
+            headerController.updateMyControlsOnFileLoad(engine.getSheetList());
+            dataModule.updateModule(currentLoadedSheet);
+            isSheetLoaded.setValue(true);
         } );
-    }
-
-    public Set<Cell> getSetOfCells(Set<Coordinates> coordinatesList) {
-        Set<Cell> cells = new HashSet<>();
-        for (Coordinates coordinates : coordinatesList) {
-            cells.add(currentLoadedSheet.getCell(coordinates.getRow(), coordinates.getCol()));
-        }
-
-        return cells;
     }
 
     public void populateChosenCellDataInHeader(Cell chosenCell) {
         headerController.populateHeaderControlsOnCellChoose(chosenCell);
         stage.sizeToScene();
     }
+
+    public void calculateCellUpdate(Coordinates coordinates, String originalExpression) {
+        engine.updateSpecificCell(coordinates.getCellID(), originalExpression);
+        currentLoadedSheet = engine.getSheet();
+        Platform.runLater(()-> dataModule.updateModule(currentLoadedSheet));
+    }
+
+
 }

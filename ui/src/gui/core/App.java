@@ -1,4 +1,4 @@
-package gui.app;
+package gui.core;
 
 import gui.components.center.CenterController;
 import gui.components.header.HeaderController;
@@ -14,10 +14,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+//make version combo box be binded to the module member which is version number
+//make a button to activate/disable animations (such as load file delay...)
 //delete all the printstacktrace all over the code
 //stop making sizetoscene call when choosing a cell because all the time because it constantly changes the size of the window
 //add a button "resize to natural size" to fix the sizetoscene thing
-public class GUIApp extends Application {
+public class App extends Application {
     private MainController mainController;
 
     public static void main(String[] args) {

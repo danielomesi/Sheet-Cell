@@ -1,7 +1,33 @@
 /* Style for the StackPane */
-#cellStackPane {
-    -fx-background-color: #f0f0f0; /* Light gray background */
-    -fx-border-color: #cccccc; /* Light gray border */
+
+/* Highlight the selected cell with a distinct color */
+.selected-cell {
+    -fx-background-color: deepskyblue; /* Distinct blue for selected cell */
+}
+
+/* Highlight cells that affect the selected cell */
+.affecting-cell {
+    -fx-background-color: lightblue; /* Light blue for cells affecting the selected one */
+}
+
+/* Highlight cells affected by the selected cell */
+.affected-cell {
+    -fx-background-color: lightgreen; /* Light green for cells affected by the selected one */
+}
+
+/* Hover effect for any cell */
+.cell-stackpane:hover {
+    -fx-background-color: lightyellow; /* Change background on hover */
+    -fx-cursor: hand; /* Change cursor to hand */
+}
+
+.default-cell {
+    -fx-background-color: lightgray; /* Light gray background */
+}
+
+/* Default style for all StackPanes */
+.cell-stackpane {
+    -fx-border-color: gainsboro; /* Light gray border */
     -fx-border-width: 1px; /* Border width */
     -fx-border-radius: 5px; /* Rounded corners */
     -fx-padding: 10px; /* Padding inside the StackPane */
@@ -11,8 +37,8 @@
 }
 
 /* Style for the Label inside StackPane */
-#cellLabel {
-    -fx-text-fill: #333333; /* Dark gray text color */
+.cell-label {
+    -fx-text-fill: dimgrey; /* Dark gray text color */
     -fx-font-size: 14px; /* Font size */
     -fx-font-weight: bold; /* Bold text */
     -fx-padding: 5px; /* Padding around the text */

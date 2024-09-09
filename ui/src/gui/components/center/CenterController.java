@@ -6,7 +6,8 @@ import entities.sheet.Sheet;
 import gui.components.center.cell.CellController;
 import gui.components.center.cell.TableCellType;
 import gui.components.main.MainController;
-import gui.utils.Utils;
+import gui.core.DataModule;
+import javafx.beans.property.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
@@ -20,6 +21,9 @@ import java.util.Map;
 
 public class CenterController {
 
+    private BooleanProperty isSelectedCell;
+    private Coordinates selectedCell;
+
     @FXML
     private AnchorPane centerAnchorPane;
     private MainController mainController;
@@ -27,12 +31,17 @@ public class CenterController {
 
     public void initialize() {
         cellControllersMap = new HashMap<>();
+        isSelectedCell = new SimpleBooleanProperty(false);
     }
+
+    public BooleanProperty isSelectedCellProperty() {return isSelectedCell;}
+    public Coordinates getSelectedCell() {return selectedCell;}
 
     public void setMainController(MainController mainController) {this.mainController = mainController;}
 
     public void buildCellsTableDynamically(Sheet sheet) {
         GridPane gridPane = new GridPane();
+        DataModule dataModule = mainController.getDataModule();
 
         int numRows = sheet.getNumOfRows();
         int numCols = sheet.getNumOfColumns();
@@ -58,7 +67,7 @@ public class CenterController {
             gridPane.add(rowPane, 0, row); // Add to the first column (col 0)
         }
 
-        // Populate the cells with data
+        // Build the cells
         for (int row = 1; row <= numRows; row++) {
             for (int col = 1; col <= numCols; col++) {
                 int zeroIndexBasedRow = row-1;
@@ -66,10 +75,9 @@ public class CenterController {
                 Coordinates coordinates = new Coordinates(zeroIndexBasedRow,zeroIndexBasedCol);
 
                 Cell cell = sheet.getCell(zeroIndexBasedRow, zeroIndexBasedCol); // Retrieve the Cell object
-                String valueInCell = cell!=null? Utils.objectToString(cell.getEffectiveValue()) : null;
                 CellController cellController = createCellController();
                 cellControllersMap.put(coordinates, cellController);
-                cellController.setCellLabel(valueInCell);
+                cellController.bindToModule(dataModule.getCoordinates2EffectiveValues().get(coordinates));
                 cellController.setCellCoordinates(coordinates);
                 cellController.setTableCellType(TableCellType.DATA);
                 StackPane cellPane = (StackPane) cellController.getCellStackPane();
@@ -107,25 +115,31 @@ public class CenterController {
     }
 
     private void handleCellClick(Coordinates clickedCellCoordinates) {
+        isSelectedCell.setValue(true);
+        selectedCell = clickedCellCoordinates;
         resetStyles();
         CellController cellController = cellControllersMap.get(clickedCellCoordinates);
         if (cellController.getTableCellType() == TableCellType.DATA) {
             Cell clickedCell = mainController.getCurrentLoadedSheet().getCell(clickedCellCoordinates.getRow(), clickedCellCoordinates.getCol());
             if (clickedCell!= null) {
-                // Highlight cells that this cell depends on (light blue)
+                cellController.replaceStyleClass("default-cell","selected-cell");
+
                 clickedCell.getCellsAffectingMe().forEach(dependentCell ->
-                        cellControllersMap.get(dependentCell).setBackGroundColor("lightblue"));
+                        cellControllersMap.get(dependentCell).replaceStyleClass("default-cell","affecting-cell"));
 
-
-                // Highlight cells that depend on this cell (light green)
                 clickedCell.getCellsAffectedByMe().forEach(affectedCell ->
-                        cellControllersMap.get(affectedCell).setBackGroundColor("lightgreen"));
+                        cellControllersMap.get(affectedCell).replaceStyleClass("default-cell","affected-cell"));
                 mainController.populateChosenCellDataInHeader(clickedCell);
             }
         }
     }
 
     private void resetStyles() {
-        cellControllersMap.forEach((c, cellController) -> {cellController.setStyle("");});
+        cellControllersMap.forEach((c, cellController) -> {
+            cellController.removeStyleClass("selected-cell");
+            cellController.removeStyleClass("affecting-cell");
+            cellController.removeStyleClass("affected-cell");
+            cellController.addStyleClass("default-cell");
+        });
     }
 }

@@ -1,6 +1,7 @@
 package gui.components.center.cell;
 
 import entities.coordinates.Coordinates;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
@@ -25,17 +26,33 @@ public class CellController {
 
     public Coordinates getCoordinates() {return coordinates;}
 
-    public void setCellLabel(String label) {
-        cellLabel.setText(label);
+    public void bindToModule(SimpleStringProperty value) {
+        cellLabel.textProperty().bind(value);
     }
 
-    public void setBackGroundColor(String color) {
-        setStyle("-fx-background-color: " + color + ";");
+    public void setCellLabel(String text) {
+        cellLabel.setText(text);
     }
 
-    public void setStyle(String style) {
-        cellStackPane.setStyle(style);
+    public void addStyleClass(String styleClass) {
+        if (!cellStackPane.getStyleClass().contains(styleClass)) {
+            cellStackPane.getStyleClass().add(styleClass);
+        }
     }
+
+    public void removeStyleClass(String styleClass) {
+        cellStackPane.getStyleClass().remove(styleClass);
+    }
+
+    public void resetStyleClass() {
+        cellStackPane.getStyleClass().clear();
+    }
+
+    public void replaceStyleClass(String oldStyleClass, String newStyleClass) {
+        removeStyleClass(oldStyleClass);
+        addStyleClass(newStyleClass);
+    }
+
 
     public StackPane getCellStackPane() {return cellStackPane;}
 }

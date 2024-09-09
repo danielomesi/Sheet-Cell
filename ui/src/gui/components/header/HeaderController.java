@@ -1,11 +1,11 @@
 package gui.components.header;
 
-import engine.Engine;
 import entities.cell.Cell;
+import entities.coordinates.Coordinates;
 import entities.sheet.Sheet;
+import gui.components.center.CenterController;
 import gui.components.main.MainController;
-import javafx.application.Platform;
-import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -16,10 +16,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.IntStream;
 
 public class HeaderController {
 
@@ -59,7 +57,8 @@ public class HeaderController {
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
         if (mainController != null) {
-            updateButton.disableProperty().bind(mainController.getIsSheetLoaded().not());
+            CenterController centerController = mainController.getCenterController();
+            updateButton.disableProperty().bind(mainController.getIsSheetLoaded().not().or(centerController.isSelectedCellProperty().not()));
             versionComboBox.disableProperty().bind(mainController.getIsSheetLoaded().not());
             saveToFileButton.disableProperty().bind(mainController.getIsSheetLoaded().not());
         }
@@ -67,7 +66,11 @@ public class HeaderController {
 
     @FXML
     void handleUpdateOnClick(ActionEvent event) {
-
+        Coordinates coordinates = mainController.getCenterController().getSelectedCell();
+        Task<Void> task = getTaskFromRunnable(() -> mainController.calculateCellUpdate(coordinates,newValueTextField.getText()), false);
+        Thread thread = new Thread(task);
+        thread.setDaemon(true);
+        thread.start();
     }
 
     @FXML
@@ -90,7 +93,7 @@ public class HeaderController {
         File file = fileChooser.showOpenDialog(stage);
 
         if (file != null) {
-            Task<Void> task = getTaskFromRunnable(() -> mainController.loadFile(file.getAbsolutePath()), true);
+            Task<Void> task = getTaskFromRunnable(() -> mainController.loadFile(file.getAbsolutePath()), false);
             task.setOnSucceeded(e -> {
                 filePathLabel.setText(file.getName());
             });
@@ -101,7 +104,7 @@ public class HeaderController {
         }
     }
 
-    public void updateMyControllersOnFileLoad(List<Sheet> sheetList) {
+    public void updateMyControlsOnFileLoad(List<Sheet> sheetList) {
         ComboBox<Integer> integerComboBox = (ComboBox<Integer>) versionComboBox;
 
         // Set items of the ComboBox using a range from 1 to the size of the sheetList
@@ -127,7 +130,7 @@ public class HeaderController {
             protected Void call() throws Exception {
                 if (isDelayed) {
                     for (int i = 1; i <= 100; i++) {
-                        Thread.sleep(50);
+                        Thread.sleep(25);
                         updateProgress(i, 100);
                     }
                 }
