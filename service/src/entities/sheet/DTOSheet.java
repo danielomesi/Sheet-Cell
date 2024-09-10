@@ -3,12 +3,14 @@ package entities.sheet;
 import entities.cell.Cell;
 import entities.cell.DTOCell;
 import entities.coordinates.Coordinates;
+import entities.range.Range;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class DTOSheet implements Sheet {
     private Map<Coordinates,DTOCell> cellsMap;
+    private Map<String, Range> rangesMap;
     private final int numOfRows;
     private final int numOfColumns;
     private final int version;
@@ -23,6 +25,7 @@ public class DTOSheet implements Sheet {
         this.layout = coreSheet.getLayout();
         this.name = coreSheet.getName();
         this.numOfCellsChanged = coreSheet.getNumOfCellsChanged();
+        this.rangesMap = coreSheet.getRangesMap();
         if (coreSheet.getCoreCellsMap() != null) {
             this.cellsMap = new HashMap<>();
             coreSheet.getCoreCellsMap().forEach((coordinates, cell) -> cellsMap.put(coordinates, new DTOCell(cell)));
@@ -32,9 +35,8 @@ public class DTOSheet implements Sheet {
     public int getNumOfRows() {return this.numOfRows;}
     public int getNumOfColumns() {return this.numOfColumns;}
     public int getVersion() {return this.version;}
-    @Override
+    public Range getRange(String name) {return rangesMap.get(name);}
     public Layout getLayout() {return layout;}
-    @Override
     public String getName() {return name;}
     public int getNumOfCellsChanged() {return this.numOfCellsChanged;}
     public Cell getCell(int row, int col) {return cellsMap.get(new Coordinates(row, col));}

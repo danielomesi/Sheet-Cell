@@ -1,8 +1,12 @@
 package operations.core;
 
+import entities.cell.CoreCell;
+import entities.coordinates.CoordinateFactory;
 import entities.coordinates.Coordinates;
+import entities.range.Range;
 import entities.sheet.CoreSheet;
 import exceptions.InvalidArgumentException;
+import exceptions.InvalidRangeException;
 
 import java.io.Serializable;
 import java.util.*;
@@ -109,5 +113,43 @@ public abstract class Operation implements Serializable {
             }
         }
         return false;
+    }
+
+    public void updateDependenciesOfRange(Range range) {
+        CoreCell affectedCell = CoordinateFactory.getCellObjectFromCellID(sheet,coordinates.getCellID());
+        for (Coordinates coordinatesOfCellInRange : range.getCells()) {
+            CoreCell affectingCell = CoordinateFactory.getCellObjectFromCellID(sheet,coordinatesOfCellInRange.getCellID());
+            if (sheet.getCoreCellsMap().containsKey(coordinatesOfCellInRange)) {
+                affectingCell = sheet.getCoreCellsMap().get(coordinatesOfCellInRange);
+            }
+            else {
+                affectingCell = new CoreCell(sheet,coordinatesOfCellInRange.getRow(),coordinatesOfCellInRange.getCol());
+                sheet.getCoreCellsMap().put(coordinatesOfCellInRange,affectingCell);
+            }
+            affectedCell.getCellsAffectingMe().add(affectingCell.getCoordinates());
+            affectingCell.getCellsAffectedByMe().add(affectedCell.getCoordinates());
+        }
+    }
+
+    public List<Number> getRangesAsListOfNumbers(Range range) {
+        List<Number> result = new ArrayList<>();
+        Set<Coordinates> cellsCoordinates = range.getCells();
+        for (Coordinates coordinates : cellsCoordinates) {
+            CoreCell coreCell = CoordinateFactory.getCellObjectFromCellID(sheet,coordinates.getCellID());
+            ObjectWrapper objWrapper = getArgValue(coreCell.getEffectiveValue());
+            Object obj = objWrapper.getObj();
+            if (obj instanceof Number) {
+                result.add((Number)obj);
+            }
+        }
+        return result;
+    }
+
+    public Range getRangeOrThrow(String name) {
+        Range range = sheet.getRange(name);
+        if (range == null) {
+            throw new InvalidRangeException("A range with the name " + name + " was not found");
+        }
+        return range;
     }
 }

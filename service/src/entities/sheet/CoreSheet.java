@@ -4,9 +4,12 @@ import entities.cell.Cell;
 import entities.coordinates.Coordinates;
 import entities.cell.CoreCell;
 import entities.coordinates.CoordinateFactory;
+import entities.range.Range;
 import entities.stl.STLCell;
+import entities.stl.STLRange;
 import entities.stl.STLSheet;
 import exceptions.CloneFailureException;
+import exceptions.InvalidRangeException;
 import utils.TopologicalSorter;
 import utils.FunctionParser;
 import utils.Utils;
@@ -17,7 +20,8 @@ import java.io.*;
 import java.util.Map;
 
 public class CoreSheet implements Sheet {
-    private final Map<Coordinates, CoreCell> cellsMap;
+    private final Map<Coordinates, CoreCell> cellsMap = new HashMap<>();
+    private Map<String, Range> rangesMap = new HashMap<>();
     private final int numOfRows;
     private final int numOfColumns;
     private int version = 1;
@@ -26,7 +30,6 @@ public class CoreSheet implements Sheet {
     private final String name;
 
     public CoreSheet(int numOfRows, int numOfColumns, Layout layout, String name) {
-        cellsMap = new HashMap<>();
         this.numOfRows = numOfRows;
         this.numOfColumns = numOfColumns;
         this.layout = layout;
@@ -40,9 +43,9 @@ public class CoreSheet implements Sheet {
                 stlSheet.getSTLLayout().getSTLSize().getColumnWidthUnits());
         this.name = stlSheet.getName();
         this.numOfCellsChanged = 0;
-        cellsMap = new HashMap<>();
-        CoreCell coreCell;
+        this.rangesMap = Range.generateRangesFromSTLRanges(stlSheet,this);
         List<STLCell> STLCells = stlSheet.getSTLCells().getSTLCell();
+        CoreCell coreCell;
         for (STLCell stlCell : STLCells) {
             int i = stlCell.getRow() - 1;
             int j = CoordinateFactory.convertColumnStringToIndex(stlCell.getColumn());
@@ -80,20 +83,23 @@ public class CoreSheet implements Sheet {
         }
     }
 
-    public Map<Coordinates, CoreCell> getCoreCellsMap() {return cellsMap;}
+    //implementing interface methods
     public int getVersion() {return version;}
     public int getNumOfRows() {return numOfRows;}
     public int getNumOfColumns() {return numOfColumns;}
-    public void incrementVersion() {version++;}
-    @Override
+    public Range getRange(String name) {return rangesMap.get(name);}
     public Layout getLayout() {return layout;}
-    @Override
     public String getName() {return name;}
     public int getNumOfCellsChanged() {return numOfCellsChanged;}
+    public Cell getCell(int row, int col) {return CoordinateFactory.getCellObjectFromIndices(this, row, col);}
+
+    public Map<Coordinates, CoreCell> getCoreCellsMap() {return cellsMap;}
+    public Map<String,Range> getRangesMap() {return rangesMap;}
+    public void incrementVersion() {version++;}
     public void incrementNumOfCellsChanged() {numOfCellsChanged++;}
     public void initializeNumOfCellsChanged() {numOfCellsChanged = 0;}
-    @Override
-    public Cell getCell(int row, int col) {return CoordinateFactory.getCellObjectFromIndices(this, row, col);}
+
+
 
     private boolean isCellInsideSTLList(int i, int j, List<STLCell> stlCells) {
         for (STLCell stlCell : stlCells) {

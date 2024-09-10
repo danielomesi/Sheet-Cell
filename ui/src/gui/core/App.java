@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+//ask aviad whether I can make it fail when a static wrong argument is given
 //make the exception tostring happen just on the frontend part
 //make a button to activate/disable animations (such as load file delay...)
 //delete all the printstacktrace all over the code

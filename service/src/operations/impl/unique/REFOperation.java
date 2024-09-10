@@ -1,4 +1,4 @@
-package operations.impl;
+package operations.impl.unique;
 
 import entities.coordinates.Coordinates;
 import entities.cell.CoreCell;

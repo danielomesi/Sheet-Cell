@@ -2,11 +2,14 @@ package operations.core;
 
 import entities.coordinates.Coordinates;
 import entities.sheet.CoreSheet;
-import operations.impl.*;
 import operations.impl.logical.*;
 import operations.impl.math.*;
+import operations.impl.range.AVERAGERangeOperation;
+import operations.impl.range.SUMRangeOperation;
 import operations.impl.string.ConcatOperation;
 import operations.impl.string.SUBOperation;
+import operations.impl.unique.IFOperation;
+import operations.impl.unique.REFOperation;
 
 import java.util.HashMap;
 import java.util.List;
@@ -35,6 +38,10 @@ public class OperationFactory {
         funcName2OperationInfo.put("BIGGER", new OperationInfo(BIGGEROperation.class, 2));
         funcName2OperationInfo.put("LESS", new OperationInfo(LESSOperation.class, 2));
         funcName2OperationInfo.put("PERCENT", new OperationInfo(PERCENTOperation.class, 2));
+        funcName2OperationInfo.put("IF", new OperationInfo(IFOperation.class, 3));
+        funcName2OperationInfo.put("AVERAGE", new OperationInfo(AVERAGERangeOperation.class, 1));
+        funcName2OperationInfo.put("SUM", new OperationInfo(SUMRangeOperation.class, 1));
+
     }
 
     public static Operation createSpecificOperationUsingReflection(CoreSheet sheet, Coordinates coordinates, OperationInfo operationInfo, List<Object> arguments) {
