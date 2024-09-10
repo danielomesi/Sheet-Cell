@@ -7,51 +7,46 @@
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="stackPaneWrapper" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.components.header.HeaderController">
+<VBox fx:id="vBoxHeader" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.components.header.HeaderController">
    <children>
-      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
+      <Label alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Sheet-Cell">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
          <children>
-            <Label alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Sheet-Cell">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
-               <children>
-                  <Button fx:id="loadFileButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleLoadFileButtonClick" text="Load File" />
-                  <Label fx:id="filePathLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
-                  <Button fx:id="saveToFileButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleSaveToFileButton" text="Save to File" />
-               </children>
-            </HBox>
-            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
-               <children>
-                  <ProgressBar fx:id="taskProgressBar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" progress="0.0" />
-                  <Label fx:id="errorMessageLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
-               </children>
-            </HBox>
-            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
-               <children>
-                  <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Cell ID:" />
-                  <Label fx:id="currentCellIDLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
-                  <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Original Value:" />
-                  <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Last Updated Version;" />
-                  <Label fx:id="lastUpdatedVersionLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
-                  <Label fx:id="originalValueLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
-                  <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="New Value:" />
-                  <TextField fx:id="newValueTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
-                  <Button fx:id="updateButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleUpdateOnClick" text="Update" />
-                  <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Version:" />
-                  <ComboBox fx:id="versionComboBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#handleVersionOnChoose" />
-               </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
+            <Button fx:id="loadFileButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleLoadFileButtonClick" text="Load File" />
+            <Label fx:id="filePathLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
+            <Button fx:id="saveToFileButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleSaveToFileButton" text="Save to File" />
          </children>
-      </VBox>
+      </HBox>
+      <ProgressBar fx:id="taskProgressBar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" progress="0.0" />
+      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
+         <children>
+            <Label fx:id="errorMessageLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
+         </children>
+      </HBox>
+      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
+         <children>
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Cell ID:" />
+            <Label fx:id="currentCellIDLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Original Value:" />
+            <Label fx:id="originalValueLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Last Updated Version:" />
+            <Label fx:id="lastUpdatedVersionLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="New Value:" />
+            <TextField fx:id="newValueTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
+            <Button fx:id="updateButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleUpdateOnClick" text="Update" />
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Version:" />
+            <ComboBox fx:id="versionComboBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#handleVersionOnChoose" />
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </HBox>
    </children>
-</StackPane>
+</VBox>

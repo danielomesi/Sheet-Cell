@@ -5,33 +5,39 @@ import engine.EngineImpl;
 import entities.cell.Cell;
 import entities.coordinates.Coordinates;
 import entities.sheet.Sheet;
+import gui.builder.DynamicBuilder;
+import gui.builder.DynamicSheetTable;
 import gui.components.center.CenterController;
+import gui.components.center.cell.CellController;
+import gui.components.center.cell.TableCellType;
 import gui.components.header.HeaderController;
 import gui.core.DataModule;
 import gui.exceptions.UnsupportedFileFormat;
+import gui.utils.Utils;
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 public class MainController {
 
-    //consider deleting this member since its not the highest wrapper
+    //Highest wrapper is scroll pane
+    @FXML
+    private ScrollPane mainScrollPane;
     @FXML
     private BorderPane mainBorderPane;
 
-    @FXML
-    private ScrollPane mainScrollPane;
 
     private Engine engine;
     private Sheet currentLoadedSheet;
     private BooleanProperty isSheetLoaded;
     private DataModule dataModule;
 
-    //state
+    //stage
     private Stage stage;
 
     //sub controllers
@@ -39,9 +45,9 @@ public class MainController {
     private HeaderController headerController;
 
     //getters
+    public BorderPane getMainBorderPane() {return mainBorderPane;}
     public Engine getEngine() {return engine;}
     public Sheet getCurrentLoadedSheet() {return currentLoadedSheet;}
-    public BorderPane getMainBorderPane() {return mainBorderPane;}
     public CenterController getCenterController() {return centerController;}
     public BooleanProperty getIsSheetLoaded() {return isSheetLoaded;}
     public DataModule getDataModule() {return dataModule;}
@@ -78,8 +84,8 @@ public class MainController {
         currentLoadedSheet = engine.getSheet();
         Platform.runLater(() -> {
             dataModule.buildModule(currentLoadedSheet.getNumOfRows(),currentLoadedSheet.getNumOfColumns());
-            centerController.buildCellsTableDynamically(currentLoadedSheet);
-            headerController.updateMyControlsOnFileLoad(engine.getSheetList());
+            centerController.buildMainCellsTableDynamically(currentLoadedSheet);
+            headerController.updateMyControlsOnFileLoad();
             dataModule.updateModule(currentLoadedSheet);
             isSheetLoaded.setValue(true);
         } );
@@ -87,14 +93,31 @@ public class MainController {
 
     public void populateChosenCellDataInHeader(Cell chosenCell) {
         headerController.populateHeaderControlsOnCellChoose(chosenCell);
-        stage.sizeToScene();
     }
 
     public void calculateCellUpdate(Coordinates coordinates, String originalExpression) {
         engine.updateSpecificCell(coordinates.getCellID(), originalExpression);
         currentLoadedSheet = engine.getSheet();
-        Platform.runLater(()-> dataModule.updateModule(currentLoadedSheet));
+        Platform.runLater(()-> {
+            dataModule.updateModule(currentLoadedSheet);
+            headerController.resetVersionComboBoxChoice();
+        });
     }
 
+    public void generateVersionWindow(int chosenVersion) {
+        Sheet selectedSheet = engine.getSheet(chosenVersion);
+        DynamicSheetTable dynamicSheetTable = DynamicBuilder.buildDynamicSheetTable(selectedSheet);
+        dynamicSheetTable.populateSheetWithData(selectedSheet);
+        GridPane gridPane = dynamicSheetTable.getGridPane();
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setContent(gridPane);
+        Scene newScene = new Scene(scrollPane);
+
+        Stage versionWindow = new Stage();
+        versionWindow.setTitle("Version " + (chosenVersion+1));
+        versionWindow.setOnCloseRequest(event -> {headerController.resetVersionComboBoxChoice();});
+        versionWindow.setScene(newScene);
+        versionWindow.show();
+    }
 
 }

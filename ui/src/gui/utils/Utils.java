@@ -1,15 +1,11 @@
 package gui.utils;
 
-import entities.cell.Cell;
-import entities.coordinates.Coordinates;
-import entities.sheet.Sheet;
 import entities.types.undefined.Undefined;
 import entities.types.undefined.UndefinedBoolean;
 import entities.types.undefined.UndefinedNumber;
 import entities.types.undefined.UndefinedString;
-
-import java.util.ArrayList;
-import java.util.List;
+import exceptions.ServiceException;
+import gui.exceptions.GUIException;
 
 public class Utils {
     public static String objectToString(Object obj) {
@@ -45,4 +41,14 @@ public class Utils {
         return result;
     }
 
+    public static String generateErrorMessageFromException(Exception e) {
+        StringBuilder sb = new StringBuilder();
+        if (e instanceof ServiceException || e instanceof GUIException) {
+            sb.append(e.toString());
+        } else {
+            sb.append("Error: ");
+            sb.append(e.getMessage());
+        }
+        return sb.toString();
+    }
 }

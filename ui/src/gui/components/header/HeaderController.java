@@ -5,13 +5,16 @@ import entities.coordinates.Coordinates;
 import entities.sheet.Sheet;
 import gui.components.center.CenterController;
 import gui.components.main.MainController;
+import gui.utils.Utils;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -24,7 +27,7 @@ public class HeaderController {
     private MainController mainController;
 
     @FXML
-    private StackPane stackPaneWrapper;
+    private VBox vBoxHeader;
 
     //load and save controls
     @FXML
@@ -54,6 +57,10 @@ public class HeaderController {
     @FXML
     private ComboBox<?> versionComboBox;
 
+    public void resetVersionComboBoxChoice() {
+        versionComboBox.getSelectionModel().clearSelection();
+    }
+
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
         if (mainController != null) {
@@ -75,6 +82,10 @@ public class HeaderController {
 
     @FXML
     void handleVersionOnChoose(ActionEvent event) {
+        int chosenVersion = versionComboBox.getSelectionModel().getSelectedIndex();
+        if (chosenVersion >= 0 && chosenVersion<versionComboBox.getItems().size() - 1) {
+            mainController.generateVersionWindow(chosenVersion);
+        }
 
     }
 
@@ -104,17 +115,22 @@ public class HeaderController {
         }
     }
 
-    public void updateMyControlsOnFileLoad(List<Sheet> sheetList) {
+    public void updateMyControlsOnFileLoad() {
         ComboBox<Integer> integerComboBox = (ComboBox<Integer>) versionComboBox;
+        SimpleIntegerProperty simpleIntegerProperty = mainController.getDataModule().getVersionNumber();
 
-        // Set items of the ComboBox using a range from 1 to the size of the sheetList
-        integerComboBox.setItems(FXCollections.observableArrayList(
-                java.util.stream.IntStream.rangeClosed(1, sheetList.size()).boxed().toList()
-        ));
+        Runnable updateComboBoxItems = () -> {
+            int maxValue = simpleIntegerProperty.get();
+            EventHandler<ActionEvent> originalOnAction = integerComboBox.getOnAction();
+            integerComboBox.setOnAction(null);
+            integerComboBox.setItems(FXCollections.observableArrayList(
+                    java.util.stream.IntStream.rangeClosed(1, maxValue).boxed().toList()));
+            //unfortunately, the "setItems" method invokes the on action method of the version combo box,
+            //so the current solution is to nullify the on action before calling "setItems" and then returning its original value
+            integerComboBox.setOnAction(originalOnAction);
+        };
 
-        if (!integerComboBox.getItems().isEmpty()) {
-            integerComboBox.getSelectionModel().selectLast();
-        }
+        simpleIntegerProperty.addListener((observable, oldValue, newValue) -> updateComboBoxItems.run());
     }
 
     public void populateHeaderControlsOnCellChoose(Cell chosenCell) {
@@ -135,9 +151,11 @@ public class HeaderController {
                     }
                 }
                 try {
+                    updateMessage("Executing...");
                     runnable.run();
+                    updateMessage("Success!");
                 } catch (Exception e) {
-                    updateMessage("Error: " + e.getMessage());
+                    updateMessage(Utils.generateErrorMessageFromException(e));
                     throw e;
                 }
                 return null;

@@ -10,9 +10,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added update option">
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Fixed bug of empty cell update">
+      <change afterPath="$PROJECT_DIR$/ui/src/gui/builder/DynamicBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/src/gui/builder/DynamicSheetTable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/gui/components/center/CenterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/center/CenterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/center/cell/TableCellType.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/center/cell/TableCellType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/center/center.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/center/center.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/header/HeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/header/HeaderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/header/header.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/header/header.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/main/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/core/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/core/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/gui/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/utils/Utils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -141,7 +149,8 @@
       <workItem from="1725633258496" duration="12469000" />
       <workItem from="1725704162673" duration="21440000" />
       <workItem from="1725879777150" duration="11182000" />
-      <workItem from="1725901396247" duration="2003000" />
+      <workItem from="1725901396247" duration="2028000" />
+      <workItem from="1725978084738" duration="12776000" />
     </task>
     <task id="LOCAL‎-00001" summary="Added basic entities">
       <option name="closed" value="true" />
@@ -407,7 +416,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1725891402115</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL‎-00034" summary="Fixed bug of empty cell update">
+      <option name="closed" value="true" />
+      <created>1725903618092</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL‎-00034" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1725903618092</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -426,7 +443,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added version names and minor changes" />
     <MESSAGE value="Changed operation creating by adding a new class OperationFactory" />
     <MESSAGE value="Added bonus - saving and loading a sheet (version history included) to/from a file" />
     <MESSAGE value="Changed sheet cloning mechanism - instead of clone, using serialization" />
@@ -451,7 +467,8 @@
     <MESSAGE value="First javafx app state on air" />
     <MESSAGE value="Created dynamic table for sheet view" />
     <MESSAGE value="Added update option" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added update option" />
+    <MESSAGE value="Fixed bug of empty cell update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug of empty cell update" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
