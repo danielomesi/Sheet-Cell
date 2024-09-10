@@ -8,9 +8,10 @@ import entities.stl.STLSheet;
 import exceptions.InvalidRangeException;
 import utils.Utils;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Range {
+public class Range implements Serializable {
     private final String name;
     private Set<Coordinates> cells;
 

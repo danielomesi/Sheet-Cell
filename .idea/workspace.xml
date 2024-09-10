@@ -10,20 +10,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Changed dynamic sheet building structure, now its modular">
-      <change afterPath="$PROJECT_DIR$/service/src/entities/range/Range.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/src/exceptions/InvalidRangeException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/src/operations/impl/range/AVERAGERangeOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/src/operations/impl/range/SUMRangeOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/src/operations/impl/unique/IFOperation.java" afterDir="false" />
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added ranges in engine">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/sheet/DTOSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/sheet/DTOSheet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/sheet/Sheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/sheet/Sheet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/core/Operation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/core/Operation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/core/OperationFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/core/OperationFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/REFOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/unique/REFOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/core/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/core/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/range/Range.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/range/Range.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,7 +141,7 @@
       <workItem from="1725704162673" duration="21440000" />
       <workItem from="1725879777150" duration="11182000" />
       <workItem from="1725901396247" duration="2028000" />
-      <workItem from="1725978084738" duration="19686000" />
+      <workItem from="1725978084738" duration="19753000" />
     </task>
     <task id="LOCAL‎-00001" summary="Added basic entities">
       <option name="closed" value="true" />
@@ -434,7 +423,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1725993092431</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL‎-00036" summary="Added ranges in engine">
+      <option name="closed" value="true" />
+      <created>1726000062665</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL‎-00036" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1726000062665</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -453,7 +450,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added bonus - saving and loading a sheet (version history included) to/from a file" />
     <MESSAGE value="Changed sheet cloning mechanism - instead of clone, using serialization" />
     <MESSAGE value="Fixed minor bug in SUBOperation" />
     <MESSAGE value="Created new branch" />
@@ -478,7 +474,8 @@
     <MESSAGE value="Added update option" />
     <MESSAGE value="Fixed bug of empty cell update" />
     <MESSAGE value="Changed dynamic sheet building structure, now its modular" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed dynamic sheet building structure, now its modular" />
+    <MESSAGE value="Added ranges in engine" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added ranges in engine" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
