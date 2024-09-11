@@ -5,10 +5,11 @@ import entities.cell.CoreCell;
 import entities.coordinates.CoordinateFactory;
 import entities.sheet.CoreSheet;
 import exceptions.InvalidArgumentException;
-import operations.core.ObjectWrapper;
 import operations.core.Operation;
 
 import java.util.List;
+
+import static operations.core.OperationFactory.getArgValue;
 
 public class REFOperation extends Operation {
     public REFOperation(CoreSheet sheet, Coordinates coordinates, List<Object> arguments) {
@@ -19,8 +20,8 @@ public class REFOperation extends Operation {
     }
 
     @Override
-    public ObjectWrapper execute() {
-        Object arg = getArgValue(arguments.getFirst()).getObj();
+    public Object execute() {
+        Object arg = getArgValue(arguments.getFirst());
         Object obj = null;
         CoreCell referencingCell = CoordinateFactory.getCellObjectFromCellID(sheet, coordinates.getCellID());
         try {
@@ -42,6 +43,6 @@ public class REFOperation extends Operation {
             throw new InvalidArgumentException("The value '" + arg + "' is not a valid cell ID");
         }
 
-        return new ObjectWrapper(obj,true);
+        return obj;
     }
 }

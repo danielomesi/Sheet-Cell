@@ -1,19 +1,15 @@
 package operations.impl.unique;
 
-import entities.cell.CoreCell;
-import entities.coordinates.CoordinateFactory;
 import entities.coordinates.Coordinates;
 import entities.sheet.CoreSheet;
 import entities.types.undefined.UndefinedBoolean;
 import exceptions.InvalidArgumentException;
-import operations.core.ObjectWrapper;
 import operations.core.Operation;
-import operations.impl.logical.ANDOperation;
-import operations.impl.logical.EQUALOperation;
-import operations.impl.logical.NOTOperation;
-import operations.impl.logical.OROperation;
 
 import java.util.List;
+
+import static operations.core.OperationFactory.areActualArgumentsMatchingToExpectedArguments;
+import static operations.core.OperationFactory.convertToNonOperationObjects;
 
 public class IFOperation extends Operation {
     public IFOperation(CoreSheet sheet, Coordinates coordinates, List<Object> arguments) {
@@ -24,35 +20,33 @@ public class IFOperation extends Operation {
     }
 
     @Override
-    public ObjectWrapper execute() {
+    public Object execute() {
         Object resultObj;
-        List<ObjectWrapper> effectiveValues = convertToNonOperationObjects();
-        boolean isRefNested = isOneOfTheArgumentsAReference(effectiveValues);
+        List<Object> effectiveValues = convertToNonOperationObjects(arguments);
         Class<?>[] expectedClazzes ={Boolean.class, Object.class, Object.class};
-        if (areArgumentsTypesValid(expectedClazzes,effectiveValues) && isLegalArguments(effectiveValues)) {
-            Boolean ifResult = (Boolean) effectiveValues.getFirst().getObj();
+        validateLegalArgumentsOrThrow(effectiveValues);
+        if (areActualArgumentsMatchingToExpectedArguments(expectedClazzes,effectiveValues)) {
+            Boolean ifResult = (Boolean) effectiveValues.getFirst();
             if (ifResult) {
-                resultObj = effectiveValues.get(1).getObj();
+                resultObj = effectiveValues.get(1);
             }
             else {
-                resultObj = effectiveValues.get(2).getObj();
+                resultObj = effectiveValues.get(2);
             }
         }
         else {
             resultObj = new UndefinedBoolean();
         }
 
-        return new ObjectWrapper(resultObj,isRefNested);
+        return resultObj;
     }
 
-    private boolean isLegalArguments(List<ObjectWrapper> effectiveValues) {
-        Class<?> thenClazz = effectiveValues.get(1).getObj().getClass();
-        Class<?> elseClazz = effectiveValues.get(2).getObj().getClass();
+    private void validateLegalArgumentsOrThrow(List<Object> effectiveValues) {
+        Class<?> thenClazz = effectiveValues.get(1).getClass();
+        Class<?> elseClazz = effectiveValues.get(2).getClass();
         if (thenClazz != elseClazz) {
-            return false;
+            throw new InvalidArgumentException("The arguments in the function are not of the same type",coordinates,name);
         }
-
-        return true;
     }
 
 }

@@ -3,10 +3,12 @@ package operations.impl.string;
 import entities.coordinates.Coordinates;
 import entities.sheet.CoreSheet;
 import entities.types.undefined.UndefinedString;
-import operations.core.ObjectWrapper;
 import operations.core.Operation;
 
 import java.util.List;
+
+import static operations.core.OperationFactory.areActualArgumentsMatchingToExpectedArguments;
+import static operations.core.OperationFactory.convertToNonOperationObjects;
 
 public class SUBOperation extends Operation {
     public SUBOperation(CoreSheet sheet, Coordinates coordinates, List<Object> arguments) {
@@ -17,29 +19,26 @@ public class SUBOperation extends Operation {
     }
 
     @Override
-    public ObjectWrapper execute() {
-        List<ObjectWrapper> effectiveValues = convertToNonOperationObjects();
-        boolean isRefNested = isOneOfTheArgumentsAReference(effectiveValues);
+    public Object execute() {
+        Object resultObj;
+        List<Object> effectiveValues = convertToNonOperationObjects(arguments);
         Class<?>[] expectedClazzes ={String.class, Number.class, Number.class};
-        if (areArgumentsTypesValid(expectedClazzes,effectiveValues)) {
-            String str = (String) effectiveValues.getFirst().getObj();
-            int startIndex = ((Number) effectiveValues.get(1).getObj()).intValue();
-            int endIndex = ((Number) effectiveValues.get(2).getObj()).intValue();
-            String result;
+        if (areActualArgumentsMatchingToExpectedArguments(expectedClazzes,effectiveValues)) {
+            String str = (String) effectiveValues.getFirst();
+            int startIndex = ((Number) effectiveValues.get(1)).intValue();
+            int endIndex = ((Number) effectiveValues.get(2)).intValue();
 
             try {
-                result = str.substring(startIndex, endIndex + 1);
+                resultObj = str.substring(startIndex, endIndex + 1);
             }
             catch (Exception e) {
-                return new ObjectWrapper(new UndefinedString(),isRefNested);
+               resultObj = new UndefinedString();
             }
-
-            return new ObjectWrapper(result,isRefNested);
         }
         else {
-            return new ObjectWrapper(new UndefinedString(),isRefNested);
+            resultObj = new UndefinedString();
         }
 
+        return resultObj;
     }
-
 }

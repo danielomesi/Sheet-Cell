@@ -1,7 +1,12 @@
 package operations.core;
 
+import entities.cell.CoreCell;
+import entities.coordinates.CoordinateFactory;
 import entities.coordinates.Coordinates;
+import entities.range.Range;
 import entities.sheet.CoreSheet;
+import entities.sheet.Sheet;
+import exceptions.InvalidRangeException;
 import operations.impl.logical.*;
 import operations.impl.math.*;
 import operations.impl.range.AVERAGERangeOperation;
@@ -11,9 +16,7 @@ import operations.impl.string.SUBOperation;
 import operations.impl.unique.IFOperation;
 import operations.impl.unique.REFOperation;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class OperationFactory {
     protected static final Map<String, OperationInfo> funcName2OperationInfo = new HashMap<>();
@@ -59,4 +62,77 @@ public class OperationFactory {
 
     public static Map<String, OperationInfo> getOperationsMap() {return funcName2OperationInfo; }
 
+    public static Object getArgValue(Object arg) {
+        Object result;
+
+        if (arg instanceof Operation operation) {
+            result = operation.execute();
+
+        }
+        else {
+            result = arg;
+        }
+        return result;
+    }
+
+
+    public static List<Object> convertToNonOperationObjects(List<Object> arguments)
+    {
+        List<Object> result = new ArrayList<>();
+        for (Object argument : arguments) {
+            result.add(getArgValue(argument));
+        }
+        return result;
+    }
+
+    public static boolean areActualArgumentsMatchingToExpectedArguments(Class<?>[] clazzes, List<Object> list) {
+        boolean result = true;
+        for (int i = 0; i < clazzes.length; i++) {
+            Class<?> clazz = clazzes[i];
+            Object obj = list.get(i);
+            if (!clazz.isInstance(obj)) {
+                result = false;
+                break;
+            }
+        }
+
+        return result;
+    }
+
+    public static void updateDependenciesOfRange(Range range, CoreSheet sheet, Coordinates coordinates) {
+        CoreCell affectedCell = CoordinateFactory.getCellObjectFromCellID(sheet,coordinates.getCellID());
+        for (Coordinates coordinatesOfCellInRange : range.getCells()) {
+            CoreCell affectingCell;
+            if (sheet.getCoreCellsMap().containsKey(coordinatesOfCellInRange)) {
+                affectingCell = sheet.getCoreCellsMap().get(coordinatesOfCellInRange);
+            }
+            else {
+                affectingCell = new CoreCell(sheet,coordinatesOfCellInRange.getRow(),coordinatesOfCellInRange.getCol());
+                sheet.getCoreCellsMap().put(coordinatesOfCellInRange,affectingCell);
+            }
+            affectedCell.getCellsAffectingMe().add(affectingCell.getCoordinates());
+            affectingCell.getCellsAffectedByMe().add(affectedCell.getCoordinates());
+        }
+    }
+
+    public static List<Number> getRangesAsListOfNumbers(Range range, CoreSheet sheet) {
+        List<Number> result = new ArrayList<>();
+        Set<Coordinates> cellsCoordinates = range.getCells();
+        for (Coordinates coordinates : cellsCoordinates) {
+            CoreCell coreCell = CoordinateFactory.getCellObjectFromCellID(sheet,coordinates.getCellID());
+            Object obj = getArgValue(coreCell.getEffectiveValue());
+            if (obj instanceof Number) {
+                result.add((Number)obj);
+            }
+        }
+        return result;
+    }
+
+    public static Range getRangeOrThrow(CoreSheet sheet, String rangeName) {
+        Range range = sheet.getRange(rangeName);
+        if (range == null) {
+            throw new InvalidRangeException("A range with the name " + rangeName + " was not found");
+        }
+        return range;
+    }
 }

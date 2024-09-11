@@ -3,11 +3,12 @@ package operations.impl.logical;
 import entities.coordinates.Coordinates;
 import entities.sheet.CoreSheet;
 import entities.types.undefined.UndefinedBoolean;
-import entities.types.undefined.UndefinedNumber;
-import operations.core.ObjectWrapper;
 import operations.core.Operation;
 
 import java.util.List;
+
+import static operations.core.OperationFactory.areActualArgumentsMatchingToExpectedArguments;
+import static operations.core.OperationFactory.convertToNonOperationObjects;
 
 public class NOTOperation extends Operation {
 
@@ -19,20 +20,19 @@ public class NOTOperation extends Operation {
     }
 
     @Override
-    public ObjectWrapper execute() {
+    public Object execute() {
         Object resultObj;
-        List<ObjectWrapper> effectiveValues = convertToNonOperationObjects();
-        boolean isRefNested = isOneOfTheArgumentsAReference(effectiveValues);
+        List<Object> effectiveValues = convertToNonOperationObjects(arguments);
         Class<?>[] expectedClazzes ={Boolean.class};
-        if (areArgumentsTypesValid(expectedClazzes,effectiveValues)) {
-            Boolean arg = (Boolean) effectiveValues.getFirst().getObj();
+        if (areActualArgumentsMatchingToExpectedArguments(expectedClazzes,effectiveValues)) {
+            Boolean arg = (Boolean) effectiveValues.getFirst();
             resultObj = (Boolean) !arg;
         }
         else {
             resultObj = new UndefinedBoolean();
         }
 
-        return new ObjectWrapper(resultObj,isRefNested);
+        return resultObj;
     }
 }
 

@@ -3,10 +3,12 @@ package operations.impl.math;
 import entities.coordinates.Coordinates;
 import entities.sheet.CoreSheet;
 import entities.types.undefined.UndefinedNumber;
-import operations.core.ObjectWrapper;
 import operations.core.Operation;
 
 import java.util.List;
+
+import static operations.core.OperationFactory.areActualArgumentsMatchingToExpectedArguments;
+import static operations.core.OperationFactory.convertToNonOperationObjects;
 
 public class PERCENTOperation extends Operation {
     public PERCENTOperation(CoreSheet sheet, Coordinates coordinates, List<Object> arguments) {
@@ -17,15 +19,13 @@ public class PERCENTOperation extends Operation {
     }
 
     @Override
-    public ObjectWrapper execute() {
+    public Object execute() {
         Object resultObj;
-        List<ObjectWrapper> effectiveValues = convertToNonOperationObjects();
-        boolean isRefNested = isOneOfTheArgumentsAReference(effectiveValues);
+        List<Object> effectiveValues = convertToNonOperationObjects(arguments);
         Class<?>[] expectedClazzes ={Number.class, Number.class};
-        if (areArgumentsTypesValid(expectedClazzes,effectiveValues)) {
-            List<Double> doubles = convertToDouble(effectiveValues);
-            Double partAsPercent = doubles.getFirst();
-            Double whole = doubles.get(1);
+        if (areActualArgumentsMatchingToExpectedArguments(expectedClazzes,effectiveValues)) {
+            Double partAsPercent = (Double) effectiveValues.get(0);
+            Double whole = (Double) effectiveValues.get(1);
 
             resultObj = partAsPercent*whole/100;
         }
@@ -33,6 +33,6 @@ public class PERCENTOperation extends Operation {
             resultObj = new UndefinedNumber();
         }
 
-        return new ObjectWrapper(resultObj, isRefNested);
+        return resultObj;
     }
 }

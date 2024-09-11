@@ -3,11 +3,12 @@ package operations.impl.logical;
 import entities.coordinates.Coordinates;
 import entities.sheet.CoreSheet;
 import entities.types.undefined.UndefinedBoolean;
-import entities.types.undefined.UndefinedNumber;
-import operations.core.ObjectWrapper;
 import operations.core.Operation;
 
 import java.util.List;
+
+import static operations.core.OperationFactory.areActualArgumentsMatchingToExpectedArguments;
+import static operations.core.OperationFactory.convertToNonOperationObjects;
 
 public class OROperation extends Operation {
 
@@ -19,21 +20,20 @@ public class OROperation extends Operation {
     }
 
     @Override
-    public ObjectWrapper execute() {
+    public Object execute() {
         Object resultObj;
-        List<ObjectWrapper> effectiveValues = convertToNonOperationObjects();
-        boolean isRefNested = isOneOfTheArgumentsAReference(effectiveValues);
+        List<Object> effectiveValues = convertToNonOperationObjects(arguments);
         Class<?>[] expectedClazzes ={Boolean.class, Boolean.class};
-        if (areArgumentsTypesValid(expectedClazzes,effectiveValues)) {
-            Boolean firstArg = (Boolean) effectiveValues.getFirst().getObj();
-            Boolean secondArg = (Boolean) effectiveValues.get(1).getObj();
+        if (areActualArgumentsMatchingToExpectedArguments(expectedClazzes,effectiveValues)) {
+            Boolean firstArg = (Boolean) effectiveValues.getFirst();
+            Boolean secondArg = (Boolean) effectiveValues.get(1);
             resultObj = (Boolean) firstArg || secondArg;
         }
         else {
             resultObj = new UndefinedBoolean();
         }
 
-        return new ObjectWrapper(resultObj,isRefNested);
+        return resultObj;
     }
 }
 

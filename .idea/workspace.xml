@@ -10,20 +10,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added left menu in app that includes range options">
-      <change afterPath="$PROJECT_DIR$/service/src/operations/impl/range/RangeOperation.java" afterDir="false" />
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Implemented range capabilities">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/range/Range.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/range/Range.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/cell/CoreCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/cell/CoreCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/core/ObjectWrapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/core/Operation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/core/Operation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/core/OperationFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/core/OperationFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/logical/ANDOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/logical/ANDOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/logical/BIGGEROperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/logical/BIGGEROperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/logical/EQUALOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/logical/EQUALOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/logical/LESSOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/logical/LESSOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/logical/NOTOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/logical/NOTOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/logical/OROperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/logical/OROperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/math/ABSOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/math/ABSOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/math/DIVIDEOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/math/DIVIDEOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/math/MINUSOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/math/MINUSOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/math/MODOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/math/MODOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/math/PERCENTOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/math/PERCENTOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/math/PLUSOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/math/PLUSOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/math/POWOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/math/POWOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/math/TIMESOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/math/TIMESOperation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/operations/impl/range/AVERAGERangeOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/range/AVERAGERangeOperation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/operations/impl/range/SUMRangeOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/range/SUMRangeOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/center/CenterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/center/CenterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/header/HeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/header/HeaderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/left/LeftController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/left/LeftController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/main/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/exceptions/GUIException.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/exceptions/GUIException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/string/ConcatOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/string/ConcatOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/string/SUBOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/string/SUBOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/unique/IFOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/unique/IFOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/unique/REFOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/unique/REFOperation.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,29 +81,29 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.App.executor": "Run",
-    "Application.Application.executor": "Run",
-    "Application.GUI.executor": "Run",
-    "Application.Unnamed.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/omesi/OneDrive - The Academic College of Tel-Aviv Jaffa - MTA/שנה 3/סמס קיץ/Java/דוגמאות הקורס/08. Java FX/08. Java FX",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.App.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Application.executor&quot;: &quot;Run&quot;,
+    &quot;Application.GUI.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/omesi/OneDrive - The Academic College of Tel-Aviv Jaffa - MTA/שנה 3/סמס קיץ/Java/דוגמאות הקורס/08. Java FX/08. Java FX&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\omesi\IdeaProjects\Sheet-Cell\ui\src\gui\components\center\cell" />
@@ -154,7 +166,8 @@
       <workItem from="1725901396247" duration="2028000" />
       <workItem from="1725978084738" duration="20193000" />
       <workItem from="1726039907013" duration="6732000" />
-      <workItem from="1726049351295" duration="5143000" />
+      <workItem from="1726049351295" duration="5187000" />
+      <workItem from="1726071987350" duration="2195000" />
     </task>
     <task id="LOCAL‎-00001" summary="Added basic entities">
       <option name="closed" value="true" />
@@ -460,7 +473,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1726047491343</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL‎-00039" summary="Implemented range capabilities">
+      <option name="closed" value="true" />
+      <created>1726054582818</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL‎-00039" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1726054582818</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -479,7 +500,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Created new branch" />
     <MESSAGE value="Created new branch, made a change from using a 2d array to a map" />
     <MESSAGE value="refactored app to work with map instead of 2d array" />
     <MESSAGE value="Minor change of printing in case of error" />
@@ -504,7 +524,8 @@
     <MESSAGE value="Added ranges in engine" />
     <MESSAGE value="Minor fix in range" />
     <MESSAGE value="Added left menu in app that includes range options" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added left menu in app that includes range options" />
+    <MESSAGE value="Implemented range capabilities" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented range capabilities" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

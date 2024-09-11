@@ -4,7 +4,6 @@ import entities.coordinates.Coordinates;
 import entities.coordinates.CoordinateFactory;
 import entities.sheet.CoreSheet;
 import exceptions.CircleReferenceException;
-import operations.core.ObjectWrapper;
 import operations.core.Operation;
 import utils.Utils;
 
@@ -87,7 +86,7 @@ public class CoreCell implements Cell {
         {
             sheet.incrementNumOfCellsChanged();
             if (operation!=null) {
-                this.effectiveValue = operation.execute().getObj();
+                this.effectiveValue = operation.execute();
             }
             version = sheet.getVersion();
             notifyAffectedCells();

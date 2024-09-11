@@ -1,16 +1,14 @@
 package operations.impl.range;
 
-import entities.cell.CoreCell;
-import entities.coordinates.CoordinateFactory;
 import entities.coordinates.Coordinates;
 import entities.range.Range;
 import entities.sheet.CoreSheet;
 import entities.types.undefined.UndefinedNumber;
-import exceptions.InvalidRangeException;
-import operations.core.ObjectWrapper;
 import operations.core.Operation;
 
 import java.util.List;
+
+import static operations.core.OperationFactory.*;
 
 public class SUMRangeOperation extends Operation implements RangeOperation {
     public SUMRangeOperation(CoreSheet sheet, Coordinates coordinates, List<Object> arguments) {
@@ -21,23 +19,22 @@ public class SUMRangeOperation extends Operation implements RangeOperation {
     }
 
     @Override
-    public ObjectWrapper execute() {
+    public Object execute() {
         Object resultObj;
-        List<ObjectWrapper> effectiveValues = convertToNonOperationObjects();
-        boolean isRefNested = isOneOfTheArgumentsAReference(effectiveValues);
+        List<Object> effectiveValues = convertToNonOperationObjects(arguments);
         Class<?>[] expectedClazzes ={String.class};
-        if (areArgumentsTypesValid(expectedClazzes,effectiveValues)) {
-            String rangeName = effectiveValues.getFirst().getObj().toString();
-            Range range = getRangeOrThrow(rangeName);
-            updateDependenciesOfRange(range);
-            List<Number> numberList = getRangesAsListOfNumbers(range);
+        if (areActualArgumentsMatchingToExpectedArguments(expectedClazzes,effectiveValues)) {
+            String rangeName = effectiveValues.getFirst().toString();
+            Range range = getRangeOrThrow(sheet,rangeName);
+            updateDependenciesOfRange(range,sheet,coordinates);
+            List<Number> numberList = getRangesAsListOfNumbers(range,sheet);
             resultObj = calculateSumOfRange(numberList);
         }
         else {
             resultObj = new UndefinedNumber();
         }
 
-        return new ObjectWrapper(resultObj, isRefNested);
+        return resultObj;
     }
 
     private Double calculateSumOfRange(List<Number> numberList) {

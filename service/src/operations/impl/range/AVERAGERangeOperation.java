@@ -5,10 +5,12 @@ import entities.range.Range;
 import entities.sheet.CoreSheet;
 import entities.types.undefined.UndefinedNumber;
 import exceptions.InvalidRangeException;
-import operations.core.ObjectWrapper;
 import operations.core.Operation;
+import operations.core.OperationFactory;
 
 import java.util.List;
+
+import static operations.core.OperationFactory.*;
 
 public class AVERAGERangeOperation extends Operation implements RangeOperation {
     public AVERAGERangeOperation(CoreSheet sheet, Coordinates coordinates, List<Object> arguments) {
@@ -19,23 +21,22 @@ public class AVERAGERangeOperation extends Operation implements RangeOperation {
     }
 
     @Override
-    public ObjectWrapper execute() {
+    public Object execute() {
         Object resultObj;
-        List<ObjectWrapper> effectiveValues = convertToNonOperationObjects();
-        boolean isRefNested = isOneOfTheArgumentsAReference(effectiveValues);
+        List<Object> effectiveValues = convertToNonOperationObjects(arguments);
         Class<?>[] expectedClazzes ={String.class};
-        if (areArgumentsTypesValid(expectedClazzes,effectiveValues)) {
-            String rangeName = effectiveValues.getFirst().getObj().toString();
-            Range range = getRangeOrThrow(rangeName);
-            updateDependenciesOfRange(range);
-            List<Number> numberList = getRangesAsListOfNumbers(range);
+        if (areActualArgumentsMatchingToExpectedArguments(expectedClazzes,effectiveValues)) {
+            String rangeName = effectiveValues.getFirst().toString();
+            Range range = OperationFactory.getRangeOrThrow(sheet, rangeName);
+            updateDependenciesOfRange(range,sheet,coordinates);
+            List<Number> numberList = getRangesAsListOfNumbers(range,sheet);
             resultObj = calculateAverageOfRangeOrThrowIfNoNumbers(numberList);
         }
         else {
             resultObj = new UndefinedNumber();
         }
 
-        return new ObjectWrapper(resultObj, isRefNested);
+        return resultObj;
     }
 
     private Double calculateAverageOfRangeOrThrowIfNoNumbers(List<Number> numberList) {

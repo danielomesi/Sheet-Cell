@@ -3,10 +3,12 @@ package operations.impl.math;
 import entities.coordinates.Coordinates;
 import entities.sheet.CoreSheet;
 import entities.types.undefined.UndefinedNumber;
-import operations.core.ObjectWrapper;
 import operations.core.Operation;
 
 import java.util.List;
+
+import static operations.core.OperationFactory.areActualArgumentsMatchingToExpectedArguments;
+import static operations.core.OperationFactory.convertToNonOperationObjects;
 
 public class DIVIDEOperation extends Operation {
     public DIVIDEOperation(CoreSheet sheet, Coordinates coordinates, List<Object> arguments) {
@@ -18,29 +20,25 @@ public class DIVIDEOperation extends Operation {
 
 
     @Override
-    public ObjectWrapper execute() {
+    public Object execute() {
         Object resultObj;
-        List<ObjectWrapper> effectiveValues = convertToNonOperationObjects();
-        boolean isRefNested = isOneOfTheArgumentsAReference(effectiveValues);
+        List<Object> effectiveValues = convertToNonOperationObjects(arguments);
         Class<?>[] expectedClazzes ={Number.class, Number.class};
-        if (areArgumentsTypesValid(expectedClazzes,effectiveValues)) {
-            List<Double> doubles = convertToDouble(effectiveValues);
-            double num1, num2, result;
-            num1 = doubles.get(0);
-            num2 = doubles.get(1);
+        if (areActualArgumentsMatchingToExpectedArguments(expectedClazzes,effectiveValues)) {
+            Double firstNumber = (Double) effectiveValues.get(0);
+            Double secondNumber = (Double) effectiveValues.get(1);
 
-            if (num2 == 0)
+            if (secondNumber == 0)
             {
-                return new ObjectWrapper(new UndefinedNumber(),isRefNested);
+                resultObj = new UndefinedNumber();
             }
             else {
-                result = num1/num2;
+                resultObj = firstNumber/secondNumber;
             }
-
-            return new ObjectWrapper(result,isRefNested);
         }
         else {
-            return new ObjectWrapper(new UndefinedNumber(),isRefNested);
+            resultObj = new UndefinedNumber();
         }
+        return resultObj;
     }
 }
