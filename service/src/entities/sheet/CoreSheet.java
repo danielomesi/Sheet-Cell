@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.io.*;
 import java.util.Map;
+import java.util.Set;
 
 public class CoreSheet implements Sheet {
     private final Map<Coordinates, CoreCell> cellsMap = new HashMap<>();
@@ -92,6 +93,7 @@ public class CoreSheet implements Sheet {
     public String getName() {return name;}
     public int getNumOfCellsChanged() {return numOfCellsChanged;}
     public Cell getCell(int row, int col) {return CoordinateFactory.getCellObjectFromIndices(this, row, col);}
+    public Set<String> getRangesNames() {return rangesMap.keySet();}
 
     public Map<Coordinates, CoreCell> getCoreCellsMap() {return cellsMap;}
     public Map<String,Range> getRangesMap() {return rangesMap;}

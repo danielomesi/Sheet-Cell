@@ -15,6 +15,10 @@
     -fx-background-color: lightgreen; /* Light green for cells affected by the selected one */
 }
 
+.range-cell {
+    -fx-background-color: indigo;
+}
+
 /* Hover effect for any cell */
 .cell-stackpane:hover {
     -fx-background-color: lightyellow; /* Change background on hover */

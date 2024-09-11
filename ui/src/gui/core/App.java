@@ -2,6 +2,7 @@ package gui.core;
 
 import gui.components.center.CenterController;
 import gui.components.header.HeaderController;
+import gui.components.left.LeftController;
 import gui.components.main.MainController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -52,17 +53,24 @@ public class App extends Application {
         ScrollPane centerPane = centerLoader.load();
         CenterController centerController = centerLoader.getController();
 
+        FXMLLoader leftLoader = new FXMLLoader(getClass().getResource("/gui/components/left/left.fxml"));
+        VBox vbox = leftLoader.load();
+        LeftController leftController = leftLoader.getController();
+
         // Make main controller know its sub controllers
         mainController.setHeaderController(headerController);
         mainController.setCenterController(centerController);
+        mainController.setLeftController(leftController);
 
         //Make sub controllers know the main controller
         headerController.setMainController(mainController);
         centerController.setMainController(mainController);
+        leftController.setMainController(mainController);
 
         // Add the headerPane to the top of the root layout
         BorderPane root = (BorderPane) mainController.getMainBorderPane();
         root.setTop(vboxHeader);
         root.setCenter(centerPane);
+        root.setLeft(vbox);
     }
 }

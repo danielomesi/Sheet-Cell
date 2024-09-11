@@ -11,6 +11,7 @@ import gui.components.center.CenterController;
 import gui.components.center.cell.CellController;
 import gui.components.center.cell.TableCellType;
 import gui.components.header.HeaderController;
+import gui.components.left.LeftController;
 import gui.core.DataModule;
 import gui.exceptions.UnsupportedFileFormat;
 import gui.utils.Utils;
@@ -43,12 +44,14 @@ public class MainController {
     //sub controllers
     private CenterController centerController;
     private HeaderController headerController;
+    private LeftController leftController;
 
     //getters
     public BorderPane getMainBorderPane() {return mainBorderPane;}
     public Engine getEngine() {return engine;}
     public Sheet getCurrentLoadedSheet() {return currentLoadedSheet;}
     public CenterController getCenterController() {return centerController;}
+    public LeftController getLeftController() {return leftController;}
     public BooleanProperty getIsSheetLoaded() {return isSheetLoaded;}
     public DataModule getDataModule() {return dataModule;}
 
@@ -56,7 +59,7 @@ public class MainController {
     public void setStage(Stage stage) {this.stage = stage;}
     public void setHeaderController(HeaderController headerController) {this.headerController = headerController;}
     public void setCenterController(CenterController centerController) {this.centerController = centerController;}
-
+    public void setLeftController(LeftController leftController) {this.leftController = leftController;}
 
     public void initialize() {
         engine = new EngineImpl();
@@ -83,9 +86,10 @@ public class MainController {
     public void toDoOnSuccessfulFileLoad() {
         currentLoadedSheet = engine.getSheet();
         Platform.runLater(() -> {
-            dataModule.buildModule(currentLoadedSheet.getNumOfRows(),currentLoadedSheet.getNumOfColumns());
+            dataModule.buildModule(currentLoadedSheet.getNumOfRows(),currentLoadedSheet.getNumOfColumns(),currentLoadedSheet.getRangesNames());
             centerController.buildMainCellsTableDynamically(currentLoadedSheet);
             headerController.updateMyControlsOnFileLoad();
+            leftController.updateMyControlsOnFileLoad();
             dataModule.updateModule(currentLoadedSheet);
             isSheetLoaded.setValue(true);
         } );

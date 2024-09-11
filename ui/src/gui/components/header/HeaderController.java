@@ -6,6 +6,7 @@ import entities.sheet.Sheet;
 import gui.components.center.CenterController;
 import gui.components.main.MainController;
 import gui.utils.Utils;
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
@@ -65,9 +66,11 @@ public class HeaderController {
         this.mainController = mainController;
         if (mainController != null) {
             CenterController centerController = mainController.getCenterController();
-            updateButton.disableProperty().bind(mainController.getIsSheetLoaded().not().or(centerController.isSelectedCellProperty().not()));
-            versionComboBox.disableProperty().bind(mainController.getIsSheetLoaded().not());
-            saveToFileButton.disableProperty().bind(mainController.getIsSheetLoaded().not());
+            BooleanProperty isSheetLoadedProperty = mainController.getIsSheetLoaded();
+            updateButton.disableProperty().bind(isSheetLoadedProperty.not().or(centerController.isSelectedCellProperty().not()));
+            versionComboBox.disableProperty().bind(isSheetLoadedProperty.not());
+            saveToFileButton.disableProperty().bind(isSheetLoadedProperty.not());
+            newValueTextField.disableProperty().bind(isSheetLoadedProperty.not());
         }
     }
 

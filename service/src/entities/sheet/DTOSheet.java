@@ -7,6 +7,7 @@ import entities.range.Range;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class DTOSheet implements Sheet {
     private Map<Coordinates,DTOCell> cellsMap;
@@ -36,6 +37,7 @@ public class DTOSheet implements Sheet {
     public int getNumOfColumns() {return this.numOfColumns;}
     public int getVersion() {return this.version;}
     public Range getRange(String name) {return rangesMap.get(name);}
+    public Set<String> getRangesNames() {return rangesMap.keySet();}
     public Layout getLayout() {return layout;}
     public String getName() {return name;}
     public int getNumOfCellsChanged() {return this.numOfCellsChanged;}

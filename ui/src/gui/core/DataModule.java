@@ -5,23 +5,24 @@ import entities.coordinates.Coordinates;
 import entities.sheet.Sheet;
 import gui.utils.Utils;
 import javafx.beans.property.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.ObservableSet;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class DataModule {
-    private Map<Coordinates, SimpleStringProperty> coordinates2EffectiveValues;
-    private SimpleIntegerProperty versionNumber;
-
-    public DataModule() {
-        coordinates2EffectiveValues = new HashMap<Coordinates, SimpleStringProperty>();
-        versionNumber = new SimpleIntegerProperty(0);
-    }
+    private final Map<Coordinates, SimpleStringProperty> coordinates2EffectiveValues = new HashMap<Coordinates, SimpleStringProperty>();
+    private final SimpleIntegerProperty versionNumber = new SimpleIntegerProperty(0);
+    private final SimpleSetProperty<String> rangesNames = new SimpleSetProperty<String>();
 
     public Map<Coordinates, SimpleStringProperty> getCoordinates2EffectiveValues() {return coordinates2EffectiveValues;}
     public SimpleIntegerProperty getVersionNumber() {return versionNumber;}
+    public SimpleSetProperty<String> getRangesNames() {return rangesNames;}
 
-    public void buildModule(int numOfRows, int numOfColumns) {
+    public void buildModule(int numOfRows, int numOfColumns, Set<String> rangesNames) {
         coordinates2EffectiveValues.clear();
         for (int i = 0; i < numOfRows; i++) {
             for (int j = 0; j < numOfColumns; j++) {
@@ -30,6 +31,8 @@ public class DataModule {
                 coordinates2EffectiveValues.put(coordinates,effectiveValue);
             }
         }
+        ObservableSet<String> observableRangesNames = FXCollections.observableSet(rangesNames);
+        this.rangesNames.set(observableRangesNames);
     }
 
     public void updateModule(Sheet sheet) {
@@ -44,5 +47,7 @@ public class DataModule {
             }
         }
         versionNumber.set(sheet.getVersion());
+        ObservableSet<String> observableRangesNames = FXCollections.observableSet(sheet.getRangesNames());
+        rangesNames.set(observableRangesNames);
     }
 }

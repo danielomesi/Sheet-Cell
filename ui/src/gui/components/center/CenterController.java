@@ -2,6 +2,7 @@ package gui.components.center;
 
 import entities.cell.Cell;
 import entities.coordinates.Coordinates;
+import entities.range.Range;
 import entities.sheet.Sheet;
 import gui.builder.DynamicSheetTable;
 import gui.components.center.cell.CellController;
@@ -12,7 +13,6 @@ import gui.builder.DynamicBuilder;
 import javafx.beans.property.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 
@@ -70,6 +70,7 @@ public class CenterController {
         CellController cellController = cellControllersMap.get(clickedCellCoordinates);
         cellController.replaceStyleClass("default-cell","selected-cell");
         if (cellController.getTableCellType() == TableCellType.DATA) {
+            updateRangeChoiceIfNeeded(clickedCellCoordinates);
             Cell clickedCell = mainController.getCurrentLoadedSheet().getCell(clickedCellCoordinates.getRow(), clickedCellCoordinates.getCol());
             if (clickedCell!= null) {
 
@@ -83,11 +84,33 @@ public class CenterController {
         }
     }
 
+    private void updateRangeChoiceIfNeeded(Coordinates clickedCellCoordinates) {
+        BooleanProperty isTopLeftSelected = mainController.getLeftController().getIsSelectingTopLeftCell();
+        BooleanProperty isTopBottomRightSelected = mainController.getLeftController().getIsSelectingBottomRightCell();
+        if (isTopLeftSelected.get()) {
+            mainController.getLeftController().updateTopLeftCellIDLabel(clickedCellCoordinates.getCellID());
+            isTopLeftSelected.set(false);
+        }
+        else if (isTopBottomRightSelected.get()) {
+            mainController.getLeftController().updateBottomRightCellIDLabel(clickedCellCoordinates.getCellID());
+            isTopBottomRightSelected.set(false);
+        }
+    }
+
+    public void highlightChosenRangeCells(Range range) {
+        resetStyles();
+        for(Coordinates coordinates : range.getCells()) {
+            CellController cellController = cellControllersMap.get(coordinates);
+            cellController.replaceStyleClass("default-cell","range-cell");
+        }
+    }
+
     private void resetStyles() {
         cellControllersMap.forEach((c, cellController) -> {
             cellController.removeStyleClass("selected-cell");
             cellController.removeStyleClass("affecting-cell");
             cellController.removeStyleClass("affected-cell");
+            cellController.removeStyleClass("range-cell");
             cellController.addStyleClass("default-cell");
         });
     }
