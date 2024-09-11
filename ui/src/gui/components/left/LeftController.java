@@ -32,9 +32,7 @@ public class LeftController {
     @FXML
     private TextField rangeNameTextField;
     @FXML
-    private Button selectTopLeftCellButton;
-    @FXML
-    private Button selectBottomRightCellButton;
+    private Button selectCellsButton;
     @FXML
     private Label selectedBottomRightCellLabel;
     @FXML
@@ -42,11 +40,11 @@ public class LeftController {
     @FXML
     private Button addRangeButton;
 
-    private final BooleanProperty isSelectingTopLeftCell = new SimpleBooleanProperty(false);
-    private final BooleanProperty isSelectingBottomRightCell = new SimpleBooleanProperty(false); ;
+    private final BooleanProperty isSelectingFirstCell = new SimpleBooleanProperty(false);
+    private final BooleanProperty isSelectingSecondCell = new SimpleBooleanProperty(false); ;
 
-    public BooleanProperty getIsSelectingTopLeftCell() {return isSelectingTopLeftCell;}
-    public BooleanProperty getIsSelectingBottomRightCell() {return isSelectingBottomRightCell;}
+    public BooleanProperty getIsSelectingFirstCell() {return isSelectingFirstCell;}
+    public BooleanProperty getIsSelectingSecondCell() {return isSelectingSecondCell;}
 
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
@@ -54,11 +52,12 @@ public class LeftController {
             BooleanProperty isSheetLoadedProperty = mainController.getIsSheetLoaded();
             rangeComboBox.disableProperty().bind(isSheetLoadedProperty.not());
             removeRangeButton.disableProperty().bind(isSheetLoadedProperty.not());
-            selectTopLeftCellButton.disableProperty().bind(isSheetLoadedProperty.not().or(isSelectingTopLeftCell));
-            selectBottomRightCellButton.disableProperty().bind(isSheetLoadedProperty.not().or(isSelectingBottomRightCell));
+            selectCellsButton.disableProperty().bind(isSheetLoadedProperty.not().or(isSelectingFirstCell).
+                    or(isSelectingSecondCell));
             addRangeButton.disableProperty().bind(isSheetLoadedProperty.not().or
                     (selectedTopLeftCellLabel.textProperty().isEmpty()).or
-                    (selectedBottomRightCellLabel.textProperty().isEmpty()));
+                    (selectedBottomRightCellLabel.textProperty().isEmpty()).or
+                    (rangeNameTextField.textProperty().isEmpty()));
         }
     }
 
@@ -81,11 +80,9 @@ public class LeftController {
         rangesNamesSetProperty.addListener((observable, oldValue, newValue) -> updateComboBoxItems.run());
     }
 
-    public void updateTopLeftCellIDLabel(String text) {
-        selectedTopLeftCellLabel.setText(text);
-    }
-    public void updateBottomRightCellIDLabel(String text) {
-        selectedBottomRightCellLabel.setText(text);
+    public void updateSelectedCellSIDLabel(String topLeftText, String bottomRightText) {
+        selectedTopLeftCellLabel.setText(topLeftText);
+        selectedBottomRightCellLabel.setText(bottomRightText);
     }
 
 
@@ -108,14 +105,9 @@ public class LeftController {
     }
 
     @FXML
-    void handleSelectBottomRightCellButtonClick(ActionEvent event) {
-        isSelectingBottomRightCell.set(true);
-
-    }
-
-    @FXML
-    void handleSelectTopLeftCellButtonClick(ActionEvent event) {
-        isSelectingTopLeftCell.set(true);
+    void handleSelectCellsButtonClick(ActionEvent event) {
+        isSelectingFirstCell.set(true);
+        isSelectingSecondCell.set(true);
     }
 
     @FXML
@@ -128,6 +120,11 @@ public class LeftController {
         Thread thread = new Thread(task);
         thread.setDaemon(true);
         thread.start();
+    }
+
+    public Range getSelectedRange() {
+        return new Range(null, mainController.getCurrentLoadedSheet(),
+                selectedTopLeftCellLabel.getText(), selectedBottomRightCellLabel.getText());
     }
 
 }

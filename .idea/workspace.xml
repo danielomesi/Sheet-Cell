@@ -10,32 +10,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Implemented range capabilities">
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Changed mechanism of Operations">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/cell/CoreCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/cell/CoreCell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/core/ObjectWrapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/core/Operation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/core/Operation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/core/OperationFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/core/OperationFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/logical/ANDOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/logical/ANDOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/logical/BIGGEROperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/logical/BIGGEROperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/logical/EQUALOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/logical/EQUALOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/logical/LESSOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/logical/LESSOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/logical/NOTOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/logical/NOTOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/logical/OROperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/logical/OROperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/math/ABSOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/math/ABSOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/math/DIVIDEOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/math/DIVIDEOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/math/MINUSOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/math/MINUSOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/math/MODOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/math/MODOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/math/PERCENTOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/math/PERCENTOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/math/PLUSOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/math/PLUSOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/math/POWOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/math/POWOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/math/TIMESOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/math/TIMESOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/range/AVERAGERangeOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/range/AVERAGERangeOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/range/SUMRangeOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/range/SUMRangeOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/string/ConcatOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/string/ConcatOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/string/SUBOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/string/SUBOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/unique/IFOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/unique/IFOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/unique/REFOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/unique/REFOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/builder/DynamicBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/builder/DynamicBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/center/CenterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/center/CenterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/header/HeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/header/HeaderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/left/LeftController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/left/LeftController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/left/left.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/left/left.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/main/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/utils/Utils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,7 +151,7 @@
       <workItem from="1725978084738" duration="20193000" />
       <workItem from="1726039907013" duration="6732000" />
       <workItem from="1726049351295" duration="5187000" />
-      <workItem from="1726071987350" duration="2195000" />
+      <workItem from="1726071987350" duration="6132000" />
     </task>
     <task id="LOCAL‎-00001" summary="Added basic entities">
       <option name="closed" value="true" />
@@ -481,7 +465,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1726054582818</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL‎-00040" summary="Changed mechanism of Operations">
+      <option name="closed" value="true" />
+      <created>1726074239484</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL‎-00040" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1726074239484</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -500,7 +492,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Created new branch, made a change from using a 2d array to a map" />
     <MESSAGE value="refactored app to work with map instead of 2d array" />
     <MESSAGE value="Minor change of printing in case of error" />
     <MESSAGE value="Added name" />
@@ -525,18 +516,10 @@
     <MESSAGE value="Minor fix in range" />
     <MESSAGE value="Added left menu in app that includes range options" />
     <MESSAGE value="Implemented range capabilities" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented range capabilities" />
+    <MESSAGE value="Changed mechanism of Operations" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed mechanism of Operations" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java</url>
-          <line>115</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="service.operations.PLUSOperation" memberName="sheet" />

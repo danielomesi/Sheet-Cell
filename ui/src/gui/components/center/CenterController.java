@@ -10,6 +10,7 @@ import gui.components.center.cell.TableCellType;
 import gui.components.main.MainController;
 import gui.core.DataModule;
 import gui.builder.DynamicBuilder;
+import gui.utils.Utils;
 import javafx.beans.property.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
@@ -23,6 +24,7 @@ public class CenterController {
 
     private BooleanProperty isSelectedCell;
     private Coordinates selectedCell;
+    private Coordinates previousSelectedCell;
 
     @FXML
     private ScrollPane centerScrollPane;
@@ -65,10 +67,12 @@ public class CenterController {
 
     private void handleCellClick(Coordinates clickedCellCoordinates) {
         isSelectedCell.setValue(true);
+        previousSelectedCell = selectedCell;
         selectedCell = clickedCellCoordinates;
         resetStyles();
         CellController cellController = cellControllersMap.get(clickedCellCoordinates);
         cellController.replaceStyleClass("default-cell","selected-cell");
+        mainController.getHeaderController().populateHeaderControlsOnCellChoose(clickedCellCoordinates);
         if (cellController.getTableCellType() == TableCellType.DATA && !isRangeChoice(clickedCellCoordinates)) {
             Cell clickedCell = mainController.getCurrentLoadedSheet().getCell(clickedCellCoordinates.getRow(), clickedCellCoordinates.getCol());
             if (clickedCell!= null) {
@@ -78,22 +82,30 @@ public class CenterController {
 
                 clickedCell.getCellsAffectedByMe().forEach(affectedCell ->
                         cellControllersMap.get(affectedCell).replaceStyleClass("default-cell","affected-cell"));
-                mainController.populateChosenCellDataInHeader(clickedCell);
             }
         }
     }
 
     private boolean isRangeChoice(Coordinates clickedCellCoordinates) {
-        BooleanProperty isTopLeftSelected = mainController.getLeftController().getIsSelectingTopLeftCell();
-        BooleanProperty isTopBottomRightSelected = mainController.getLeftController().getIsSelectingBottomRightCell();
+        BooleanProperty isTopLeftSelected = mainController.getLeftController().getIsSelectingFirstCell();
+        BooleanProperty isTopBottomRightSelected = mainController.getLeftController().getIsSelectingSecondCell();
+        String firstCellID, secondCellID;
         boolean res = false;
         if (isTopLeftSelected.get()) {
-            mainController.getLeftController().updateTopLeftCellIDLabel(clickedCellCoordinates.getCellID());
             isTopLeftSelected.set(false);
             res = true;
         }
         else if (isTopBottomRightSelected.get()) {
-            mainController.getLeftController().updateBottomRightCellIDLabel(clickedCellCoordinates.getCellID());
+            if (Utils.compareCoordinates(previousSelectedCell, clickedCellCoordinates)) {
+                firstCellID = previousSelectedCell.getCellID();
+                secondCellID = clickedCellCoordinates.getCellID();
+            }
+            else {
+                firstCellID = clickedCellCoordinates.getCellID();
+                secondCellID = previousSelectedCell.getCellID();
+            }
+            mainController.getLeftController().updateSelectedCellSIDLabel(firstCellID, secondCellID);
+            highlightChosenRangeCells(mainController.getLeftController().getSelectedRange());
             isTopBottomRightSelected.set(false);
             res = true;
         }

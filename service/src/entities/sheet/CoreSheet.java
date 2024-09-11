@@ -102,12 +102,12 @@ public class CoreSheet implements Sheet {
     public void incrementNumOfCellsChanged() {numOfCellsChanged++;}
     public void initializeNumOfCellsChanged() {numOfCellsChanged = 0;}
 
-    public void addRange(String name, String fromCellID, String toCellID) {
-        if (rangesMap.containsKey(name)) {
-            throw new InvalidRangeException("Range already exists in core sheet", this.name);
+    public void addRange(String rangeName, String fromCellID, String toCellID) {
+        if (rangesMap.containsKey(rangeName)) {
+            throw new InvalidRangeException("Range already exists in core sheet", rangeName);
         }
         else {
-            rangesMap.put(name,new Range(name,this,fromCellID,toCellID));
+            rangesMap.put(rangeName,new Range(rangeName,this,fromCellID,toCellID));
         }
     }
 

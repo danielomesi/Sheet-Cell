@@ -1,5 +1,6 @@
 package gui.utils;
 
+import entities.coordinates.Coordinates;
 import entities.types.undefined.Undefined;
 import entities.types.undefined.UndefinedBoolean;
 import entities.types.undefined.UndefinedNumber;
@@ -50,5 +51,15 @@ public class Utils {
             sb.append(e.getMessage());
         }
         return sb.toString();
+    }
+
+    public static boolean compareCoordinates(Coordinates first, Coordinates second) {
+        if (first.getRow() < second.getRow()) {
+            return true;
+        } else if (first.getRow() == second.getRow()) {
+            return first.getCol() <= second.getCol();
+        }
+
+        return false;
     }
 }

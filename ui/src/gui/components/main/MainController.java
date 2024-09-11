@@ -96,10 +96,6 @@ public class MainController {
         } );
     }
 
-    public void populateChosenCellDataInHeader(Cell chosenCell) {
-        headerController.populateHeaderControlsOnCellChoose(chosenCell);
-    }
-
     public void calculateCellUpdate(Coordinates coordinates, String originalExpression) {
         engine.updateSpecificCell(coordinates.getCellID(), originalExpression);
         currentLoadedSheet = engine.getSheet();

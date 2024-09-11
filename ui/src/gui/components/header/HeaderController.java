@@ -140,11 +140,14 @@ public class HeaderController {
         simpleIntegerProperty.addListener((observable, oldValue, newValue) -> updateComboBoxItems.run());
     }
 
-    public void populateHeaderControlsOnCellChoose(Cell chosenCell) {
-        String cellID = chosenCell.getCoordinates().getCellID();
+    public void populateHeaderControlsOnCellChoose(Coordinates cellCoordinates) {
+        String cellID = cellCoordinates.getCellID();
         currentCellIDLabel.setText(cellID);
-        originalValueLabel.setText(chosenCell.getOriginalExpression());
-        lastUpdatedVersionLabel.setText(String.valueOf(chosenCell.getVersion()));
+        Cell cell = mainController.getCurrentLoadedSheet().getCell(cellCoordinates.getRow(), cellCoordinates.getCol());
+        String originalExpression = cell != null ? cell.getOriginalExpression() : "[EMPTY-CELL]";
+        int lastUpdatedVersion = cell != null ? cell.getVersion() : 0;
+        originalValueLabel.setText(originalExpression);
+        lastUpdatedVersionLabel.setText(String.valueOf(lastUpdatedVersion));
     }
 
     public Task<Void> getTaskFromRunnable(Runnable runnable, boolean isDelayed) {
@@ -174,6 +177,10 @@ public class HeaderController {
             taskProgressBar.progressProperty().bind(task.progressProperty());
         }
         return task;
+    }
+
+    public void showErrorMessage(String message) {
+        errorMessageLabel.setText(message);
     }
 
 }

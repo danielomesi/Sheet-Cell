@@ -21,6 +21,13 @@ public class DynamicBuilder {
         int numRows = sheet.getNumOfRows();
         int numCols = sheet.getNumOfColumns();
 
+        //add the name of the sheet as the top left cell
+        CellController sheetNameCellController = createCellController();
+        sheetNameCellController.setCellLabel(sheet.getName());
+        sheetNameCellController.setTableCellType(TableCellType.HEADER);
+        StackPane topLeftCellPane = (StackPane) sheetNameCellController.getCellStackPane();
+        gridPane.add(topLeftCellPane, 0, 0);
+
         for (int col = 1; col <= numCols; col++) {
             String charRepresentingColumn = String.valueOf((char) ('A' + col - 1));
             CellController columnHeaderCellController = createCellController();
