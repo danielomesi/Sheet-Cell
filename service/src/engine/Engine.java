@@ -25,4 +25,7 @@ public interface Engine {
 
     public void loadStateFromFile(String fullFilePath);
 
+    public void addRange(String rangeName, String fromCellID, String toCellID);
+    public void deleteRange(String rangeName);
+
 }

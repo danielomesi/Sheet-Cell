@@ -6,10 +6,11 @@ import entities.cell.CoreCell;
 import entities.coordinates.CoordinateFactory;
 import entities.range.Range;
 import entities.stl.STLCell;
-import entities.stl.STLRange;
 import entities.stl.STLSheet;
 import exceptions.CloneFailureException;
 import exceptions.InvalidRangeException;
+import operations.core.Operation;
+import operations.impl.range.RangeOperation;
 import utils.TopologicalSorter;
 import utils.FunctionParser;
 import utils.Utils;
@@ -100,6 +101,47 @@ public class CoreSheet implements Sheet {
     public void incrementVersion() {version++;}
     public void incrementNumOfCellsChanged() {numOfCellsChanged++;}
     public void initializeNumOfCellsChanged() {numOfCellsChanged = 0;}
+
+    public void addRange(String name, String fromCellID, String toCellID) {
+        if (rangesMap.containsKey(name)) {
+            throw new InvalidRangeException("Range already exists in core sheet", this.name);
+        }
+        else {
+            rangesMap.put(name,new Range(name,this,fromCellID,toCellID));
+        }
+    }
+
+    public void deleteRange(String name) {
+        if (rangesMap.containsKey(name)) {
+            validateRangeNotBeingUsedInSheetOrThrow(name);
+            rangesMap.remove(name);
+            }
+
+    }
+
+    private void validateRangeNotBeingUsedInSheetOrThrow(String rangeName) {
+        for (CoreCell coreCell : cellsMap.values()) {
+            Operation operation = coreCell.getOperation();
+            if (isRangeOperationNestingInside(operation, rangeName)) {
+                throw new InvalidRangeException("Cannot delete a range that is used in the sheet",
+                        coreCell.getCoordinates().getCellID());
+            }
+        }
+    }
+
+    private boolean isRangeOperationNestingInside(Object argument, String rangeName) {
+        if (argument instanceof RangeOperation) {
+            String name = ((Operation) argument).getArguments().getFirst().toString();
+            if (rangeName.equals(name)) {
+                return true;
+            }
+        }
+        else if (argument instanceof Operation operation) {
+            List<Object> arguments = operation.getArguments();
+            return arguments.stream().anyMatch(arg -> isRangeOperationNestingInside(arg,rangeName));
+        }
+        return false;
+    }
 
 
 

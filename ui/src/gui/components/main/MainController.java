@@ -50,6 +50,7 @@ public class MainController {
     public BorderPane getMainBorderPane() {return mainBorderPane;}
     public Engine getEngine() {return engine;}
     public Sheet getCurrentLoadedSheet() {return currentLoadedSheet;}
+    public HeaderController getHeaderController() {return headerController;}
     public CenterController getCenterController() {return centerController;}
     public LeftController getLeftController() {return leftController;}
     public BooleanProperty getIsSheetLoaded() {return isSheetLoaded;}
@@ -122,6 +123,18 @@ public class MainController {
         versionWindow.setOnCloseRequest(event -> {headerController.resetVersionComboBoxChoice();});
         versionWindow.setScene(newScene);
         versionWindow.show();
+    }
+
+    public void addRange(String rangeName,String fromCellID,String toCellID) {
+        engine.addRange(rangeName, fromCellID, toCellID);
+        currentLoadedSheet = engine.getSheet();
+        Platform.runLater(() -> dataModule.updateModule(currentLoadedSheet));
+    }
+
+    public void deleteRange(String rangeName) {
+        engine.deleteRange(rangeName);
+        currentLoadedSheet = engine.getSheet();
+        Platform.runLater(() -> dataModule.updateModule(currentLoadedSheet));
     }
 
 }

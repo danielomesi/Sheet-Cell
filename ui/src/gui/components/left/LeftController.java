@@ -1,15 +1,13 @@
 package gui.components.left;
 
-import com.sun.tools.javac.Main;
 import entities.range.Range;
 import gui.components.main.MainController;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SetProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableSet;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -58,6 +56,9 @@ public class LeftController {
             removeRangeButton.disableProperty().bind(isSheetLoadedProperty.not());
             selectTopLeftCellButton.disableProperty().bind(isSheetLoadedProperty.not().or(isSelectingTopLeftCell));
             selectBottomRightCellButton.disableProperty().bind(isSheetLoadedProperty.not().or(isSelectingBottomRightCell));
+            addRangeButton.disableProperty().bind(isSheetLoadedProperty.not().or
+                    (selectedTopLeftCellLabel.textProperty().isEmpty()).or
+                    (selectedBottomRightCellLabel.textProperty().isEmpty()));
         }
     }
 
@@ -98,7 +99,12 @@ public class LeftController {
 
     @FXML
     void handleOnRemoveRangeButtonClick(ActionEvent event) {
-
+        String rangeToRemove = rangeComboBox.getSelectionModel().getSelectedItem().toString();
+        Runnable runnable = () -> mainController.deleteRange(rangeToRemove);
+        Task<Void> task = mainController.getHeaderController().getTaskFromRunnable(runnable,false);
+        Thread thread = new Thread(task);
+        thread.setDaemon(true);
+        thread.start();
     }
 
     @FXML
@@ -114,7 +120,14 @@ public class LeftController {
 
     @FXML
     void addRangeButtonOnClick(ActionEvent event) {
-
+        String rangeName = rangeNameTextField.getText();
+        String fromCellID = selectedTopLeftCellLabel.getText();
+        String toCellID = selectedBottomRightCellLabel.getText();
+        Runnable runnable = () -> mainController.addRange(rangeName, fromCellID, toCellID);
+        Task<Void> task = mainController.getHeaderController().getTaskFromRunnable(runnable,false);
+        Thread thread = new Thread(task);
+        thread.setDaemon(true);
+        thread.start();
     }
 
 }

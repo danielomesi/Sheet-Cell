@@ -77,7 +77,11 @@ public class HeaderController {
     @FXML
     void handleUpdateOnClick(ActionEvent event) {
         Coordinates coordinates = mainController.getCenterController().getSelectedCell();
-        Task<Void> task = getTaskFromRunnable(() -> mainController.calculateCellUpdate(coordinates,newValueTextField.getText()), false);
+        Runnable runnable = () -> {
+            mainController.calculateCellUpdate(coordinates,newValueTextField.getText());
+            newValueTextField.clear();
+        };
+        Task<Void> task = getTaskFromRunnable(runnable, false);
         Thread thread = new Thread(task);
         thread.setDaemon(true);
         thread.start();
@@ -143,7 +147,7 @@ public class HeaderController {
         lastUpdatedVersionLabel.setText(String.valueOf(chosenCell.getVersion()));
     }
 
-    private Task<Void> getTaskFromRunnable(Runnable runnable, boolean isDelayed) {
+    public Task<Void> getTaskFromRunnable(Runnable runnable, boolean isDelayed) {
         Task<Void> task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {

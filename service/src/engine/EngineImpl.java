@@ -67,6 +67,16 @@ public class EngineImpl implements Engine {
     }
 
     @Override
+    public void addRange(String rangeName, String fromCellID, String toCellID) {
+        coreSheets.getLast().addRange(rangeName, fromCellID, toCellID);
+    }
+
+    @Override
+    public void deleteRange(String rangeName) {
+        coreSheets.getLast().deleteRange(rangeName);
+    }
+
+    @Override
     public void loadSheetFromXMLFile(String fullFilePath) {
         STLSheet stlSheet;
         fullFilePath = Utils.trimQuotes(fullFilePath);

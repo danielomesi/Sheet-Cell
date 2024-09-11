@@ -1,5 +1,6 @@
 package entities.range;
 
+import entities.coordinates.CoordinateFactory;
 import entities.coordinates.Coordinates;
 import entities.sheet.Sheet;
 import entities.stl.STLRange;
@@ -23,9 +24,11 @@ public class Range implements Serializable {
     }
 
     public Range(STLRange stlRange, Sheet sheet) {
-        this.name = stlRange.getName();
-        String fromCellID = stlRange.getSTLBoundaries().getFrom();
-        String toCellID = stlRange.getSTLBoundaries().getTo();
+        this(stlRange.getSTLBoundaries().getFrom(),stlRange.getSTLBoundaries().getTo(),sheet);
+    }
+
+    public Range(String fromCellID, String toCellID, Sheet sheet) {
+        this.name = fromCellID;
         setRangeCells(fromCellID,toCellID,sheet);
     }
 

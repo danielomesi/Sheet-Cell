@@ -10,19 +10,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Minor fix in range">
-      <change afterPath="$PROJECT_DIR$/ui/src/gui/components/left/LeftController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui/src/gui/components/left/left.fxml" afterDir="false" />
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added left menu in app that includes range options">
+      <change afterPath="$PROJECT_DIR$/service/src/operations/impl/range/RangeOperation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/Engine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/range/Range.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/range/Range.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/sheet/DTOSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/sheet/DTOSheet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/sheet/Sheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/sheet/Sheet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/range/AVERAGERangeOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/range/AVERAGERangeOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/range/SUMRangeOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/range/SUMRangeOperation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/gui/components/center/CenterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/center/CenterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/center/cell/cellStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/center/cell/cellStyle.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/gui/components/header/HeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/header/HeaderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/left/LeftController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/left/LeftController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/gui/components/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/main/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/core/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/core/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/core/DataModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/core/DataModule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/exceptions/GUIException.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/exceptions/GUIException.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,9 +33,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Enum" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -68,29 +69,29 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Application.App.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Application.executor&quot;: &quot;Run&quot;,
-    &quot;Application.GUI.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/omesi/OneDrive - The Academic College of Tel-Aviv Jaffa - MTA/שנה 3/סמס קיץ/Java/דוגמאות הקורס/08. Java FX/08. Java FX&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.App.executor": "Run",
+    "Application.Application.executor": "Run",
+    "Application.GUI.executor": "Run",
+    "Application.Unnamed.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/omesi/OneDrive - The Academic College of Tel-Aviv Jaffa - MTA/שנה 3/סמס קיץ/Java/דוגמאות הקורס/08. Java FX/08. Java FX",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\omesi\IdeaProjects\Sheet-Cell\ui\src\gui\components\center\cell" />
@@ -152,7 +153,8 @@
       <workItem from="1725879777150" duration="11182000" />
       <workItem from="1725901396247" duration="2028000" />
       <workItem from="1725978084738" duration="20193000" />
-      <workItem from="1726039907013" duration="6511000" />
+      <workItem from="1726039907013" duration="6732000" />
+      <workItem from="1726049351295" duration="5143000" />
     </task>
     <task id="LOCAL‎-00001" summary="Added basic entities">
       <option name="closed" value="true" />
@@ -450,7 +452,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1726000548160</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL‎-00038" summary="Added left menu in app that includes range options">
+      <option name="closed" value="true" />
+      <created>1726047491343</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL‎-00038" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1726047491343</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -469,7 +479,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Fixed minor bug in SUBOperation" />
     <MESSAGE value="Created new branch" />
     <MESSAGE value="Created new branch, made a change from using a 2d array to a map" />
     <MESSAGE value="refactored app to work with map instead of 2d array" />
@@ -494,15 +503,16 @@
     <MESSAGE value="Changed dynamic sheet building structure, now its modular" />
     <MESSAGE value="Added ranges in engine" />
     <MESSAGE value="Minor fix in range" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor fix in range" />
+    <MESSAGE value="Added left menu in app that includes range options" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added left menu in app that includes range options" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/service/src/operations/impl/range/AVERAGERangeOperation.java</url>
-          <line>30</line>
-          <option name="timeStamp" value="16" />
+          <url>file://$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java</url>
+          <line>115</line>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

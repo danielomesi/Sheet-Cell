@@ -10,7 +10,7 @@ import operations.core.Operation;
 
 import java.util.List;
 
-public class AVERAGERangeOperation extends Operation {
+public class AVERAGERangeOperation extends Operation implements RangeOperation {
     public AVERAGERangeOperation(CoreSheet sheet, Coordinates coordinates, List<Object> arguments) {
         super.sheet = sheet;
         this.coordinates = coordinates;

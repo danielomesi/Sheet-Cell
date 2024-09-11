@@ -25,7 +25,7 @@ public abstract class GUIException extends RuntimeException {
 
         Optional<String> optionalInput = Optional.ofNullable(input);
 
-        optionalInput.ifPresent(inp -> sb.append("Relevant input: ").append(inp).append("\n"));
+        optionalInput.ifPresent(inp -> sb.append("Relevant Data: ").append(inp).append("\n"));
 
         return sb.toString();
     }

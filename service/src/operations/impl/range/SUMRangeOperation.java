@@ -12,7 +12,7 @@ import operations.core.Operation;
 
 import java.util.List;
 
-public class SUMRangeOperation extends Operation {
+public class SUMRangeOperation extends Operation implements RangeOperation {
     public SUMRangeOperation(CoreSheet sheet, Coordinates coordinates, List<Object> arguments) {
         super.sheet = sheet;
         this.coordinates = coordinates;

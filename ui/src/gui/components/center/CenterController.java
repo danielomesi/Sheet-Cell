@@ -69,8 +69,7 @@ public class CenterController {
         resetStyles();
         CellController cellController = cellControllersMap.get(clickedCellCoordinates);
         cellController.replaceStyleClass("default-cell","selected-cell");
-        if (cellController.getTableCellType() == TableCellType.DATA) {
-            updateRangeChoiceIfNeeded(clickedCellCoordinates);
+        if (cellController.getTableCellType() == TableCellType.DATA && !isRangeChoice(clickedCellCoordinates)) {
             Cell clickedCell = mainController.getCurrentLoadedSheet().getCell(clickedCellCoordinates.getRow(), clickedCellCoordinates.getCol());
             if (clickedCell!= null) {
 
@@ -84,17 +83,21 @@ public class CenterController {
         }
     }
 
-    private void updateRangeChoiceIfNeeded(Coordinates clickedCellCoordinates) {
+    private boolean isRangeChoice(Coordinates clickedCellCoordinates) {
         BooleanProperty isTopLeftSelected = mainController.getLeftController().getIsSelectingTopLeftCell();
         BooleanProperty isTopBottomRightSelected = mainController.getLeftController().getIsSelectingBottomRightCell();
+        boolean res = false;
         if (isTopLeftSelected.get()) {
             mainController.getLeftController().updateTopLeftCellIDLabel(clickedCellCoordinates.getCellID());
             isTopLeftSelected.set(false);
+            res = true;
         }
         else if (isTopBottomRightSelected.get()) {
             mainController.getLeftController().updateBottomRightCellIDLabel(clickedCellCoordinates.getCellID());
             isTopBottomRightSelected.set(false);
+            res = true;
         }
+        return res;
     }
 
     public void highlightChosenRangeCells(Range range) {
