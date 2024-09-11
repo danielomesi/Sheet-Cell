@@ -87,26 +87,26 @@ public class CenterController {
     }
 
     private boolean isRangeChoice(Coordinates clickedCellCoordinates) {
-        BooleanProperty isTopLeftSelected = mainController.getLeftController().getIsSelectingFirstCell();
-        BooleanProperty isTopBottomRightSelected = mainController.getLeftController().getIsSelectingSecondCell();
-        String firstCellID, secondCellID;
+        BooleanProperty isFirstCellSelected = mainController.getLeftController().getIsSelectingFirstCell();
+        BooleanProperty isSecondCellSelected = mainController.getLeftController().getIsSelectingSecondCell();
+        String topLeftCellID, bottomRightCellID;
         boolean res = false;
-        if (isTopLeftSelected.get()) {
-            isTopLeftSelected.set(false);
+        if (isFirstCellSelected.get()) {
+            isFirstCellSelected.set(false);
             res = true;
         }
-        else if (isTopBottomRightSelected.get()) {
+        else if (isSecondCellSelected.get()) {
             if (Utils.compareCoordinates(previousSelectedCell, clickedCellCoordinates)) {
-                firstCellID = previousSelectedCell.getCellID();
-                secondCellID = clickedCellCoordinates.getCellID();
+                topLeftCellID = previousSelectedCell.getCellID();
+                bottomRightCellID = clickedCellCoordinates.getCellID();
             }
             else {
-                firstCellID = clickedCellCoordinates.getCellID();
-                secondCellID = previousSelectedCell.getCellID();
+                topLeftCellID = clickedCellCoordinates.getCellID();
+                bottomRightCellID = previousSelectedCell.getCellID();
             }
-            mainController.getLeftController().updateSelectedCellSIDLabel(firstCellID, secondCellID);
+            mainController.getLeftController().updateSelectedCellSIDLabel(topLeftCellID, bottomRightCellID);
             highlightChosenRangeCells(mainController.getLeftController().getSelectedRange());
-            isTopBottomRightSelected.set(false);
+            isSecondCellSelected.set(false);
             res = true;
         }
         return res;

@@ -124,7 +124,7 @@ public class CoreSheet implements Sheet {
             Operation operation = coreCell.getOperation();
             if (isRangeOperationNestingInside(operation, rangeName)) {
                 throw new InvalidRangeException("Cannot delete a range that is used in the sheet",
-                        coreCell.getCoordinates().getCellID());
+                        coreCell.getCoordinates(),rangeName);
             }
         }
     }
