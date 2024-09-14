@@ -26,7 +26,7 @@ public class LeftController {
     @FXML
     private VBox leftVBox;
     @FXML
-    private ComboBox<?> rangeComboBox;
+    private ComboBox<String> rangeComboBox;
     @FXML
     private Button removeRangeButton;
     @FXML
@@ -51,6 +51,7 @@ public class LeftController {
         if (mainController != null) {
             BooleanProperty isSheetLoadedProperty = mainController.getIsSheetLoaded();
             rangeComboBox.disableProperty().bind(isSheetLoadedProperty.not());
+            rangeNameTextField.disableProperty().bind(isSheetLoadedProperty.not());
             removeRangeButton.disableProperty().bind(isSheetLoadedProperty.not());
             selectCellsButton.disableProperty().bind(isSheetLoadedProperty.not().or(isSelectingFirstCell).
                     or(isSelectingSecondCell));
@@ -62,19 +63,17 @@ public class LeftController {
     }
 
     public void updateMyControlsOnFileLoad() {
-        ComboBox<String> comboBox = (ComboBox<String>) rangeComboBox;
-
         SetProperty<String> rangesNamesSetProperty = mainController.getDataModule().getRangesNames();
 
         Runnable updateComboBoxItems = () -> {
             Set<String> names = rangesNamesSetProperty.get();
-            EventHandler<ActionEvent> originalOnAction = comboBox.getOnAction();
-            comboBox.setOnAction(null);
+            EventHandler<ActionEvent> originalOnAction = rangeComboBox.getOnAction();
+            rangeComboBox.setOnAction(null);
             ObservableList<String> observableList = FXCollections.observableArrayList(names);
-            comboBox.setItems(observableList);
+            rangeComboBox.setItems(observableList);
             //unfortunately, the "setItems" method invokes the on action method of the version combo box,
             //so the current solution is to nullify the on action before calling "setItems" and then returning its original value
-            comboBox.setOnAction(originalOnAction);
+            rangeComboBox.setOnAction(originalOnAction);
         };
 
         rangesNamesSetProperty.addListener((observable, oldValue, newValue) -> updateComboBoxItems.run());

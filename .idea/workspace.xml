@@ -10,13 +10,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Minor fix">
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Changed styling mechansim">
+      <change afterPath="$PROJECT_DIR$/ui/src/gui/components/right/RightController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/src/gui/components/right/right.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/basic.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/chat.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/error-2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/error-4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/insurance.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/gui/builder/DynamicBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/builder/DynamicBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/gui/builder/DynamicSheetTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/builder/DynamicSheetTable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/gui/components/center/CenterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/center/CenterController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/gui/components/center/cell/CellController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/center/cell/CellController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/header/HeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/header/HeaderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/center/cell/TableCellType.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/center/cell/TableCellType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/center/cell/cell.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/center/cell/cell.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/left/LeftController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/left/LeftController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/main/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/core/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/core/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/core/DataModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/core/DataModule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/utils/Utils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,8 +40,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -150,7 +164,7 @@
       <workItem from="1726049351295" duration="5187000" />
       <workItem from="1726071987350" duration="6620000" />
       <workItem from="1726078773216" duration="183000" />
-      <workItem from="1726309052975" duration="4341000" />
+      <workItem from="1726309052975" duration="19467000" />
     </task>
     <task id="LOCAL‎-00001" summary="Added basic entities">
       <option name="closed" value="true" />
@@ -488,7 +502,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1726078663206</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL‎-00043" summary="Changed styling mechansim">
+      <option name="closed" value="true" />
+      <created>1726313594145</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL‎-00043" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1726313594145</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -507,7 +529,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added name" />
     <MESSAGE value="Changed CellCoordinates to Coordinates. Added support for relative path" />
     <MESSAGE value="Refactored ref handling - now you can reference any valid cell in a function, even if the value who sits in the cell is currently not defined/matching" />
     <MESSAGE value="Fixed bug in ABSOpeation" />
@@ -532,7 +553,8 @@
     <MESSAGE value="Changed mechanism of Operations" />
     <MESSAGE value="changed view of ranges buttons" />
     <MESSAGE value="Minor fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor fix" />
+    <MESSAGE value="Changed styling mechansim" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed styling mechansim" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

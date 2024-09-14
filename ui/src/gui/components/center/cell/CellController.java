@@ -48,6 +48,10 @@ public class CellController {
         cellLabel.setText(text);
     }
 
+    public String getLabelText() {
+        return cellLabel.getText();
+    }
+
     public void addStyleClass(String styleClass) {
         if (!cellStackPane.getStyleClass().contains(styleClass)) {
             cellStackPane.getStyleClass().add(styleClass);

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.components.right.RightController">
+   <children>
+      <Label text="Customize" />
+      <VBox spacing="10.0">
+         <children>
+            <HBox spacing="10.0">
+               <children>
+                  <Label text="Select column: " />
+                  <ComboBox fx:id="selectedColComboBox" />
+               </children>
+            </HBox>
+            <HBox spacing="10.0">
+               <children>
+                  <Label text="Width:" />
+                  <Slider fx:id="colWidthSlider" />
+               </children>
+            </HBox>
+            <HBox spacing="10.0">
+               <children>
+                  <Label text="Allign:" />
+                  <ComboBox fx:id="selectedAlignmentComboBox" onAction="#handleAlignmentOnSelect" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox spacing="10.0">
+         <children>
+            <HBox spacing="10.0">
+               <children>
+                  <Label text="Select row:" />
+                  <ComboBox fx:id="selectedRowComboBox" />
+               </children>
+            </HBox>
+            <HBox spacing="10.0">
+               <children>
+                  <Label text="Height:" />
+                  <Slider fx:id="rowHeightSlider" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</VBox>

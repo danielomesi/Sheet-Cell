@@ -7,6 +7,11 @@ import entities.types.undefined.UndefinedNumber;
 import entities.types.undefined.UndefinedString;
 import exceptions.ServiceException;
 import gui.exceptions.GUIException;
+import javafx.scene.text.Text;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 public class Utils {
     public static String objectToString(Object obj) {
@@ -61,5 +66,26 @@ public class Utils {
         }
 
         return false;
+    }
+
+    public static List<String> getLettersFromAToTheNLetter(int n) {
+        List<String> letters = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            letters.add(Character.toString((char) ('A' + i)));
+        }
+        return letters;
+    }
+
+    public static List<Integer> getNumbersFrom1ToNNumber(int n) {
+        List<Integer> numbers = new ArrayList<>();
+        for (int i = 1; i <= n; i++) {
+            numbers.add(i);
+        }
+        return numbers;
+    }
+
+    public static double calculateTextWidth(String text) {
+        Text textNode = new Text(text);
+        return textNode.getLayoutBounds().getWidth();
     }
 }
