@@ -23,7 +23,7 @@ public class DynamicBuilder {
 
         //add the name of the sheet as the top left cell
         CellController sheetNameCellController = createCellController();
-        sheetNameCellController.setCellLabel(sheet.getName());
+        sheetNameCellController.setLabelText(sheet.getName());
         sheetNameCellController.setTableCellType(TableCellType.HEADER);
         StackPane topLeftCellPane = (StackPane) sheetNameCellController.getCellStackPane();
         gridPane.add(topLeftCellPane, 0, 0);
@@ -31,7 +31,7 @@ public class DynamicBuilder {
         for (int col = 1; col <= numCols; col++) {
             String charRepresentingColumn = String.valueOf((char) ('A' + col - 1));
             CellController columnHeaderCellController = createCellController();
-            columnHeaderCellController.setCellLabel(charRepresentingColumn);
+            columnHeaderCellController.setLabelText(charRepresentingColumn);
             columnHeaderCellController.setTableCellType(TableCellType.HEADER);
             StackPane headerPane = (StackPane) columnHeaderCellController.getCellStackPane();
             gridPane.add(headerPane, col, 0);
@@ -40,7 +40,7 @@ public class DynamicBuilder {
         for (int row = 1; row <= numRows; row++) {
             String rowNumber = String.valueOf(row);
             CellController rowHeaderCellController = createCellController();
-            rowHeaderCellController.setCellLabel(rowNumber);
+            rowHeaderCellController.setLabelText(rowNumber);
             rowHeaderCellController.setTableCellType(TableCellType.HEADER);
             StackPane rowPane = (StackPane) rowHeaderCellController.getCellStackPane();
             gridPane.add(rowPane, 0, row);

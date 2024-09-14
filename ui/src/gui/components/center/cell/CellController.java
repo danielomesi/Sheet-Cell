@@ -6,7 +6,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
 public class CellController {
+
+    private final static Set<String> colorStyles = new HashSet<>();
 
     @FXML
     private Label cellLabel;
@@ -16,6 +22,14 @@ public class CellController {
 
     private Coordinates coordinates;
     private TableCellType tableCellType;
+
+    static {
+        colorStyles.add("default-cell");
+        colorStyles.add("range-cell");
+        colorStyles.add("affected-cell");
+        colorStyles.add("affecting-cell");
+        colorStyles.add("selected-cell");
+    }
 
     public void setCellCoordinates(Coordinates coordinates) {
         this.coordinates = coordinates;
@@ -30,7 +44,7 @@ public class CellController {
         cellLabel.textProperty().bind(value);
     }
 
-    public void setCellLabel(String text) {
+    public void setLabelText(String text) {
         cellLabel.setText(text);
     }
 
@@ -40,17 +54,11 @@ public class CellController {
         }
     }
 
-    public void removeStyleClass(String styleClass) {
-        cellStackPane.getStyleClass().remove(styleClass);
-    }
+    public void setColorStyle(String colorStyleClass) {
+        addStyleClass(colorStyleClass);
+        colorStyles.stream().filter((style) -> !Objects.equals(style, colorStyleClass))
+                .forEach((style) -> cellStackPane.getStyleClass().remove(style));
 
-    public void resetStyleClass() {
-        cellStackPane.getStyleClass().clear();
-    }
-
-    public void replaceStyleClass(String oldStyleClass, String newStyleClass) {
-        removeStyleClass(oldStyleClass);
-        addStyleClass(newStyleClass);
     }
 
 

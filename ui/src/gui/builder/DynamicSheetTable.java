@@ -7,7 +7,6 @@ import gui.components.center.cell.CellController;
 import gui.utils.Utils;
 import javafx.scene.layout.GridPane;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class DynamicSheetTable {
@@ -31,7 +30,7 @@ public class DynamicSheetTable {
                 CellController cellController = coordinates2CellController.get(coordinates);
                 Cell cell = sheet.getCell(i, j);
                 Object effectiveValue = cell != null ? cell.getEffectiveValue() : null;
-                cellController.setCellLabel(Utils.objectToString(effectiveValue));
+                cellController.setLabelText(Utils.objectToString(effectiveValue));
             }
         }
     }

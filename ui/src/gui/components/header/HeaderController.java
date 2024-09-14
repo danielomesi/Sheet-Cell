@@ -67,7 +67,7 @@ public class HeaderController {
         if (mainController != null) {
             CenterController centerController = mainController.getCenterController();
             BooleanProperty isSheetLoadedProperty = mainController.getIsSheetLoaded();
-            updateButton.disableProperty().bind(isSheetLoadedProperty.not().or(centerController.isSelectedCellProperty().not()));
+            updateButton.disableProperty().bind(isSheetLoadedProperty.not().or(centerController.getSelectedCellController().isNull()));
             versionComboBox.disableProperty().bind(isSheetLoadedProperty.not());
             saveToFileButton.disableProperty().bind(isSheetLoadedProperty.not());
             newValueTextField.disableProperty().bind(isSheetLoadedProperty.not());
@@ -76,7 +76,7 @@ public class HeaderController {
 
     @FXML
     void handleUpdateOnClick(ActionEvent event) {
-        Coordinates coordinates = mainController.getCenterController().getSelectedCell();
+        Coordinates coordinates = mainController.getCenterController().getSelectedCellCoordinates();
         Runnable runnable = () -> {
             mainController.calculateCellUpdate(coordinates,newValueTextField.getText());
             newValueTextField.clear();

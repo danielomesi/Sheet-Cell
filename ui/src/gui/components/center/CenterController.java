@@ -22,9 +22,8 @@ import java.util.Map;
 
 public class CenterController {
 
-    private BooleanProperty isSelectedCell;
-    private Coordinates selectedCell;
-    private Coordinates previousSelectedCell;
+    private SimpleObjectProperty<CellController> selectedCellController;
+    private SimpleObjectProperty<CellController> previousSelectedCellController;
 
     @FXML
     private ScrollPane centerScrollPane;
@@ -33,11 +32,19 @@ public class CenterController {
 
     public void initialize() {
         cellControllersMap = new HashMap<>();
-        isSelectedCell = new SimpleBooleanProperty(false);
-    }
+        selectedCellController = new SimpleObjectProperty<>();
+        previousSelectedCellController = new SimpleObjectProperty<>();
 
-    public BooleanProperty isSelectedCellProperty() {return isSelectedCell;}
-    public Coordinates getSelectedCell() {return selectedCell;}
+        selectedCellController.addListener((observable, oldCellController, newCellController) -> {
+            previousSelectedCellController.set(oldCellController);
+            if (oldCellController != null) {
+                oldCellController.setColorStyle("default-cell");
+            }
+            if (newCellController != null) {
+                newCellController.setColorStyle("selected-cell");
+            }
+        });
+    }
 
     public void setMainController(MainController mainController) {this.mainController = mainController;}
 
@@ -64,50 +71,52 @@ public class CenterController {
         centerScrollPane.setContent(gridPane);
     }
 
+    public Coordinates getSelectedCellCoordinates() {return selectedCellController.get() == null ? null : selectedCellController.get().getCoordinates();}
+
+    public SimpleObjectProperty<CellController> getSelectedCellController() {return selectedCellController;}
 
     private void handleCellClick(Coordinates clickedCellCoordinates) {
-        isSelectedCell.setValue(true);
-        previousSelectedCell = selectedCell;
-        selectedCell = clickedCellCoordinates;
-        resetStyles();
         CellController cellController = cellControllersMap.get(clickedCellCoordinates);
-        cellController.replaceStyleClass("default-cell","selected-cell");
-        mainController.getHeaderController().populateHeaderControlsOnCellChoose(clickedCellCoordinates);
-        if (cellController.getTableCellType() == TableCellType.DATA && !isRangeChoice(clickedCellCoordinates)) {
-            Cell clickedCell = mainController.getCurrentLoadedSheet().getCell(clickedCellCoordinates.getRow(), clickedCellCoordinates.getCol());
-            if (clickedCell!= null) {
+        if (cellController != selectedCellController.get()) {
+            resetStyles();
+            selectedCellController.set(cellController);
+            mainController.getHeaderController().populateHeaderControlsOnCellChoose(clickedCellCoordinates);
+            if (cellController.getTableCellType() == TableCellType.DATA && !isRangeChoice(clickedCellCoordinates)) {
+                Cell clickedCell = mainController.getCurrentLoadedSheet().
+                        getCell(clickedCellCoordinates.getRow(), clickedCellCoordinates.getCol());
+                if (clickedCell!= null) {
 
-                clickedCell.getCellsAffectingMe().forEach(dependentCell ->
-                        cellControllersMap.get(dependentCell).replaceStyleClass("default-cell","affecting-cell"));
+                    clickedCell.getCellsAffectingMe().forEach(dependentCell ->
+                            cellControllersMap.get(dependentCell).setColorStyle("affecting-cell"));
 
-                clickedCell.getCellsAffectedByMe().forEach(affectedCell ->
-                        cellControllersMap.get(affectedCell).replaceStyleClass("default-cell","affected-cell"));
+                    clickedCell.getCellsAffectedByMe().forEach(affectedCell ->
+                            cellControllersMap.get(affectedCell).setColorStyle("affected-cell"));
+                }
             }
         }
+
     }
 
     private boolean isRangeChoice(Coordinates clickedCellCoordinates) {
         BooleanProperty isFirstCellSelected = mainController.getLeftController().getIsSelectingFirstCell();
         BooleanProperty isSecondCellSelected = mainController.getLeftController().getIsSelectingSecondCell();
         String topLeftCellID, bottomRightCellID;
-        boolean res = false;
+        boolean res = isFirstCellSelected.get() || isSecondCellSelected.get();
         if (isFirstCellSelected.get()) {
             isFirstCellSelected.set(false);
-            res = true;
         }
         else if (isSecondCellSelected.get()) {
-            if (Utils.compareCoordinates(previousSelectedCell, clickedCellCoordinates)) {
-                topLeftCellID = previousSelectedCell.getCellID();
+            if (Utils.compareCoordinates(previousSelectedCellController.get().getCoordinates(), clickedCellCoordinates)) {
+                topLeftCellID = previousSelectedCellController.get().getCoordinates().getCellID();
                 bottomRightCellID = clickedCellCoordinates.getCellID();
             }
             else {
                 topLeftCellID = clickedCellCoordinates.getCellID();
-                bottomRightCellID = previousSelectedCell.getCellID();
+                bottomRightCellID = previousSelectedCellController.get().getCoordinates().getCellID();
             }
             mainController.getLeftController().updateSelectedCellSIDLabel(topLeftCellID, bottomRightCellID);
             highlightChosenRangeCells(mainController.getLeftController().getSelectedRange());
             isSecondCellSelected.set(false);
-            res = true;
         }
         return res;
     }
@@ -116,17 +125,11 @@ public class CenterController {
         resetStyles();
         for(Coordinates coordinates : range.getCells()) {
             CellController cellController = cellControllersMap.get(coordinates);
-            cellController.replaceStyleClass("default-cell","range-cell");
+            cellController.setColorStyle("range-cell");
         }
     }
 
     private void resetStyles() {
-        cellControllersMap.forEach((c, cellController) -> {
-            cellController.removeStyleClass("selected-cell");
-            cellController.removeStyleClass("affecting-cell");
-            cellController.removeStyleClass("affected-cell");
-            cellController.removeStyleClass("range-cell");
-            cellController.addStyleClass("default-cell");
-        });
+        cellControllersMap.forEach((c, cellController) -> {cellController.setColorStyle("default-cell");});
     }
 }
