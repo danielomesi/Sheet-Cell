@@ -84,8 +84,9 @@ public class Utils {
         return numbers;
     }
 
-    public static double calculateTextWidth(String text) {
-        Text textNode = new Text(text);
-        return textNode.getLayoutBounds().getWidth();
+    public static int convertColumnCharToIndex(Character ch) {
+        ch = Character.toUpperCase(ch);
+        return ch - 'A';
     }
+
 }

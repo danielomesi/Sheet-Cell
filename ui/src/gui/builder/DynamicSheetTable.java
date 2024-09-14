@@ -8,12 +8,15 @@ import gui.utils.Utils;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
 
 import java.util.Map;
+
+import static gui.utils.Utils.convertColumnCharToIndex;
 
 public class DynamicSheetTable {
     private final Map<Coordinates, CellController> coordinates2CellController;
@@ -50,20 +53,17 @@ public class DynamicSheetTable {
     public void updateColumnWidth(String columnName, double width) {
         ColumnConstraints columnConstraints = columnConstraintsMap.get(columnName);
         columnConstraints.setMinWidth(width);
-        columnConstraints.setPrefWidth(width);
-        columnConstraints.setMaxWidth(width);
     }
 
     public void updateRowHeight(int rowIndex, double height) {
         RowConstraints rowConstraints = rowConstraintsMap.get(rowIndex);
         rowConstraints.setMinHeight(height);
-        rowConstraints.setPrefHeight(height);
-        rowConstraints.setMaxHeight(height);
     }
 
     public void updateColumnAlignment(String columnName, String alignment) {
         alignment = alignment.toLowerCase();
         ColumnConstraints columnConstraints = columnConstraintsMap.get(columnName);
+        int colIndex = convertColumnCharToIndex(columnName.charAt(0));
         switch (alignment) {
             case "left":
                 columnConstraints.setHalignment(HPos.LEFT);
@@ -76,5 +76,23 @@ public class DynamicSheetTable {
                 break;
         }
 
+        for (Map.Entry<Coordinates, CellController> entry : coordinates2CellController.entrySet()) {
+            Coordinates coordinates = entry.getKey();
+            if (coordinates.getCol() == colIndex) {
+                CellController cellController = entry.getValue();
+                Label label = cellController.getCellLabel();
+                switch (alignment) {
+                    case "left":
+                        label.setAlignment(Pos.CENTER_LEFT);
+                        break;
+                    case "center":
+                        label.setAlignment(Pos.CENTER);
+                        break;
+                    case "right":
+                        label.setAlignment(Pos.CENTER_RIGHT);
+                        break;
+                }
+            }
+        }
     }
 }

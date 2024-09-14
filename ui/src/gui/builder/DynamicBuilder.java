@@ -5,6 +5,7 @@ import entities.sheet.Sheet;
 import gui.components.center.cell.CellController;
 import gui.components.center.cell.TableCellType;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 
 import java.io.IOException;
@@ -25,8 +26,8 @@ public class DynamicBuilder {
         CellController sheetNameCellController = createCellController();
         sheetNameCellController.setLabelText(sheet.getName());
         sheetNameCellController.setTableCellType(TableCellType.TABLE_NAME);
-        StackPane topLeftCellPane = sheetNameCellController.getCellStackPane();
-        gridPane.add(topLeftCellPane, 0, 0);
+        Label topLeftCellLabel = sheetNameCellController.getCellLabel();
+        gridPane.add(topLeftCellLabel, 0, 0);
         addRowConstraints(gridPane); //adding blank row constraint for the row presenting the colum names
         addColumnConstraints(gridPane); //adding blank column constraint for the column presenting the colum names
 
@@ -35,8 +36,8 @@ public class DynamicBuilder {
             CellController columnHeaderCellController = createCellController();
             columnHeaderCellController.setLabelText(charRepresentingColumn);
             columnHeaderCellController.setTableCellType(TableCellType.COL_HEADER);
-            StackPane headerPane = columnHeaderCellController.getCellStackPane();
-            gridPane.add(headerPane, col, 0);
+            Label headerLabel = columnHeaderCellController.getCellLabel();
+            gridPane.add(headerLabel, col, 0);
             columnConstraintsMap.put(charRepresentingColumn, addColumnConstraints(gridPane));
         }
 
@@ -45,8 +46,8 @@ public class DynamicBuilder {
             CellController rowHeaderCellController = createCellController();
             rowHeaderCellController.setLabelText(rowNumber);
             rowHeaderCellController.setTableCellType(TableCellType.ROW_HEADER);
-            StackPane rowPane = rowHeaderCellController.getCellStackPane();
-            gridPane.add(rowPane, 0, row);
+            Label rowLabel = rowHeaderCellController.getCellLabel();
+            gridPane.add(rowLabel, 0, row);
             rowConstraintsMap.put(row, addRowConstraints(gridPane));
         }
 
@@ -57,8 +58,8 @@ public class DynamicBuilder {
                 coordinates2CellController.put(coordinates, cellController);
                 cellController.setCellCoordinates(coordinates);
                 cellController.setTableCellType(TableCellType.DATA);
-                StackPane cellPane = cellController.getCellStackPane();
-                gridPane.add(cellPane, col+1, row+1);
+                Label cellLabel = cellController.getCellLabel();
+                gridPane.add(cellLabel, col+1, row+1);
             }
         }
 

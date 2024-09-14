@@ -13,11 +13,13 @@ import gui.builder.DynamicBuilder;
 import gui.utils.Utils;
 import javafx.beans.property.*;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CenterController {
@@ -60,6 +62,8 @@ public class CenterController {
 
         int numRows = sheet.getNumOfRows();
         int numCols = sheet.getNumOfColumns();
+        int colWidth = sheet.getLayout().getColumnWidthUnits();
+        int rowHeight = sheet.getLayout().getRowHeightUnits();
 
         for (int row = 0; row < numRows; row++) {
             for (int col = 0; col < numCols; col++) {
@@ -67,10 +71,15 @@ public class CenterController {
                 Cell cell = sheet.getCell(row, col);
                 CellController cellController = cellControllersMap.get(coordinates);
                 cellController.bindToModule(dataModule.getCoordinates2EffectiveValues().get(coordinates));
-                StackPane cellPane = (StackPane) cellController.getCellStackPane();
-                cellPane.setOnMouseClicked(event -> handleCellClick(coordinates));
+                Label cellLabel = cellController.getCellLabel();
+                cellLabel.setOnMouseClicked(event -> handleCellClick(coordinates));
             }
         }
+
+        List<Integer> rowNumbers = Utils.getNumbersFrom1ToNNumber(numCols);
+        List<String> colNames = Utils.getLettersFromAToTheNLetter(numRows);
+        colNames.forEach((colName) -> dynamicSheetTable.updateColumnWidth(colName, colWidth));
+        rowNumbers.forEach((rowNumber) -> dynamicSheetTable.updateRowHeight(rowNumber, rowHeight));
 
         centerScrollPane.setContent(gridPane);
     }

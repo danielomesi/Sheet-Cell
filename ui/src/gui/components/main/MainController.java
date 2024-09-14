@@ -93,10 +93,10 @@ public class MainController {
         Platform.runLater(() -> {
             dataModule.buildModule(currentLoadedSheet.getNumOfRows(),currentLoadedSheet.getNumOfColumns(),currentLoadedSheet.getRangesNames());
             centerController.buildMainCellsTableDynamically(currentLoadedSheet);
-            dataModule.updateModule(currentLoadedSheet);
             headerController.updateMyControlsOnFileLoad();
             leftController.updateMyControlsOnFileLoad();
             rightController.updateMyControlsOnFileLoad();
+            dataModule.updateModule(currentLoadedSheet);
             isSheetLoaded.setValue(true);
         } );
     }

@@ -19,31 +19,26 @@
     -fx-background-color: indigo;
 }
 
-/* Hover effect for any cell */
-.cell-stackpane:hover {
-    -fx-background-color: lightyellow; /* Change background on hover */
-    -fx-cursor: hand; /* Change cursor to hand */
-}
-
 .default-cell {
     -fx-background-color: lightgray; /* Light gray background */
 }
 
-/* Default style for all StackPanes */
-.cell-stackpane {
-    -fx-border-color: gainsboro; /* Light gray border */
-    -fx-border-width: 1px; /* Border width */
-    -fx-border-radius: 5px; /* Rounded corners */
-    -fx-padding: 10px; /* Padding inside the StackPane */
-    -fx-alignment: center; /* Center alignment for child nodes */
-    -fx-min-width: 50px; /* Minimum width */
-    -fx-min-height: 50px; /* Minimum height */
-}
 
-/* Style for the Label inside StackPane */
 .cell-label {
+    -fx-border-color: #cccccc; /* Light gray border color */
+    -fx-border-width: 1px; /* Border width */
+    -fx-border-radius: 4px; /* Rounded corners for the border */
+    -fx-padding: 10px; /* Padding inside the cell */
+    -fx-alignment: center; /* Center-align text within the cell */
     -fx-text-fill: dimgrey; /* Dark gray text color */
     -fx-font-size: 14px; /* Font size */
     -fx-font-weight: bold; /* Bold text */
-    -fx-padding: 5px; /* Padding around the text */
+    -fx-background-insets: 0, 0, 0, 0; /* Remove any insets */
 }
+
+.cell-label:hover {
+    -fx-background-color: lightyellow; /* Change background on hover */
+    -fx-cursor: hand; /* Change cursor to hand */
+}
+
+

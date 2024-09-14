@@ -105,7 +105,7 @@ public class RightController {
     public void handleAlignmentOnSelect(ActionEvent event) {
         String alignment = selectedAlignmentComboBox.getValue();
         String columnName = selectedColComboBox.getSelectionModel().getSelectedItem();
-        mainController.getCenterController().getDynamicSheetTable().updateColumnAlignment(alignment, columnName);
+        mainController.getCenterController().getDynamicSheetTable().updateColumnAlignment(columnName, alignment);
     }
 
 }

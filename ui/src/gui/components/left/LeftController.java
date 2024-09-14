@@ -71,8 +71,6 @@ public class LeftController {
             rangeComboBox.setOnAction(null);
             ObservableList<String> observableList = FXCollections.observableArrayList(names);
             rangeComboBox.setItems(observableList);
-            //unfortunately, the "setItems" method invokes the on action method of the version combo box,
-            //so the current solution is to nullify the on action before calling "setItems" and then returning its original value
             rangeComboBox.setOnAction(originalOnAction);
         };
 

@@ -17,9 +17,6 @@ public class CellController {
     @FXML
     private Label cellLabel;
 
-    @FXML
-    private StackPane cellStackPane;
-
     private Coordinates coordinates;
     private TableCellType tableCellType;
 
@@ -53,18 +50,18 @@ public class CellController {
     }
 
     public void addStyleClass(String styleClass) {
-        if (!cellStackPane.getStyleClass().contains(styleClass)) {
-            cellStackPane.getStyleClass().add(styleClass);
+        if (!cellLabel.getStyleClass().contains(styleClass)) {
+            cellLabel.getStyleClass().add(styleClass);
         }
     }
 
     public void setColorStyle(String colorStyleClass) {
         addStyleClass(colorStyleClass);
         colorStyles.stream().filter((style) -> !Objects.equals(style, colorStyleClass))
-                .forEach((style) -> cellStackPane.getStyleClass().remove(style));
+                .forEach((style) -> cellLabel.getStyleClass().remove(style));
 
     }
 
 
-    public StackPane getCellStackPane() {return cellStackPane;}
+    public Label getCellLabel() {return cellLabel;}
 }
