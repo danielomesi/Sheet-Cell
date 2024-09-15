@@ -33,8 +33,8 @@ public class DynamicBuilder {
         sheetNameCellController.setTableCellType(TableCellType.TABLE_NAME);
         Label topLeftCellLabel = sheetNameCellController.getCellLabel();
         gridPane.add(topLeftCellLabel, 0, 0);
-        addRowConstraints(gridPane,rowHeight); //adding blank row constraint for the row presenting the colum names
-        addColumnConstraints(gridPane,colWidth); //adding blank column constraint for the column presenting the colum names
+        rowConstraintsMap.put(0,addRowConstraints(gridPane,rowHeight));
+        columnConstraintsMap.put(DynamicSheetTable.HEADER,addColumnConstraints(gridPane,colWidth));
 
         for (int col = 1; col <= numCols; col++) {
             String charRepresentingColumn = String.valueOf((char) ('A' + col - 1));
@@ -105,4 +105,6 @@ public class DynamicBuilder {
 
         return rowConstraints;
     }
+
+
 }

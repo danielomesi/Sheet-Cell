@@ -23,19 +23,26 @@ public class DynamicSheetTable {
     private final GridPane gridPane;
     private final Map<String, ColumnConstraints> columnConstraintsMap;
     private final Map<Integer, RowConstraints> rowConstraintsMap;
+    private final double initialRowHeight;
+    private final double initialColWidth;
     public static final int FACTOR = 2;
+    public static final String HEADER = "FIRST_COL";
 
     public DynamicSheetTable(Map<Coordinates, CellController> coordinates2CellController, GridPane gridPane, Map<String, ColumnConstraints> columnConstraintsMap, Map<Integer, RowConstraints> rowConstraintsMap) {
         this.coordinates2CellController = coordinates2CellController;
         this.gridPane = gridPane;
         this.columnConstraintsMap = columnConstraintsMap;
         this.rowConstraintsMap = rowConstraintsMap;
+        initialRowHeight = rowConstraintsMap.get(0).getPrefHeight();
+        initialColWidth = columnConstraintsMap.get(HEADER).getPrefWidth();
     }
 
     public Map<Coordinates, CellController> getCoordinates2CellController() {return coordinates2CellController;}
     public GridPane getGridPane() {return gridPane;}
     public Map<String, ColumnConstraints> getColumnConstraintsMap() {return columnConstraintsMap;}
     public Map<Integer, RowConstraints> getRowConstraintsMap() {return rowConstraintsMap;}
+    public double getInitialRowHeight() {return initialRowHeight;}
+    public double getInitialColWidth() {return initialColWidth;}
 
     public void populateSheetWithData(Sheet sheet) {
         int numOfRows = sheet.getNumOfRows();
@@ -63,6 +70,25 @@ public class DynamicSheetTable {
         rowConstraints.setMinHeight(height);
         rowConstraints.setPrefHeight(height);
         rowConstraints.setMaxHeight(height);
+    }
+
+    public void scaleColumnWidth(String columnName, double number) {
+        ColumnConstraints columnConstraints = columnConstraintsMap.get(columnName);
+        columnConstraints.setMinWidth(initialColWidth*number);
+        columnConstraints.setPrefWidth(initialColWidth*number);
+        columnConstraints.setMaxWidth(initialColWidth*number);
+    }
+
+    public void scaleRowHeight(int rowIndex, double height) {
+        RowConstraints rowConstraints = rowConstraintsMap.get(rowIndex);
+        rowConstraints.setMinHeight(initialRowHeight*height);
+        rowConstraints.setPrefHeight(initialRowHeight*height);
+        rowConstraints.setMaxHeight(initialRowHeight*height);
+    }
+
+    public void updateSheetScale(double number) {
+        columnConstraintsMap.forEach((columnName, columnConstraints) -> {scaleColumnWidth(columnName, number);});
+        rowConstraintsMap.forEach((rowIndex, rowConstraints) -> {scaleRowHeight(rowIndex, number);});
     }
 
     public void updateColumnAlignment(String columnName, String alignment) {

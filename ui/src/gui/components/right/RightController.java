@@ -23,7 +23,11 @@ public class RightController {
     private MainController mainController;
     private final int CELL_SIZE_SCALER = 10;
     private final List<String> ALLIGNMENT_OPTIONS = List.of("Center", "Left", "Right");
+    private static final double MIN_SCALE = 0.1;
+    private static final double MAX_SCALE = 5;
 
+    @FXML
+    private Slider sheetScalerSlider;
     @FXML
     private Slider colWidthSlider;
     @FXML
@@ -46,6 +50,7 @@ public class RightController {
         if (mainController != null) {
             BooleanProperty isSheetLoadedProperty = mainController.getIsSheetLoaded();
             BooleanBinding isSelectedCell = mainController.getCenterController().getSelectedCellController().isNull();
+            sheetScalerSlider.disableProperty().bind(isSheetLoadedProperty.not());
             selectedRowComboBox.disableProperty().bind(isSheetLoadedProperty.not());
             selectedColComboBox.disableProperty().bind(isSheetLoadedProperty.not());
             selectedAlignmentComboBox.disableProperty().bind(isSheetLoadedProperty.not());
@@ -88,8 +93,9 @@ public class RightController {
         setRangesForSliders();
         bindAlignmentComboBoxToColComboBox();
 
-
-        //add listener to the row height slider
+        sheetScalerSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            mainController.getCenterController().getDynamicSheetTable().updateSheetScale((Double) newValue);
+        });
         rowHeightSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
             int rowToUpdate = selectedRowComboBox.getValue();
             mainController.getCenterController().getDynamicSheetTable().updateRowHeight(rowToUpdate, (Double) newValue);});
@@ -109,6 +115,9 @@ public class RightController {
         colWidthSlider.setValue(colWidth);
         colWidthSlider.setMin(colWidth/CELL_SIZE_SCALER);
         colWidthSlider.setMax(colWidth*CELL_SIZE_SCALER);
+        sheetScalerSlider.setValue(1);
+        sheetScalerSlider.setMin(MIN_SCALE);
+        sheetScalerSlider.setMax(MAX_SCALE);
 
     }
 
