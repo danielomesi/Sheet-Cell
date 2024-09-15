@@ -16,7 +16,7 @@
 }
 
 .range-cell {
-    -fx-background-color: indigo;
+    -fx-background-color: #3584a0;
 }
 
 .default-cell {
@@ -29,8 +29,6 @@
     -fx-border-width: 1px; /* Border width */
     -fx-border-radius: 4px; /* Rounded corners for the border */
     -fx-padding: 10px; /* Padding inside the cell */
-    -fx-alignment: center; /* Center-align text within the cell */
-    -fx-text-fill: dimgrey; /* Dark gray text color */
     -fx-font-size: 14px; /* Font size */
     -fx-font-weight: bold; /* Bold text */
     -fx-background-insets: 0, 0, 0, 0; /* Remove any insets */
@@ -40,5 +38,7 @@
     -fx-background-color: lightyellow; /* Change background on hover */
     -fx-cursor: hand; /* Change cursor to hand */
 }
+
+
 
 

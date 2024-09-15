@@ -1,5 +1,6 @@
 package gui.components.right;
 
+import gui.components.center.cell.CellController;
 import gui.components.main.MainController;
 import gui.utils.Utils;
 import javafx.beans.binding.Bindings;
@@ -9,10 +10,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Slider;
+import javafx.scene.paint.Color;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RightController {
@@ -31,14 +34,24 @@ public class RightController {
     private ComboBox<Integer> selectedRowComboBox;
     @FXML
     private ComboBox<String> selectedAlignmentComboBox;
+    @FXML
+    private ColorPicker cellBackgroundColorPicker;
+    @FXML
+    private ColorPicker cellFontColorPicker;
+    @FXML
+    private Button resetCellColorsButtons;
 
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
         if (mainController != null) {
             BooleanProperty isSheetLoadedProperty = mainController.getIsSheetLoaded();
+            BooleanBinding isSelectedCell = mainController.getCenterController().getSelectedCellController().isNull();
             selectedRowComboBox.disableProperty().bind(isSheetLoadedProperty.not());
             selectedColComboBox.disableProperty().bind(isSheetLoadedProperty.not());
             selectedAlignmentComboBox.disableProperty().bind(isSheetLoadedProperty.not());
+            cellBackgroundColorPicker.disableProperty().bind(isSelectedCell);
+            cellFontColorPicker.disableProperty().bind(isSelectedCell);
+            resetCellColorsButtons.disableProperty().bind(isSelectedCell);
         }
     }
 
@@ -75,6 +88,7 @@ public class RightController {
         setRangesForSliders();
         bindAlignmentComboBoxToColComboBox();
 
+
         //add listener to the row height slider
         rowHeightSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
             int rowToUpdate = selectedRowComboBox.getValue();
@@ -88,6 +102,7 @@ public class RightController {
     private void setRangesForSliders() {
         double rowHeight = mainController.getCurrentLoadedSheet().getLayout().getRowHeightUnits();
         double colWidth = mainController.getCurrentLoadedSheet().getLayout().getColumnWidthUnits();
+
         rowHeightSlider.setValue(rowHeight);
         rowHeightSlider.setMin(rowHeight/CELL_SIZE_SCALER);
         rowHeightSlider.setMax(rowHeight*CELL_SIZE_SCALER);
@@ -106,6 +121,26 @@ public class RightController {
         String alignment = selectedAlignmentComboBox.getValue();
         String columnName = selectedColComboBox.getSelectionModel().getSelectedItem();
         mainController.getCenterController().getDynamicSheetTable().updateColumnAlignment(columnName, alignment);
+    }
+
+    @FXML
+    void handleCellFontOnColorPick(ActionEvent event) {
+        CellController selectedCell = mainController.getCenterController().getSelectedCellController().get();
+        Color selectedColor = cellFontColorPicker.getValue();
+        selectedCell.setColorStyles(selectedCell.getCustomizedBackgroundColor(), selectedColor);
+    }
+
+    @FXML
+    void handleCellBackgroundOnColorPick(ActionEvent event) {
+        CellController selectedCell = mainController.getCenterController().getSelectedCellController().get();
+        Color selectedColor = cellBackgroundColorPicker.getValue();
+        selectedCell.setColorStyles(selectedColor, selectedCell.getCustomizedTextColor());
+    }
+
+    @FXML
+    void handleResetCellColorsOnClick(ActionEvent event) {
+        CellController selectedCell = mainController.getCenterController().getSelectedCellController().get();
+        selectedCell.resetColorStyles();
     }
 
 }

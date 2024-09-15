@@ -76,10 +76,6 @@ public class CenterController {
             }
         }
 
-        List<Integer> rowNumbers = Utils.getNumbersFrom1ToNNumber(numCols);
-        List<String> colNames = Utils.getLettersFromAToTheNLetter(numRows);
-        colNames.forEach((colName) -> dynamicSheetTable.updateColumnWidth(colName, colWidth));
-        rowNumbers.forEach((rowNumber) -> dynamicSheetTable.updateRowHeight(rowNumber, rowHeight));
 
         centerScrollPane.setContent(gridPane);
     }

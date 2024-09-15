@@ -23,6 +23,7 @@ public class DynamicSheetTable {
     private final GridPane gridPane;
     private final Map<String, ColumnConstraints> columnConstraintsMap;
     private final Map<Integer, RowConstraints> rowConstraintsMap;
+    public static final int FACTOR = 2;
 
     public DynamicSheetTable(Map<Coordinates, CellController> coordinates2CellController, GridPane gridPane, Map<String, ColumnConstraints> columnConstraintsMap, Map<Integer, RowConstraints> rowConstraintsMap) {
         this.coordinates2CellController = coordinates2CellController;
@@ -53,11 +54,15 @@ public class DynamicSheetTable {
     public void updateColumnWidth(String columnName, double width) {
         ColumnConstraints columnConstraints = columnConstraintsMap.get(columnName);
         columnConstraints.setMinWidth(width);
+        columnConstraints.setPrefWidth(width);
+        columnConstraints.setMaxWidth(width);
     }
 
     public void updateRowHeight(int rowIndex, double height) {
         RowConstraints rowConstraints = rowConstraintsMap.get(rowIndex);
         rowConstraints.setMinHeight(height);
+        rowConstraints.setPrefHeight(height);
+        rowConstraints.setMaxHeight(height);
     }
 
     public void updateColumnAlignment(String columnName, String alignment) {

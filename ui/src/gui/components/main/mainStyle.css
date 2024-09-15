@@ -1,0 +1,8 @@
+.button {
+    -fx-background-radius: 25;
+    -fx-border-radius: 25;
+}
+
+#root-container {
+    -fx-background-color: azure;
+}
