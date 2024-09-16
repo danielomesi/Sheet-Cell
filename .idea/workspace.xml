@@ -10,36 +10,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added scale slider">
-      <change afterPath="$PROJECT_DIR$/ui/src/gui/components/sheet/sheet.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui/src/gui/components/sheet/sheetStyle.css" afterDir="false" />
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Moved action line from header to main sheet area">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/cell/CoreCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/cell/CoreCell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/coordinates/CoordinateFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/coordinates/CoordinateFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/range/Range.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/range/Range.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/sheet/DTOSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/sheet/DTOSheet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/sheet/Sheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/sheet/Sheet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/builder/DynamicBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/builder/DynamicBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/builder/DynamicSheetTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/builder/DynamicSheetTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/center/CenterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/sheet/SheetController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/center/cell/CellController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/sheet/cell/CellController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/center/cell/TableCellType.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/sheet/cell/TableCellType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/center/cell/cell.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/sheet/cell/cell.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/center/cell/cellStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/sheet/cell/cellStyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/center/center.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/center/centerStyle.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/header/HeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/header/HeaderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/header/header.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/header/header.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/left/LeftController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/commands/commandsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/left/left.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/commands/commands.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/commands/commands.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/commands/commands.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/commands/commandsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/commands/CommandsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/gui/components/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/main/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/right/RightController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/appearance/appearanceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/right/right.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/appearance/appearance.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sheet/SheetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/sheet/SheetController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sheet/sheet.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/sheet/sheet.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/gui/core/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/core/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/core/DataModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/core/DataModule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/utils/Utils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,7 +157,7 @@
       <workItem from="1726384991285" duration="8746000" />
       <workItem from="1726396636195" duration="2885000" />
       <workItem from="1726425821492" duration="788000" />
-      <workItem from="1726475799938" duration="5870000" />
+      <workItem from="1726475799938" duration="7914000" />
     </task>
     <task id="LOCAL‎-00001" summary="Added basic entities">
       <option name="closed" value="true" />
@@ -556,7 +535,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1726399381270</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL‎-00048" summary="Moved action line from header to main sheet area">
+      <option name="closed" value="true" />
+      <created>1726481769575</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL‎-00048" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1726481769575</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -575,7 +562,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Minor change" />
     <MESSAGE value="Fixed bug in printing negative numbers" />
     <MESSAGE value="Fixed bug in ref operation handling" />
     <MESSAGE value="Took out tostrings out of the service module, to the ui module" />
@@ -600,19 +586,20 @@
     <MESSAGE value="Added alignment" />
     <MESSAGE value="Added color pickers for cell" />
     <MESSAGE value="Added scale slider" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added scale slider" />
+    <MESSAGE value="Moved action line from header to main sheet area" />
+    <option name="LAST_COMMIT_MESSAGE" value="Moved action line from header to main sheet area" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/service/src/utils/FunctionParser.java</url>
-          <line>14</line>
-          <properties class="utils.FunctionParser" method="parseFunctionExpression">
+          <url>file://$PROJECT_DIR$/ui/src/gui/utils/Utils.java</url>
+          <line>60</line>
+          <properties class="gui.utils.Utils" method="compareCoordinates">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
-          <option name="timeStamp" value="2" />
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

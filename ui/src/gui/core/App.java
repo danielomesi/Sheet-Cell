@@ -2,7 +2,7 @@ package gui.core;
 
 import gui.components.sheet.SheetController;
 import gui.components.header.HeaderController;
-import gui.components.commands.commandsController;
+import gui.components.commands.CommandsController;
 import gui.components.main.MainController;
 import gui.components.appearance.appearanceController;
 import javafx.application.Application;
@@ -60,7 +60,7 @@ public class App extends Application {
 
         FXMLLoader commandsLoader = new FXMLLoader(getClass().getResource("/gui/components/commands/commands.fxml"));
         VBox commandsVbox = commandsLoader.load();
-        commandsController commandsController = commandsLoader.getController();
+        CommandsController commandsController = commandsLoader.getController();
 
         FXMLLoader appearanceLoader = new FXMLLoader(getClass().getResource("/gui/components/appearance/appearance.fxml"));
         VBox appearanceVbox = appearanceLoader.load();

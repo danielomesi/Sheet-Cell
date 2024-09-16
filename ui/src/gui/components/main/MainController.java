@@ -8,7 +8,7 @@ import gui.builder.DynamicBuilder;
 import gui.builder.DynamicSheetTable;
 import gui.components.sheet.SheetController;
 import gui.components.header.HeaderController;
-import gui.components.commands.commandsController;
+import gui.components.commands.CommandsController;
 import gui.components.appearance.appearanceController;
 import gui.core.DataModule;
 import gui.exceptions.UnsupportedFileFormat;
@@ -41,7 +41,7 @@ public class MainController {
     //sub controllers
     private SheetController sheetController;
     private HeaderController headerController;
-    private commandsController commandsController;
+    private CommandsController commandsController;
     private appearanceController appearanceController;
 
     //getters
@@ -50,7 +50,7 @@ public class MainController {
     public Sheet getCurrentLoadedSheet() {return currentLoadedSheet;}
     public HeaderController getHeaderController() {return headerController;}
     public SheetController getCenterController() {return sheetController;}
-    public commandsController getLeftController() {return commandsController;}
+    public CommandsController getLeftController() {return commandsController;}
     public appearanceController getRightController() {return appearanceController;}
     public BooleanProperty getIsSheetLoaded() {return isSheetLoaded;}
     public DataModule getDataModule() {return dataModule;}
@@ -59,7 +59,7 @@ public class MainController {
     public void setStage(Stage stage) {this.stage = stage;}
     public void setHeaderController(HeaderController headerController) {this.headerController = headerController;}
     public void setCenterController(SheetController sheetController) {this.sheetController = sheetController;}
-    public void setLeftController(commandsController commandsController) {this.commandsController = commandsController;}
+    public void setLeftController(CommandsController commandsController) {this.commandsController = commandsController;}
     public void setRightController(appearanceController appearanceController) {this.appearanceController = appearanceController;}
 
     public void initialize() {

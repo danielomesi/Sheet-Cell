@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
 <VBox spacing="10.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.components.sheet.SheetController">
    <children>
       <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
@@ -29,12 +28,12 @@
       <ScrollPane fx:id="sheetWrapperScrollPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@sheetStyle.css" />
       <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
          <children>
-            <Label />
-            <Button fx:id="selectCellsButton" mnemonicParsing="false" onAction="#handleSelectCellsButtonClick" text="Select Cells" />
-            <Label text="Top Left Cell ID: " />
+            <Button fx:id="selectCellsButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleSelectCellsButtonClick" text="Select Cells" />
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Top Left Cell ID: " />
             <Label fx:id="selectedTopLeftCellLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
-            <Label text="Bottom Right Cell ID: " />
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Bottom Right Cell ID: " />
             <Label fx:id="selectedBottomRightCellLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
+            <Label fx:id="cellsSelectErrorMessageLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
          </children>
       </HBox>
    </children>

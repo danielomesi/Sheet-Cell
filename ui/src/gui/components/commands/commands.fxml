@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="commandsWrapperVbox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.components.commands.commandsController">
+<VBox fx:id="commandsWrapperVbox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.components.commands.CommandsController">
    <children>
       <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
          <children>
@@ -23,23 +23,6 @@
                <children>
                   <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Name: " />
                   <TextField fx:id="rangeNameTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
-               </children>
-            </HBox>
-            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
-               <children>
-                  <Button fx:id="selectCellsButton" mnemonicParsing="false" onAction="#handleSelectCellsButtonClick" text="Select Cells" />
-               </children>
-            </HBox>
-            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
-               <children>
-                  <Label text="Top Left Cell ID: " />
-                  <Label fx:id="selectedTopLeftCellLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
-               </children>
-            </HBox>
-            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
-               <children>
-                  <Label text="Bottom Right Cell ID: " />
-                  <Label fx:id="selectedBottomRightCellLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
                </children>
             </HBox>
             <Button fx:id="addRangeButton" mnemonicParsing="false" onAction="#addRangeButtonOnClick" text="Add range" />

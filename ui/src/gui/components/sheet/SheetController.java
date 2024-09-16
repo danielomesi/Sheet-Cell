@@ -19,6 +19,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 
 import java.util.Map;
 
@@ -40,11 +41,17 @@ public class SheetController {
     @FXML
     private Label originalValueLabel;
 
+
+    @FXML
+    private Button selectCellsButton;
+
     @FXML
     private Label selectedBottomRightCellLabel;
 
     @FXML
     private Label selectedTopLeftCellLabel;
+    @FXML
+    private Label cellsSelectErrorMessageLabel;
 
     @FXML
     private ScrollPane sheetWrapperScrollPane;
@@ -57,12 +64,16 @@ public class SheetController {
 
 
     private MainController mainController;
+    private final BooleanProperty isSelectingFirstCell = new SimpleBooleanProperty(false);
+    private final BooleanProperty isSelectingSecondCell = new SimpleBooleanProperty(false); ;
+    private final BooleanProperty is2ValidCellsSelected = new SimpleBooleanProperty(false);
 
     //getters
     public Coordinates getSelectedCellCoordinates() {return selectedCellController.get() == null ? null : selectedCellController.get().getCoordinates();}
     public SimpleObjectProperty<CellController> getSelectedCellController() {return selectedCellController;}
     public DynamicSheetTable getDynamicSheetTable() {return dynamicSheetTable;}
-
+    public String getSelectedTopLeftCellID() {return selectedTopLeftCellLabel.getText();}
+    public String getSelectedBottomRightCellID() {return selectedBottomRightCellLabel.getText();}
     //setters
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
@@ -72,6 +83,8 @@ public class SheetController {
             updateButton.disableProperty().bind(isSheetLoadedProperty.not().or(sheetController.getSelectedCellController().isNull()));
             versionComboBox.disableProperty().bind(isSheetLoadedProperty.not());
             newValueTextField.disableProperty().bind(isSheetLoadedProperty.not());
+            selectCellsButton.disableProperty().bind(isSheetLoadedProperty.not().or(isSelectingFirstCell).
+                    or(isSelectingSecondCell));
         }
     }
     public void resetVersionComboBoxChoice() {
@@ -143,25 +156,25 @@ public class SheetController {
     }
 
     private boolean isRangeChoice(Coordinates clickedCellCoordinates) {
-        BooleanProperty isFirstCellSelected = mainController.getLeftController().getIsSelectingFirstCell();
-        BooleanProperty isSecondCellSelected = mainController.getLeftController().getIsSelectingSecondCell();
         String topLeftCellID, bottomRightCellID;
-        boolean res = isFirstCellSelected.get() || isSecondCellSelected.get();
-        if (isFirstCellSelected.get()) {
-            isFirstCellSelected.set(false);
+        boolean res = isSelectingFirstCell.get() || isSelectingSecondCell.get();
+        if (isSelectingFirstCell.get()) {
+            isSelectingFirstCell.set(false);
         }
-        else if (isSecondCellSelected.get()) {
+        else if (isSelectingSecondCell.get()) {
             if (Utils.compareCoordinates(previousSelectedCellController.get().getCoordinates(), clickedCellCoordinates)) {
                 topLeftCellID = previousSelectedCellController.get().getCoordinates().getCellID();
                 bottomRightCellID = clickedCellCoordinates.getCellID();
+                updateSelectedCellSIDLabel(topLeftCellID, bottomRightCellID);
+                highlightChosenRangeCells(mainController.getLeftController().getSelectedRange());
+                isSelectingSecondCell.set(false);
+                is2ValidCellsSelected.set(true);
             }
             else {
-                topLeftCellID = clickedCellCoordinates.getCellID();
-                bottomRightCellID = previousSelectedCellController.get().getCoordinates().getCellID();
+                cellsSelectErrorMessageLabel.setTextFill(Color.RED);
+                cellsSelectErrorMessageLabel.setText("A valid choice select is one where the first cell is prior (row-wise and column-wise) from the second");
             }
-            mainController.getLeftController().updateSelectedCellSIDLabel(topLeftCellID, bottomRightCellID);
-            highlightChosenRangeCells(mainController.getLeftController().getSelectedRange());
-            isSecondCellSelected.set(false);
+
         }
         return res;
     }
@@ -232,6 +245,13 @@ public class SheetController {
 
     @FXML
     void handleSelectCellsButtonClick(ActionEvent event) {
+        is2ValidCellsSelected.set(false);
+        isSelectingFirstCell.set(true);
+        isSelectingSecondCell.set(true);
+    }
 
+    public void updateSelectedCellSIDLabel(String topLeftText, String bottomRightText) {
+        selectedTopLeftCellLabel.setText(topLeftText);
+        selectedBottomRightCellLabel.setText(bottomRightText);
     }
 }

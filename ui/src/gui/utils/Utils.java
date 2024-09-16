@@ -59,10 +59,8 @@ public class Utils {
     }
 
     public static boolean compareCoordinates(Coordinates first, Coordinates second) {
-        if (first.getRow() < second.getRow()) {
+        if (first.getRow() <= second.getRow() && first.getCol() <= second.getCol()) {
             return true;
-        } else if (first.getRow() == second.getRow()) {
-            return first.getCol() <= second.getCol();
         }
 
         return false;
