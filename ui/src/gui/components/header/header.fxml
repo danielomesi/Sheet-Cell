@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -29,24 +26,6 @@
          <children>
             <Label fx:id="errorMessageLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
          </children>
-      </HBox>
-      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
-         <children>
-            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Cell ID:" />
-            <Label fx:id="currentCellIDLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
-            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Original Value:" />
-            <Label fx:id="originalValueLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
-            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Last Updated Version:" />
-            <Label fx:id="lastUpdatedVersionLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
-            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="New Value:" />
-            <TextField fx:id="newValueTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
-            <Button fx:id="updateButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleUpdateOnClick" text="Update" />
-            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Version:" />
-            <ComboBox fx:id="versionComboBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#handleVersionOnChoose" />
-         </children>
-         <VBox.margin>
-            <Insets />
-         </VBox.margin>
       </HBox>
    </children>
 </VBox>

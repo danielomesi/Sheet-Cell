@@ -1,4 +1,4 @@
-package gui.components.left;
+package gui.components.commands;
 
 import entities.range.Range;
 import gui.components.main.MainController;
@@ -19,12 +19,10 @@ import javafx.scene.layout.VBox;
 
 import java.util.Set;
 
-public class LeftController {
+public class commandsController {
 
     private MainController mainController;
 
-    @FXML
-    private VBox leftVBox;
     @FXML
     private ComboBox<String> rangeComboBox;
     @FXML
@@ -120,8 +118,16 @@ public class LeftController {
     }
 
     public Range getSelectedRange() {
-        return new Range(null, mainController.getCurrentLoadedSheet(),
-                selectedTopLeftCellLabel.getText(), selectedBottomRightCellLabel.getText());
+        Range selectedRange = null;
+        try {
+            selectedRange = new Range(null, mainController.getCurrentLoadedSheet(),
+                    selectedTopLeftCellLabel.getText(), selectedBottomRightCellLabel.getText());
+        }
+        catch (Exception ignored) {
+
+        }
+        return selectedRange;
+
     }
 
 }

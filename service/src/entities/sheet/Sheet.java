@@ -9,7 +9,7 @@ import java.util.Set;
 public interface Sheet extends Serializable {
     public Cell getCell(int row, int col);
     public int getNumOfRows();
-    public int getNumOfColumns();
+    public int getNumOfCols();
     public int getVersion();
     public Layout getLayout();
     public String getName();

@@ -1,34 +1,61 @@
-package gui.components.center;
+package gui.components.sheet;
 
 import entities.cell.Cell;
 import entities.coordinates.Coordinates;
 import entities.range.Range;
 import entities.sheet.Sheet;
 import gui.builder.DynamicSheetTable;
-import gui.components.center.cell.CellController;
-import gui.components.center.cell.TableCellType;
+import gui.components.sheet.cell.CellController;
+import gui.components.sheet.cell.TableCellType;
 import gui.components.main.MainController;
 import gui.core.DataModule;
 import gui.builder.DynamicBuilder;
 import gui.utils.Utils;
 import javafx.beans.property.*;
+import javafx.collections.FXCollections;
+import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-public class CenterController {
+public class SheetController {
 
     private SimpleObjectProperty<CellController> selectedCellController;
     private SimpleObjectProperty<CellController> previousSelectedCellController;
     private DynamicSheetTable dynamicSheetTable;
+
     @FXML
-    private ScrollPane centerScrollPane;
+    private Label currentCellIDLabel;
+
+    @FXML
+    private Label lastUpdatedVersionLabel;
+
+    @FXML
+    private TextField newValueTextField;
+
+    @FXML
+    private Label originalValueLabel;
+
+    @FXML
+    private Label selectedBottomRightCellLabel;
+
+    @FXML
+    private Label selectedTopLeftCellLabel;
+
+    @FXML
+    private ScrollPane sheetWrapperScrollPane;
+
+    @FXML
+    private Button updateButton;
+
+    @FXML
+    private ComboBox<Integer> versionComboBox;
+
+
     private MainController mainController;
 
     //getters
@@ -37,7 +64,19 @@ public class CenterController {
     public DynamicSheetTable getDynamicSheetTable() {return dynamicSheetTable;}
 
     //setters
-    public void setMainController(MainController mainController) {this.mainController = mainController;}
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
+        if (mainController != null) {
+            SheetController sheetController = mainController.getCenterController();
+            BooleanProperty isSheetLoadedProperty = mainController.getIsSheetLoaded();
+            updateButton.disableProperty().bind(isSheetLoadedProperty.not().or(sheetController.getSelectedCellController().isNull()));
+            versionComboBox.disableProperty().bind(isSheetLoadedProperty.not());
+            newValueTextField.disableProperty().bind(isSheetLoadedProperty.not());
+        }
+    }
+    public void resetVersionComboBoxChoice() {
+        versionComboBox.getSelectionModel().clearSelection();
+    }
 
     public void initialize() {
         selectedCellController = new SimpleObjectProperty<>();
@@ -61,7 +100,7 @@ public class CenterController {
         DataModule dataModule = mainController.getDataModule();
 
         int numRows = sheet.getNumOfRows();
-        int numCols = sheet.getNumOfColumns();
+        int numCols = sheet.getNumOfCols();
         int colWidth = sheet.getLayout().getColumnWidthUnits();
         int rowHeight = sheet.getLayout().getRowHeightUnits();
 
@@ -77,7 +116,7 @@ public class CenterController {
         }
 
 
-        centerScrollPane.setContent(gridPane);
+        sheetWrapperScrollPane.setContent(gridPane);
     }
 
 
@@ -87,7 +126,7 @@ public class CenterController {
         if (cellController != selectedCellController.get()) {
             resetStyles();
             selectedCellController.set(cellController);
-            mainController.getHeaderController().populateHeaderControlsOnCellChoose(clickedCellCoordinates);
+            populateActionLineControlsOnCellChoose(clickedCellCoordinates);
             if (cellController.getTableCellType() == TableCellType.DATA && !isRangeChoice(clickedCellCoordinates)) {
                 Cell clickedCell = mainController.getCurrentLoadedSheet().
                         getCell(clickedCellCoordinates.getRow(), clickedCellCoordinates.getCol());
@@ -128,14 +167,71 @@ public class CenterController {
     }
 
     public void highlightChosenRangeCells(Range range) {
-        resetStyles();
-        for(Coordinates coordinates : range.getCells()) {
-            CellController cellController = dynamicSheetTable.getCoordinates2CellController().get(coordinates);
-            cellController.setColorStyle("range-cell");
+        if (range != null) {
+            resetStyles();
+            for(Coordinates coordinates : range.getCells()) {
+                CellController cellController = dynamicSheetTable.getCoordinates2CellController().get(coordinates);
+                cellController.setColorStyle("range-cell");
+            }
         }
     }
 
     private void resetStyles() {
         dynamicSheetTable.getCoordinates2CellController().forEach((c, cellController) -> {cellController.setColorStyle("default-cell");});
+    }
+
+    @FXML
+    void handleUpdateOnClick(ActionEvent event) {
+        Coordinates coordinates = getSelectedCellCoordinates();
+        Runnable runnable = () -> {
+            mainController.calculateCellUpdate(coordinates,newValueTextField.getText());
+            newValueTextField.clear();
+        };
+        Task<Void> task = mainController.getHeaderController().getTaskFromRunnable(runnable, false);
+        Thread thread = new Thread(task);
+        thread.setDaemon(true);
+        thread.start();
+    }
+
+    @FXML
+    void handleVersionOnChoose(ActionEvent event) {
+        int chosenVersion = versionComboBox.getSelectionModel().getSelectedIndex();
+        if (chosenVersion >= 0 && chosenVersion<versionComboBox.getItems().size() - 1) {
+            mainController.generateVersionWindow(chosenVersion);
+        }
+
+    }
+
+    public void updateMyControlsOnFileLoad() {
+        ComboBox<Integer> integerComboBox = (ComboBox<Integer>) versionComboBox;
+        SimpleIntegerProperty simpleIntegerProperty = mainController.getDataModule().getVersionNumber();
+
+        Runnable updateComboBoxItems = () -> {
+            int maxValue = simpleIntegerProperty.get();
+            EventHandler<ActionEvent> originalOnAction = integerComboBox.getOnAction();
+            integerComboBox.setOnAction(null);
+            integerComboBox.setItems(FXCollections.observableArrayList(
+                    java.util.stream.IntStream.rangeClosed(1, maxValue).boxed().toList()));
+            //unfortunately, the "setItems" method invokes the on action method of the version combo box,
+            //so the current solution is to nullify the on action before calling "setItems" and then returning its original value
+            integerComboBox.setOnAction(originalOnAction);
+        };
+
+        simpleIntegerProperty.addListener((observable, oldValue, newValue) -> updateComboBoxItems.run());
+    }
+
+    public void populateActionLineControlsOnCellChoose(Coordinates cellCoordinates) {
+        String cellID = cellCoordinates.getCellID();
+        currentCellIDLabel.setText(cellID);
+        Cell cell = mainController.getCurrentLoadedSheet().getCell(cellCoordinates.getRow(), cellCoordinates.getCol());
+        String originalExpression = cell != null ? cell.getOriginalExpression() : "[EMPTY-CELL]";
+        int lastUpdatedVersion = cell != null ? cell.getVersion() : 0;
+        originalValueLabel.setText(originalExpression);
+        lastUpdatedVersionLabel.setText(String.valueOf(lastUpdatedVersion));
+    }
+
+    @FXML
+    void handleSelectCellsButtonClick(ActionEvent event) {
+
     }
 }

@@ -21,7 +21,7 @@ public class DTOSheet implements Sheet {
 
     public DTOSheet(CoreSheet coreSheet) {
         this.numOfRows = coreSheet.getNumOfRows();
-        this.numOfColumns = coreSheet.getNumOfColumns();
+        this.numOfColumns = coreSheet.getNumOfCols();
         this.version = coreSheet.getVersion();
         this.layout = coreSheet.getLayout();
         this.name = coreSheet.getName();
@@ -34,7 +34,7 @@ public class DTOSheet implements Sheet {
     }
 
     public int getNumOfRows() {return this.numOfRows;}
-    public int getNumOfColumns() {return this.numOfColumns;}
+    public int getNumOfCols() {return this.numOfColumns;}
     public int getVersion() {return this.version;}
     public Range getRange(String name) {return rangesMap.get(name);}
     public Set<String> getRangesNames() {return rangesMap.keySet();}

@@ -1,6 +1,6 @@
-package gui.components.right;
+package gui.components.appearance;
 
-import gui.components.center.cell.CellController;
+import gui.components.sheet.cell.CellController;
 import gui.components.main.MainController;
 import gui.utils.Utils;
 import javafx.beans.binding.Bindings;
@@ -18,7 +18,7 @@ import javafx.scene.paint.Color;
 
 import java.util.List;
 
-public class RightController {
+public class appearanceController {
 
     private MainController mainController;
     private final int CELL_SIZE_SCALER = 10;
@@ -80,7 +80,7 @@ public class RightController {
 
     private void updateSlidersOnFileLoad() {
         int numOfRows = mainController.getCurrentLoadedSheet().getNumOfRows();
-        int numOfCols = mainController.getCurrentLoadedSheet().getNumOfColumns();
+        int numOfCols = mainController.getCurrentLoadedSheet().getNumOfCols();
 
         //populate combo boxes of row and column
         List<Integer> rowNumbers = Utils.getNumbersFrom1ToNNumber(numOfRows);

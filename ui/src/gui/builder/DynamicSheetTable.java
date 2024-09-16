@@ -3,16 +3,14 @@ package gui.builder;
 import entities.cell.Cell;
 import entities.coordinates.Coordinates;
 import entities.sheet.Sheet;
-import gui.components.center.cell.CellController;
+import gui.components.sheet.cell.CellController;
 import gui.utils.Utils;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
-import javafx.scene.layout.StackPane;
 
 import java.util.Map;
 
@@ -46,7 +44,7 @@ public class DynamicSheetTable {
 
     public void populateSheetWithData(Sheet sheet) {
         int numOfRows = sheet.getNumOfRows();
-        int numOfColumns = sheet.getNumOfColumns();
+        int numOfColumns = sheet.getNumOfCols();
         for (int i = 0; i < numOfRows; i++) {
             for (int j = 0; j < numOfColumns; j++) {
                 Coordinates coordinates = new Coordinates(i, j);

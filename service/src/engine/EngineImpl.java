@@ -4,6 +4,7 @@ import entities.cell.Cell;
 import entities.cell.CoreCell;
 import entities.coordinates.Coordinates;
 import entities.coordinates.CoordinateFactory;
+import entities.range.Range;
 import entities.sheet.Layout;
 import entities.sheet.Sheet;
 import entities.sheet.CoreSheet;
@@ -142,6 +143,15 @@ public class EngineImpl implements Engine {
 
     private DTOSheet generateDTOSheet(CoreSheet coreSheet) {
         return new DTOSheet(coreSheet);
+    }
+
+    private CoreSheet makeSubSheet(String fromCellID, String toCellID) {
+        int numOfRows, numOfCols;
+        Coordinates topLeftCoordinates = new Coordinates(fromCellID);
+        Coordinates bottomRightCoordinates = new Coordinates(toCellID);
+        Range.validateRange(coreSheets.getLast(),topLeftCoordinates.getRow(), topLeftCoordinates.getCol(),
+                bottomRightCoordinates.getRow(), bottomRightCoordinates.getCol());
+        return new CoreSheet(coreSheets.getLast(),topLeftCoordinates,bottomRightCoordinates);
     }
 
 }

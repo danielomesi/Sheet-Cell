@@ -2,8 +2,8 @@ package gui.builder;
 
 import entities.coordinates.Coordinates;
 import entities.sheet.Sheet;
-import gui.components.center.cell.CellController;
-import gui.components.center.cell.TableCellType;
+import gui.components.sheet.cell.CellController;
+import gui.components.sheet.cell.TableCellType;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -23,7 +23,7 @@ public class DynamicBuilder {
         Map<Integer, RowConstraints> rowConstraintsMap = new HashMap<>();
 
         int numRows = sheet.getNumOfRows();
-        int numCols = sheet.getNumOfColumns();
+        int numCols = sheet.getNumOfCols();
         int rowHeight = sheet.getLayout().getRowHeightUnits() * FACTOR;
         int colWidth = sheet.getLayout().getColumnWidthUnits() * FACTOR;
 
@@ -77,7 +77,7 @@ public class DynamicBuilder {
 
     public static CellController createCellController() {
         try {
-            FXMLLoader loader = new FXMLLoader(DynamicBuilder.class.getResource("/gui/components/center/cell/cell.fxml"));
+            FXMLLoader loader = new FXMLLoader(DynamicBuilder.class.getResource("/gui/components/sheet/cell/cell.fxml"));
             Label label = loader.load();
             label.setAlignment(Pos.CENTER);
             return loader.getController();

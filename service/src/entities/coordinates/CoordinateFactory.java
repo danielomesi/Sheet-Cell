@@ -14,9 +14,9 @@ public class CoordinateFactory {
         int colIndex = coordinates.getCol();
 
         if (rowIndex < 0 || rowIndex >= sheet.getNumOfRows() ||
-                colIndex < 0 || colIndex >= sheet.getNumOfColumns()) {
+                colIndex < 0 || colIndex >= sheet.getNumOfCols()) {
             throw new CellOutOfBoundsException("Cell is out bounds. Valid row range: [1-" + sheet.getNumOfRows()
-                    + "], Valid column range: [1-" + sheet.getNumOfColumns() + "]", (rowIndex+1) + "," + (colIndex+1) );
+                    + "], Valid column range: [1-" + sheet.getNumOfCols() + "]", (rowIndex+1) + "," + (colIndex+1) );
         }
 
         return getCellObjectFromIndices(sheet,rowIndex,colIndex);

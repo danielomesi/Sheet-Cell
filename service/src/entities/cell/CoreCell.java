@@ -33,7 +33,7 @@ public class CoreCell implements Cell {
         this.sheet = sheet;
         this.version = sheet.getVersion();
         Utils.validateInRange(row, 0, sheet.getNumOfRows());
-        Utils.validateInRange(col, 0, sheet.getNumOfColumns());
+        Utils.validateInRange(col, 0, sheet.getNumOfCols());
         this.coordinates = new Coordinates(row, col);
         this.visitColor = Status.WHITE;
     }
@@ -55,6 +55,7 @@ public class CoreCell implements Cell {
     public void setVisited(Status isVisited) {this.visitColor = isVisited;}
     @Override
     public Object getEffectiveValue() {return effectiveValue;};
+    public void setEffectiveValue(Object effectiveValue) {this.effectiveValue = effectiveValue;}
 
     public void executeCalculationProcedure(String expression) {
         resetListOfCellsThatAffectMe();

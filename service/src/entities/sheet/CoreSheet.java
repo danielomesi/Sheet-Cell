@@ -25,7 +25,7 @@ public class CoreSheet implements Sheet {
     private final Map<Coordinates, CoreCell> cellsMap = new HashMap<>();
     private Map<String, Range> rangesMap = new HashMap<>();
     private final int numOfRows;
-    private final int numOfColumns;
+    private final int numOfCols;
     private int version = 1;
     private int numOfCellsChanged;
     private final Layout layout;
@@ -33,14 +33,34 @@ public class CoreSheet implements Sheet {
 
     public CoreSheet(int numOfRows, int numOfColumns, Layout layout, String name) {
         this.numOfRows = numOfRows;
-        this.numOfColumns = numOfColumns;
+        this.numOfCols = numOfColumns;
         this.layout = layout;
         this.name = name;
     }
 
+    public CoreSheet(CoreSheet masterSheet, Coordinates topLeftCoordinate, Coordinates bottomRightCoordinate) {
+        numOfRows = bottomRightCoordinate.getRow() - topLeftCoordinate.getRow() + 1;
+        numOfCols = bottomRightCoordinate.getCol() - topLeftCoordinate.getCol() + 1;
+        version = masterSheet.getVersion();
+        layout = masterSheet.getLayout();
+        name = masterSheet.getName();
+        Coordinates coordinate;
+        CoreCell coreCellOfMasterSheet, coreCellOfSubSheet;
+        for(int i=0; i<numOfRows; i++) {
+            for (int j=0;j<numOfCols;j++) {
+                coordinate = new Coordinates(i + topLeftCoordinate.getRow(), j + topLeftCoordinate.getCol());
+                coreCellOfMasterSheet = masterSheet.cellsMap.get(coordinate);
+                coreCellOfSubSheet = new CoreCell(this,i,j);
+                coreCellOfSubSheet.setEffectiveValue(coreCellOfMasterSheet.getEffectiveValue());
+                coordinate = coreCellOfSubSheet.getCoordinates();
+                cellsMap.put(coordinate, coreCellOfSubSheet);
+            }
+        }
+    }
+
     public CoreSheet(STLSheet stlSheet) {
         this.numOfRows = stlSheet.getSTLLayout().getRows();
-        this.numOfColumns = stlSheet.getSTLLayout().getColumns();
+        this.numOfCols = stlSheet.getSTLLayout().getColumns();
         this.layout = new Layout(stlSheet.getSTLLayout().getSTLSize().getRowsHeightUnits(),
                 stlSheet.getSTLLayout().getSTLSize().getColumnWidthUnits());
         this.name = stlSheet.getName();
@@ -52,7 +72,7 @@ public class CoreSheet implements Sheet {
             int i = stlCell.getRow() - 1;
             int j = CoordinateFactory.convertColumnStringToIndex(stlCell.getColumn());
             Utils.validateInRange(i, 0, numOfRows);
-            Utils.validateInRange(j, 0, numOfColumns);
+            Utils.validateInRange(j, 0, numOfCols);
             Coordinates coordinates = new Coordinates(i, j);
             if (cellsMap.containsKey(coordinates)) {
                 coreCell = cellsMap.get(coordinates);
@@ -88,7 +108,7 @@ public class CoreSheet implements Sheet {
     //implementing interface methods
     public int getVersion() {return version;}
     public int getNumOfRows() {return numOfRows;}
-    public int getNumOfColumns() {return numOfColumns;}
+    public int getNumOfCols() {return numOfCols;}
     public Range getRange(String name) {return rangesMap.get(name);}
     public Layout getLayout() {return layout;}
     public String getName() {return name;}
@@ -179,6 +199,6 @@ public class CoreSheet implements Sheet {
 
     @Override
     public String toString() {
-        return "Rows: " + numOfRows + " Columns: " + numOfColumns + " Version: " + version;
+        return "Rows: " + numOfRows + " Columns: " + numOfCols + " Version: " + version;
     }
 }

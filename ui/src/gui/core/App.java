@@ -1,10 +1,10 @@
 package gui.core;
 
-import gui.components.center.CenterController;
+import gui.components.sheet.SheetController;
 import gui.components.header.HeaderController;
-import gui.components.left.LeftController;
+import gui.components.commands.commandsController;
 import gui.components.main.MainController;
-import gui.components.right.RightController;
+import gui.components.appearance.appearanceController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+//fix the bug of "add range" button enabled when choosing bad top left and bottom right?
+//fix the thing when you enter a number in the range name when adding a new range so it will work
 //make the app launch with the user defined layout requests!!
 //add the java fxml right/left/center to the main fxml as included (need to see how to in the video)
 //ask aviad whether I can make it fail when a static wrong argument is given
@@ -52,35 +54,35 @@ public class App extends Application {
         VBox headerVbox = headerLoader.load();
         HeaderController headerController = headerLoader.getController();
 
-        FXMLLoader centerLoader = new FXMLLoader(getClass().getResource("/gui/components/center/center.fxml"));
-        ScrollPane centerPane = centerLoader.load();
-        CenterController centerController = centerLoader.getController();
+        FXMLLoader sheetLoader = new FXMLLoader(getClass().getResource("/gui/components/sheet/sheet.fxml"));
+        VBox sheetVbox = sheetLoader.load();
+        SheetController sheetController = sheetLoader.getController();
 
-        FXMLLoader leftLoader = new FXMLLoader(getClass().getResource("/gui/components/left/left.fxml"));
-        VBox leftVbox = leftLoader.load();
-        LeftController leftController = leftLoader.getController();
+        FXMLLoader commandsLoader = new FXMLLoader(getClass().getResource("/gui/components/commands/commands.fxml"));
+        VBox commandsVbox = commandsLoader.load();
+        commandsController commandsController = commandsLoader.getController();
 
-        FXMLLoader rightLoader = new FXMLLoader(getClass().getResource("/gui/components/right/right.fxml"));
-        VBox rightVbox = rightLoader.load();
-        RightController rightController = rightLoader.getController();
+        FXMLLoader appearanceLoader = new FXMLLoader(getClass().getResource("/gui/components/appearance/appearance.fxml"));
+        VBox appearanceVbox = appearanceLoader.load();
+        appearanceController appearanceController = appearanceLoader.getController();
 
         // Make main controller know its sub controllers
         mainController.setHeaderController(headerController);
-        mainController.setCenterController(centerController);
-        mainController.setLeftController(leftController);
-        mainController.setRightController(rightController);
+        mainController.setCenterController(sheetController);
+        mainController.setLeftController(commandsController);
+        mainController.setRightController(appearanceController);
 
         //Make sub controllers know the main controller
         headerController.setMainController(mainController);
-        centerController.setMainController(mainController);
-        leftController.setMainController(mainController);
-        rightController.setMainController(mainController);
+        sheetController.setMainController(mainController);
+        commandsController.setMainController(mainController);
+        appearanceController.setMainController(mainController);
 
         // Add the headerPane to the top of the root layout
         BorderPane root = (BorderPane) mainController.getMainBorderPane();
         root.setTop(headerVbox);
-        root.setCenter(centerPane);
-        root.setLeft(leftVbox);
-        root.setRight(rightVbox);
+        root.setCenter(sheetVbox);
+        root.setLeft(commandsVbox);
+        root.setRight(appearanceVbox);
     }
 }

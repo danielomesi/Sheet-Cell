@@ -2,20 +2,16 @@ package gui.components.main;
 
 import engine.Engine;
 import engine.EngineImpl;
-import entities.cell.Cell;
 import entities.coordinates.Coordinates;
 import entities.sheet.Sheet;
 import gui.builder.DynamicBuilder;
 import gui.builder.DynamicSheetTable;
-import gui.components.center.CenterController;
-import gui.components.center.cell.CellController;
-import gui.components.center.cell.TableCellType;
+import gui.components.sheet.SheetController;
 import gui.components.header.HeaderController;
-import gui.components.left.LeftController;
-import gui.components.right.RightController;
+import gui.components.commands.commandsController;
+import gui.components.appearance.appearanceController;
 import gui.core.DataModule;
 import gui.exceptions.UnsupportedFileFormat;
-import gui.utils.Utils;
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -43,28 +39,28 @@ public class MainController {
     private Stage stage;
 
     //sub controllers
-    private CenterController centerController;
+    private SheetController sheetController;
     private HeaderController headerController;
-    private LeftController leftController;
-    private RightController rightController;
+    private commandsController commandsController;
+    private appearanceController appearanceController;
 
     //getters
     public BorderPane getMainBorderPane() {return mainBorderPane;}
     public Engine getEngine() {return engine;}
     public Sheet getCurrentLoadedSheet() {return currentLoadedSheet;}
     public HeaderController getHeaderController() {return headerController;}
-    public CenterController getCenterController() {return centerController;}
-    public LeftController getLeftController() {return leftController;}
-    public RightController getRightController() {return rightController;}
+    public SheetController getCenterController() {return sheetController;}
+    public commandsController getLeftController() {return commandsController;}
+    public appearanceController getRightController() {return appearanceController;}
     public BooleanProperty getIsSheetLoaded() {return isSheetLoaded;}
     public DataModule getDataModule() {return dataModule;}
 
     //setters
     public void setStage(Stage stage) {this.stage = stage;}
     public void setHeaderController(HeaderController headerController) {this.headerController = headerController;}
-    public void setCenterController(CenterController centerController) {this.centerController = centerController;}
-    public void setLeftController(LeftController leftController) {this.leftController = leftController;}
-    public void setRightController(RightController rightController) {this.rightController = rightController;}
+    public void setCenterController(SheetController sheetController) {this.sheetController = sheetController;}
+    public void setLeftController(commandsController commandsController) {this.commandsController = commandsController;}
+    public void setRightController(appearanceController appearanceController) {this.appearanceController = appearanceController;}
 
     public void initialize() {
         engine = new EngineImpl();
@@ -91,11 +87,11 @@ public class MainController {
     public void toDoOnSuccessfulFileLoad() {
         currentLoadedSheet = engine.getSheet();
         Platform.runLater(() -> {
-            dataModule.buildModule(currentLoadedSheet.getNumOfRows(),currentLoadedSheet.getNumOfColumns(),currentLoadedSheet.getRangesNames());
-            centerController.buildMainCellsTableDynamically(currentLoadedSheet);
-            headerController.updateMyControlsOnFileLoad();
-            leftController.updateMyControlsOnFileLoad();
-            rightController.updateMyControlsOnFileLoad();
+            dataModule.buildModule(currentLoadedSheet.getNumOfRows(),currentLoadedSheet.getNumOfCols(),currentLoadedSheet.getRangesNames());
+            sheetController.buildMainCellsTableDynamically(currentLoadedSheet);
+            sheetController.updateMyControlsOnFileLoad();
+            commandsController.updateMyControlsOnFileLoad();
+            appearanceController.updateMyControlsOnFileLoad();
             dataModule.updateModule(currentLoadedSheet);
             isSheetLoaded.setValue(true);
         } );
@@ -106,7 +102,7 @@ public class MainController {
         currentLoadedSheet = engine.getSheet();
         Platform.runLater(()-> {
             dataModule.updateModule(currentLoadedSheet);
-            headerController.resetVersionComboBoxChoice();
+            sheetController.resetVersionComboBoxChoice();
         });
     }
 
@@ -121,7 +117,7 @@ public class MainController {
 
         Stage versionWindow = new Stage();
         versionWindow.setTitle("Version " + (chosenVersion+1));
-        versionWindow.setOnCloseRequest(event -> {headerController.resetVersionComboBoxChoice();});
+        versionWindow.setOnCloseRequest(event -> {sheetController.resetVersionComboBoxChoice();});
         versionWindow.setScene(newScene);
         versionWindow.show();
     }

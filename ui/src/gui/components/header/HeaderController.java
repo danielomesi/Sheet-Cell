@@ -1,17 +1,10 @@
 package gui.components.header;
 
-import entities.cell.Cell;
-import entities.coordinates.Coordinates;
-import entities.sheet.Sheet;
-import gui.components.center.CenterController;
 import gui.components.main.MainController;
 import gui.utils.Utils;
 import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
@@ -23,14 +16,9 @@ public class HeaderController {
 
     private MainController mainController;
 
-    @FXML
-    private VBox vBoxHeader;
-
     //load and save controls
     @FXML
     private Label filePathLabel;
-    @FXML
-    private Button loadFileButton;
     @FXML
     private Button saveToFileButton;
 
@@ -40,56 +28,12 @@ public class HeaderController {
     @FXML
     private Label errorMessageLabel;
 
-    //action row controls
-    @FXML
-    private Label currentCellIDLabel;
-    @FXML
-    private Label originalValueLabel;
-    @FXML
-    private Label lastUpdatedVersionLabel;
-    @FXML
-    private TextField newValueTextField;
-    @FXML
-    private Button updateButton;
-    @FXML
-    private ComboBox<?> versionComboBox;
-
-    public void resetVersionComboBoxChoice() {
-        versionComboBox.getSelectionModel().clearSelection();
-    }
-
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
         if (mainController != null) {
-            CenterController centerController = mainController.getCenterController();
             BooleanProperty isSheetLoadedProperty = mainController.getIsSheetLoaded();
-            updateButton.disableProperty().bind(isSheetLoadedProperty.not().or(centerController.getSelectedCellController().isNull()));
-            versionComboBox.disableProperty().bind(isSheetLoadedProperty.not());
             saveToFileButton.disableProperty().bind(isSheetLoadedProperty.not());
-            newValueTextField.disableProperty().bind(isSheetLoadedProperty.not());
         }
-    }
-
-    @FXML
-    void handleUpdateOnClick(ActionEvent event) {
-        Coordinates coordinates = mainController.getCenterController().getSelectedCellCoordinates();
-        Runnable runnable = () -> {
-            mainController.calculateCellUpdate(coordinates,newValueTextField.getText());
-            newValueTextField.clear();
-        };
-        Task<Void> task = getTaskFromRunnable(runnable, false);
-        Thread thread = new Thread(task);
-        thread.setDaemon(true);
-        thread.start();
-    }
-
-    @FXML
-    void handleVersionOnChoose(ActionEvent event) {
-        int chosenVersion = versionComboBox.getSelectionModel().getSelectedIndex();
-        if (chosenVersion >= 0 && chosenVersion<versionComboBox.getItems().size() - 1) {
-            mainController.generateVersionWindow(chosenVersion);
-        }
-
     }
 
     @FXML
@@ -118,33 +62,6 @@ public class HeaderController {
         }
     }
 
-    public void updateMyControlsOnFileLoad() {
-        ComboBox<Integer> integerComboBox = (ComboBox<Integer>) versionComboBox;
-        SimpleIntegerProperty simpleIntegerProperty = mainController.getDataModule().getVersionNumber();
-
-        Runnable updateComboBoxItems = () -> {
-            int maxValue = simpleIntegerProperty.get();
-            EventHandler<ActionEvent> originalOnAction = integerComboBox.getOnAction();
-            integerComboBox.setOnAction(null);
-            integerComboBox.setItems(FXCollections.observableArrayList(
-                    java.util.stream.IntStream.rangeClosed(1, maxValue).boxed().toList()));
-            //unfortunately, the "setItems" method invokes the on action method of the version combo box,
-            //so the current solution is to nullify the on action before calling "setItems" and then returning its original value
-            integerComboBox.setOnAction(originalOnAction);
-        };
-
-        simpleIntegerProperty.addListener((observable, oldValue, newValue) -> updateComboBoxItems.run());
-    }
-
-    public void populateHeaderControlsOnCellChoose(Coordinates cellCoordinates) {
-        String cellID = cellCoordinates.getCellID();
-        currentCellIDLabel.setText(cellID);
-        Cell cell = mainController.getCurrentLoadedSheet().getCell(cellCoordinates.getRow(), cellCoordinates.getCol());
-        String originalExpression = cell != null ? cell.getOriginalExpression() : "[EMPTY-CELL]";
-        int lastUpdatedVersion = cell != null ? cell.getVersion() : 0;
-        originalValueLabel.setText(originalExpression);
-        lastUpdatedVersionLabel.setText(String.valueOf(lastUpdatedVersion));
-    }
 
     public Task<Void> getTaskFromRunnable(Runnable runnable, boolean isDelayed) {
         Task<Void> task = new Task<Void>() {

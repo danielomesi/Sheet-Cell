@@ -40,7 +40,7 @@ public class DataModule {
 
     public void updateModule(Sheet sheet) {
         int numOfRows = sheet.getNumOfRows();
-        int numOfColumns = sheet.getNumOfColumns();
+        int numOfColumns = sheet.getNumOfCols();
         for (int i = 0; i < numOfRows; i++) {
             for (int j = 0; j < numOfColumns; j++) {
                 Coordinates coordinates = new Coordinates(i, j);

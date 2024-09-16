@@ -1,10 +1,9 @@
-package gui.components.center.cell;
+package gui.components.sheet.cell;
 
 import entities.coordinates.Coordinates;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 
 import java.util.HashSet;
