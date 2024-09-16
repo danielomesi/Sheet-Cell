@@ -2,6 +2,7 @@ package gui.components.commands;
 
 import entities.range.Range;
 import gui.components.main.MainController;
+import gui.utils.Utils;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SetProperty;
 import javafx.collections.FXCollections;
@@ -12,7 +13,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.util.Set;
@@ -29,6 +29,11 @@ public class CommandsController {
     private TextField rangeNameTextField;
     @FXML
     private Button addRangeButton;
+    @FXML
+    private Button openFilterDialogButton;
+
+    @FXML
+    private Button openSortDialogButton;
 
 
 
@@ -36,34 +41,22 @@ public class CommandsController {
         this.mainController = mainController;
         if (mainController != null) {
             BooleanProperty isSheetLoadedProperty = mainController.getIsSheetLoaded();
+            BooleanProperty is2validCellsSelected = mainController.getSheetController().getIs2ValidCellsSelected();
             rangeComboBox.disableProperty().bind(isSheetLoadedProperty.not());
             rangeNameTextField.disableProperty().bind(isSheetLoadedProperty.not());
             removeRangeButton.disableProperty().bind(isSheetLoadedProperty.not());
+            addRangeButton.disableProperty().bind(is2validCellsSelected.not());
+            openFilterDialogButton.disableProperty().bind(is2validCellsSelected.not());
+            openSortDialogButton.disableProperty().bind(is2validCellsSelected.not());
         }
     }
-
-    public void updateMyControlsOnFileLoad() {
-        SetProperty<String> rangesNamesSetProperty = mainController.getDataModule().getRangesNames();
-
-        Runnable updateComboBoxItems = () -> {
-            Set<String> names = rangesNamesSetProperty.get();
-            EventHandler<ActionEvent> originalOnAction = rangeComboBox.getOnAction();
-            rangeComboBox.setOnAction(null);
-            ObservableList<String> observableList = FXCollections.observableArrayList(names);
-            rangeComboBox.setItems(observableList);
-            rangeComboBox.setOnAction(originalOnAction);
-        };
-
-        rangesNamesSetProperty.addListener((observable, oldValue, newValue) -> updateComboBoxItems.run());
-    }
-
 
 
     @FXML
     void handleOnRangeSelect(ActionEvent event) {
         String rangeName = rangeComboBox.getSelectionModel().getSelectedItem().toString();
         Range range = mainController.getCurrentLoadedSheet().getRange(rangeName);
-        mainController.getCenterController().highlightChosenRangeCells(range);
+        mainController.getSheetController().highlightChosenRangeCells(range);
     }
 
     @FXML
@@ -81,8 +74,8 @@ public class CommandsController {
     @FXML
     void addRangeButtonOnClick(ActionEvent event) {
         String rangeName = rangeNameTextField.getText();
-        String fromCellID = mainController.getCenterController().getSelectedTopLeftCellID();
-        String toCellID = mainController.getCenterController().getSelectedBottomRightCellID();
+        String fromCellID = mainController.getSheetController().getSelectedTopLeftCellID();
+        String toCellID = mainController.getSheetController().getSelectedBottomRightCellID();
         Runnable runnable = () -> mainController.addRange(rangeName, fromCellID, toCellID);
         Task<Void> task = mainController.getHeaderController().getTaskFromRunnable(runnable,false);
         Thread thread = new Thread(task);
@@ -90,18 +83,48 @@ public class CommandsController {
         thread.start();
     }
 
+    @FXML
+    void openSortDialogButtonClicked(ActionEvent event) {
+        String fromCellID = mainController.getSheetController().getSelectedTopLeftCellID();
+        String toCellID = mainController.getSheetController().getSelectedBottomRightCellID();
+        Runnable runnable = () -> mainController.openSortDialog(fromCellID, toCellID);
+        Task<Void> task = mainController.getHeaderController().getTaskFromRunnable(runnable,false);
+        Utils.runTaskInADaemonThread(task);
+    }
+
+    @FXML
+    void openFilterDialogClicked(ActionEvent event) {
+
+    }
+
+
+
     public Range getSelectedRange() {
         Range selectedRange = null;
         try {
             selectedRange = new Range(null, mainController.getCurrentLoadedSheet(),
-                    mainController.getCenterController().getSelectedTopLeftCellID(),
-                    mainController.getCenterController().getSelectedBottomRightCellID());
+                    mainController.getSheetController().getSelectedTopLeftCellID(),
+                    mainController.getSheetController().getSelectedBottomRightCellID());
         }
         catch (Exception ignored) {
 
         }
         return selectedRange;
+    }
 
+    public void updateMyControlsOnFileLoad() {
+        SetProperty<String> rangesNamesSetProperty = mainController.getDataModule().getRangesNames();
+
+        Runnable updateComboBoxItems = () -> {
+            Set<String> names = rangesNamesSetProperty.get();
+            EventHandler<ActionEvent> originalOnAction = rangeComboBox.getOnAction();
+            rangeComboBox.setOnAction(null);
+            ObservableList<String> observableList = FXCollections.observableArrayList(names);
+            rangeComboBox.setItems(observableList);
+            rangeComboBox.setOnAction(originalOnAction);
+        };
+
+        rangesNamesSetProperty.addListener((observable, oldValue, newValue) -> updateComboBoxItems.run());
     }
 
 }

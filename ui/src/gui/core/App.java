@@ -4,7 +4,8 @@ import gui.components.sheet.SheetController;
 import gui.components.header.HeaderController;
 import gui.components.commands.CommandsController;
 import gui.components.main.MainController;
-import gui.components.appearance.appearanceController;
+import gui.components.appearance.AppearanceController;
+import gui.components.sort.SortController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -14,14 +15,16 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+//choose an arbitrary number in my opinion for every component and for the main component
+//add separators between sections in app
 //fix the bug of "add range" button enabled when choosing bad top left and bottom right?
-//fix the thing when you enter a number in the range name when adding a new range so it will work
+//fix the thing when you enter a number in the range name when adding a new range, so that it will work
 //make the app launch with the user defined layout requests!!
 //add the java fxml right/left/center to the main fxml as included (need to see how to in the video)
 //ask aviad whether I can make it fail when a static wrong argument is given
-//make the exception tostring happen just on the frontend part
+//make the exception to string happen just on the frontend part
 //make a button to activate/disable animations (such as load file delay...)
-//delete all the printstacktrace all over the code
+//delete all the "print stack trace" all over the code
 //fix the proper window size thing
 public class App extends Application {
     private MainController mainController;
@@ -64,22 +67,28 @@ public class App extends Application {
 
         FXMLLoader appearanceLoader = new FXMLLoader(getClass().getResource("/gui/components/appearance/appearance.fxml"));
         VBox appearanceVbox = appearanceLoader.load();
-        appearanceController appearanceController = appearanceLoader.getController();
+        AppearanceController appearanceController = appearanceLoader.getController();
+
+        FXMLLoader sortLoader = new FXMLLoader(getClass().getResource("/gui/components/sort/sort.fxml"));
+        HBox sortHbox = sortLoader.load();
+        SortController sortController = sortLoader.getController();
 
         // Make main controller know its sub controllers
         mainController.setHeaderController(headerController);
-        mainController.setCenterController(sheetController);
-        mainController.setLeftController(commandsController);
-        mainController.setRightController(appearanceController);
+        mainController.setSheetController(sheetController);
+        mainController.setCommandsController(commandsController);
+        mainController.setAppearanceController(appearanceController);
+        mainController.setSortController(sortController);
 
         //Make sub controllers know the main controller
         headerController.setMainController(mainController);
         sheetController.setMainController(mainController);
         commandsController.setMainController(mainController);
         appearanceController.setMainController(mainController);
+        sortController.setMainController(mainController);
 
         // Add the headerPane to the top of the root layout
-        BorderPane root = (BorderPane) mainController.getMainBorderPane();
+        BorderPane root = mainController.getMainBorderPane();
         root.setTop(headerVbox);
         root.setCenter(sheetVbox);
         root.setLeft(commandsVbox);

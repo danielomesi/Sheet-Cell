@@ -21,7 +21,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class EngineImpl implements Engine {
-    List<CoreSheet> coreSheets;
+    private List<CoreSheet> coreSheets;
+    private CoreSheet subCoreSheet;
 
     public EngineImpl() {
         this.coreSheets = new LinkedList<>();
@@ -75,6 +76,20 @@ public class EngineImpl implements Engine {
     @Override
     public void deleteRange(String rangeName) {
         coreSheets.getLast().deleteRange(rangeName);
+    }
+
+    @Override
+    public void setSubSheet(String fromCellID, String toCellID) {
+        subCoreSheet = makeSubSheet(fromCellID, toCellID);
+    }
+
+    @Override
+    public Sheet getSubSheet() {
+        if (subCoreSheet != null) {
+            return generateDTOSheet(subCoreSheet);
+        }
+
+        return null;
     }
 
     @Override

@@ -7,6 +7,7 @@ import entities.types.undefined.UndefinedNumber;
 import entities.types.undefined.UndefinedString;
 import exceptions.ServiceException;
 import gui.exceptions.GUIException;
+import javafx.concurrent.Task;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
@@ -85,6 +86,12 @@ public class Utils {
     public static int convertColumnCharToIndex(Character ch) {
         ch = Character.toUpperCase(ch);
         return ch - 'A';
+    }
+
+    public static void runTaskInADaemonThread(Task task) {
+        Thread thread = new Thread(task);
+        thread.setDaemon(true);
+        thread.start();
     }
 
 }

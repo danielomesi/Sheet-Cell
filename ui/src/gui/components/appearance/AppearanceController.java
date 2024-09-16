@@ -18,7 +18,7 @@ import javafx.scene.paint.Color;
 
 import java.util.List;
 
-public class appearanceController {
+public class AppearanceController {
 
     private MainController mainController;
     private final int CELL_SIZE_SCALER = 10;
@@ -49,7 +49,7 @@ public class appearanceController {
         this.mainController = mainController;
         if (mainController != null) {
             BooleanProperty isSheetLoadedProperty = mainController.getIsSheetLoaded();
-            BooleanBinding isSelectedCell = mainController.getCenterController().getSelectedCellController().isNull();
+            BooleanBinding isSelectedCell = mainController.getSheetController().getSelectedCellController().isNull();
             sheetScalerSlider.disableProperty().bind(isSheetLoadedProperty.not());
             selectedRowComboBox.disableProperty().bind(isSheetLoadedProperty.not());
             selectedColComboBox.disableProperty().bind(isSheetLoadedProperty.not());
@@ -94,15 +94,15 @@ public class appearanceController {
         bindAlignmentComboBoxToColComboBox();
 
         sheetScalerSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            mainController.getCenterController().getDynamicSheetTable().updateSheetScale((Double) newValue);
+            mainController.getSheetController().getDynamicSheetTable().updateSheetScale((Double) newValue);
         });
         rowHeightSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
             int rowToUpdate = selectedRowComboBox.getValue();
-            mainController.getCenterController().getDynamicSheetTable().updateRowHeight(rowToUpdate, (Double) newValue);});
+            mainController.getSheetController().getDynamicSheetTable().updateRowHeight(rowToUpdate, (Double) newValue);});
 
         colWidthSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
             String colToUpdate = selectedColComboBox.getValue();
-            mainController.getCenterController().getDynamicSheetTable().updateColumnWidth(colToUpdate, (Double) newValue);});
+            mainController.getSheetController().getDynamicSheetTable().updateColumnWidth(colToUpdate, (Double) newValue);});
     }
 
     private void setRangesForSliders() {
@@ -129,26 +129,26 @@ public class appearanceController {
     public void handleAlignmentOnSelect(ActionEvent event) {
         String alignment = selectedAlignmentComboBox.getValue();
         String columnName = selectedColComboBox.getSelectionModel().getSelectedItem();
-        mainController.getCenterController().getDynamicSheetTable().updateColumnAlignment(columnName, alignment);
+        mainController.getSheetController().getDynamicSheetTable().updateColumnAlignment(columnName, alignment);
     }
 
     @FXML
     void handleCellFontOnColorPick(ActionEvent event) {
-        CellController selectedCell = mainController.getCenterController().getSelectedCellController().get();
+        CellController selectedCell = mainController.getSheetController().getSelectedCellController().get();
         Color selectedColor = cellFontColorPicker.getValue();
         selectedCell.setColorStyles(selectedCell.getCustomizedBackgroundColor(), selectedColor);
     }
 
     @FXML
     void handleCellBackgroundOnColorPick(ActionEvent event) {
-        CellController selectedCell = mainController.getCenterController().getSelectedCellController().get();
+        CellController selectedCell = mainController.getSheetController().getSelectedCellController().get();
         Color selectedColor = cellBackgroundColorPicker.getValue();
         selectedCell.setColorStyles(selectedColor, selectedCell.getCustomizedTextColor());
     }
 
     @FXML
     void handleResetCellColorsOnClick(ActionEvent event) {
-        CellController selectedCell = mainController.getCenterController().getSelectedCellController().get();
+        CellController selectedCell = mainController.getSheetController().getSelectedCellController().get();
         selectedCell.resetColorStyles();
     }
 

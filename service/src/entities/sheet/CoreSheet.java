@@ -51,7 +51,8 @@ public class CoreSheet implements Sheet {
                 coordinate = new Coordinates(i + topLeftCoordinate.getRow(), j + topLeftCoordinate.getCol());
                 coreCellOfMasterSheet = masterSheet.cellsMap.get(coordinate);
                 coreCellOfSubSheet = new CoreCell(this,i,j);
-                coreCellOfSubSheet.setEffectiveValue(coreCellOfMasterSheet.getEffectiveValue());
+                Object effectiveValue = coreCellOfMasterSheet == null ? null : coreCellOfMasterSheet.getEffectiveValue();
+                coreCellOfSubSheet.setEffectiveValue(effectiveValue);
                 coordinate = coreCellOfSubSheet.getCoordinates();
                 cellsMap.put(coordinate, coreCellOfSubSheet);
             }

@@ -29,4 +29,7 @@ public interface Engine {
 
     public void deleteRange(String rangeName);
 
+    public void setSubSheet(String fromCellID, String toCellID);
+
+    public Sheet getSubSheet();
 }

@@ -9,9 +9,11 @@ import gui.builder.DynamicSheetTable;
 import gui.components.sheet.SheetController;
 import gui.components.header.HeaderController;
 import gui.components.commands.CommandsController;
-import gui.components.appearance.appearanceController;
+import gui.components.appearance.AppearanceController;
+import gui.components.sort.SortController;
 import gui.core.DataModule;
 import gui.exceptions.UnsupportedFileFormat;
+import gui.utils.Utils;
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -20,6 +22,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+
+import java.util.List;
 
 public class MainController {
 
@@ -42,25 +46,28 @@ public class MainController {
     private SheetController sheetController;
     private HeaderController headerController;
     private CommandsController commandsController;
-    private appearanceController appearanceController;
+    private AppearanceController appearanceController;
+    private SortController sortController;
 
     //getters
     public BorderPane getMainBorderPane() {return mainBorderPane;}
     public Engine getEngine() {return engine;}
     public Sheet getCurrentLoadedSheet() {return currentLoadedSheet;}
     public HeaderController getHeaderController() {return headerController;}
-    public SheetController getCenterController() {return sheetController;}
-    public CommandsController getLeftController() {return commandsController;}
-    public appearanceController getRightController() {return appearanceController;}
+    public SheetController getSheetController() {return sheetController;}
+    public CommandsController getCommandsController() {return commandsController;}
+    public AppearanceController getAppearanceController() {return appearanceController;}
+    public SortController getSortController() {return sortController;}
     public BooleanProperty getIsSheetLoaded() {return isSheetLoaded;}
     public DataModule getDataModule() {return dataModule;}
 
     //setters
     public void setStage(Stage stage) {this.stage = stage;}
     public void setHeaderController(HeaderController headerController) {this.headerController = headerController;}
-    public void setCenterController(SheetController sheetController) {this.sheetController = sheetController;}
-    public void setLeftController(CommandsController commandsController) {this.commandsController = commandsController;}
-    public void setRightController(appearanceController appearanceController) {this.appearanceController = appearanceController;}
+    public void setSheetController(SheetController sheetController) {this.sheetController = sheetController;}
+    public void setCommandsController(CommandsController commandsController) {this.commandsController = commandsController;}
+    public void setAppearanceController(AppearanceController appearanceController) {this.appearanceController = appearanceController;}
+    public void setSortController(SortController sortController) {this.sortController = sortController;}
 
     public void initialize() {
         engine = new EngineImpl();
@@ -132,6 +139,25 @@ public class MainController {
         engine.deleteRange(rangeName);
         currentLoadedSheet = engine.getSheet();
         Platform.runLater(() -> dataModule.updateModule(currentLoadedSheet));
+    }
+
+    public void openSortDialog(String fromCellID,String toCellID) {
+        engine.setSubSheet(fromCellID, toCellID);
+        Sheet subSheet = engine.getSubSheet();
+        Platform.runLater(() -> {
+            DynamicSheetTable dynamicSheetTable = DynamicBuilder.buildDynamicSheetTable(subSheet);
+            dynamicSheetTable.populateSheetWithData(subSheet);
+            GridPane gridPane = dynamicSheetTable.getGridPane();
+            sortController.addTable(gridPane);
+            List<String> colNames = Utils.getLettersFromAToTheNLetter(subSheet.getNumOfCols());
+            sortController.populateListViewOfAllCols(colNames);
+            Scene newScene = new Scene(sortController.getWrapper());
+
+            Stage versionWindow = new Stage();
+            versionWindow.setTitle("Sort Dialog");
+            versionWindow.setScene(newScene);
+            versionWindow.show();
+        });
     }
 
 }

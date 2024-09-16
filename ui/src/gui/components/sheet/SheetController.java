@@ -71,14 +71,16 @@ public class SheetController {
     //getters
     public Coordinates getSelectedCellCoordinates() {return selectedCellController.get() == null ? null : selectedCellController.get().getCoordinates();}
     public SimpleObjectProperty<CellController> getSelectedCellController() {return selectedCellController;}
+    public BooleanProperty getIs2ValidCellsSelected() {return is2ValidCellsSelected;}
     public DynamicSheetTable getDynamicSheetTable() {return dynamicSheetTable;}
     public String getSelectedTopLeftCellID() {return selectedTopLeftCellLabel.getText();}
     public String getSelectedBottomRightCellID() {return selectedBottomRightCellLabel.getText();}
+
     //setters
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
         if (mainController != null) {
-            SheetController sheetController = mainController.getCenterController();
+            SheetController sheetController = mainController.getSheetController();
             BooleanProperty isSheetLoadedProperty = mainController.getIsSheetLoaded();
             updateButton.disableProperty().bind(isSheetLoadedProperty.not().or(sheetController.getSelectedCellController().isNull()));
             versionComboBox.disableProperty().bind(isSheetLoadedProperty.not());
@@ -106,6 +108,35 @@ public class SheetController {
         });
     }
 
+    @FXML
+    void handleSelectCellsButtonClick(ActionEvent event) {
+        is2ValidCellsSelected.set(false);
+        isSelectingFirstCell.set(true);
+        isSelectingSecondCell.set(true);
+    }
+
+    @FXML
+    void handleUpdateOnClick(ActionEvent event) {
+        Coordinates coordinates = getSelectedCellCoordinates();
+        Runnable runnable = () -> {
+            mainController.calculateCellUpdate(coordinates,newValueTextField.getText());
+            newValueTextField.clear();
+        };
+        Task<Void> task = mainController.getHeaderController().getTaskFromRunnable(runnable, false);
+        Thread thread = new Thread(task);
+        thread.setDaemon(true);
+        thread.start();
+    }
+
+    @FXML
+    void handleVersionOnChoose(ActionEvent event) {
+        int chosenVersion = versionComboBox.getSelectionModel().getSelectedIndex();
+        if (chosenVersion >= 0 && chosenVersion<versionComboBox.getItems().size() - 1) {
+            mainController.generateVersionWindow(chosenVersion);
+        }
+
+    }
+
     public void buildMainCellsTableDynamically(Sheet sheet) {
         dynamicSheetTable = DynamicBuilder.buildDynamicSheetTable(sheet);
         GridPane gridPane = dynamicSheetTable.getGridPane();
@@ -131,8 +162,6 @@ public class SheetController {
 
         sheetWrapperScrollPane.setContent(gridPane);
     }
-
-
 
     private void handleCellClick(Coordinates clickedCellCoordinates) {
         CellController cellController = dynamicSheetTable.getCoordinates2CellController().get(clickedCellCoordinates);
@@ -166,7 +195,7 @@ public class SheetController {
                 topLeftCellID = previousSelectedCellController.get().getCoordinates().getCellID();
                 bottomRightCellID = clickedCellCoordinates.getCellID();
                 updateSelectedCellSIDLabel(topLeftCellID, bottomRightCellID);
-                highlightChosenRangeCells(mainController.getLeftController().getSelectedRange());
+                highlightChosenRangeCells(mainController.getCommandsController().getSelectedRange());
                 isSelectingSecondCell.set(false);
                 is2ValidCellsSelected.set(true);
             }
@@ -191,28 +220,6 @@ public class SheetController {
 
     private void resetStyles() {
         dynamicSheetTable.getCoordinates2CellController().forEach((c, cellController) -> {cellController.setColorStyle("default-cell");});
-    }
-
-    @FXML
-    void handleUpdateOnClick(ActionEvent event) {
-        Coordinates coordinates = getSelectedCellCoordinates();
-        Runnable runnable = () -> {
-            mainController.calculateCellUpdate(coordinates,newValueTextField.getText());
-            newValueTextField.clear();
-        };
-        Task<Void> task = mainController.getHeaderController().getTaskFromRunnable(runnable, false);
-        Thread thread = new Thread(task);
-        thread.setDaemon(true);
-        thread.start();
-    }
-
-    @FXML
-    void handleVersionOnChoose(ActionEvent event) {
-        int chosenVersion = versionComboBox.getSelectionModel().getSelectedIndex();
-        if (chosenVersion >= 0 && chosenVersion<versionComboBox.getItems().size() - 1) {
-            mainController.generateVersionWindow(chosenVersion);
-        }
-
     }
 
     public void updateMyControlsOnFileLoad() {
@@ -241,13 +248,6 @@ public class SheetController {
         int lastUpdatedVersion = cell != null ? cell.getVersion() : 0;
         originalValueLabel.setText(originalExpression);
         lastUpdatedVersionLabel.setText(String.valueOf(lastUpdatedVersion));
-    }
-
-    @FXML
-    void handleSelectCellsButtonClick(ActionEvent event) {
-        is2ValidCellsSelected.set(false);
-        isSelectingFirstCell.set(true);
-        isSelectingSecondCell.set(true);
     }
 
     public void updateSelectedCellSIDLabel(String topLeftText, String bottomRightText) {
