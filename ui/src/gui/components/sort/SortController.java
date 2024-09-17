@@ -1,9 +1,14 @@
 package gui.components.sort;
 
+import gui.builder.DynamicBuilder;
+import gui.builder.DynamicSheetTable;
 import gui.components.main.MainController;
+import gui.utils.Utils;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -15,7 +20,9 @@ import java.util.List;
 public class SortController {
 
     private MainController mainController;
-
+    private String fromCellID;
+    private String toCellID;
+    private DynamicSheetTable dynamicSheetTable;
     @FXML
     private Button RemoveColumnFromSortButton;
     @FXML
@@ -45,15 +52,17 @@ public class SortController {
                 selectedColsListView.getSelectionModel().selectedItemProperty());
 
         BooleanBinding isSelectionLastInSelectedColsList = Bindings.createBooleanBinding(() -> {
-            ObservableList<String> items = selectedColsListView.getItems();
-            String selectedItem = selectedColsListView.getSelectionModel().getSelectedItem();
-            return !items.isEmpty() && selectedItem != null && selectedItem.equals(items.getLast());},
+                    ObservableList<String> items = selectedColsListView.getItems();
+                    String selectedItem = selectedColsListView.getSelectionModel().getSelectedItem();
+                    return !items.isEmpty() && selectedItem != null && selectedItem.equals(items.getLast());
+                },
                 selectedColsListView.getSelectionModel().selectedItemProperty(), selectedColsListView.itemsProperty());
 
         BooleanBinding isSelectionFirstInSelectedColsList = Bindings.createBooleanBinding(() -> {
-            ObservableList<String> items = selectedColsListView.getItems();
-            String selectedItem = selectedColsListView.getSelectionModel().getSelectedItem();
-            return !items.isEmpty() && selectedItem != null && selectedItem.equals(items.getFirst());},
+                    ObservableList<String> items = selectedColsListView.getItems();
+                    String selectedItem = selectedColsListView.getSelectionModel().getSelectedItem();
+                    return !items.isEmpty() && selectedItem != null && selectedItem.equals(items.getFirst());
+                },
                 selectedColsListView.getSelectionModel().selectedItemProperty(), selectedColsListView.itemsProperty());
 
         sortButton.setDisable(true);
@@ -63,9 +72,27 @@ public class SortController {
         moveUpButton.disableProperty().bind(isSelectionFirstInSelectedColsList);
     }
 
-    public void setMainController(MainController mainController) {this.mainController = mainController;}
-    public HBox getWrapper() {return wrapperHbox;}
-    public void addTable(GridPane gridPane) {
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
+    }
+
+    public void setDynamicSheetTable(DynamicSheetTable dynamicSheetTable) {
+        this.dynamicSheetTable = dynamicSheetTable;
+    }
+
+    public void setFromCellID(String fromCellID) {
+        this.fromCellID = fromCellID;
+    }
+
+    public void setToCellID(String toCellID) {
+        this.toCellID = toCellID;
+    }
+
+    public HBox getWrapper() {
+        return wrapperHbox;
+    }
+
+    public void setTable(GridPane gridPane) {
         tableScrollPane.setContent(gridPane);
     }
 
@@ -73,7 +100,6 @@ public class SortController {
         allColsListView.getItems().clear();
         allColsListView.getItems().addAll(columns);
     }
-
 
 
     @FXML
@@ -108,7 +134,13 @@ public class SortController {
 
     @FXML
     void sortButtonClicked(ActionEvent event) {
+        List<String> colsToSortBy = selectedColsListView.getItems();
+        Runnable sort = () -> {
+            List<Integer> sortedRowsOrder = mainController.getEngine().sort(colsToSortBy, fromCellID, toCellID);
+            Platform.runLater(() -> dynamicSheetTable.changeRowsOrder(sortedRowsOrder));};
 
+        Task<Void> sortTask =  mainController.getHeaderController().getTaskFromRunnable(sort, false);
+        Utils.runTaskInADaemonThread(sortTask);
     }
 
     private void moveChoiceNSteps(int steps) {

@@ -101,4 +101,11 @@ public class CoordinateFactory {
         return result;
     }
 
+    public static String numberToLetter(int number) {
+        if (number < 0 || number > 25) {
+            throw new CellOutOfBoundsException("Can't find a cell with a column which is not a letter");
+        }
+        char ch = (char) ('A' + number);
+        return Character.toString(ch);
+    }
 }

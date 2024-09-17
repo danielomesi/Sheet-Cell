@@ -11,7 +11,7 @@ import exceptions.CloneFailureException;
 import exceptions.InvalidRangeException;
 import operations.core.Operation;
 import operations.impl.range.RangeOperation;
-import utils.TopologicalSorter;
+import utils.Sorter;
 import utils.FunctionParser;
 import utils.Utils;
 
@@ -86,7 +86,7 @@ public class CoreSheet implements Sheet {
             FunctionParser.updateDependencies(this, coreCell);
             //this function might create itself a core cell in the sheet so it will update its dependencies
         }
-        List<Coordinates> topologicalSort = TopologicalSorter.topologicalSort(this);
+        List<Coordinates> topologicalSort = Sorter.topologicalSort(this);
         cleanDependencies();
         executeSheet(topologicalSort);
     }

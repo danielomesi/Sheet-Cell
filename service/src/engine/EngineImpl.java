@@ -14,10 +14,12 @@ import entities.stl.STLSheet;
 import exceptions.InvalidXMLException;
 import exceptions.NoExistenceException;
 import jakarta.xml.bind.JAXBException;
+import utils.Sorter;
 import utils.Utils;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class EngineImpl implements Engine {
@@ -167,6 +169,11 @@ public class EngineImpl implements Engine {
         Range.validateRange(coreSheets.getLast(),topLeftCoordinates.getRow(), topLeftCoordinates.getCol(),
                 bottomRightCoordinates.getRow(), bottomRightCoordinates.getCol());
         return new CoreSheet(coreSheets.getLast(),topLeftCoordinates,bottomRightCoordinates);
+    }
+
+    public List<Integer> sort(List<String> colNames, String fromCellID, String toCellID) {
+        Sheet subSheet = makeSubSheet(fromCellID, toCellID);
+        return Sorter.sortRowsByColumns(subSheet,colNames);
     }
 
 }

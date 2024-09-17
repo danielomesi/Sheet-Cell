@@ -147,10 +147,10 @@ public class MainController {
         Sheet subSheet = engine.getSubSheet();
         Platform.runLater(() -> {
             sheetController.resetStyles();
-            DynamicSheetTable DynamicSheetTable = DynamicBuilder.cropDynamicSheetTableToANewOne(engine.getSheet(),sheetController.getDynamicSheetTable(),fromCellID,toCellID);
-            GridPane gridPane = DynamicSheetTable.getGridPane();
-            sortController = SortControllerBuilder.buildSortController(this);
-            sortController.addTable(gridPane);
+            DynamicSheetTable dynamicSheetTable = DynamicBuilder.cropDynamicSheetTableToANewOne(engine.getSheet(),sheetController.getDynamicSheetTable(),fromCellID,toCellID);
+            GridPane gridPane = dynamicSheetTable.getGridPane();
+            sortController = SortControllerBuilder.buildSortController(this,dynamicSheetTable,fromCellID,toCellID);
+            sortController.setTable(gridPane);
             List<String> colNames = Utils.getLettersFromAToTheNLetter(subSheet.getNumOfCols());
             sortController.populateListViewOfAllCols(colNames);
             Scene sortScene = new Scene(sortController.getWrapper());

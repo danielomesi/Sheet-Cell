@@ -7,11 +7,16 @@ import gui.components.sheet.cell.CellController;
 import gui.utils.Utils;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.RowConstraints;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static gui.utils.Utils.convertColumnCharToIndex;
@@ -21,13 +26,19 @@ public class DynamicSheetTable {
     private final GridPane gridPane;
     private final Map<String, ColumnConstraints> columnConstraintsMap;
     private final Map<Integer, RowConstraints> rowConstraintsMap;
+    private final Map<Integer, CellController> integer2RowCellController;
+    private final Map<String, CellController> string2ColCellController;
     private final double initialRowHeight;
     private final double initialColWidth;
     public static final int FACTOR = 2;
     public static final String HEADER = "FIRST_COL";
 
-    public DynamicSheetTable(Map<Coordinates, CellController> coordinates2CellController, GridPane gridPane, Map<String, ColumnConstraints> columnConstraintsMap, Map<Integer, RowConstraints> rowConstraintsMap) {
+    public DynamicSheetTable(Map<Coordinates, CellController> coordinates2CellController, GridPane gridPane,
+                             Map<String, ColumnConstraints> columnConstraintsMap, Map<Integer, RowConstraints> rowConstraintsMap,
+                             Map<Integer, CellController> integer2RowCellController, Map<String, CellController> string2ColCellController) {
         this.coordinates2CellController = coordinates2CellController;
+        this.integer2RowCellController = integer2RowCellController;
+        this.string2ColCellController = string2ColCellController;
         this.gridPane = gridPane;
         this.columnConstraintsMap = columnConstraintsMap;
         this.rowConstraintsMap = rowConstraintsMap;
@@ -123,5 +134,49 @@ public class DynamicSheetTable {
                 }
             }
         }
+    }
+
+    public void changeRowsOrder(List<Integer> rowOrder) {
+        int numOfCols = gridPane.getColumnCount() - 1; //decrementing to ignore the first column of the row numbers
+
+
+        for (int row = 0; row < rowOrder.size(); row++) {
+            for (int col = 0; col < numOfCols; col++) {
+                Coordinates coordinates = new Coordinates(row, col);
+                CellController cellController = coordinates2CellController.get(coordinates);
+                Label label = cellController.getLabel();
+                removeNodeAt(gridPane, rowOrder.get(row) + 1, col + 1);
+                removeNodeFromLabel(gridPane,label);
+                gridPane.add(label,col + 1,rowOrder.get(row) + 1);
+            }
+        }
+    }
+
+    public static void removeNodeAt(GridPane gridPane, int row, int col) {
+        Node nodeToRemove = null;
+
+        // Iterate through all children to find the node at the specified position
+        for (Node node : gridPane.getChildren()) {
+            Integer nodeRow = GridPane.getRowIndex(node);
+            Integer nodeCol = GridPane.getColumnIndex(node);
+
+            // Handle default case when row/col indices are null
+            if (nodeRow == null) nodeRow = 0;
+            if (nodeCol == null) nodeCol = 0;
+
+            if (nodeRow == row && nodeCol == col) {
+                nodeToRemove = node;
+                break;
+            }
+        }
+
+        // Remove the node if found
+        if (nodeToRemove != null) {
+            gridPane.getChildren().remove(nodeToRemove);
+        }
+    }
+
+    public static void removeNodeFromLabel(GridPane gridPane, Label label) {
+        gridPane.getChildren().removeIf(node -> node == label);
     }
 }

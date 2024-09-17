@@ -1,9 +1,11 @@
 package engine;
 
 import entities.cell.Cell;
+import entities.coordinates.Coordinates;
 import entities.sheet.Sheet;
 
 import java.util.List;
+import java.util.Map;
 
 public interface Engine {
 
@@ -32,4 +34,6 @@ public interface Engine {
     public void setSubSheet(String fromCellID, String toCellID);
 
     public Sheet getSubSheet();
+
+    public List<Integer> sort(List<String> colNames, String fromCellID, String toCellID);
 }
