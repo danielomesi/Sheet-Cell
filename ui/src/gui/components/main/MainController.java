@@ -11,6 +11,7 @@ import gui.components.header.HeaderController;
 import gui.components.commands.CommandsController;
 import gui.components.appearance.AppearanceController;
 import gui.components.sort.SortController;
+import gui.components.sort.SortControllerBuilder;
 import gui.core.DataModule;
 import gui.exceptions.UnsupportedFileFormat;
 import gui.utils.Utils;
@@ -115,9 +116,9 @@ public class MainController {
 
     public void generateVersionWindow(int chosenVersion) {
         Sheet selectedSheet = engine.getSheet(chosenVersion);
-        DynamicSheetTable dynamicSheetTable = DynamicBuilder.buildDynamicSheetTable(selectedSheet);
-        dynamicSheetTable.populateSheetWithData(selectedSheet);
-        GridPane gridPane = dynamicSheetTable.getGridPane();
+        DynamicSheetTable DynamicSheetTable = DynamicBuilder.buildDynamicSheetTable(selectedSheet);
+        DynamicSheetTable.populateSheetWithData(selectedSheet);
+        GridPane gridPane = DynamicSheetTable.getGridPane();
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setContent(gridPane);
         Scene newScene = new Scene(scrollPane);
@@ -145,19 +146,21 @@ public class MainController {
         engine.setSubSheet(fromCellID, toCellID);
         Sheet subSheet = engine.getSubSheet();
         Platform.runLater(() -> {
-            DynamicSheetTable dynamicSheetTable = DynamicBuilder.buildDynamicSheetTable(subSheet);
-            dynamicSheetTable.populateSheetWithData(subSheet);
-            GridPane gridPane = dynamicSheetTable.getGridPane();
+            sheetController.resetStyles();
+            DynamicSheetTable DynamicSheetTable = DynamicBuilder.cropDynamicSheetTableToANewOne(engine.getSheet(),sheetController.getDynamicSheetTable(),fromCellID,toCellID);
+            GridPane gridPane = DynamicSheetTable.getGridPane();
+            sortController = SortControllerBuilder.buildSortController(this);
             sortController.addTable(gridPane);
             List<String> colNames = Utils.getLettersFromAToTheNLetter(subSheet.getNumOfCols());
             sortController.populateListViewOfAllCols(colNames);
-            Scene newScene = new Scene(sortController.getWrapper());
-
-            Stage versionWindow = new Stage();
-            versionWindow.setTitle("Sort Dialog");
-            versionWindow.setScene(newScene);
-            versionWindow.show();
+            Scene sortScene = new Scene(sortController.getWrapper());
+            Stage sortWindow = new Stage();
+            sortWindow.setTitle("Sort Dialog");
+            sortWindow.setScene(sortScene);
+            sortWindow.show();
         });
     }
+
+
 
 }

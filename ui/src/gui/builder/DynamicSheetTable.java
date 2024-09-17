@@ -109,7 +109,7 @@ public class DynamicSheetTable {
             Coordinates coordinates = entry.getKey();
             if (coordinates.getCol() == colIndex) {
                 CellController cellController = entry.getValue();
-                Label label = cellController.getCellLabel();
+                Label label = cellController.getLabel();
                 switch (alignment) {
                     case "left":
                         label.setAlignment(Pos.CENTER_LEFT);

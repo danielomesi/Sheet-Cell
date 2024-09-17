@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+//do not forget that the cell style determined by USER needs to stay after sorting/filtering etc
 //choose an arbitrary number in my opinion for every component and for the main component
 //add separators between sections in app
 //fix the bug of "add range" button enabled when choosing bad top left and bottom right?
@@ -69,23 +70,19 @@ public class App extends Application {
         VBox appearanceVbox = appearanceLoader.load();
         AppearanceController appearanceController = appearanceLoader.getController();
 
-        FXMLLoader sortLoader = new FXMLLoader(getClass().getResource("/gui/components/sort/sort.fxml"));
-        HBox sortHbox = sortLoader.load();
-        SortController sortController = sortLoader.getController();
+
 
         // Make main controller know its sub controllers
         mainController.setHeaderController(headerController);
         mainController.setSheetController(sheetController);
         mainController.setCommandsController(commandsController);
         mainController.setAppearanceController(appearanceController);
-        mainController.setSortController(sortController);
 
         //Make sub controllers know the main controller
         headerController.setMainController(mainController);
         sheetController.setMainController(mainController);
         commandsController.setMainController(mainController);
         appearanceController.setMainController(mainController);
-        sortController.setMainController(mainController);
 
         // Add the headerPane to the top of the root layout
         BorderPane root = mainController.getMainBorderPane();

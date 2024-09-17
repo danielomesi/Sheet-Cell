@@ -10,7 +10,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SortController {
@@ -26,33 +25,38 @@ public class SortController {
     @FXML
     private Button moveUpButton;
     @FXML
-    private ListView<String> selectedColumnsListView;
+    private ListView<String> selectedColsListView;
     @FXML
     private HBox wrapperHbox;
     @FXML
-    private ListView<String> columnsListView;
+    private ListView<String> allColsListView;
     @FXML
     private ScrollPane tableScrollPane;
+    @FXML
+    private Button sortButton;
 
     public void initialize() {
         BooleanBinding isSelectionEmptyInAllColsList = Bindings.createBooleanBinding(
-                () -> columnsListView.getSelectionModel().getSelectedItem() == null,
-                columnsListView.getSelectionModel().selectedItemProperty());
+                () -> allColsListView.getSelectionModel().getSelectedItem() == null,
+                allColsListView.getSelectionModel().selectedItemProperty());
+
         BooleanBinding isSelectionEmptyInSelectedColsList = Bindings.createBooleanBinding(
-                () -> selectedColumnsListView.getSelectionModel().getSelectedItem() == null,
-                selectedColumnsListView.getSelectionModel().selectedItemProperty());
+                () -> selectedColsListView.getSelectionModel().getSelectedItem() == null,
+                selectedColsListView.getSelectionModel().selectedItemProperty());
+
         BooleanBinding isSelectionLastInSelectedColsList = Bindings.createBooleanBinding(() -> {
-            ObservableList<String> items = selectedColumnsListView.getItems();
-            String selectedItem = selectedColumnsListView.getSelectionModel().getSelectedItem();
-            return !items.isEmpty() && selectedItem != null && selectedItem.equals(items.getLast());
-        }, selectedColumnsListView.getSelectionModel().selectedItemProperty(), selectedColumnsListView.itemsProperty());
+            ObservableList<String> items = selectedColsListView.getItems();
+            String selectedItem = selectedColsListView.getSelectionModel().getSelectedItem();
+            return !items.isEmpty() && selectedItem != null && selectedItem.equals(items.getLast());},
+                selectedColsListView.getSelectionModel().selectedItemProperty(), selectedColsListView.itemsProperty());
+
         BooleanBinding isSelectionFirstInSelectedColsList = Bindings.createBooleanBinding(() -> {
-            ObservableList<String> items = selectedColumnsListView.getItems();
-            String selectedItem = selectedColumnsListView.getSelectionModel().getSelectedItem();
-            return !items.isEmpty() && selectedItem != null && selectedItem.equals(items.getFirst());
-        }, selectedColumnsListView.getSelectionModel().selectedItemProperty(), selectedColumnsListView.itemsProperty());
+            ObservableList<String> items = selectedColsListView.getItems();
+            String selectedItem = selectedColsListView.getSelectionModel().getSelectedItem();
+            return !items.isEmpty() && selectedItem != null && selectedItem.equals(items.getFirst());},
+                selectedColsListView.getSelectionModel().selectedItemProperty(), selectedColsListView.itemsProperty());
 
-
+        sortButton.setDisable(true);
         addCollumnToSortButton.disableProperty().bind(isSelectionEmptyInAllColsList);
         RemoveColumnFromSortButton.disableProperty().bind(isSelectionEmptyInSelectedColsList);
         moveDownButton.disableProperty().bind(isSelectionLastInSelectedColsList);
@@ -66,30 +70,30 @@ public class SortController {
     }
 
     public void populateListViewOfAllCols(List<String> columns) {
-        columnsListView.getItems().clear();
-        columnsListView.getItems().addAll(columns);
-    }
-
-    public void populateListViewOfSelectedCols(List<String> selectedCols) {
-        selectedColumnsListView.getItems().clear();
-        selectedColumnsListView.getItems().addAll(selectedCols);
+        allColsListView.getItems().clear();
+        allColsListView.getItems().addAll(columns);
     }
 
 
 
     @FXML
     void RemoveColumnFromSortButtonClicked(ActionEvent event) {
-        String colToRemove = selectedColumnsListView.getSelectionModel().getSelectedItem();
-        selectedColumnsListView.getItems().remove(colToRemove);
-        columnsListView.getItems().add(colToRemove);
+        String colToRemove = selectedColsListView.getSelectionModel().getSelectedItem();
+        selectedColsListView.getItems().remove(colToRemove);
+        allColsListView.getItems().add(colToRemove);
+        if (selectedColsListView.getItems().isEmpty()) {
+            sortButton.setDisable(true);
+        }
     }
 
     @FXML
     void addColumnToSortButtonClicked(ActionEvent event) {
-        String selectedCol = columnsListView.getSelectionModel().getSelectedItem();
-        selectedColumnsListView.getItems().add(selectedCol);
-        columnsListView.getItems().remove(selectedCol);
-
+        String selectedCol = allColsListView.getSelectionModel().getSelectedItem();
+        selectedColsListView.getItems().add(selectedCol);
+        allColsListView.getItems().remove(selectedCol);
+        if (sortButton.isDisabled()) {
+            sortButton.setDisable(false);
+        }
     }
 
     @FXML
@@ -102,9 +106,14 @@ public class SortController {
         moveChoiceNSteps(-1);
     }
 
+    @FXML
+    void sortButtonClicked(ActionEvent event) {
+
+    }
+
     private void moveChoiceNSteps(int steps) {
-        String colToMoveDown = selectedColumnsListView.getSelectionModel().getSelectedItem();
-        ObservableList<String> items = selectedColumnsListView.getItems();
+        String colToMoveDown = selectedColsListView.getSelectionModel().getSelectedItem();
+        ObservableList<String> items = selectedColsListView.getItems();
 
         int selectedIndex = items.indexOf(colToMoveDown);
         int nextIndex = selectedIndex + steps;
@@ -113,7 +122,7 @@ public class SortController {
         items.set(selectedIndex, itemBelow);
         items.set(nextIndex, colToMoveDown);
 
-        selectedColumnsListView.getSelectionModel().select(nextIndex);
+        selectedColsListView.getSelectionModel().select(nextIndex);
     }
 
 }

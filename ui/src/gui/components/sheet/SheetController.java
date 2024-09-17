@@ -27,7 +27,7 @@ public class SheetController {
 
     private SimpleObjectProperty<CellController> selectedCellController;
     private SimpleObjectProperty<CellController> previousSelectedCellController;
-    private DynamicSheetTable dynamicSheetTable;
+    private DynamicSheetTable DynamicSheetTable;
 
     @FXML
     private Label currentCellIDLabel;
@@ -72,7 +72,7 @@ public class SheetController {
     public Coordinates getSelectedCellCoordinates() {return selectedCellController.get() == null ? null : selectedCellController.get().getCoordinates();}
     public SimpleObjectProperty<CellController> getSelectedCellController() {return selectedCellController;}
     public BooleanProperty getIs2ValidCellsSelected() {return is2ValidCellsSelected;}
-    public DynamicSheetTable getDynamicSheetTable() {return dynamicSheetTable;}
+    public DynamicSheetTable getDynamicSheetTable() {return DynamicSheetTable;}
     public String getSelectedTopLeftCellID() {return selectedTopLeftCellLabel.getText();}
     public String getSelectedBottomRightCellID() {return selectedBottomRightCellLabel.getText();}
 
@@ -138,9 +138,9 @@ public class SheetController {
     }
 
     public void buildMainCellsTableDynamically(Sheet sheet) {
-        dynamicSheetTable = DynamicBuilder.buildDynamicSheetTable(sheet);
-        GridPane gridPane = dynamicSheetTable.getGridPane();
-        Map<Coordinates,CellController> cellControllersMap = dynamicSheetTable.getCoordinates2CellController();
+        DynamicSheetTable = DynamicBuilder.buildDynamicSheetTable(sheet);
+        GridPane gridPane = DynamicSheetTable.getGridPane();
+        Map<Coordinates,CellController> cellControllersMap = DynamicSheetTable.getCoordinates2CellController();
         DataModule dataModule = mainController.getDataModule();
 
         int numRows = sheet.getNumOfRows();
@@ -154,7 +154,7 @@ public class SheetController {
                 Cell cell = sheet.getCell(row, col);
                 CellController cellController = cellControllersMap.get(coordinates);
                 cellController.bindToModule(dataModule.getCoordinates2EffectiveValues().get(coordinates));
-                Label cellLabel = cellController.getCellLabel();
+                Label cellLabel = cellController.getLabel();
                 cellLabel.setOnMouseClicked(event -> handleCellClick(coordinates));
             }
         }
@@ -164,7 +164,7 @@ public class SheetController {
     }
 
     private void handleCellClick(Coordinates clickedCellCoordinates) {
-        CellController cellController = dynamicSheetTable.getCoordinates2CellController().get(clickedCellCoordinates);
+        CellController cellController = DynamicSheetTable.getCoordinates2CellController().get(clickedCellCoordinates);
         if (cellController != selectedCellController.get()) {
             resetStyles();
             selectedCellController.set(cellController);
@@ -174,10 +174,10 @@ public class SheetController {
                         getCell(clickedCellCoordinates.getRow(), clickedCellCoordinates.getCol());
                 if (clickedCell!= null) {
                     clickedCell.getCellsAffectingMe().forEach(dependentCell ->
-                            dynamicSheetTable.getCoordinates2CellController().get(dependentCell).setColorStyle("affecting-cell"));
+                            DynamicSheetTable.getCoordinates2CellController().get(dependentCell).setColorStyle("affecting-cell"));
 
                     clickedCell.getCellsAffectedByMe().forEach(affectedCell ->
-                            dynamicSheetTable.getCoordinates2CellController().get(affectedCell).setColorStyle("affected-cell"));
+                            DynamicSheetTable.getCoordinates2CellController().get(affectedCell).setColorStyle("affected-cell"));
                 }
             }
         }
@@ -212,14 +212,14 @@ public class SheetController {
         if (range != null) {
             resetStyles();
             for(Coordinates coordinates : range.getCells()) {
-                CellController cellController = dynamicSheetTable.getCoordinates2CellController().get(coordinates);
+                CellController cellController = DynamicSheetTable.getCoordinates2CellController().get(coordinates);
                 cellController.setColorStyle("range-cell");
             }
         }
     }
 
-    private void resetStyles() {
-        dynamicSheetTable.getCoordinates2CellController().forEach((c, cellController) -> {cellController.setColorStyle("default-cell");});
+    public void resetStyles() {
+        DynamicSheetTable.getCoordinates2CellController().forEach((c, cellController) -> {cellController.setColorStyle("default-cell");});
     }
 
     public void updateMyControlsOnFileLoad() {

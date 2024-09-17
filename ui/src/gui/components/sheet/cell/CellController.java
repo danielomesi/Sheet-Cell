@@ -34,7 +34,7 @@ public class CellController {
     public TableCellType getTableCellType() {return tableCellType;}
     public Coordinates getCoordinates() {return coordinates;}
     public String getLabelText() {return cellLabel.getText();}
-    public Label getCellLabel() {return cellLabel;}
+    public Label getLabel() {return cellLabel;}
     public Color getCustomizedBackgroundColor() {return customizedBackgroundColor;}
     public Color getCustomizedTextColor() {return customizedTextColor;}
 
@@ -48,13 +48,30 @@ public class CellController {
                 .forEach((style) -> cellLabel.getStyleClass().remove(style));
 
     }
+    public void setLabel(Label label) {this.cellLabel = label;}
+
+    // Method to copy data from another CellController
+    public void copyFrom(CellController other) {
+        // Copy Coordinates (assuming Coordinates is immutable or copied appropriately)
+        this.coordinates = other.coordinates;
+
+        // Copy TableCellType and Color fields
+        this.tableCellType = other.tableCellType;
+        this.customizedBackgroundColor = other.customizedBackgroundColor;
+        this.customizedTextColor = other.customizedTextColor;
+
+        // Copy Label properties (text, styles)
+        this.cellLabel.setText(other.cellLabel.getText());
+        this.cellLabel.getStyleClass().setAll(other.cellLabel.getStyleClass());  // Copy style classes
+        this.cellLabel.setStyle(other.cellLabel.getStyle());  // Copy inline styles
+        this.cellLabel.setAlignment(other.cellLabel.getAlignment());  // Copy alignment
+    }
 
     public void addStyleClass(String styleClass) {
         if (!cellLabel.getStyleClass().contains(styleClass)) {
             cellLabel.getStyleClass().add(styleClass);
         }
     }
-
 
     public void bindToModule(SimpleStringProperty value) {
         cellLabel.textProperty().bind(value);
