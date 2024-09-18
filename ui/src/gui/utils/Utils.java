@@ -1,12 +1,15 @@
 package gui.utils;
 
+import entities.coordinates.CoordinateFactory;
 import entities.coordinates.Coordinates;
+import entities.sheet.Sheet;
 import entities.types.undefined.Undefined;
 import entities.types.undefined.UndefinedBoolean;
 import entities.types.undefined.UndefinedNumber;
 import entities.types.undefined.UndefinedString;
 import exceptions.ServiceException;
 import gui.exceptions.GUIException;
+import gui.exceptions.RowOutOfBoundsException;
 import javafx.concurrent.Task;
 import javafx.scene.text.Text;
 
@@ -93,5 +96,7 @@ public class Utils {
         thread.setDaemon(true);
         thread.start();
     }
+
+
 
 }

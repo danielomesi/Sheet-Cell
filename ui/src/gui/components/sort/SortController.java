@@ -41,6 +41,8 @@ public class SortController {
     private ScrollPane tableScrollPane;
     @FXML
     private Button sortButton;
+    @FXML
+    private ToggleButton sortFirstRowToggleButton;
 
     public void initialize() {
         BooleanBinding isSelectionEmptyInAllColsList = Bindings.createBooleanBinding(
@@ -141,6 +143,15 @@ public class SortController {
 
         Task<Void> sortTask =  mainController.getHeaderController().getTaskFromRunnable(sort, false);
         Utils.runTaskInADaemonThread(sortTask);
+    }
+
+    @FXML
+    void sortFirstRowToggleButtonClicked(ActionEvent event) {
+        if (sortFirstRowToggleButton.isSelected()) {
+            sortFirstRowToggleButton.setText("ON");
+        } else {
+            sortFirstRowToggleButton.setText("OFF");
+        }
     }
 
     private void moveChoiceNSteps(int steps) {

@@ -66,7 +66,7 @@ public class Sorter {
     }
 
     public static List<Integer> sortRowsByColumns(Sheet sheet, List<String> colNames) {
-        validateNumericValuesOrThrow(sheet);
+        validateNumericValuesOrThrow(sheet,colNames);
 
         int numRows = sheet.getNumOfRows();
 
@@ -103,14 +103,19 @@ public class Sorter {
 
 
 
-    public static void validateNumericValuesOrThrow(Sheet sheet) {
+    public static void validateNumericValuesOrThrow(Sheet sheet, List<String> colNames) {
         int numRows = sheet.getNumOfRows();
         int numCols = sheet.getNumOfCols();
         for (int i = 0; i < numRows; i++) {
-            for (int j = 0; j < numCols; j++) {
+            for (String colName : colNames) {
+                int j = CoordinateFactory.convertColumnStringToIndex(colName);
                 Cell cell = sheet.getCell(i, j);
-                if (cell == null || !(cell.getEffectiveValue() instanceof Number)) {
-                    throw new InvalidArgumentException("Sorting only supports numbers");
+                if (cell != null) {
+                    Object effectiveValue = cell.getEffectiveValue();
+                    if (effectiveValue != null && !(effectiveValue instanceof Number)) {
+                        throw new InvalidArgumentException("Sorting only supports numbers");
+                    }
+
                 }
             }
         }

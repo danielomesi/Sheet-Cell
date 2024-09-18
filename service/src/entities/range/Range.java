@@ -17,6 +17,7 @@ public class Range implements Serializable {
     public Set<Coordinates> getCells() {return cells;}
 
     public Range(String name,Sheet sheet, String fromCellID, String toCellID) {
+        validateRangeName(name);
         this.name = name;
         setRangeCells(fromCellID,toCellID,sheet);
     }
@@ -69,6 +70,12 @@ public class Range implements Serializable {
         Utils.validateInRange(toCol,0,sheet.getNumOfCols());
         if (fromRow>toRow || fromCol>toCol) {
             throw new InvalidRangeException("Range is invalid, first cell must be prior to second cell");
+        }
+    }
+
+    private void validateRangeName(String name) {
+        if (name == null || name.isEmpty()) {
+            throw new InvalidRangeException("Range name cannot be empty");
         }
     }
 }

@@ -20,7 +20,17 @@ public class RowsComparator implements Comparator<RowData> {
 
         Double firstValue = o1.getEffectiveValueByColName(orderedColsToSortBy.get(colIndex));
         Double secondValue = o2.getEffectiveValueByColName(orderedColsToSortBy.get(colIndex));
-        ;
+
+        if (firstValue == null && secondValue == null) {
+            return 0;
+        }
+        else if (firstValue == null) {
+            return 1;
+        }
+        else if (secondValue == null) {
+            return -1;
+        }
+
         int comparisonResult = Double.compare(firstValue, secondValue);
 
         if (comparisonResult == 0) {

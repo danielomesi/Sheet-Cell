@@ -17,7 +17,7 @@ public class RowData {
 
     public Double getEffectiveValueByColName(String colName) {
         for (Cell cell : values) {
-            if (CoordinateFactory.numberToLetter(cell.getCoordinates().getCol()).equals(colName)) {
+            if (cell != null && CoordinateFactory.numberToLetter(cell.getCoordinates().getCol()).equals(colName)) {
                 return (Double) cell.getEffectiveValue();
             }
         }

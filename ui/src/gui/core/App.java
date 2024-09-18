@@ -1,11 +1,14 @@
 package gui.core;
 
+import entities.coordinates.CoordinateFactory;
+import entities.sheet.Sheet;
 import gui.components.sheet.SheetController;
 import gui.components.header.HeaderController;
 import gui.components.commands.CommandsController;
 import gui.components.main.MainController;
 import gui.components.appearance.AppearanceController;
 import gui.components.sort.SortController;
+import gui.exceptions.RowOutOfBoundsException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -15,6 +18,37 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+
+//public static String removeFirstRowOutOfFromCellID(Sheet sheet, String fromCellID) {
+//    int fromRow = CoordinateFactory.getRowIndexFromCellID(fromCellID);
+//    int fromCol = CoordinateFactory.getColIndexFromCellID(fromCellID);
+//    validateNextRowExistence(sheet,fromRow);
+//    fromRow++;
+//
+//    return CoordinateFactory.getCellIDFromIndices(fromRow,fromCol);
+//}
+//
+//public static String removeFirstRowOutOfToCellID(Sheet sheet, String toCellID) {
+//    int toRow = CoordinateFactory.getRowIndexFromCellID(toCellID);
+//    int toCol = CoordinateFactory.getColIndexFromCellID(toCellID);
+//    if (toRow == 0) {
+//        validateNextRowExistence(sheet,toRow);
+//        toRow++;
+//        toCellID = CoordinateFactory.getCellIDFromIndices(toRow,toCol);
+//    }
+//
+//    return toCellID;
+//}
+//
+//public static void validateNextRowExistence(Sheet sheet, int row) {
+//    int lastRowNumber = sheet.getNumOfRows()-1; //0-indexed
+//    int nextRowNumber = row + 1;
+//    if (nextRowNumber > lastRowNumber) {
+//        throw new RowOutOfBoundsException("Can't find row number " + nextRowNumber);
+//    }
+//}
+
+//think where to put the code above - probably in engine ?
 //fix the bug in sorting not working
 //do not forget that the cell style determined by USER needs to stay after sorting/filtering etc
 //choose an arbitrary number in my opinion for every component and for the main component

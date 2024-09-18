@@ -13,7 +13,7 @@ import gui.components.appearance.AppearanceController;
 import gui.components.sort.SortController;
 import gui.components.sort.SortControllerBuilder;
 import gui.core.DataModule;
-import gui.exceptions.UnsupportedFileFormat;
+import gui.exceptions.UnsupportedFileFormatException;
 import gui.utils.Utils;
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
@@ -86,7 +86,7 @@ public class MainController {
             engine.loadStateFromFile(filePath);
         }
         else {
-            throw new UnsupportedFileFormat("The selected file is not supported");
+            throw new UnsupportedFileFormatException("The selected file is not supported");
         }
 
         toDoOnSuccessfulFileLoad();
