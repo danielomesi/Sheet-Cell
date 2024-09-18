@@ -73,45 +73,35 @@ public class Sorter {
         List<RowData> rows = new ArrayList<>();
 
         for (int row = 0; row < numRows; row++) {
-            List<Double> values = new ArrayList<>();
+            List<Cell> values = new ArrayList<>();
             for (String colName : colNames) {
                 int col = CoordinateFactory.convertColumnStringToIndex(colName);
                 Cell cell = sheet.getCell(row, col);
-                values.add(((Number) cell.getEffectiveValue()).doubleValue());
+                values.add(cell);
             }
             rows.add(new RowData(row, values));
         }
 
-        Collections.sort(rows, new Comparator<RowData>() {
-            @Override
-            public int compare(RowData r1, RowData r2) {
-                for (int i = 0; i < colNames.size(); i++) {
-                    int cmp = Double.compare(r2.values.get(i), r1.values.get(i)); // Descending order
-                    if (cmp != 0) {
-                        return cmp;
-                    }
-                }
-                return 0;
-            }
-        });
+        rows.sort(new RowsComparator(colNames));
 
         List<Integer> sortedRowIndices = new ArrayList<>();
-        for (RowData rowData : rows) {
-            sortedRowIndices.add(rowData.rowIndex);
+        for (int i=0; i < rows.size(); i++) {
+            sortedRowIndices.add(getObjectIndexByRowIndex(rows, i));
         }
 
         return sortedRowIndices;
     }
 
-    private static class RowData {
-        int rowIndex;
-        List<Double> values;
-
-        RowData(int rowIndex, List<Double> values) {
-            this.rowIndex = rowIndex;
-            this.values = values;
+    private static int getObjectIndexByRowIndex(List<RowData> rows, int rowIndex) {
+        for (int i=0; i < rows.size(); i++) {
+            if (rows.get(i).rowIndex == rowIndex) {
+                return i;
+            }
         }
+        throw new InvalidArgumentException("Row index out of bounds");
     }
+
+
 
     public static void validateNumericValuesOrThrow(Sheet sheet) {
         int numRows = sheet.getNumOfRows();

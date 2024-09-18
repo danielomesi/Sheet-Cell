@@ -139,7 +139,6 @@ public class DynamicSheetTable {
     public void changeRowsOrder(List<Integer> rowOrder) {
         int numOfCols = gridPane.getColumnCount() - 1; //decrementing to ignore the first column of the row numbers
 
-
         for (int row = 0; row < rowOrder.size(); row++) {
             for (int col = 0; col < numOfCols; col++) {
                 Coordinates coordinates = new Coordinates(row, col);

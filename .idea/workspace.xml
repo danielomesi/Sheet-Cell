@@ -10,19 +10,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Minor changes">
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Sort started working a bit...">
+      <change afterPath="$PROJECT_DIR$/service/src/utils/RowData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/utils/RowsComparator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/coordinates/CoordinateFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/coordinates/CoordinateFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/utils/TopologicalSorter.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/utils/Sorter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/builder/DynamicBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/builder/DynamicBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/utils/Sorter.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/utils/Sorter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/gui/builder/DynamicSheetTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/builder/DynamicSheetTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/main/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sort/SortController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/sort/SortController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sort/SortControllerBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/sort/SortControllerBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/core/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/core/App.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,15 +156,8 @@
       <workItem from="1726425821492" duration="788000" />
       <workItem from="1726475799938" duration="7943000" />
       <workItem from="1726485769299" duration="9076000" />
-      <workItem from="1726566348831" duration="18231000" />
-    </task>
-    <task id="LOCAL‎-00003" summary="Project splitted into different modules">
-      <option name="closed" value="true" />
-      <created>1723480952529</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL‎-00003" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1723480952529</updated>
+      <workItem from="1726566348831" duration="18259000" />
+      <workItem from="1726650018983" duration="5588000" />
     </task>
     <task id="LOCAL‎-00004" summary="Refactored most classes">
       <option name="closed" value="true" />
@@ -557,7 +543,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1726576403367</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL‎-00052" summary="Sort started working a bit...">
+      <option name="closed" value="true" />
+      <created>1726584791042</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL‎-00052" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1726584791042</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -576,7 +570,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Simplified coordinates handling and and convertion" />
     <MESSAGE value="Added logical operations" />
     <MESSAGE value="Created new STL objects, added javafx libraries" />
     <MESSAGE value="First java app state on air" />
@@ -601,9 +594,28 @@
     <MESSAGE value="Moved selecting cells from commands to sheet" />
     <MESSAGE value="Added sort dialog" />
     <MESSAGE value="Minor changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor changes" />
+    <MESSAGE value="Sort started working a bit..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Sort started working a bit..." />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/service/src/utils/RowsComparator.java</url>
+          <line>18</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/service/src/utils/RowsComparator.java</url>
+          <line>15</line>
+          <properties class="utils.RowsComparator" method="compareByColumns">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="service.operations.PLUSOperation" memberName="sheet" />
