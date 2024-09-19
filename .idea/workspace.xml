@@ -10,17 +10,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added filtering dialog with working menu...">
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="need to continue working on filtering...">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/utils/Filter.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/utils/Filter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/builder/DynamicSheetTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/builder/DynamicSheetTable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/gui/components/filter/FilterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/filter/FilterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/filter/filter.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/filter/filter.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sort/ControllersBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/sort/ControllersBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/main/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sort/ControllersBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/builder/ControllersBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sort/SortController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/sort/SortController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/utils/Utils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,15 +160,8 @@
       <workItem from="1726650018983" duration="6684000" />
       <workItem from="1726665558170" duration="4020000" />
       <workItem from="1726756155882" duration="11512000" />
-      <workItem from="1726768599780" duration="4492000" />
-    </task>
-    <task id="LOCAL‎-00008" summary="Added menu">
-      <option name="closed" value="true" />
-      <created>1724165968895</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL‎-00008" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1724165968895</updated>
+      <workItem from="1726768599780" duration="4524000" />
+      <workItem from="1726779537113" duration="2808000" />
     </task>
     <task id="LOCAL‎-00009" summary="Added versions handling and fixed sheet show">
       <option name="closed" value="true" />
@@ -559,7 +547,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1726767786886</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL‎-00057" summary="need to continue working on filtering...">
+      <option name="closed" value="true" />
+      <created>1726773163406</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL‎-00057" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1726773163407</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -578,7 +574,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Created dynamic table for sheet view" />
     <MESSAGE value="Added update option" />
     <MESSAGE value="Fixed bug of empty cell update" />
     <MESSAGE value="Changed dynamic sheet building structure, now its modular" />
@@ -603,7 +598,8 @@
     <MESSAGE value="Some tries to improve functionality..." />
     <MESSAGE value="Added first-row-ignoring option, and added button for animations" />
     <MESSAGE value="Added filtering dialog with working menu..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added filtering dialog with working menu..." />
+    <MESSAGE value="need to continue working on filtering..." />
+    <option name="LAST_COMMIT_MESSAGE" value="need to continue working on filtering..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -614,9 +610,9 @@
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/ui/src/gui/components/main/MainController.java</url>
-          <line>168</line>
-          <option name="timeStamp" value="10" />
+          <url>file://$PROJECT_DIR$/service/src/operations/impl/math/PERCENTOperation.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

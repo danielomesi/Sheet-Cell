@@ -1,8 +1,8 @@
-package gui.components.sort;
+package gui.builder;
 
-import gui.builder.DynamicSheetTable;
 import gui.components.filter.FilterController;
 import gui.components.main.MainController;
+import gui.components.sort.SortController;
 import javafx.fxml.FXMLLoader;
 
 public class ControllersBuilder {
@@ -16,6 +16,7 @@ public class ControllersBuilder {
             sortController.setFromCellID(fromCellID);
             sortController.setToCellID(toCellID);
             sortController.setDynamicSheetTable(dynamicSheetTable);
+            sortController.setTable(dynamicSheetTable.getGridPane());
         }
         catch (Exception ignored) {
         }
@@ -33,6 +34,7 @@ public class ControllersBuilder {
             filterController.setFromCellID(fromCellID);
             filterController.setToCellID(toCellID);
             filterController.setDynamicSheetTable(dynamicSheetTable);
+            filterController.setTable(dynamicSheetTable.getGridPane());
         }
         catch (Exception e) {
             e.printStackTrace();

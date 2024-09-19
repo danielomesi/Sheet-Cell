@@ -12,7 +12,7 @@ import gui.components.header.HeaderController;
 import gui.components.commands.CommandsController;
 import gui.components.appearance.AppearanceController;
 import gui.components.sort.SortController;
-import gui.components.sort.ControllersBuilder;
+import gui.builder.ControllersBuilder;
 import gui.core.DataModule;
 import gui.exceptions.UnsupportedFileFormatException;
 import gui.utils.Utils;
@@ -150,9 +150,7 @@ public class MainController {
         Platform.runLater(() -> {
             sheetController.resetStyles();
             DynamicSheetTable dynamicSheetTable = DynamicBuilder.cropDynamicSheetTableToANewOne(engine.getSheet(),sheetController.getDynamicSheetTable(),fromCellID,toCellID);
-            GridPane gridPane = dynamicSheetTable.getGridPane();
             sortController = ControllersBuilder.buildSortController(this,dynamicSheetTable,fromCellID,toCellID);
-            sortController.setTable(gridPane);
             List<String> colNames = Utils.getLettersFromAToTheNLetter(subSheet.getNumOfCols());
             sortController.populateListViewOfAllCols(colNames);
             Utils.openWindow(sortController.getWrapper(), "Sort Dialog");
@@ -165,9 +163,7 @@ public class MainController {
         Platform.runLater(() -> {
             sheetController.resetStyles();
             DynamicSheetTable dynamicSheetTable = DynamicBuilder.cropDynamicSheetTableToANewOne(engine.getSheet(),sheetController.getDynamicSheetTable(),fromCellID,toCellID);
-            GridPane gridPane = dynamicSheetTable.getGridPane();
             filterController = ControllersBuilder.buildFilterController(this,dynamicSheetTable,fromCellID,toCellID);
-            filterController.setTable(gridPane);
             filterController.populateColComboBox(subSheet.getNumOfCols());
             Utils.openWindow(filterController.getWrapper(), "Filter Dialog");
         });

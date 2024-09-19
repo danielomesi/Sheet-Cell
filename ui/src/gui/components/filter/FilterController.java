@@ -1,5 +1,6 @@
 package gui.components.filter;
 
+import gui.builder.DynamicBuilder;
 import gui.builder.DynamicSheetTable;
 import gui.components.main.MainController;
 import gui.utils.Utils;
@@ -99,8 +100,10 @@ public class FilterController {
         Set<String> valuesAsStrings = new HashSet<>();
         effectiveValues.forEach((effectiveValue) -> {
             String str = Utils.objectToString(effectiveValue);
-            valuesAsStrings.add(str);
-            str2EffectiveValueMap.put(str, effectiveValue);
+            if (str!=null && !str.isEmpty()) {
+                valuesAsStrings.add(str);
+                str2EffectiveValueMap.put(str, effectiveValue);
+            }
         });
         ObservableList<String> observableValues = FXCollections.observableArrayList(valuesAsStrings);
         allValuesListView.setItems(observableValues);
@@ -119,15 +122,18 @@ public class FilterController {
 
     @FXML
     void columnInComboBoxSelected(ActionEvent event) {
-        selectedValuesListView.getItems().clear();
-        String selectedColName = colsComboBox.getSelectionModel().getSelectedItem();
-        Runnable runnable = () -> {
-            List<Object> effectiveValuesOfSelectedCol = mainController.getEngine().
-                    getEffectiveValuesInSpecificCol(selectedColName, fromCellID, toCellID);
-            Platform.runLater(() -> populateAllDistinctValuesListView(effectiveValuesOfSelectedCol));
-        };
-        Task<Void> task = Utils.getTaskFromRunnable(runnable,taskStatus,taskProgressBar,false);
-        Utils.runTaskInADaemonThread(task);
+        if (colsComboBox.getSelectionModel().getSelectedItem() != null) {
+            selectedValuesListView.getItems().clear();
+            String selectedColName = colsComboBox.getSelectionModel().getSelectedItem();
+            Runnable runnable = () -> {
+                List<Object> effectiveValuesOfSelectedCol = mainController.getEngine().
+                        getEffectiveValuesInSpecificCol(selectedColName, fromCellID, toCellID);
+                Platform.runLater(() -> populateAllDistinctValuesListView(effectiveValuesOfSelectedCol));
+            };
+            Task<Void> task = Utils.getTaskFromRunnable(runnable,taskStatus,taskProgressBar,false);
+            Utils.runTaskInADaemonThread(task);
+        }
+
     }
 
     @FXML
@@ -171,6 +177,12 @@ public class FilterController {
 
     @FXML
     void resetButtonClicked(ActionEvent event) {
+        colsComboBox.getSelectionModel().clearSelection();
+        allValuesListView.getItems().clear();
+        selectedValuesListView.getItems().clear();
+        tableScrollPane.setContent(null);
+        dynamicSheetTable = DynamicBuilder.cropDynamicSheetTableToANewOne(mainController.getCurrentLoadedSheet(),mainController.getSheetController().getDynamicSheetTable(),fromCellID,toCellID);
+        tableScrollPane.setContent(dynamicSheetTable.getGridPane());
         isFilteringActive.setValue(true);
     }
 
