@@ -25,4 +25,30 @@ public class Filter {
 
         return effectiveValues;
     }
+
+    public static Set<Integer> filter(Sheet sheet,String colName, List<Object> effectiveValues, boolean isFilteringEmptyCells) {
+        Set<Integer> rowsIndexedToDeleteInFilterRes = new HashSet<>();
+        int colIndex = CoordinateFactory.convertColumnStringToIndex(colName);
+        for (int row = 0; row < sheet.getNumOfRows(); row++) {
+            Cell cell = sheet.getCell(row, colIndex);
+            if (cell == null) {
+                if (!isFilteringEmptyCells) {
+                    rowsIndexedToDeleteInFilterRes.add(row);
+                }
+            }
+            else {
+                Object currentEffectiveValue = cell.getEffectiveValue();
+                if (currentEffectiveValue == null) {
+                    if (!isFilteringEmptyCells) {
+                        rowsIndexedToDeleteInFilterRes.add(row);
+                    }
+                }
+                else if (!effectiveValues.contains(currentEffectiveValue)) {
+                    rowsIndexedToDeleteInFilterRes.add(row);
+                }
+            }
+        }
+
+        return rowsIndexedToDeleteInFilterRes;
+    }
 }

@@ -153,19 +153,7 @@ public class Utils {
         sortWindow.show();
     }
 
-    public static void moveChoiceNStepsInListView(ListView<String> listView, int steps) {
-        String colToMoveDown = listView.getSelectionModel().getSelectedItem();
-        ObservableList<String> items = listView.getItems();
 
-        int selectedIndex = items.indexOf(colToMoveDown);
-        int nextIndex = selectedIndex + steps;
-        String itemBelow = items.get(nextIndex);
-
-        items.set(selectedIndex, itemBelow);
-        items.set(nextIndex, colToMoveDown);
-
-        listView.getSelectionModel().select(nextIndex);
-    }
 
 
 }

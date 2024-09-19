@@ -7,6 +7,7 @@
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
@@ -32,7 +33,18 @@
                   <Button fx:id="removeValueFromSelectedButton" mnemonicParsing="false" onAction="#removeValueFromSelectedButtonClicked" text="Remove" />
                </children>
             </HBox>
-            <Button fx:id="filterButton" mnemonicParsing="false" onAction="#filterButtonClicked" text="Filter" />
+            <HBox alignment="CENTER" spacing="10.0">
+               <children>
+                  <Label text="Include empty cells in filter" />
+                  <ToggleButton fx:id="includeEmptyCellsInFilterButton" mnemonicParsing="false" onAction="#includeEmptyCellsInFilterButtonClicked" text="OFF" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" spacing="10.0">
+               <children>
+                  <Button fx:id="resetButton" mnemonicParsing="false" onAction="#resetButtonClicked" text="Reset" />
+                  <Button fx:id="filterButton" mnemonicParsing="false" onAction="#filterButtonClicked" text="Filter" />
+               </children>
+            </HBox>
             <Separator prefWidth="200.0" />
             <ProgressBar fx:id="taskProgressBar" progress="0.0" VBox.vgrow="SOMETIMES" />
             <Label fx:id="taskStatus" />

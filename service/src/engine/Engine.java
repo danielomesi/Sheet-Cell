@@ -39,4 +39,6 @@ public interface Engine {
     public List<Integer> sort(List<String> colNames, String fromCellID, String toCellID, boolean isSortingFirstRow);
 
     public List<Object> getEffectiveValuesInSpecificCol(String colName, String fromCellID, String toCellID);
+
+    public Set<Integer> filter(String colName,List<Object> effectiveValuesToFilterBy, String fromCellID, String toCellID, boolean isFilteringEmptyCells);
 }

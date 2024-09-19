@@ -6,23 +6,18 @@ import gui.utils.Utils;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class FilterController {
 
@@ -30,6 +25,9 @@ public class FilterController {
     private String fromCellID;
     private String toCellID;
     private DynamicSheetTable dynamicSheetTable;
+    private final Map<String,Object> str2EffectiveValueMap = new HashMap<>();
+    BooleanProperty isFilteringActive = new SimpleBooleanProperty(true);
+    BooleanProperty isExistValueToFilter = new SimpleBooleanProperty(false);
 
     @FXML
     private Button addValueToFilterButton;
@@ -51,6 +49,10 @@ public class FilterController {
     private Label taskStatus;
     @FXML
     private HBox wrapperHbox;
+    @FXML
+    private ToggleButton includeEmptyCellsInFilterButton;
+    @FXML
+    private Button resetButton;
 
     //setters
     public void setMainController(MainController mainController) {this.mainController = mainController;}
@@ -77,11 +79,12 @@ public class FilterController {
                 selectedValuesListView.getSelectionModel().selectedItemProperty());
 
 
-        addValueToFilterButton.disableProperty().bind(isSelectionEmptyInAllColsList);
-        removeValueFromSelectedButton.disableProperty().bind(isSelectionEmptyInSelectedColsList);
-        filterButton.setDisable(true);
-
-
+        addValueToFilterButton.disableProperty().bind(isSelectionEmptyInAllColsList.or(isFilteringActive.not()));
+        removeValueFromSelectedButton.disableProperty().bind(isSelectionEmptyInSelectedColsList.or(isFilteringActive.not()));
+        colsComboBox.disableProperty().bind(isFilteringActive.not());
+        filterButton.disableProperty().bind(isFilteringActive.not().or(isExistValueToFilter.not()));
+        resetButton.disableProperty().bind(isFilteringActive);
+        includeEmptyCellsInFilterButton.setSelected(false);
 
     }
 
@@ -92,9 +95,13 @@ public class FilterController {
     }
 
     public void populateAllDistinctValuesListView(List<Object> effectiveValues) {
+        str2EffectiveValueMap.clear();
         Set<String> valuesAsStrings = new HashSet<>();
-        effectiveValues.forEach((effectiveValue) -> {valuesAsStrings.add(Utils.objectToString(effectiveValue));});
-        valuesAsStrings.add(Utils.NON_EXISTING_CELL_NAME);
+        effectiveValues.forEach((effectiveValue) -> {
+            String str = Utils.objectToString(effectiveValue);
+            valuesAsStrings.add(str);
+            str2EffectiveValueMap.put(str, effectiveValue);
+        });
         ObservableList<String> observableValues = FXCollections.observableArrayList(valuesAsStrings);
         allValuesListView.setItems(observableValues);
 
@@ -105,8 +112,8 @@ public class FilterController {
         String selectedCol = allValuesListView.getSelectionModel().getSelectedItem();
         selectedValuesListView.getItems().add(selectedCol);
         allValuesListView.getItems().remove(selectedCol);
-        if (filterButton.isDisabled()) {
-            filterButton.setDisable(false);
+        if (!isExistValueToFilter.getValue()) {
+            isExistValueToFilter.setValue(true);
         }
     }
 
@@ -125,6 +132,22 @@ public class FilterController {
 
     @FXML
     void filterButtonClicked(ActionEvent event) {
+        List<Object> selectedEffectiveValues = new ArrayList<>();
+        String selectedColName = colsComboBox.getSelectionModel().getSelectedItem();
+        selectedValuesListView.getItems().forEach((effectiveValue) -> {
+            selectedEffectiveValues.add(str2EffectiveValueMap.get(effectiveValue));
+        });
+        Runnable filter = () -> {
+            Set<Integer> rowsToDelete = mainController.getEngine().filter(selectedColName,selectedEffectiveValues,fromCellID,toCellID,
+                    includeEmptyCellsInFilterButton.isSelected());
+            Platform.runLater(() -> {
+                dynamicSheetTable.removeRows(rowsToDelete);
+                isFilteringActive.setValue(false);
+            });
+        };
+        boolean isAnimationsEnabled = mainController.getAppearanceController().isAnimationsEnabled();
+        Task<Void> task = Utils.getTaskFromRunnable(filter,taskStatus,taskProgressBar,isAnimationsEnabled);
+        Utils.runTaskInADaemonThread(task);
     }
 
     @FXML
@@ -133,13 +156,22 @@ public class FilterController {
         selectedValuesListView.getItems().remove(colToRemove);
         allValuesListView.getItems().add(colToRemove);
         if (selectedValuesListView.getItems().isEmpty()) {
-            filterButton.setDisable(true);
+            isExistValueToFilter.setValue(false);
         }
     }
 
     @FXML
-    void sortFirstRowToggleButtonClicked(ActionEvent event) {
+    void includeEmptyCellsInFilterButtonClicked(ActionEvent event) {
+        if (includeEmptyCellsInFilterButton.isSelected()) {
+            includeEmptyCellsInFilterButton.setText("ON");
+        } else {
+            includeEmptyCellsInFilterButton.setText("OFF");
+        }
+    }
 
+    @FXML
+    void resetButtonClicked(ActionEvent event) {
+        isFilteringActive.setValue(true);
     }
 
 }

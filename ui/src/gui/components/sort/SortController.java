@@ -135,12 +135,12 @@ public class SortController {
 
     @FXML
     void moveDownButtonClicked(ActionEvent event) {
-        Utils.moveChoiceNStepsInListView(selectedColsListView,1);
+        moveChoiceNStepsInListView(1);
     }
 
     @FXML
     void moveUpButtonClicked(ActionEvent event) {
-        Utils.moveChoiceNStepsInListView(selectedColsListView,-1);
+        moveChoiceNStepsInListView(-1);
     }
 
     @FXML
@@ -161,6 +161,20 @@ public class SortController {
         } else {
             sortFirstRowToggleButton.setText("OFF");
         }
+    }
+
+    private void moveChoiceNStepsInListView(int steps) {
+        String colToMoveDown = selectedColsListView.getSelectionModel().getSelectedItem();
+        ObservableList<String> items = selectedColsListView.getItems();
+
+        int selectedIndex = items.indexOf(colToMoveDown);
+        int nextIndex = selectedIndex + steps;
+        String itemBelow = items.get(nextIndex);
+
+        items.set(selectedIndex, itemBelow);
+        items.set(nextIndex, colToMoveDown);
+
+        selectedColsListView.getSelectionModel().select(nextIndex);
     }
 
 }

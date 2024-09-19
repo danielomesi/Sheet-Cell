@@ -179,4 +179,10 @@ public class EngineImpl implements Engine {
         Sheet subSheet = makeSubSheet(fromCellID, toCellID);
         return Filter.getEffectiveValuesInSpecificCol(subSheet,colName);
     }
+
+    @Override
+    public Set<Integer> filter(String colName,List<Object> effectiveValuesToFilterBy, String fromCellID, String toCellID, boolean isFilteringEmptyCells) {
+        Sheet subSheet = makeSubSheet(fromCellID, toCellID);
+        return Filter.filter(subSheet,colName,effectiveValuesToFilterBy,isFilteringEmptyCells);
+    }
 }

@@ -34,7 +34,9 @@ public class ControllersBuilder {
             filterController.setToCellID(toCellID);
             filterController.setDynamicSheetTable(dynamicSheetTable);
         }
-        catch (Exception ignored) {
+        catch (Exception e) {
+            e.printStackTrace();
+
         }
 
         return filterController;

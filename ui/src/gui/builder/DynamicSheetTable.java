@@ -14,10 +14,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.RowConstraints;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static gui.utils.Utils.convertColumnCharToIndex;
 
@@ -177,5 +174,15 @@ public class DynamicSheetTable {
 
     public static void removeNodeFromLabel(GridPane gridPane, Label label) {
         gridPane.getChildren().removeIf(node -> node == label);
+    }
+
+    public void removeRows(Set<Integer> rowIndexesToRemove) {
+        int numOfCols = gridPane.getColumnCount() - 1; // Decrement to ignore the first column of row numbers
+
+        rowIndexesToRemove.forEach(rowIndex -> {
+            for (int col = 1; col <= numOfCols; col++) {
+                removeNodeAt(gridPane, rowIndex + 1, col);
+            }
+        });
     }
 }
