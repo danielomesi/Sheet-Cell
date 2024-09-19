@@ -10,21 +10,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Some tries to improve functionality...">
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added first-row-ignoring option, and added button for animations">
+      <change afterPath="$PROJECT_DIR$/service/src/utils/Filter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/src/gui/components/filter/FilterController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/src/gui/components/filter/filter.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/Engine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/range/Range.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/range/Range.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/utils/Sorter.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/utils/Sorter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/appearance/AppearanceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/appearance/AppearanceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/appearance/appearance.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/appearance/appearance.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/gui/components/commands/CommandsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/commands/CommandsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/header/HeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/header/HeaderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/header/header.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/header/header.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/main/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sheet/SheetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/sheet/SheetController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sort/SortController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/sort/SortController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sort/sort.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/sort/sort.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/core/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/core/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sort/SortControllerBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/sort/ControllersBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/gui/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/utils/Utils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -169,15 +166,7 @@
       <workItem from="1726566348831" duration="18259000" />
       <workItem from="1726650018983" duration="6684000" />
       <workItem from="1726665558170" duration="4020000" />
-      <workItem from="1726756155882" duration="5844000" />
-    </task>
-    <task id="LOCAL‎-00006" summary="Mainly Logic Changes">
-      <option name="closed" value="true" />
-      <created>1723890517612</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL‎-00006" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1723890517612</updated>
+      <workItem from="1726756155882" duration="11486000" />
     </task>
     <task id="LOCAL‎-00007" summary="Added topological sort mechanism and xml reading">
       <option name="closed" value="true" />
@@ -563,7 +552,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1726669613938</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL‎-00055" summary="Added first-row-ignoring option, and added button for animations">
+      <option name="closed" value="true" />
+      <created>1726762222345</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL‎-00055" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1726762222346</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -582,7 +579,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="First java app state on air" />
     <MESSAGE value="First javafx app state on air" />
     <MESSAGE value="Created dynamic table for sheet view" />
     <MESSAGE value="Added update option" />
@@ -607,9 +603,24 @@
     <MESSAGE value="Sort started working a bit..." />
     <MESSAGE value="Sort is working (On my tests...)" />
     <MESSAGE value="Some tries to improve functionality..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Some tries to improve functionality..." />
+    <MESSAGE value="Added first-row-ignoring option, and added button for animations" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added first-row-ignoring option, and added button for animations" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/service/src/entities/coordinates/CoordinateFactory.java</url>
+          <line>97</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/service/src/engine/EngineImpl.java</url>
+          <line>178</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="service.operations.PLUSOperation" memberName="sheet" />

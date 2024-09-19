@@ -182,8 +182,8 @@ public class SheetController {
                 }
             }
         }
-
     }
+
 
     private boolean isRangeChoice(Coordinates clickedCellCoordinates) {
         String topLeftCellID, bottomRightCellID;
@@ -245,7 +245,7 @@ public class SheetController {
         String cellID = cellCoordinates.getCellID();
         currentCellIDLabel.setText(cellID);
         Cell cell = mainController.getCurrentLoadedSheet().getCell(cellCoordinates.getRow(), cellCoordinates.getCol());
-        String originalExpression = cell != null ? cell.getOriginalExpression() : "[EMPTY-CELL]";
+        String originalExpression = cell != null ? cell.getOriginalExpression() : Utils.NON_EXISTING_CELL_NAME;
         int lastUpdatedVersion = cell != null ? cell.getVersion() : 0;
         originalValueLabel.setText(originalExpression);
         lastUpdatedVersionLabel.setText(String.valueOf(lastUpdatedVersion));

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox fx:id="wrapperHbox" spacing="10.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.components.filter.FilterController">
+   <children>
+      <VBox alignment="TOP_CENTER" spacing="10.0">
+         <children>
+            <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
+               <children>
+                  <Label text="Select Filtering Column:" />
+                  <ComboBox fx:id="colsComboBox" onAction="#columnInComboBoxSelected" />
+               </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+            <Label text="Select values to filter" />
+            <ListView fx:id="allValuesListView" prefHeight="100.0" prefWidth="40.0" />
+            <Button fx:id="addValueToFilterButton" mnemonicParsing="false" onAction="#addValueToFilterButtonClicked" text="Add" />
+            <Separator />
+            <Label text="Selected Values" />
+            <ListView fx:id="selectedValuesListView" prefHeight="100.0" prefWidth="40.0" />
+            <HBox alignment="CENTER" spacing="10.0">
+               <children>
+                  <Button fx:id="removeValueFromSelectedButton" mnemonicParsing="false" onAction="#removeValueFromSelectedButtonClicked" text="Remove" />
+               </children>
+            </HBox>
+            <Button fx:id="filterButton" mnemonicParsing="false" onAction="#filterButtonClicked" text="Filter" />
+            <Separator prefWidth="200.0" />
+            <ProgressBar fx:id="taskProgressBar" progress="0.0" VBox.vgrow="SOMETIMES" />
+            <Label fx:id="taskStatus" />
+         </children>
+      </VBox>
+      <ScrollPane fx:id="tableScrollPane" />
+   </children>
+</HBox>

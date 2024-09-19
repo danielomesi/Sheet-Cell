@@ -14,13 +14,11 @@ import entities.stl.STLSheet;
 import exceptions.InvalidXMLException;
 import exceptions.NoExistenceException;
 import jakarta.xml.bind.JAXBException;
+import utils.Filter;
 import utils.Sorter;
 import utils.Utils;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class EngineImpl implements Engine {
     private List<CoreSheet> coreSheets;
@@ -176,4 +174,9 @@ public class EngineImpl implements Engine {
         return Sorter.sortRowsByColumns(subSheet,colNames,isSortingFirstRow);
     }
 
+    @Override
+    public List<Object> getEffectiveValuesInSpecificCol(String colName, String fromCellID, String toCellID) {
+        Sheet subSheet = makeSubSheet(fromCellID, toCellID);
+        return Filter.getEffectiveValuesInSpecificCol(subSheet,colName);
+    }
 }

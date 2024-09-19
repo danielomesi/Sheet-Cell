@@ -6,12 +6,13 @@ import entities.coordinates.Coordinates;
 import entities.sheet.Sheet;
 import gui.builder.DynamicBuilder;
 import gui.builder.DynamicSheetTable;
+import gui.components.filter.FilterController;
 import gui.components.sheet.SheetController;
 import gui.components.header.HeaderController;
 import gui.components.commands.CommandsController;
 import gui.components.appearance.AppearanceController;
 import gui.components.sort.SortController;
-import gui.components.sort.SortControllerBuilder;
+import gui.components.sort.ControllersBuilder;
 import gui.core.DataModule;
 import gui.exceptions.UnsupportedFileFormatException;
 import gui.utils.Utils;
@@ -49,6 +50,7 @@ public class MainController {
     private CommandsController commandsController;
     private AppearanceController appearanceController;
     private SortController sortController;
+    private FilterController filterController;
 
     //getters
     public BorderPane getMainBorderPane() {return mainBorderPane;}
@@ -149,15 +151,25 @@ public class MainController {
             sheetController.resetStyles();
             DynamicSheetTable dynamicSheetTable = DynamicBuilder.cropDynamicSheetTableToANewOne(engine.getSheet(),sheetController.getDynamicSheetTable(),fromCellID,toCellID);
             GridPane gridPane = dynamicSheetTable.getGridPane();
-            sortController = SortControllerBuilder.buildSortController(this,dynamicSheetTable,fromCellID,toCellID);
+            sortController = ControllersBuilder.buildSortController(this,dynamicSheetTable,fromCellID,toCellID);
             sortController.setTable(gridPane);
             List<String> colNames = Utils.getLettersFromAToTheNLetter(subSheet.getNumOfCols());
             sortController.populateListViewOfAllCols(colNames);
-            Scene sortScene = new Scene(sortController.getWrapper());
-            Stage sortWindow = new Stage();
-            sortWindow.setTitle("Sort Dialog");
-            sortWindow.setScene(sortScene);
-            sortWindow.show();
+            Utils.openWindow(sortController.getWrapper(), "Sort Dialog");
+        });
+    }
+
+    public void openFilterDialog(String fromCellID,String toCellID) {
+        engine.setSubSheet(fromCellID, toCellID);
+        Sheet subSheet = engine.getSubSheet();
+        Platform.runLater(() -> {
+            sheetController.resetStyles();
+            DynamicSheetTable dynamicSheetTable = DynamicBuilder.cropDynamicSheetTableToANewOne(engine.getSheet(),sheetController.getDynamicSheetTable(),fromCellID,toCellID);
+            GridPane gridPane = dynamicSheetTable.getGridPane();
+            filterController = ControllersBuilder.buildFilterController(this,dynamicSheetTable,fromCellID,toCellID);
+            filterController.setTable(gridPane);
+            filterController.populateColComboBox(subSheet.getNumOfCols());
+            Utils.openWindow(filterController.getWrapper(), "Filter Dialog");
         });
     }
 

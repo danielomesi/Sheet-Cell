@@ -6,6 +6,7 @@ import entities.sheet.Sheet;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public interface Engine {
 
@@ -36,4 +37,6 @@ public interface Engine {
     public Sheet getSubSheet();
 
     public List<Integer> sort(List<String> colNames, String fromCellID, String toCellID, boolean isSortingFirstRow);
+
+    public List<Object> getEffectiveValuesInSpecificCol(String colName, String fromCellID, String toCellID);
 }

@@ -10,17 +10,24 @@ import entities.types.undefined.UndefinedString;
 import exceptions.ServiceException;
 import gui.exceptions.GUIException;
 import gui.exceptions.RowOutOfBoundsException;
+import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.concurrent.Worker;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 public class Utils {
+    public static final String NON_EXISTING_CELL_NAME = "[EMPTY-CELL]";
+
     public static String objectToString(Object obj) {
         String result = "";
 
@@ -138,6 +145,27 @@ public class Utils {
         return task;
     }
 
+    public static void openWindow(Parent root, String title) {
+        Scene sortScene = new Scene(root);
+        Stage sortWindow = new Stage();
+        sortWindow.setTitle(title);
+        sortWindow.setScene(sortScene);
+        sortWindow.show();
+    }
+
+    public static void moveChoiceNStepsInListView(ListView<String> listView, int steps) {
+        String colToMoveDown = listView.getSelectionModel().getSelectedItem();
+        ObservableList<String> items = listView.getItems();
+
+        int selectedIndex = items.indexOf(colToMoveDown);
+        int nextIndex = selectedIndex + steps;
+        String itemBelow = items.get(nextIndex);
+
+        items.set(selectedIndex, itemBelow);
+        items.set(nextIndex, colToMoveDown);
+
+        listView.getSelectionModel().select(nextIndex);
+    }
 
 
 }

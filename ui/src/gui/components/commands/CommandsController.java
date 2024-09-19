@@ -99,7 +99,14 @@ public class CommandsController {
 
     @FXML
     void openFilterDialogClicked(ActionEvent event) {
-
+        String fromCellID = mainController.getSheetController().getSelectedTopLeftCellID();
+        String toCellID = mainController.getSheetController().getSelectedBottomRightCellID();
+        Runnable runnable = () -> mainController.openFilterDialog(fromCellID, toCellID);
+        Label taskStatusLabel = mainController.getHeaderController().getTaskStatusLabel();
+        ProgressBar progressBar = mainController.getHeaderController().getTaskProgressBar();
+        boolean isAnimationsEnabled = mainController.getAppearanceController().isAnimationsEnabled();
+        Task<Void> task = Utils.getTaskFromRunnable(runnable,taskStatusLabel,progressBar,isAnimationsEnabled);
+        Utils.runTaskInADaemonThread(task);
     }
 
 
