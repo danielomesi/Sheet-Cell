@@ -7,7 +7,6 @@ import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import java.io.File;
@@ -26,8 +25,13 @@ public class HeaderController {
     @FXML
     private ProgressBar taskProgressBar;
     @FXML
-    private Label errorMessageLabel;
+    private Label taskStatusLabel;
 
+    //getters
+    public Label getTaskStatusLabel() {return taskStatusLabel;}
+    public ProgressBar getTaskProgressBar() {return taskProgressBar;}
+
+    //setters
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
         if (mainController != null) {
@@ -51,50 +55,19 @@ public class HeaderController {
         File file = fileChooser.showOpenDialog(stage);
 
         if (file != null) {
-            Task<Void> task = getTaskFromRunnable(() -> mainController.loadFile(file.getAbsolutePath()), false);
+            boolean isAnimationsEnabled = mainController.getAppearanceController().isAnimationsEnabled();
+            Task<Void> task = Utils.getTaskFromRunnable(() -> mainController.loadFile(file.getAbsolutePath())
+                    , taskStatusLabel,taskProgressBar, isAnimationsEnabled);
             task.setOnSucceeded(e -> {
                 filePathLabel.setText(file.getName());
             });
 
-            Thread thread = new Thread(task);
-            thread.setDaemon(true);
-            thread.start();
+            Utils.runTaskInADaemonThread(task);
         }
     }
 
 
-    public Task<Void> getTaskFromRunnable(Runnable runnable, boolean isDelayed) {
-        Task<Void> task = new Task<Void>() {
-            @Override
-            protected Void call() throws Exception {
-                if (isDelayed) {
-                    for (int i = 1; i <= 100; i++) {
-                        Thread.sleep(25);
-                        updateProgress(i, 100);
-                    }
-                }
-                try {
-                    updateMessage("Executing...");
-                    runnable.run();
-                    updateMessage("Success!");
-                } catch (Exception e) {
-                    updateMessage(Utils.generateErrorMessageFromException(e));
-                    throw e;
-                }
-                return null;
-            }
-        };
 
-        errorMessageLabel.textProperty().bind(task.messageProperty());
-        if (isDelayed) {
-            taskProgressBar.progressProperty().bind(task.progressProperty());
-        }
-        return task;
-    }
-
-    public void showErrorMessage(String message) {
-        errorMessageLabel.setText(message);
-    }
 
 }
 

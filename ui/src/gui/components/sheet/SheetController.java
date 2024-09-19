@@ -122,10 +122,11 @@ public class SheetController {
             mainController.calculateCellUpdate(coordinates,newValueTextField.getText());
             newValueTextField.clear();
         };
-        Task<Void> task = mainController.getHeaderController().getTaskFromRunnable(runnable, false);
-        Thread thread = new Thread(task);
-        thread.setDaemon(true);
-        thread.start();
+        Label taskStatusLabel = mainController.getHeaderController().getTaskStatusLabel();
+        ProgressBar progressBar = mainController.getHeaderController().getTaskProgressBar();
+        boolean isAnimationsEnabled = mainController.getAppearanceController().isAnimationsEnabled();
+        Task<Void> task = Utils.getTaskFromRunnable(runnable,taskStatusLabel,progressBar, isAnimationsEnabled);
+        Utils.runTaskInADaemonThread(task);
     }
 
     @FXML

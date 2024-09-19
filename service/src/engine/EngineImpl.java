@@ -171,9 +171,9 @@ public class EngineImpl implements Engine {
         return new CoreSheet(coreSheets.getLast(),topLeftCoordinates,bottomRightCoordinates);
     }
 
-    public List<Integer> sort(List<String> colNames, String fromCellID, String toCellID) {
+    public List<Integer> sort(List<String> colNames, String fromCellID, String toCellID, boolean isSortingFirstRow) {
         Sheet subSheet = makeSubSheet(fromCellID, toCellID);
-        return Sorter.sortRowsByColumns(subSheet,colNames);
+        return Sorter.sortRowsByColumns(subSheet,colNames,isSortingFirstRow);
     }
 
 }

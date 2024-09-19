@@ -65,24 +65,34 @@ public class Sorter {
         return topologicalOrder;
     }
 
-    public static List<Integer> sortRowsByColumns(Sheet sheet, List<String> colNames) {
-        validateNumericValuesOrThrow(sheet,colNames);
-
+    public static List<Integer> sortRowsByColumns(Sheet sheet, List<String> colNames, boolean isSortingFirstRow) {
+        validateNumericValuesOrThrow(sheet,colNames,isSortingFirstRow);
         int numRows = sheet.getNumOfRows();
-
+        RowData firstRow = null;
         List<RowData> rows = new ArrayList<>();
 
         for (int row = 0; row < numRows; row++) {
             List<Cell> values = new ArrayList<>();
+            RowData currentRow;
             for (String colName : colNames) {
                 int col = CoordinateFactory.convertColumnStringToIndex(colName);
                 Cell cell = sheet.getCell(row, col);
                 values.add(cell);
             }
-            rows.add(new RowData(row, values));
+            currentRow = new RowData(row, values);
+            if (row!=0 || isSortingFirstRow) {
+                rows.add(currentRow);
+            }
+            else {
+                firstRow = currentRow;
+            }
+
         }
 
         rows.sort(new RowsComparator(colNames));
+        if (!isSortingFirstRow) {
+            rows.addFirst(firstRow);
+        }
 
         List<Integer> sortedRowIndices = new ArrayList<>();
         for (int i=0; i < rows.size(); i++) {
@@ -103,10 +113,10 @@ public class Sorter {
 
 
 
-    public static void validateNumericValuesOrThrow(Sheet sheet, List<String> colNames) {
+    public static void validateNumericValuesOrThrow(Sheet sheet, List<String> colNames, boolean isSortingFirstRow) {
         int numRows = sheet.getNumOfRows();
         int numCols = sheet.getNumOfCols();
-        for (int i = 0; i < numRows; i++) {
+        for (int i = isSortingFirstRow? 0 : 1; i < numRows; i++) {
             for (String colName : colNames) {
                 int j = CoordinateFactory.convertColumnStringToIndex(colName);
                 Cell cell = sheet.getCell(i, j);

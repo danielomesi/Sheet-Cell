@@ -10,10 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Slider;
+import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 
 import java.util.List;
@@ -26,6 +23,9 @@ public class AppearanceController {
     private static final double MIN_SCALE = 0.1;
     private static final double MAX_SCALE = 5;
 
+
+    @FXML
+    private ToggleButton animationsToggleButton;
     @FXML
     private Slider sheetScalerSlider;
     @FXML
@@ -45,6 +45,10 @@ public class AppearanceController {
     @FXML
     private Button resetCellColorsButtons;
 
+    //getters
+    public boolean isAnimationsEnabled() {return animationsToggleButton.isSelected();}
+
+    //setters
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
         if (mainController != null) {
@@ -68,6 +72,7 @@ public class AppearanceController {
                 () -> selectedColComboBox.getSelectionModel().isEmpty(),
                 selectedColComboBox.getSelectionModel().selectedItemProperty());
 
+        animationsToggleButton.setSelected(false);
         rowHeightSlider.disableProperty().bind(isRowComboBoxEmpty);
         colWidthSlider.disableProperty().bind(isColComboBoxEmpty);
         ObservableList<String> observableList = FXCollections.observableArrayList(ALLIGNMENT_OPTIONS);
@@ -123,6 +128,16 @@ public class AppearanceController {
 
     private void bindAlignmentComboBoxToColComboBox() {
         selectedAlignmentComboBox.disableProperty().bind(Bindings.isNull(selectedColComboBox.getSelectionModel().selectedItemProperty()));
+    }
+
+    @FXML
+    void animationsToggleButtonClicked(ActionEvent event) {
+        if (animationsToggleButton.isSelected()) {
+            animationsToggleButton.setText("ON");
+        }
+        else {
+            animationsToggleButton.setText("OFF");
+        }
     }
 
     @FXML

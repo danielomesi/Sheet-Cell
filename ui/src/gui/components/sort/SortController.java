@@ -43,6 +43,12 @@ public class SortController {
     private Button sortButton;
     @FXML
     private ToggleButton sortFirstRowToggleButton;
+    @FXML
+    private ProgressBar taskProgressBar;
+
+    @FXML
+    private Label taskStatus;
+
 
     public void initialize() {
         BooleanBinding isSelectionEmptyInAllColsList = Bindings.createBooleanBinding(
@@ -72,6 +78,7 @@ public class SortController {
         RemoveColumnFromSortButton.disableProperty().bind(isSelectionEmptyInSelectedColsList);
         moveDownButton.disableProperty().bind(isSelectionLastInSelectedColsList);
         moveUpButton.disableProperty().bind(isSelectionFirstInSelectedColsList);
+        sortFirstRowToggleButton.setSelected(true);
     }
 
     public void setMainController(MainController mainController) {
@@ -138,10 +145,10 @@ public class SortController {
     void sortButtonClicked(ActionEvent event) {
         List<String> colsToSortBy = selectedColsListView.getItems();
         Runnable sort = () -> {
-            List<Integer> sortedRowsOrder = mainController.getEngine().sort(colsToSortBy, fromCellID, toCellID);
+            List<Integer> sortedRowsOrder = mainController.getEngine().sort(colsToSortBy, fromCellID, toCellID,sortFirstRowToggleButton.isSelected());
             Platform.runLater(() -> dynamicSheetTable.changeRowsOrder(sortedRowsOrder));};
-
-        Task<Void> sortTask =  mainController.getHeaderController().getTaskFromRunnable(sort, false);
+        boolean isAnimationsEnabled = mainController.getAppearanceController().isAnimationsEnabled();
+        Task<Void> sortTask =  Utils.getTaskFromRunnable(sort,taskStatus,taskProgressBar, isAnimationsEnabled);
         Utils.runTaskInADaemonThread(sortTask);
     }
 

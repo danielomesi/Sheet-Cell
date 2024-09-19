@@ -11,24 +11,23 @@ import java.io.Serializable;
 import java.util.*;
 
 public class Range implements Serializable {
-    private final String name;
+    private String name;
     private Set<Coordinates> cells;
 
     public Set<Coordinates> getCells() {return cells;}
 
     public Range(String name,Sheet sheet, String fromCellID, String toCellID) {
+        this(sheet,fromCellID,toCellID);
         validateRangeName(name);
-        this.name = name;
+        this.name=name;
+    }
+
+    public Range(Sheet sheet, String fromCellID, String toCellID) {
         setRangeCells(fromCellID,toCellID,sheet);
     }
 
     public Range(STLRange stlRange, Sheet sheet) {
-        this(stlRange.getSTLBoundaries().getFrom(),stlRange.getSTLBoundaries().getTo(),sheet);
-    }
-
-    public Range(String fromCellID, String toCellID, Sheet sheet) {
-        this.name = fromCellID;
-        setRangeCells(fromCellID,toCellID,sheet);
+        this(sheet,stlRange.getSTLBoundaries().getFrom(),stlRange.getSTLBoundaries().getTo());
     }
 
     private void setRangeCells(String fromCellID, String toCellID, Sheet sheet) {

@@ -11,6 +11,9 @@ import exceptions.ServiceException;
 import gui.exceptions.GUIException;
 import gui.exceptions.RowOutOfBoundsException;
 import javafx.concurrent.Task;
+import javafx.concurrent.Worker;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
@@ -95,6 +98,44 @@ public class Utils {
         Thread thread = new Thread(task);
         thread.setDaemon(true);
         thread.start();
+    }
+
+    public static Task<Void> getTaskFromRunnable(Runnable runnable, Label labelToBindMessage, ProgressBar progressBarToBind, boolean isDelayed) {
+        Task<Void> task = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                updateMessage("Executing...");
+                if (isDelayed) {
+                    for (int i = 1; i <= 100; i++) {
+                        Thread.sleep(10);
+                        updateProgress(i, 100);
+                    }
+                }
+                try {
+                    runnable.run();
+                    updateMessage("The task finished successfully!");
+                } catch (Exception e) {
+                    updateMessage(Utils.generateErrorMessageFromException(e));
+                    throw e;
+                }
+                return null;
+            }
+        };
+
+        labelToBindMessage.textProperty().bind(task.messageProperty());
+        if (isDelayed) {
+            progressBarToBind.progressProperty().bind(task.progressProperty());
+        }
+
+        task.stateProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue == Worker.State.SUCCEEDED) {
+                labelToBindMessage.setStyle("-fx-text-fill: green;");
+            } else if (newValue == Worker.State.FAILED) {
+                labelToBindMessage.setStyle("-fx-text-fill: red;");
+            }
+        });
+
+        return task;
     }
 
 

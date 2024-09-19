@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.ToggleButton?>
@@ -28,11 +29,14 @@
             </HBox>
             <HBox alignment="CENTER" spacing="10.0">
                <children>
-                  <Label text="Ignore the first row on sort procedure:" />
-                  <ToggleButton fx:id="sortFirstRowToggleButton" mnemonicParsing="false" onAction="#sortFirstRowToggleButtonClicked" text="OFF" />
+                  <Label text="Include first row on sort" />
+                  <ToggleButton fx:id="sortFirstRowToggleButton" mnemonicParsing="false" onAction="#sortFirstRowToggleButtonClicked" text="ON" />
                </children>
             </HBox>
             <Button fx:id="sortButton" mnemonicParsing="false" onAction="#sortButtonClicked" text="Sort" />
+            <Separator prefWidth="200.0" />
+            <ProgressBar fx:id="taskProgressBar" progress="0.0" VBox.vgrow="SOMETIMES" />
+            <Label fx:id="taskStatus" />
          </children>
       </VBox>
       <ScrollPane fx:id="tableScrollPane" />

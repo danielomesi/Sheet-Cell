@@ -35,5 +35,5 @@ public interface Engine {
 
     public Sheet getSubSheet();
 
-    public List<Integer> sort(List<String> colNames, String fromCellID, String toCellID);
+    public List<Integer> sort(List<String> colNames, String fromCellID, String toCellID, boolean isSortingFirstRow);
 }

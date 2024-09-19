@@ -11,11 +11,11 @@ import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.util.Set;
+
+import static gui.utils.Utils.getTaskFromRunnable;
 
 public class CommandsController {
 
@@ -63,10 +63,11 @@ public class CommandsController {
     void handleOnRemoveRangeButtonClick(ActionEvent event) {
         String rangeToRemove = rangeComboBox.getSelectionModel().getSelectedItem().toString();
         Runnable runnable = () -> mainController.deleteRange(rangeToRemove);
-        Task<Void> task = mainController.getHeaderController().getTaskFromRunnable(runnable,false);
-        Thread thread = new Thread(task);
-        thread.setDaemon(true);
-        thread.start();
+        Label taskStatusLabel = mainController.getHeaderController().getTaskStatusLabel();
+        ProgressBar progressBar = mainController.getHeaderController().getTaskProgressBar();
+        boolean isAnimationsEnabled = mainController.getAppearanceController().isAnimationsEnabled();
+        Task<Void> task = getTaskFromRunnable(runnable,taskStatusLabel, progressBar, isAnimationsEnabled);
+        Utils.runTaskInADaemonThread(task);
     }
 
 
@@ -77,10 +78,11 @@ public class CommandsController {
         String fromCellID = mainController.getSheetController().getSelectedTopLeftCellID();
         String toCellID = mainController.getSheetController().getSelectedBottomRightCellID();
         Runnable runnable = () -> mainController.addRange(rangeName, fromCellID, toCellID);
-        Task<Void> task = mainController.getHeaderController().getTaskFromRunnable(runnable,false);
-        Thread thread = new Thread(task);
-        thread.setDaemon(true);
-        thread.start();
+        Label taskStatusLabel = mainController.getHeaderController().getTaskStatusLabel();
+        ProgressBar progressBar = mainController.getHeaderController().getTaskProgressBar();
+        boolean isAnimationsEnabled = mainController.getAppearanceController().isAnimationsEnabled();
+        Task<Void> task = Utils.getTaskFromRunnable(runnable,taskStatusLabel,progressBar,isAnimationsEnabled);
+        Utils.runTaskInADaemonThread(task);
     }
 
     @FXML
@@ -88,7 +90,10 @@ public class CommandsController {
         String fromCellID = mainController.getSheetController().getSelectedTopLeftCellID();
         String toCellID = mainController.getSheetController().getSelectedBottomRightCellID();
         Runnable runnable = () -> mainController.openSortDialog(fromCellID, toCellID);
-        Task<Void> task = mainController.getHeaderController().getTaskFromRunnable(runnable,false);
+        Label taskStatusLabel = mainController.getHeaderController().getTaskStatusLabel();
+        ProgressBar progressBar = mainController.getHeaderController().getTaskProgressBar();
+        boolean isAnimationsEnabled = mainController.getAppearanceController().isAnimationsEnabled();
+        Task<Void> task = Utils.getTaskFromRunnable(runnable,taskStatusLabel,progressBar,isAnimationsEnabled);
         Utils.runTaskInADaemonThread(task);
     }
 
@@ -102,7 +107,7 @@ public class CommandsController {
     public Range getSelectedRange() {
         Range selectedRange = null;
         try {
-            selectedRange = new Range(null, mainController.getCurrentLoadedSheet(),
+            selectedRange = new Range(mainController.getCurrentLoadedSheet(),
                     mainController.getSheetController().getSelectedTopLeftCellID(),
                     mainController.getSheetController().getSelectedBottomRightCellID());
         }

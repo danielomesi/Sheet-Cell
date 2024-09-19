@@ -7,24 +7,24 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="vBoxHeader" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="1600.0" spacing="10.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.components.header.HeaderController">
+<VBox fx:id="vBoxHeader" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="1600.0" spacing="10.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.components.header.HeaderController">
    <children>
       <Label alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Sheet-Cell">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
+      <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
          <children>
             <Button fx:id="loadFileButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleLoadFileButtonClick" text="Load File" />
             <Label fx:id="filePathLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
             <Button fx:id="saveToFileButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleSaveToFileButton" text="Save to File" />
          </children>
       </HBox>
-      <ProgressBar fx:id="taskProgressBar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" progress="0.0" />
-      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
+      <ProgressBar fx:id="taskProgressBar" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefWidth="800.0" progress="0.0" />
+      <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
          <children>
-            <Label fx:id="errorMessageLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
+            <Label fx:id="taskStatusLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
          </children>
       </HBox>
    </children>

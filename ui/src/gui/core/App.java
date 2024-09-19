@@ -19,36 +19,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 
-//public static String removeFirstRowOutOfFromCellID(Sheet sheet, String fromCellID) {
-//    int fromRow = CoordinateFactory.getRowIndexFromCellID(fromCellID);
-//    int fromCol = CoordinateFactory.getColIndexFromCellID(fromCellID);
-//    validateNextRowExistence(sheet,fromRow);
-//    fromRow++;
-//
-//    return CoordinateFactory.getCellIDFromIndices(fromRow,fromCol);
-//}
-//
-//public static String removeFirstRowOutOfToCellID(Sheet sheet, String toCellID) {
-//    int toRow = CoordinateFactory.getRowIndexFromCellID(toCellID);
-//    int toCol = CoordinateFactory.getColIndexFromCellID(toCellID);
-//    if (toRow == 0) {
-//        validateNextRowExistence(sheet,toRow);
-//        toRow++;
-//        toCellID = CoordinateFactory.getCellIDFromIndices(toRow,toCol);
-//    }
-//
-//    return toCellID;
-//}
-//
-//public static void validateNextRowExistence(Sheet sheet, int row) {
-//    int lastRowNumber = sheet.getNumOfRows()-1; //0-indexed
-//    int nextRowNumber = row + 1;
-//    if (nextRowNumber > lastRowNumber) {
-//        throw new RowOutOfBoundsException("Can't find row number " + nextRowNumber);
-//    }
-//}
 
-//think where to put the code above - probably in engine ?
+
+//make all the controls be centered
 //fix the bug in sorting not working
 //do not forget that the cell style determined by USER needs to stay after sorting/filtering etc
 //choose an arbitrary number in my opinion for every component and for the main component
