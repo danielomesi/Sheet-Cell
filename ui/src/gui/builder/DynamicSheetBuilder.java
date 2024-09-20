@@ -12,7 +12,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -21,20 +20,22 @@ import static gui.builder.DynamicSheet.FACTOR;
 
 public class DynamicSheetBuilder {
     public static DynamicSheet buildDynamicSheet(Sheet sheet) {
-        GridPane gridPane = new GridPane();
-        Map<Coordinates,CellController> coordinates2CellController = new HashMap<>();
-        Map<String, ColumnConstraints> columnConstraintsMap = new HashMap<>();
-        Map<Integer, RowConstraints> rowConstraintsMap = new HashMap<>();
-        Map<Integer, CellController> integer2RowCellController = new HashMap<>();
-        Map<String, CellController> string2ColCellController = new HashMap<>();
+        DynamicSheet newDynamicSheet = new DynamicSheet();
+        GridPane gridPane = newDynamicSheet.getGridPane();
+        Map<Coordinates,CellController> coordinates2CellController = newDynamicSheet.getCoordinates2CellController();
+        Map<String, ColumnConstraints> columnConstraintsMap = newDynamicSheet.getColumnConstraintsMap();
+        Map<Integer, RowConstraints> rowConstraintsMap = newDynamicSheet.getRowConstraintsMap();
+        Map<Integer, CellController> integer2RowCellController = newDynamicSheet.getInteger2RowCellController();
+        Map<String, CellController> string2ColCellController = newDynamicSheet.getString2ColCellController();
 
         int numRows = sheet.getNumOfRows();
         int numCols = sheet.getNumOfCols();
         int rowHeight = sheet.getLayout().getRowHeightUnits() * FACTOR;
         int colWidth = sheet.getLayout().getColumnWidthUnits() * FACTOR;
 
-        initRowAndColumnHeaders(sheet.getName(), gridPane,numRows,numCols,rowHeight,colWidth,columnConstraintsMap,
-                rowConstraintsMap,integer2RowCellController,string2ColCellController);
+        newDynamicSheet.setInitialRowAndColLayout(rowHeight,colWidth);
+
+        newDynamicSheet.initRowAndColumnHeaders(sheet.getName(),numRows,numCols);
 
         for (int row = 0; row < numRows; row++) {
             for (int col = 0; col < numCols; col++) {
@@ -48,19 +49,17 @@ public class DynamicSheetBuilder {
             }
         }
 
-        setGridPaneSize(gridPane);
-
-        return new DynamicSheet(coordinates2CellController,gridPane,columnConstraintsMap,rowConstraintsMap,
-                integer2RowCellController,string2ColCellController);
+        return newDynamicSheet;
     }
 
     public static DynamicSheet buildSubDynamicSheetFromMainSheet(Sheet mainSheet, DynamicSheet mainDynamicSheet, String fromCellID, String toCellID) {
-        GridPane gridPane = new GridPane();
-        Map<Coordinates,CellController> coordinates2CellController = new HashMap<>();
-        Map<String, ColumnConstraints> columnConstraintsMap = new HashMap<>();
-        Map<Integer, RowConstraints> rowConstraintsMap = new HashMap<>();
-        Map<Integer, CellController> integer2RowCellController = new HashMap<>();
-        Map<String, CellController> string2ColCellController = new HashMap<>();
+        DynamicSheet newDynamicSheet = new DynamicSheet();
+        GridPane gridPane = newDynamicSheet.getGridPane();
+        Map<Coordinates,CellController> coordinates2CellController = newDynamicSheet.getCoordinates2CellController();
+        Map<String, ColumnConstraints> columnConstraintsMap = newDynamicSheet.getColumnConstraintsMap();
+        Map<Integer, RowConstraints> rowConstraintsMap = newDynamicSheet.getRowConstraintsMap();
+        Map<Integer, CellController> integer2RowCellController = newDynamicSheet.getInteger2RowCellController();
+        Map<String, CellController> string2ColCellController = newDynamicSheet.getString2ColCellController();
 
         int rowStart = CoordinateFactory.getRowIndexFromCellID(fromCellID);
         int colStart = CoordinateFactory.getColIndexFromCellID(fromCellID);
@@ -71,9 +70,10 @@ public class DynamicSheetBuilder {
         int rowHeight = mainSheet.getLayout().getRowHeightUnits() * FACTOR;
         int colWidth = mainSheet.getLayout().getColumnWidthUnits() * FACTOR;
 
-        initRowAndColumnHeaders(mainSheet.getName(), gridPane,numRows,numCols,rowHeight,colWidth,columnConstraintsMap,
-                rowConstraintsMap,integer2RowCellController,string2ColCellController);
-        addSuffixToColNames(string2ColCellController,colStart + 1);
+        newDynamicSheet.setInitialRowAndColLayout(rowHeight,colWidth);
+
+        newDynamicSheet.initRowAndColumnHeaders(mainSheet.getName(),numRows,numCols);
+        newDynamicSheet.addSuffixToHeaders(colStart+1,rowStart+1);
 
         for (int row = 0; row < numRows; row++) {
             for (int col = 0; col < numCols; col++) {
@@ -88,30 +88,29 @@ public class DynamicSheetBuilder {
             }
         }
 
-        setGridPaneSize(gridPane);
-
-        return new DynamicSheet(coordinates2CellController,gridPane,columnConstraintsMap,rowConstraintsMap,
-               integer2RowCellController,string2ColCellController );
+        return newDynamicSheet;
     }
 
     public static DynamicSheet buildFilteredDynamicSheetFromMainSheetAndSubDynamicSheet(Sheet mainSheet, DynamicSheet subDynamicSheet, String fromCellID, String toCellID, Set<Integer> rowsToInclude) {
-        GridPane gridPane = new GridPane();
-        Map<Coordinates,CellController> coordinates2CellController = new HashMap<>();
-        Map<String, ColumnConstraints> columnConstraintsMap = new HashMap<>();
-        Map<Integer, RowConstraints> rowConstraintsMap = new HashMap<>();
-        Map<Integer, CellController> integer2RowCellController = new HashMap<>();
-        Map<String, CellController> string2ColCellController = new HashMap<>();
+        DynamicSheet newDynamicSheet = new DynamicSheet();
+        GridPane gridPane = newDynamicSheet.getGridPane();
+        Map<Coordinates,CellController> coordinates2CellController = newDynamicSheet.getCoordinates2CellController();
+        Map<String, ColumnConstraints> columnConstraintsMap = newDynamicSheet.getColumnConstraintsMap();
+        Map<Integer, RowConstraints> rowConstraintsMap = newDynamicSheet.getRowConstraintsMap();
+        Map<Integer, CellController> integer2RowCellController = newDynamicSheet.getInteger2RowCellController();
+        Map<String, CellController> string2ColCellController = newDynamicSheet.getString2ColCellController();
         int numOfRowsAdded = 0;
 
+        int rowStart = CoordinateFactory.getRowIndexFromCellID(fromCellID);
         int colStart = CoordinateFactory.getColIndexFromCellID(fromCellID);
         int numRows = rowsToInclude.size();
         int numCols = subDynamicSheet.getGridPane().getColumnCount()-1;
         int rowHeight = mainSheet.getLayout().getRowHeightUnits() * FACTOR;
         int colWidth = mainSheet.getLayout().getColumnWidthUnits() * FACTOR;
 
-        initRowAndColumnHeaders(mainSheet.getName(), gridPane,numRows,numCols,rowHeight,colWidth,columnConstraintsMap,
-                rowConstraintsMap,integer2RowCellController,string2ColCellController);
-        addSuffixToColNames(string2ColCellController,colStart + 1);
+        newDynamicSheet.setInitialRowAndColLayout(rowHeight,colWidth);
+
+        newDynamicSheet.initRowAndColumnHeaders(mainSheet.getName(),numRows,numCols);
 
         for (int row : rowsToInclude) {
             for (int col = 0; col < numCols; col++) {
@@ -126,29 +125,28 @@ public class DynamicSheetBuilder {
             numOfRowsAdded++;
         }
 
-        setGridPaneSize(gridPane);
-
-        return new DynamicSheet(coordinates2CellController,gridPane,columnConstraintsMap,rowConstraintsMap,
-                integer2RowCellController,string2ColCellController );
+        return newDynamicSheet;
     }
 
     public static DynamicSheet buildSortedDynamicSheetFromMainSheetAndSubDynamicSheet(Sheet mainSheet, DynamicSheet subDynamicSheet, String fromCellID, String toCellID, List<Integer> rowOrder) {
-        GridPane gridPane = new GridPane();
-        Map<Coordinates,CellController> coordinates2CellController = new HashMap<>();
-        Map<String, ColumnConstraints> columnConstraintsMap = new HashMap<>();
-        Map<Integer, RowConstraints> rowConstraintsMap = new HashMap<>();
-        Map<Integer, CellController> integer2RowCellController = new HashMap<>();
-        Map<String, CellController> string2ColCellController = new HashMap<>();
+        DynamicSheet newDynamicSheet = new DynamicSheet();
+        GridPane gridPane = newDynamicSheet.getGridPane();
+        Map<Coordinates,CellController> coordinates2CellController = newDynamicSheet.getCoordinates2CellController();
+        Map<String, ColumnConstraints> columnConstraintsMap = newDynamicSheet.getColumnConstraintsMap();
+        Map<Integer, RowConstraints> rowConstraintsMap = newDynamicSheet.getRowConstraintsMap();
+        Map<Integer, CellController> integer2RowCellController = newDynamicSheet.getInteger2RowCellController();
+        Map<String, CellController> string2ColCellController = newDynamicSheet.getString2ColCellController();
 
+        int rowStart = CoordinateFactory.getRowIndexFromCellID(fromCellID);
         int colStart = CoordinateFactory.getColIndexFromCellID(fromCellID);
         int numRows = subDynamicSheet.getGridPane().getRowCount()-1;
         int numCols = subDynamicSheet.getGridPane().getColumnCount()-1;
         int rowHeight = mainSheet.getLayout().getRowHeightUnits() * FACTOR;
         int colWidth = mainSheet.getLayout().getColumnWidthUnits() * FACTOR;
 
-        initRowAndColumnHeaders(mainSheet.getName(), gridPane,numRows,numCols,rowHeight,colWidth,columnConstraintsMap,
-                rowConstraintsMap,integer2RowCellController,string2ColCellController);
-        addSuffixToColNames(string2ColCellController,colStart + 1);
+        newDynamicSheet.setInitialRowAndColLayout(rowHeight,colWidth);
+
+        newDynamicSheet.initRowAndColumnHeaders(mainSheet.getName(),numRows,numCols);
 
         for (int row = 0; row < numRows; row++) {
             for (int col = 0; col < numCols; col++) {
@@ -163,60 +161,7 @@ public class DynamicSheetBuilder {
             }
         }
 
-        setGridPaneSize(gridPane);
-
-        return new DynamicSheet(coordinates2CellController,gridPane,columnConstraintsMap,rowConstraintsMap,
-                integer2RowCellController,string2ColCellController );
-    }
-
-    private static void initRowAndColumnHeaders(String sheetName, GridPane gridPane,
-                                                int numRows, int numCols, int rowHeight, int colWidth,
-                                                Map<String,ColumnConstraints> columnConstraintsMap,
-                                                Map<Integer,RowConstraints> rowConstraintsMap,
-                                                Map<Integer,CellController> integer2RowCellController,
-                                                Map<String, CellController> string2ColCellController) {
-        //add the name of the sheet as the top left cell
-        CellController sheetNameCellController = createCellController();
-        sheetNameCellController.setLabelText(sheetName);
-        sheetNameCellController.setTableCellType(TableCellType.TABLE_NAME);
-        Label topLeftCellLabel = sheetNameCellController.getLabel();
-        gridPane.add(topLeftCellLabel, 0, 0);
-        rowConstraintsMap.put(0,addRowConstraints(gridPane,rowHeight));
-        columnConstraintsMap.put(DynamicSheet.HEADER,addColumnConstraints(gridPane,colWidth));
-
-
-        for (int col = 1; col <= numCols; col++) {
-            String charRepresentingColumn = String.valueOf((char) ('A' + col - 1));
-            CellController columnHeaderCellController = createCellController();
-            columnHeaderCellController.setLabelText(charRepresentingColumn);
-            columnHeaderCellController.setTableCellType(TableCellType.COL_HEADER);
-            Label headerLabel = columnHeaderCellController.getLabel();
-            gridPane.add(headerLabel, col, 0);
-            columnConstraintsMap.put(charRepresentingColumn, addColumnConstraints(gridPane,colWidth));
-            string2ColCellController.put(charRepresentingColumn, columnHeaderCellController);
-        }
-
-        for (int row = 1; row <= numRows; row++) {
-            String rowNumber = String.valueOf(row);
-            CellController rowHeaderCellController = createCellController();
-            rowHeaderCellController.setLabelText(rowNumber);
-            rowHeaderCellController.setTableCellType(TableCellType.ROW_HEADER);
-            Label rowLabel = rowHeaderCellController.getLabel();
-            gridPane.add(rowLabel, 0, row);
-            rowConstraintsMap.put(row, addRowConstraints(gridPane,rowHeight));
-            integer2RowCellController.put(row - 1,rowHeaderCellController);
-        }
-    }
-
-    private static void addSuffixToColNames(Map<String,CellController> colHeadersCellControllers, int colLenBetweenSubSheetToMasterSheet) {
-        colHeadersCellControllers.forEach((rowNumber1Indexed,cellController)->{
-            int colNum = CoordinateFactory.getColIndexFromCellID(rowNumber1Indexed) - 1; //make zero-indexed
-            int suffixedColIndex = colNum + colLenBetweenSubSheetToMasterSheet;
-            String suffixedCol = CoordinateFactory.numberToLetter(suffixedColIndex);
-            String originalCol = cellController.getLabelText();
-            String newDisplayedColName = String.format("%s [%s]", originalCol, suffixedCol);
-            cellController.setLabelText(newDisplayedColName);
-        });
+        return newDynamicSheet;
     }
 
 
@@ -232,7 +177,7 @@ public class DynamicSheetBuilder {
         }
     }
 
-    private static ColumnConstraints addColumnConstraints(GridPane gridPane, int width) {
+    public static ColumnConstraints addColumnConstraints(GridPane gridPane, double width) {
         ColumnConstraints columnConstraints = new ColumnConstraints();
         columnConstraints.setMinWidth(width);
         columnConstraints.setPrefWidth(width);
@@ -242,7 +187,7 @@ public class DynamicSheetBuilder {
         return columnConstraints;
     }
 
-    private static RowConstraints addRowConstraints(GridPane gridPane, int height) {
+    public static RowConstraints addRowConstraints(GridPane gridPane, double height) {
         RowConstraints rowConstraints = new RowConstraints();
         rowConstraints.setMinHeight(height);
         rowConstraints.setPrefHeight(height);
@@ -250,12 +195,6 @@ public class DynamicSheetBuilder {
         gridPane.getRowConstraints().add(rowConstraints);
 
         return rowConstraints;
-    }
-
-    private static void setGridPaneSize(GridPane gridPane) {
-        gridPane.setPrefSize(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
-        gridPane.setMinSize(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
-        gridPane.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
     }
 
     private static int getIndexOfTheRowInITHPlace(List<Integer> rowsOrder, int i) {

@@ -148,20 +148,16 @@ public class SheetController {
 
         int numRows = sheet.getNumOfRows();
         int numCols = sheet.getNumOfCols();
-        int colWidth = sheet.getLayout().getColumnWidthUnits();
-        int rowHeight = sheet.getLayout().getRowHeightUnits();
 
         for (int row = 0; row < numRows; row++) {
             for (int col = 0; col < numCols; col++) {
                 Coordinates coordinates = new Coordinates(row,col);
-                Cell cell = sheet.getCell(row, col);
                 CellController cellController = cellControllersMap.get(coordinates);
                 cellController.bindToModule(dataModule.getCoordinates2EffectiveValues().get(coordinates));
                 Label cellLabel = cellController.getLabel();
                 cellLabel.setOnMouseClicked(event -> handleCellClick(coordinates));
             }
         }
-
 
         sheetWrapperScrollPane.setContent(gridPane);
     }

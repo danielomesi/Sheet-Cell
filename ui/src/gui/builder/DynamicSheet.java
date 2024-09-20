@@ -1,13 +1,14 @@
 package gui.builder;
 
 import entities.cell.Cell;
+import entities.coordinates.CoordinateFactory;
 import entities.coordinates.Coordinates;
 import entities.sheet.Sheet;
 import gui.components.sheet.cell.CellController;
+import gui.components.sheet.cell.TableCellType;
 import gui.utils.Utils;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -15,39 +16,83 @@ import javafx.scene.layout.RowConstraints;
 
 import java.util.*;
 
+import static gui.builder.DynamicSheetBuilder.*;
 import static gui.utils.Utils.convertColumnCharToIndex;
 
 public class DynamicSheet {
-    private final Map<Coordinates, CellController> coordinates2CellController;
-    private final GridPane gridPane;
-    private final Map<String, ColumnConstraints> columnConstraintsMap;
-    private final Map<Integer, RowConstraints> rowConstraintsMap;
-    private final Map<Integer, CellController> integer2RowCellController;
-    private final Map<String, CellController> string2ColCellController;
-    private final double initialRowHeight;
-    private final double initialColWidth;
+    private final Map<Coordinates, CellController> coordinates2CellController = new HashMap<>();
+    private final GridPane gridPane = new GridPane();
+    private final Map<String, ColumnConstraints> columnConstraintsMap  = new HashMap<>();
+    private final Map<Integer, RowConstraints> rowConstraintsMap  = new HashMap<>();
+    private final Map<Integer, CellController> integer2RowCellController = new HashMap<>();
+    private final Map<String, CellController> string2ColCellController = new HashMap<>();
+    private double initialRowHeight;
+    private double initialColWidth;
     public static final int FACTOR = 2;
     public static final String HEADER = "FIRST_COL";
-
-    public DynamicSheet(Map<Coordinates, CellController> coordinates2CellController, GridPane gridPane,
-                        Map<String, ColumnConstraints> columnConstraintsMap, Map<Integer, RowConstraints> rowConstraintsMap,
-                        Map<Integer, CellController> integer2RowCellController, Map<String, CellController> string2ColCellController) {
-        this.coordinates2CellController = coordinates2CellController;
-        this.integer2RowCellController = integer2RowCellController;
-        this.string2ColCellController = string2ColCellController;
-        this.gridPane = gridPane;
-        this.columnConstraintsMap = columnConstraintsMap;
-        this.rowConstraintsMap = rowConstraintsMap;
-        initialRowHeight = rowConstraintsMap.get(0).getPrefHeight();
-        initialColWidth = columnConstraintsMap.get(HEADER).getPrefWidth();
-    }
 
     public Map<Coordinates, CellController> getCoordinates2CellController() {return coordinates2CellController;}
     public GridPane getGridPane() {return gridPane;}
     public Map<String, ColumnConstraints> getColumnConstraintsMap() {return columnConstraintsMap;}
     public Map<Integer, RowConstraints> getRowConstraintsMap() {return rowConstraintsMap;}
-    public double getInitialRowHeight() {return initialRowHeight;}
-    public double getInitialColWidth() {return initialColWidth;}
+    public Map<Integer,CellController> getInteger2RowCellController() {return integer2RowCellController;}
+    public Map<String, CellController> getString2ColCellController() {return string2ColCellController;}
+
+    //setters
+    public void setInitialRowAndColLayout(int rowHeight, int colWidth) {
+        initialRowHeight = rowHeight;
+        initialColWidth = colWidth;
+    }
+
+    public void initRowAndColumnHeaders(String sheetName, int numRows, int numCols) {
+        CellController sheetNameCellController = createCellController();
+        sheetNameCellController.setLabelText(sheetName);
+        sheetNameCellController.setTableCellType(TableCellType.TABLE_NAME);
+        Label topLeftCellLabel = sheetNameCellController.getLabel();
+        gridPane.add(topLeftCellLabel, 0, 0);
+        rowConstraintsMap.put(0,addRowConstraints(gridPane,initialRowHeight));
+        columnConstraintsMap.put(DynamicSheet.HEADER,addColumnConstraints(gridPane,initialColWidth));
+
+
+        for (int col = 1; col <= numCols; col++) {
+            String charRepresentingColumn = String.valueOf((char) ('A' + col - 1));
+            CellController columnHeaderCellController = createCellController();
+            columnHeaderCellController.setLabelText(charRepresentingColumn);
+            columnHeaderCellController.setTableCellType(TableCellType.COL_HEADER);
+            Label headerLabel = columnHeaderCellController.getLabel();
+            gridPane.add(headerLabel, col, 0);
+            columnConstraintsMap.put(charRepresentingColumn, addColumnConstraints(gridPane,initialColWidth));
+            string2ColCellController.put(charRepresentingColumn, columnHeaderCellController);
+        }
+
+        for (int row = 1; row <= numRows; row++) {
+            String rowNumber = String.valueOf(row);
+            CellController rowHeaderCellController = createCellController();
+            rowHeaderCellController.setLabelText(rowNumber);
+            rowHeaderCellController.setTableCellType(TableCellType.ROW_HEADER);
+            Label rowLabel = rowHeaderCellController.getLabel();
+            gridPane.add(rowLabel, 0, row);
+            rowConstraintsMap.put(row, addRowConstraints(gridPane,initialRowHeight));
+            integer2RowCellController.put(row - 1,rowHeaderCellController);
+        }
+    }
+
+    public void addSuffixToHeaders(int colLenBetweenSubSheetToMasterSheet, int rowLenBetweenSubSheetAndMasterSheet) {
+        string2ColCellController.forEach((colNumber1Indexed, cellController)->{
+            int colNum = CoordinateFactory.getColIndexFromCellID(colNumber1Indexed) - 1; //make zero-indexed
+            int suffixedColIndex = colNum + colLenBetweenSubSheetToMasterSheet;
+            String suffixedCol = CoordinateFactory.numberToLetter(suffixedColIndex);
+            String originalCol = cellController.getLabelText();
+            String newDisplayedColName = String.format("%s [%s]", originalCol, suffixedCol);
+            cellController.setLabelText(newDisplayedColName);
+        });
+        integer2RowCellController.forEach((rowNumber0Indexed,cellController)->{
+            int originalRowIndex = rowNumber0Indexed + 1;
+            int suffixedRow = rowNumber0Indexed + rowLenBetweenSubSheetAndMasterSheet;
+            String newDisplayedRowName = String.format("%d [%d]", originalRowIndex, suffixedRow);
+            cellController.setLabelText(newDisplayedRowName);
+        });
+    }
 
     public void populateSheetWithData(Sheet sheet) {
         int numOfRows = sheet.getNumOfRows();
@@ -69,6 +114,8 @@ public class DynamicSheet {
         columnConstraints.setPrefWidth(width);
         columnConstraints.setMaxWidth(width);
     }
+
+
 
     public void updateRowHeight(int rowIndex, double height) {
         RowConstraints rowConstraints = rowConstraintsMap.get(rowIndex);
@@ -130,46 +177,5 @@ public class DynamicSheet {
                 }
             }
         }
-    }
-
-    public void changeRowsOrder(List<Integer> rowOrder) {
-        int numOfCols = gridPane.getColumnCount() - 1; //decrementing to ignore the first column of the row numbers
-
-        for (int row = 0; row < rowOrder.size(); row++) {
-            for (int col = 0; col < numOfCols; col++) {
-                Coordinates coordinates = new Coordinates(row, col);
-                CellController cellController = coordinates2CellController.get(coordinates);
-                Label label = cellController.getLabel();
-                removeNodeAt(gridPane, rowOrder.get(row) + 1, col + 1);
-                removeNodeFromLabel(gridPane,label);
-                gridPane.add(label,col + 1,rowOrder.get(row) + 1);
-            }
-        }
-    }
-
-    public static void removeNodeAt(GridPane gridPane, int row, int col) {
-        Node nodeToRemove = null;
-
-        for (Node node : gridPane.getChildren()) {
-            Integer nodeRow = GridPane.getRowIndex(node);
-            Integer nodeCol = GridPane.getColumnIndex(node);
-
-            // Handle default case when row/col indices are null
-            if (nodeRow == null) nodeRow = 0;
-            if (nodeCol == null) nodeCol = 0;
-
-            if (nodeRow == row && nodeCol == col) {
-                nodeToRemove = node;
-                break;
-            }
-        }
-
-        // Remove the node if found
-        if (nodeToRemove != null) gridPane.getChildren().remove(nodeToRemove);
-
-    }
-
-    public static void removeNodeFromLabel(GridPane gridPane, Label label) {
-        gridPane.getChildren().removeIf(node -> node == label);
     }
 }
