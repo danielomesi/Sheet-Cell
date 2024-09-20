@@ -10,11 +10,12 @@
 }
 
 .label {
-    -fx-text-fill: black   ;
+    -fx-text-fill: black;
 }
 
 .text-field {
     -fx-background-color: rgb(255, 255, 255);
+    -fx-text-fill: black;
 }
 
 .combo-box {

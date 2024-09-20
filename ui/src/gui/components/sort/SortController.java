@@ -1,6 +1,7 @@
 package gui.components.sort;
 
 import gui.builder.DynamicSheet;
+import gui.builder.DynamicSheetBuilder;
 import gui.components.main.MainController;
 import gui.utils.Utils;
 import javafx.application.Platform;
@@ -151,7 +152,13 @@ public class SortController {
         List<String> colsToSortBy = selectedColsListView.getItems();
         Runnable sort = () -> {
             List<Integer> sortedRowsOrder = mainController.getEngine().sort(colsToSortBy, fromCellID, toCellID,sortFirstRowToggleButton.isSelected());
-            Platform.runLater(() -> dynamicSheet.changeRowsOrder(sortedRowsOrder));};
+            Platform.runLater(() -> {
+                        //dynamicSheet.changeRowsOrder(sortedRowsOrder);
+                        setTable(DynamicSheetBuilder.buildSortedDynamicSheetFromMainSheetAndSubDynamicSheet(
+                                mainController.getCurrentLoadedSheet(),dynamicSheet,fromCellID,toCellID,sortedRowsOrder)
+                                .getGridPane());
+            }
+            );};
         boolean isAnimationsEnabled = mainController.getAppearanceController().isAnimationsEnabled();
         Task<Void> sortTask =  Utils.getTaskFromRunnable(sort,taskStatus, taskProgressIndicator, isAnimationsEnabled);
         Utils.runTaskInADaemonThread(sortTask);

@@ -27,7 +27,7 @@
             <ComboBox fx:id="versionComboBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#handleVersionOnChoose" />
          </children>
       </HBox>
-      <ScrollPane fx:id="sheetWrapperScrollPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@sheetStyle.css" />
+      <ScrollPane fx:id="sheetWrapperScrollPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
       <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
          <children>
             <Button fx:id="selectCellsButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleSelectCellsButtonClick" text="Select Cells" />

@@ -5,6 +5,7 @@ import entities.coordinates.Coordinates;
 import entities.sheet.Sheet;
 import gui.components.sheet.cell.CellController;
 import gui.components.sheet.cell.TableCellType;
+import gui.exceptions.RowOutOfBoundsException;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -12,6 +13,7 @@ import javafx.scene.layout.*;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -102,7 +104,7 @@ public class DynamicSheetBuilder {
         int numOfRowsAdded = 0;
 
         int colStart = CoordinateFactory.getColIndexFromCellID(fromCellID);
-        int numRows = subDynamicSheet.getGridPane().getRowCount()-1;
+        int numRows = rowsToInclude.size();
         int numCols = subDynamicSheet.getGridPane().getColumnCount()-1;
         int rowHeight = mainSheet.getLayout().getRowHeightUnits() * FACTOR;
         int colWidth = mainSheet.getLayout().getColumnWidthUnits() * FACTOR;
@@ -122,6 +124,43 @@ public class DynamicSheetBuilder {
                 gridPane.add(cellLabel, col+1, numOfRowsAdded+1);
             }
             numOfRowsAdded++;
+        }
+
+        setGridPaneSize(gridPane);
+
+        return new DynamicSheet(coordinates2CellController,gridPane,columnConstraintsMap,rowConstraintsMap,
+                integer2RowCellController,string2ColCellController );
+    }
+
+    public static DynamicSheet buildSortedDynamicSheetFromMainSheetAndSubDynamicSheet(Sheet mainSheet, DynamicSheet subDynamicSheet, String fromCellID, String toCellID, List<Integer> rowOrder) {
+        GridPane gridPane = new GridPane();
+        Map<Coordinates,CellController> coordinates2CellController = new HashMap<>();
+        Map<String, ColumnConstraints> columnConstraintsMap = new HashMap<>();
+        Map<Integer, RowConstraints> rowConstraintsMap = new HashMap<>();
+        Map<Integer, CellController> integer2RowCellController = new HashMap<>();
+        Map<String, CellController> string2ColCellController = new HashMap<>();
+
+        int colStart = CoordinateFactory.getColIndexFromCellID(fromCellID);
+        int numRows = subDynamicSheet.getGridPane().getRowCount()-1;
+        int numCols = subDynamicSheet.getGridPane().getColumnCount()-1;
+        int rowHeight = mainSheet.getLayout().getRowHeightUnits() * FACTOR;
+        int colWidth = mainSheet.getLayout().getColumnWidthUnits() * FACTOR;
+
+        initRowAndColumnHeaders(mainSheet.getName(), gridPane,numRows,numCols,rowHeight,colWidth,columnConstraintsMap,
+                rowConstraintsMap,integer2RowCellController,string2ColCellController);
+        addSuffixToColNames(string2ColCellController,colStart + 1);
+
+        for (int row = 0; row < numRows; row++) {
+            for (int col = 0; col < numCols; col++) {
+                int matchingRowInSubSheet = getIndexOfTheRowInITHPlace(rowOrder,row);
+                Coordinates coordinatesInSubSheet = new Coordinates(matchingRowInSubSheet,col);
+                CellController cellControllerInSubSheet = subDynamicSheet.getCoordinates2CellController().get(coordinatesInSubSheet);
+                CellController newCellController = createCellController();
+                newCellController.copyFrom(cellControllerInSubSheet,coordinatesInSubSheet);
+                coordinates2CellController.put(coordinatesInSubSheet, newCellController);
+                Label cellLabel = newCellController.getLabel();
+                gridPane.add(cellLabel, col+1, row+1);
+            }
         }
 
         setGridPaneSize(gridPane);
@@ -217,6 +256,15 @@ public class DynamicSheetBuilder {
         gridPane.setPrefSize(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
         gridPane.setMinSize(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
         gridPane.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+    }
+
+    private static int getIndexOfTheRowInITHPlace(List<Integer> rowsOrder, int i) {
+        for (int row = 0; row < rowsOrder.size(); row++) {
+            if (rowsOrder.get(row) == i) {
+                return row;
+            }
+        }
+        throw new RowOutOfBoundsException("Row out of bounds");
     }
 
 

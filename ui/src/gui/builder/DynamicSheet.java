@@ -150,7 +150,6 @@ public class DynamicSheet {
     public static void removeNodeAt(GridPane gridPane, int row, int col) {
         Node nodeToRemove = null;
 
-        // Iterate through all children to find the node at the specified position
         for (Node node : gridPane.getChildren()) {
             Integer nodeRow = GridPane.getRowIndex(node);
             Integer nodeCol = GridPane.getColumnIndex(node);
@@ -166,22 +165,11 @@ public class DynamicSheet {
         }
 
         // Remove the node if found
-        if (nodeToRemove != null) {
-            gridPane.getChildren().remove(nodeToRemove);
-        }
+        if (nodeToRemove != null) gridPane.getChildren().remove(nodeToRemove);
+
     }
 
     public static void removeNodeFromLabel(GridPane gridPane, Label label) {
         gridPane.getChildren().removeIf(node -> node == label);
-    }
-
-    public void removeRows(Set<Integer> rowIndexesToRemove) {
-        int numOfCols = gridPane.getColumnCount() - 1; // Decrement to ignore the first column of row numbers
-
-        rowIndexesToRemove.forEach(rowIndex -> {
-            for (int col = 1; col <= numOfCols; col++) {
-                removeNodeAt(gridPane, rowIndex + 1, col);
-            }
-        });
     }
 }

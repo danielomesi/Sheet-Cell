@@ -10,26 +10,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Done with all must requirements...">
-      <change afterPath="$PROJECT_DIR$/ui/src/gui/components/styles/Dark Mode Style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui/src/gui/components/styles/Default Style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui/src/gui/components/styles/Generic Style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui/src/gui/components/styles/resources/background-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui/src/gui/components/styles/resources/background-2.jpg" afterDir="false" />
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added styles...">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/appearance/AppearanceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/appearance/AppearanceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/appearance/appearance.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/appearance/appearance.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/commands/commands.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/commands/commands.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/filter/FilterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/filter/FilterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/filter/filter.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/filter/filter.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/header/HeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/header/HeaderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/main/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/main/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/main/main.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/main/mainStyle.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sheet/cell/cellStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/sheet/cell/cellStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/builder/DynamicSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/builder/DynamicSheet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/builder/DynamicSheetBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/builder/DynamicSheetBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sheet/sheet.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/sheet/sheet.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sheet/sheetStyle.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sort/SortController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/sort/SortController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sort/sort.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/sort/sort.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/utils/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/styles/Default Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/styles/Default Style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/styles/Generic Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/styles/Generic Style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,6 +74,7 @@
     "Application.Unnamed.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "extract.method.default.visibility": "private",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/omesi/OneDrive - The Academic College of Tel-Aviv Jaffa - MTA/שנה 3/סמס קיץ/Java/דוגמאות הקורס/08. Java FX/08. Java FX",
@@ -177,15 +167,7 @@
       <workItem from="1726756155882" duration="11512000" />
       <workItem from="1726768599780" duration="4524000" />
       <workItem from="1726779537113" duration="2835000" />
-      <workItem from="1726827592598" duration="22599000" />
-    </task>
-    <task id="LOCAL‎-00011" summary="Changed operation creating by adding a new class OperationFactory">
-      <option name="closed" value="true" />
-      <created>1724667861152</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL‎-00011" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1724667861152</updated>
+      <workItem from="1726827592598" duration="28881000" />
     </task>
     <task id="LOCAL‎-00012" summary="Added bonus - saving and loading a sheet (version history included) to/from a file">
       <option name="closed" value="true" />
@@ -571,7 +553,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1726836702038</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL‎-00060" summary="Added styles...">
+      <option name="closed" value="true" />
+      <created>1726850949841</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL‎-00060" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1726850949841</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -590,7 +580,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Changed dynamic sheet building structure, now its modular" />
     <MESSAGE value="Added ranges in engine" />
     <MESSAGE value="Minor fix in range" />
     <MESSAGE value="Added left menu in app that includes range options" />
@@ -615,7 +604,8 @@
     <MESSAGE value="need to continue working on filtering..." />
     <MESSAGE value="Filter is working better now..." />
     <MESSAGE value="Done with all must requirements..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Done with all must requirements..." />
+    <MESSAGE value="Added styles..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added styles..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
