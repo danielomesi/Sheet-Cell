@@ -12,19 +12,19 @@
 
 <VBox prefWidth="1200.0" spacing="10.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.components.sheet.SheetController">
    <children>
-      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
+      <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
          <children>
-            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Cell ID:" />
+            <Label text="Cell ID:" />
             <Label fx:id="currentCellIDLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
-            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Original Value:" />
+            <Label text="Original Value:" />
             <Label fx:id="originalValueLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
-            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Last Updated Version:" />
+            <Label text="New Value:" />
+            <TextField fx:id="newValueTextField" promptText="Action Line" />
+            <Button fx:id="updateButton" mnemonicParsing="false" onAction="#handleUpdateOnClick" text="Update" />
+            <Label text="Last Updated Version:" />
             <Label fx:id="lastUpdatedVersionLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
-            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="New Value:" />
-            <TextField fx:id="newValueTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
-            <Button fx:id="updateButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleUpdateOnClick" text="Update" />
-            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Version:" />
-            <ComboBox fx:id="versionComboBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#handleVersionOnChoose" />
+            <Label text="Version:" />
+            <ComboBox fx:id="versionComboBox" onAction="#handleVersionOnChoose" />
          </children>
       </HBox>
       <ScrollPane fx:id="sheetWrapperScrollPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />

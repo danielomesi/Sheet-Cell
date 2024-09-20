@@ -49,7 +49,28 @@
 
 .grid-pane {
     -fx-grid-lines-visible: true;
+    -fx-background-color: transparent;
 }
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.list-view {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 10;
+}
+
+.list-view .list-view-cell {
+    -fx-padding: 5;
+}
+
+
 
 
 

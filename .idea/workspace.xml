@@ -10,11 +10,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Fixed bug in sort/filter show...">
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Thing are working great for now :)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/builder/DynamicSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/builder/DynamicSheet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/gui/builder/DynamicSheetBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/builder/DynamicSheetBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sheet/SheetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/sheet/SheetController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sheet/sheet.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/sheet/sheet.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/styles/Dark Mode Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/styles/Dark Mode Style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/styles/Generic Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/styles/Generic Style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,15 +164,7 @@
       <workItem from="1726756155882" duration="11512000" />
       <workItem from="1726768599780" duration="4524000" />
       <workItem from="1726779537113" duration="2835000" />
-      <workItem from="1726827592598" duration="32383000" />
-    </task>
-    <task id="LOCAL‎-00013" summary="Changed sheet cloning mechanism - instead of clone, using serialization">
-      <option name="closed" value="true" />
-      <created>1724679093365</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL‎-00013" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1724679093365</updated>
+      <workItem from="1726827592598" duration="35622000" />
     </task>
     <task id="LOCAL‎-00014" summary="Fixed minor bug in SUBOperation">
       <option name="closed" value="true" />
@@ -557,7 +550,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1726864384751</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL‎-00062" summary="Thing are working great for now :)">
+      <option name="closed" value="true" />
+      <created>1726867924601</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL‎-00062" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1726867924601</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -576,7 +577,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Minor fix in range" />
     <MESSAGE value="Added left menu in app that includes range options" />
     <MESSAGE value="Implemented range capabilities" />
     <MESSAGE value="Changed mechanism of Operations" />
@@ -601,7 +601,8 @@
     <MESSAGE value="Done with all must requirements..." />
     <MESSAGE value="Added styles..." />
     <MESSAGE value="Fixed bug in sort/filter show..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug in sort/filter show..." />
+    <MESSAGE value="Thing are working great for now :)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Thing are working great for now :)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
