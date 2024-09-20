@@ -1,19 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox fx:id="commandsWrapperVbox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="200.0" spacing="10.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.components.commands.CommandsController">
+<VBox fx:id="commandsWrapperVbox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="250.0" spacing="10.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.components.commands.CommandsController">
    <children>
-      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
+      <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
          <children>
-            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Ranges" />
-            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
+            <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Ranges">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
                <children>
                   <ComboBox fx:id="rangeComboBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#handleOnRangeSelect" HBox.hgrow="SOMETIMES" />
                   <Button fx:id="removeRangeButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleOnRemoveRangeButtonClick" text="Remove" />
@@ -22,22 +29,53 @@
          </children>
       </VBox>
       <Separator prefWidth="200.0" />
-      <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Commands" />
-      <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Note: prior using any command, please select a range by clickng the &quot;Select Cells&quot; button" />
+      <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Commands" wrapText="true">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Note: prior using any command, please select a range by clickng the &quot;Select Cells&quot; button" wrapText="true" />
       <Separator prefWidth="200.0" />
-      <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Add new range" />
-      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
+      <VBox spacing="10.0">
          <children>
-            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Name: " />
-            <TextField fx:id="rangeNameTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Add new range" />
+            <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
+               <children>
+                  <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Name: " />
+                  <TextField fx:id="rangeNameTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Range Name" />
+               </children>
+            </HBox>
+            <Button fx:id="addRangeButton" mnemonicParsing="false" onAction="#addRangeButtonOnClick" text="Add range" />
          </children>
-      </HBox>
-      <Button fx:id="addRangeButton" mnemonicParsing="false" onAction="#addRangeButtonOnClick" text="Add range" />
+      </VBox>
       <Separator prefWidth="200.0" />
-      <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Sort" />
-      <Button fx:id="openSortDialogButton" mnemonicParsing="false" onAction="#openSortDialogButtonClicked" text="Open sort dialog" />
+      <VBox spacing="10.0">
+         <children>
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Sort" />
+            <Button fx:id="openSortDialogButton" mnemonicParsing="false" onAction="#openSortDialogButtonClicked" text="Open sort dialog" />
+         </children>
+      </VBox>
       <Separator prefWidth="200.0" />
-      <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Filter" />
-      <Button fx:id="openFilterDialogButton" mnemonicParsing="false" onAction="#openFilterDialogClicked" text="Open filter dialog" />
+      <VBox spacing="10.0">
+         <children>
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Filter" />
+            <Button fx:id="openFilterDialogButton" mnemonicParsing="false" onAction="#openFilterDialogClicked" text="Open filter dialog" />
+         </children>
+      </VBox>
+      <Separator prefWidth="200.0" />
+      <VBox spacing="10.0">
+         <children>
+            <Label text="Status" />
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+               <children>
+                  <ProgressIndicator fx:id="commandsProgressIndicator" progress="0.0" />
+                  <Label fx:id="commandsStatusLabel" alignment="CENTER" wrapText="true" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
    </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
 </VBox>

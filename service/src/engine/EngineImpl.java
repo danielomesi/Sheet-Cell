@@ -46,7 +46,7 @@ public class EngineImpl implements Engine {
     }
 
     @Override
-    public List<Sheet> getSheetList() {
+    public synchronized List<Sheet> getSheetList() {
         List<Sheet> sheets = new LinkedList<>();
         coreSheets.forEach(coreSheet -> {
             DTOSheet dtoSheet = generateDTOSheet(coreSheet);
@@ -57,24 +57,24 @@ public class EngineImpl implements Engine {
     }
 
     @Override
-    public void saveStateToFile(String fullFilePath) {
+    public synchronized void saveStateToFile(String fullFilePath) {
         fullFilePath = Utils.trimQuotes(fullFilePath);
         FileIOHandler.saveCoreSheetsToFile(coreSheets, fullFilePath);
     }
 
     @Override
-    public void loadStateFromFile(String fullFilePath) {
+    public synchronized void loadStateFromFile(String fullFilePath) {
         fullFilePath = Utils.trimQuotes(fullFilePath);
         coreSheets = FileIOHandler.loadCoreSheetsFromFile(fullFilePath);
     }
 
     @Override
-    public void addRange(String rangeName, String fromCellID, String toCellID) {
+    public synchronized void addRange(String rangeName, String fromCellID, String toCellID) {
         coreSheets.getLast().addRange(rangeName, fromCellID, toCellID);
     }
 
     @Override
-    public void deleteRange(String rangeName) {
+    public synchronized void deleteRange(String rangeName) {
         coreSheets.getLast().deleteRange(rangeName);
     }
 
@@ -93,7 +93,7 @@ public class EngineImpl implements Engine {
     }
 
     @Override
-    public void loadSheetFromXMLFile(String fullFilePath) {
+    public synchronized void loadSheetFromXMLFile(String fullFilePath) {
         STLSheet stlSheet;
         fullFilePath = Utils.trimQuotes(fullFilePath);
         try {
@@ -121,24 +121,12 @@ public class EngineImpl implements Engine {
     }
 
     @Override
-    public void loadSheetFromDummyData() {
-        CoreSheet coreSheets = new CoreSheet(2, 2, new Layout(4,4), "Hey"); // 7 rows, 7 columns
-
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "A1").executeCalculationProcedure("3");
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "B1").executeCalculationProcedure("Hello");
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "A2").executeCalculationProcedure("true");
-        CoordinateFactory.getCellObjectFromCellID(coreSheets, "B2").executeCalculationProcedure("8.5");
-
-        this.coreSheets.addLast(coreSheets);
-    }
-
-    @Override
     public Cell getSpecificCell(String cellName) {
         return CoordinateFactory.getCellObjectFromCellID(coreSheets.getLast(), cellName);
     }
 
     @Override
-    public void updateSpecificCell(String cellName, String originalExpression) {
+    public synchronized void updateSpecificCell(String cellName, String originalExpression) {
         CoreSheet cloned = coreSheets.getLast().cloneWithSerialization();
         cloned.incrementVersion();
         cloned.initializeNumOfCellsChanged();

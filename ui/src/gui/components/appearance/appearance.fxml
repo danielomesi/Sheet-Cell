@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.ComboBox?>
@@ -9,26 +10,27 @@
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="200.0" spacing="10.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.components.appearance.AppearanceController">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="250.0" spacing="10.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.components.appearance.AppearanceController">
    <children>
-      <Label text="Customize" />
+      <Label text="Customize">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
       <Separator prefWidth="200.0" />
       <VBox spacing="10.0">
          <children>
-            <HBox spacing="10.0">
-               <children>
-                  <Label text="Animations" />
-                  <ToggleButton fx:id="animationsToggleButton" mnemonicParsing="false" onAction="#animationsToggleButtonClicked" text="OFF" />
-               </children>
-            </HBox>
+            <Label text="Animations" />
+            <ToggleButton fx:id="animationsToggleButton" mnemonicParsing="false" onAction="#animationsToggleButtonClicked" text="OFF" />
+            <Separator prefWidth="200.0" />
          </children>
       </VBox>
       <VBox spacing="10.0">
          <children>
             <HBox spacing="10.0">
                <children>
-                  <Label text="Sheet Size" />
+                  <Label text="Sheet Size" wrapText="true" />
                </children>
             </HBox>
             <HBox spacing="10.0">
@@ -44,7 +46,7 @@
          <children>
             <HBox spacing="10.0">
                <children>
-                  <Label text="Select column: " />
+                  <Label text="Select Column: " wrapText="true" />
                   <ComboBox fx:id="selectedColComboBox" />
                </children>
             </HBox>
@@ -67,7 +69,7 @@
          <children>
             <HBox spacing="10.0">
                <children>
-                  <Label text="Select row:" />
+                  <Label text="Select row:" wrapText="true" />
                   <ComboBox fx:id="selectedRowComboBox" />
                </children>
             </HBox>
@@ -87,20 +89,23 @@
                <children>
                   <HBox spacing="10.0">
                      <children>
-                        <Label text="Background Color:" />
+                        <Label text="Background Color:" wrapText="true" />
                         <ColorPicker fx:id="cellBackgroundColorPicker" onAction="#handleCellBackgroundOnColorPick" />
                      </children>
                   </HBox>
                   <HBox spacing="10.0">
                      <children>
-                        <Label text="Font Color:" />
+                        <Label text="Font Color:" wrapText="true" />
                         <ColorPicker fx:id="cellFontColorPicker" onAction="#handleCellFontOnColorPick" />
                      </children>
                   </HBox>
-                  <Button fx:id="resetCellColorsButtons" mnemonicParsing="false" onAction="#handleResetCellColorsOnClick" text="Reset cell" />
+                  <Button fx:id="resetCellColorsButtons" mnemonicParsing="false" onAction="#handleResetCellColorsOnClick" text="Reset Cell" wrapText="true" />
                </children>
             </VBox>
          </children>
       </VBox>
    </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
 </VBox>

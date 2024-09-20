@@ -11,14 +11,13 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.RowConstraints;
 
 import java.util.*;
 
 import static gui.utils.Utils.convertColumnCharToIndex;
 
-public class DynamicSheetTable {
+public class DynamicSheet {
     private final Map<Coordinates, CellController> coordinates2CellController;
     private final GridPane gridPane;
     private final Map<String, ColumnConstraints> columnConstraintsMap;
@@ -30,9 +29,9 @@ public class DynamicSheetTable {
     public static final int FACTOR = 2;
     public static final String HEADER = "FIRST_COL";
 
-    public DynamicSheetTable(Map<Coordinates, CellController> coordinates2CellController, GridPane gridPane,
-                             Map<String, ColumnConstraints> columnConstraintsMap, Map<Integer, RowConstraints> rowConstraintsMap,
-                             Map<Integer, CellController> integer2RowCellController, Map<String, CellController> string2ColCellController) {
+    public DynamicSheet(Map<Coordinates, CellController> coordinates2CellController, GridPane gridPane,
+                        Map<String, ColumnConstraints> columnConstraintsMap, Map<Integer, RowConstraints> rowConstraintsMap,
+                        Map<Integer, CellController> integer2RowCellController, Map<String, CellController> string2ColCellController) {
         this.coordinates2CellController = coordinates2CellController;
         this.integer2RowCellController = integer2RowCellController;
         this.string2ColCellController = string2ColCellController;

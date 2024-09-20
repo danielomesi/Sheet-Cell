@@ -4,8 +4,8 @@ import engine.Engine;
 import engine.EngineImpl;
 import entities.coordinates.Coordinates;
 import entities.sheet.Sheet;
-import gui.builder.DynamicBuilder;
-import gui.builder.DynamicSheetTable;
+import gui.builder.DynamicSheetBuilder;
+import gui.builder.DynamicSheet;
 import gui.components.filter.FilterController;
 import gui.components.sheet.SheetController;
 import gui.components.header.HeaderController;
@@ -118,9 +118,9 @@ public class MainController {
 
     public void generateVersionWindow(int chosenVersion) {
         Sheet selectedSheet = engine.getSheet(chosenVersion);
-        DynamicSheetTable DynamicSheetTable = DynamicBuilder.buildDynamicSheetTable(selectedSheet);
-        DynamicSheetTable.populateSheetWithData(selectedSheet);
-        GridPane gridPane = DynamicSheetTable.getGridPane();
+        DynamicSheet DynamicSheet = DynamicSheetBuilder.buildDynamicSheet(selectedSheet);
+        DynamicSheet.populateSheetWithData(selectedSheet);
+        GridPane gridPane = DynamicSheet.getGridPane();
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setContent(gridPane);
         Scene newScene = new Scene(scrollPane);
@@ -149,8 +149,8 @@ public class MainController {
         Sheet subSheet = engine.getSubSheet();
         Platform.runLater(() -> {
             sheetController.resetStyles();
-            DynamicSheetTable dynamicSheetTable = DynamicBuilder.cropDynamicSheetTableToANewOne(engine.getSheet(),sheetController.getDynamicSheetTable(),fromCellID,toCellID);
-            sortController = ControllersBuilder.buildSortController(this,dynamicSheetTable,fromCellID,toCellID);
+            DynamicSheet dynamicSheet = DynamicSheetBuilder.buildSubDynamicSheetFromMainSheet(engine.getSheet(),sheetController.getDynamicSheetTable(),fromCellID,toCellID);
+            sortController = ControllersBuilder.buildSortController(this, dynamicSheet,fromCellID,toCellID);
             List<String> colNames = Utils.getLettersFromAToTheNLetter(subSheet.getNumOfCols());
             sortController.populateListViewOfAllCols(colNames);
             Utils.openWindow(sortController.getWrapper(), "Sort Dialog");
@@ -162,8 +162,8 @@ public class MainController {
         Sheet subSheet = engine.getSubSheet();
         Platform.runLater(() -> {
             sheetController.resetStyles();
-            DynamicSheetTable dynamicSheetTable = DynamicBuilder.cropDynamicSheetTableToANewOne(engine.getSheet(),sheetController.getDynamicSheetTable(),fromCellID,toCellID);
-            filterController = ControllersBuilder.buildFilterController(this,dynamicSheetTable,fromCellID,toCellID);
+            DynamicSheet dynamicSheet = DynamicSheetBuilder.buildSubDynamicSheetFromMainSheet(engine.getSheet(),sheetController.getDynamicSheetTable(),fromCellID,toCellID);
+            filterController = ControllersBuilder.buildFilterController(this, dynamicSheet,fromCellID,toCellID);
             filterController.populateColComboBox(subSheet.getNumOfCols());
             Utils.openWindow(filterController.getWrapper(), "Filter Dialog");
         });

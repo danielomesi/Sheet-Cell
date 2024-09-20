@@ -4,12 +4,12 @@ import entities.cell.Cell;
 import entities.coordinates.Coordinates;
 import entities.range.Range;
 import entities.sheet.Sheet;
-import gui.builder.DynamicSheetTable;
+import gui.builder.DynamicSheet;
 import gui.components.sheet.cell.CellController;
 import gui.components.sheet.cell.TableCellType;
 import gui.components.main.MainController;
 import gui.core.DataModule;
-import gui.builder.DynamicBuilder;
+import gui.builder.DynamicSheetBuilder;
 import gui.utils.Utils;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
@@ -19,6 +19,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 import java.util.Map;
@@ -27,7 +28,7 @@ public class SheetController {
 
     private SimpleObjectProperty<CellController> selectedCellController;
     private SimpleObjectProperty<CellController> previousSelectedCellController;
-    private DynamicSheetTable DynamicSheetTable;
+    private DynamicSheet DynamicSheet;
 
     @FXML
     private Label currentCellIDLabel;
@@ -40,18 +41,16 @@ public class SheetController {
 
     @FXML
     private Label originalValueLabel;
-
-
+    @FXML
+    private VBox selectedCellsVbox;
     @FXML
     private Button selectCellsButton;
-
     @FXML
     private Label selectedBottomRightCellLabel;
-
     @FXML
     private Label selectedTopLeftCellLabel;
     @FXML
-    private Label cellsSelectErrorMessageLabel;
+    private Label cellsSelectionStatusLabel;
 
     @FXML
     private ScrollPane sheetWrapperScrollPane;
@@ -72,7 +71,7 @@ public class SheetController {
     public Coordinates getSelectedCellCoordinates() {return selectedCellController.get() == null ? null : selectedCellController.get().getCoordinates();}
     public SimpleObjectProperty<CellController> getSelectedCellController() {return selectedCellController;}
     public BooleanProperty getIs2ValidCellsSelected() {return is2ValidCellsSelected;}
-    public DynamicSheetTable getDynamicSheetTable() {return DynamicSheetTable;}
+    public DynamicSheet getDynamicSheetTable() {return DynamicSheet;}
     public String getSelectedTopLeftCellID() {return selectedTopLeftCellLabel.getText();}
     public String getSelectedBottomRightCellID() {return selectedBottomRightCellLabel.getText();}
 
@@ -97,6 +96,7 @@ public class SheetController {
         selectedCellController = new SimpleObjectProperty<>();
         previousSelectedCellController = new SimpleObjectProperty<>();
 
+        selectedCellsVbox.visibleProperty().bind(is2ValidCellsSelected);
         selectedCellController.addListener((observable, oldCellController, newCellController) -> {
             previousSelectedCellController.set(oldCellController);
             if (oldCellController != null) {
@@ -110,6 +110,8 @@ public class SheetController {
 
     @FXML
     void handleSelectCellsButtonClick(ActionEvent event) {
+        cellsSelectionStatusLabel.setTextFill(Color.BLACK);
+        cellsSelectionStatusLabel.setText("Please select the top left cell of the requested cell area");
         is2ValidCellsSelected.set(false);
         isSelectingFirstCell.set(true);
         isSelectingSecondCell.set(true);
@@ -139,9 +141,9 @@ public class SheetController {
     }
 
     public void buildMainCellsTableDynamically(Sheet sheet) {
-        DynamicSheetTable = DynamicBuilder.buildDynamicSheetTable(sheet);
-        GridPane gridPane = DynamicSheetTable.getGridPane();
-        Map<Coordinates,CellController> cellControllersMap = DynamicSheetTable.getCoordinates2CellController();
+        DynamicSheet = DynamicSheetBuilder.buildDynamicSheet(sheet);
+        GridPane gridPane = DynamicSheet.getGridPane();
+        Map<Coordinates,CellController> cellControllersMap = DynamicSheet.getCoordinates2CellController();
         DataModule dataModule = mainController.getDataModule();
 
         int numRows = sheet.getNumOfRows();
@@ -165,7 +167,7 @@ public class SheetController {
     }
 
     private void handleCellClick(Coordinates clickedCellCoordinates) {
-        CellController cellController = DynamicSheetTable.getCoordinates2CellController().get(clickedCellCoordinates);
+        CellController cellController = DynamicSheet.getCoordinates2CellController().get(clickedCellCoordinates);
         if (cellController != selectedCellController.get()) {
             resetStyles();
             selectedCellController.set(cellController);
@@ -175,10 +177,10 @@ public class SheetController {
                         getCell(clickedCellCoordinates.getRow(), clickedCellCoordinates.getCol());
                 if (clickedCell!= null) {
                     clickedCell.getCellsAffectingMe().forEach(dependentCell ->
-                            DynamicSheetTable.getCoordinates2CellController().get(dependentCell).setColorStyle("affecting-cell"));
+                            DynamicSheet.getCoordinates2CellController().get(dependentCell).setColorStyle("affecting-cell"));
 
                     clickedCell.getCellsAffectedByMe().forEach(affectedCell ->
-                            DynamicSheetTable.getCoordinates2CellController().get(affectedCell).setColorStyle("affected-cell"));
+                            DynamicSheet.getCoordinates2CellController().get(affectedCell).setColorStyle("affected-cell"));
                 }
             }
         }
@@ -189,6 +191,7 @@ public class SheetController {
         String topLeftCellID, bottomRightCellID;
         boolean res = isSelectingFirstCell.get() || isSelectingSecondCell.get();
         if (isSelectingFirstCell.get()) {
+            cellsSelectionStatusLabel.setText("Please select the bottom right cell of the requested cell area");
             isSelectingFirstCell.set(false);
         }
         else if (isSelectingSecondCell.get()) {
@@ -197,12 +200,14 @@ public class SheetController {
                 bottomRightCellID = clickedCellCoordinates.getCellID();
                 updateSelectedCellSIDLabel(topLeftCellID, bottomRightCellID);
                 highlightChosenRangeCells(mainController.getCommandsController().getSelectedRange());
+                cellsSelectionStatusLabel.setTextFill(Color.GREEN);
+                cellsSelectionStatusLabel.setText("");
                 isSelectingSecondCell.set(false);
                 is2ValidCellsSelected.set(true);
             }
             else {
-                cellsSelectErrorMessageLabel.setTextFill(Color.RED);
-                cellsSelectErrorMessageLabel.setText("A valid choice select is one where the first cell is prior (row-wise and column-wise) from the second");
+                cellsSelectionStatusLabel.setTextFill(Color.RED);
+                cellsSelectionStatusLabel.setText("A valid choice select is one where the first cell is prior (row-wise and column-wise) to the second cell");
             }
 
         }
@@ -213,14 +218,14 @@ public class SheetController {
         if (range != null) {
             resetStyles();
             for(Coordinates coordinates : range.getCells()) {
-                CellController cellController = DynamicSheetTable.getCoordinates2CellController().get(coordinates);
+                CellController cellController = DynamicSheet.getCoordinates2CellController().get(coordinates);
                 cellController.setColorStyle("range-cell");
             }
         }
     }
 
     public void resetStyles() {
-        DynamicSheetTable.getCoordinates2CellController().forEach((c, cellController) -> {cellController.setColorStyle("default-cell");});
+        DynamicSheet.getCoordinates2CellController().forEach((c, cellController) -> {cellController.setColorStyle("default-cell");});
     }
 
     public void updateMyControlsOnFileLoad() {

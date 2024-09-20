@@ -1,6 +1,6 @@
 package gui.components.sort;
 
-import gui.builder.DynamicSheetTable;
+import gui.builder.DynamicSheet;
 import gui.components.main.MainController;
 import gui.utils.Utils;
 import javafx.application.Platform;
@@ -21,7 +21,7 @@ public class SortController {
     private MainController mainController;
     private String fromCellID;
     private String toCellID;
-    private DynamicSheetTable dynamicSheetTable;
+    private DynamicSheet dynamicSheet;
     @FXML
     private Button RemoveColumnFromSortButton;
     @FXML
@@ -43,7 +43,7 @@ public class SortController {
     @FXML
     private ToggleButton sortFirstRowToggleButton;
     @FXML
-    private ProgressBar taskProgressBar;
+    private ProgressIndicator taskProgressIndicator;
 
     @FXML
     private Label taskStatus;
@@ -84,8 +84,8 @@ public class SortController {
         this.mainController = mainController;
     }
 
-    public void setDynamicSheetTable(DynamicSheetTable dynamicSheetTable) {
-        this.dynamicSheetTable = dynamicSheetTable;
+    public void setDynamicSheetTable(DynamicSheet dynamicSheet) {
+        this.dynamicSheet = dynamicSheet;
     }
 
     public void setFromCellID(String fromCellID) {
@@ -147,9 +147,9 @@ public class SortController {
         List<String> colsToSortBy = selectedColsListView.getItems();
         Runnable sort = () -> {
             List<Integer> sortedRowsOrder = mainController.getEngine().sort(colsToSortBy, fromCellID, toCellID,sortFirstRowToggleButton.isSelected());
-            Platform.runLater(() -> dynamicSheetTable.changeRowsOrder(sortedRowsOrder));};
+            Platform.runLater(() -> dynamicSheet.changeRowsOrder(sortedRowsOrder));};
         boolean isAnimationsEnabled = mainController.getAppearanceController().isAnimationsEnabled();
-        Task<Void> sortTask =  Utils.getTaskFromRunnable(sort,taskStatus,taskProgressBar, isAnimationsEnabled);
+        Task<Void> sortTask =  Utils.getTaskFromRunnable(sort,taskStatus, taskProgressIndicator, isAnimationsEnabled);
         Utils.runTaskInADaemonThread(sortTask);
     }
 

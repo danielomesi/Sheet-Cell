@@ -18,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -107,7 +108,7 @@ public class Utils {
         thread.start();
     }
 
-    public static Task<Void> getTaskFromRunnable(Runnable runnable, Label labelToBindMessage, ProgressBar progressBarToBind, boolean isDelayed) {
+    public static Task<Void> getTaskFromRunnable(Runnable runnable, Label labelToBindMessage, ProgressIndicator progressIndicatorToBind, boolean isDelayed) {
         Task<Void> task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
@@ -131,7 +132,7 @@ public class Utils {
 
         labelToBindMessage.textProperty().bind(task.messageProperty());
         if (isDelayed) {
-            progressBarToBind.progressProperty().bind(task.progressProperty());
+            progressIndicatorToBind.progressProperty().bind(task.progressProperty());
         }
 
         task.stateProperty().addListener((observable, oldValue, newValue) -> {

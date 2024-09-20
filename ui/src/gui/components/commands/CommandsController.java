@@ -20,7 +20,10 @@ import static gui.utils.Utils.getTaskFromRunnable;
 public class CommandsController {
 
     private MainController mainController;
-
+    @FXML
+    private ProgressIndicator commandsProgressIndicator;
+    @FXML
+    private Label commandsStatusLabel;
     @FXML
     private ComboBox<String> rangeComboBox;
     @FXML
@@ -63,10 +66,8 @@ public class CommandsController {
     void handleOnRemoveRangeButtonClick(ActionEvent event) {
         String rangeToRemove = rangeComboBox.getSelectionModel().getSelectedItem().toString();
         Runnable runnable = () -> mainController.deleteRange(rangeToRemove);
-        Label taskStatusLabel = mainController.getHeaderController().getTaskStatusLabel();
-        ProgressBar progressBar = mainController.getHeaderController().getTaskProgressBar();
         boolean isAnimationsEnabled = mainController.getAppearanceController().isAnimationsEnabled();
-        Task<Void> task = getTaskFromRunnable(runnable,taskStatusLabel, progressBar, isAnimationsEnabled);
+        Task<Void> task = getTaskFromRunnable(runnable,commandsStatusLabel, commandsProgressIndicator, isAnimationsEnabled);
         Utils.runTaskInADaemonThread(task);
     }
 
@@ -78,10 +79,8 @@ public class CommandsController {
         String fromCellID = mainController.getSheetController().getSelectedTopLeftCellID();
         String toCellID = mainController.getSheetController().getSelectedBottomRightCellID();
         Runnable runnable = () -> mainController.addRange(rangeName, fromCellID, toCellID);
-        Label taskStatusLabel = mainController.getHeaderController().getTaskStatusLabel();
-        ProgressBar progressBar = mainController.getHeaderController().getTaskProgressBar();
         boolean isAnimationsEnabled = mainController.getAppearanceController().isAnimationsEnabled();
-        Task<Void> task = Utils.getTaskFromRunnable(runnable,taskStatusLabel,progressBar,isAnimationsEnabled);
+        Task<Void> task = Utils.getTaskFromRunnable(runnable, commandsStatusLabel, commandsProgressIndicator,isAnimationsEnabled);
         Utils.runTaskInADaemonThread(task);
     }
 
@@ -90,10 +89,8 @@ public class CommandsController {
         String fromCellID = mainController.getSheetController().getSelectedTopLeftCellID();
         String toCellID = mainController.getSheetController().getSelectedBottomRightCellID();
         Runnable runnable = () -> mainController.openSortDialog(fromCellID, toCellID);
-        Label taskStatusLabel = mainController.getHeaderController().getTaskStatusLabel();
-        ProgressBar progressBar = mainController.getHeaderController().getTaskProgressBar();
         boolean isAnimationsEnabled = mainController.getAppearanceController().isAnimationsEnabled();
-        Task<Void> task = Utils.getTaskFromRunnable(runnable,taskStatusLabel,progressBar,isAnimationsEnabled);
+        Task<Void> task = Utils.getTaskFromRunnable(runnable,commandsStatusLabel, commandsProgressIndicator,isAnimationsEnabled);
         Utils.runTaskInADaemonThread(task);
     }
 
@@ -102,10 +99,8 @@ public class CommandsController {
         String fromCellID = mainController.getSheetController().getSelectedTopLeftCellID();
         String toCellID = mainController.getSheetController().getSelectedBottomRightCellID();
         Runnable runnable = () -> mainController.openFilterDialog(fromCellID, toCellID);
-        Label taskStatusLabel = mainController.getHeaderController().getTaskStatusLabel();
-        ProgressBar progressBar = mainController.getHeaderController().getTaskProgressBar();
         boolean isAnimationsEnabled = mainController.getAppearanceController().isAnimationsEnabled();
-        Task<Void> task = Utils.getTaskFromRunnable(runnable,taskStatusLabel,progressBar,isAnimationsEnabled);
+        Task<Void> task = Utils.getTaskFromRunnable(runnable,commandsStatusLabel, commandsProgressIndicator,isAnimationsEnabled);
         Utils.runTaskInADaemonThread(task);
     }
 

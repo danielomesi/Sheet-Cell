@@ -1,7 +1,7 @@
 package gui.components.filter;
 
-import gui.builder.DynamicBuilder;
-import gui.builder.DynamicSheetTable;
+import gui.builder.DynamicSheetBuilder;
+import gui.builder.DynamicSheet;
 import gui.components.main.MainController;
 import gui.utils.Utils;
 import javafx.application.Platform;
@@ -25,7 +25,7 @@ public class FilterController {
     private MainController mainController;
     private String fromCellID;
     private String toCellID;
-    private DynamicSheetTable dynamicSheetTable;
+    private DynamicSheet dynamicSheet;
     private final Map<String,Object> str2EffectiveValueMap = new HashMap<>();
     BooleanProperty isFilteringActive = new SimpleBooleanProperty(true);
     BooleanProperty isExistValueToFilter = new SimpleBooleanProperty(false);
@@ -45,9 +45,9 @@ public class FilterController {
     @FXML
     private ScrollPane tableScrollPane;
     @FXML
-    private ProgressBar taskProgressBar;
+    private ProgressIndicator taskProgressIndicator;
     @FXML
-    private Label taskStatus;
+    private Label taskStatusLabel;
     @FXML
     private HBox wrapperHbox;
     @FXML
@@ -57,7 +57,7 @@ public class FilterController {
 
     //setters
     public void setMainController(MainController mainController) {this.mainController = mainController;}
-    public void setDynamicSheetTable(DynamicSheetTable dynamicSheetTable) {this.dynamicSheetTable = dynamicSheetTable;}
+    public void setDynamicSheetTable(DynamicSheet dynamicSheet) {this.dynamicSheet = dynamicSheet;}
     public void setFromCellID(String fromCellID) {this.fromCellID = fromCellID;}
     public void setToCellID(String toCellID) {this.toCellID = toCellID;}
 
@@ -130,7 +130,7 @@ public class FilterController {
                         getEffectiveValuesInSpecificCol(selectedColName, fromCellID, toCellID);
                 Platform.runLater(() -> populateAllDistinctValuesListView(effectiveValuesOfSelectedCol));
             };
-            Task<Void> task = Utils.getTaskFromRunnable(runnable,taskStatus,taskProgressBar,false);
+            Task<Void> task = Utils.getTaskFromRunnable(runnable,taskStatusLabel, taskProgressIndicator,false);
             Utils.runTaskInADaemonThread(task);
         }
 
@@ -144,15 +144,16 @@ public class FilterController {
             selectedEffectiveValues.add(str2EffectiveValueMap.get(effectiveValue));
         });
         Runnable filter = () -> {
-            Set<Integer> rowsToDelete = mainController.getEngine().filter(selectedColName,selectedEffectiveValues,fromCellID,toCellID,
+            Set<Integer> rowsToInclude = mainController.getEngine().filter(selectedColName,selectedEffectiveValues,fromCellID,toCellID,
                     includeEmptyCellsInFilterButton.isSelected());
             Platform.runLater(() -> {
-                dynamicSheetTable.removeRows(rowsToDelete);
+                setTable(DynamicSheetBuilder.buildFilteredDynamicSheetFromMainSheetAndSubDynamicSheet(mainController.getCurrentLoadedSheet()
+                        , dynamicSheet,fromCellID,toCellID,rowsToInclude).getGridPane());
                 isFilteringActive.setValue(false);
             });
         };
         boolean isAnimationsEnabled = mainController.getAppearanceController().isAnimationsEnabled();
-        Task<Void> task = Utils.getTaskFromRunnable(filter,taskStatus,taskProgressBar,isAnimationsEnabled);
+        Task<Void> task = Utils.getTaskFromRunnable(filter,taskStatusLabel, taskProgressIndicator,isAnimationsEnabled);
         Utils.runTaskInADaemonThread(task);
     }
 
@@ -180,9 +181,7 @@ public class FilterController {
         colsComboBox.getSelectionModel().clearSelection();
         allValuesListView.getItems().clear();
         selectedValuesListView.getItems().clear();
-        tableScrollPane.setContent(null);
-        dynamicSheetTable = DynamicBuilder.cropDynamicSheetTableToANewOne(mainController.getCurrentLoadedSheet(),mainController.getSheetController().getDynamicSheetTable(),fromCellID,toCellID);
-        tableScrollPane.setContent(dynamicSheetTable.getGridPane());
+        setTable(dynamicSheet.getGridPane());
         isFilteringActive.setValue(true);
     }
 

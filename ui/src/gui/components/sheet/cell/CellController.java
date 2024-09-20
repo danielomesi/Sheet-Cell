@@ -51,9 +51,9 @@ public class CellController {
     public void setLabel(Label label) {this.cellLabel = label;}
 
     // Method to copy data from another CellController
-    public void copyFrom(CellController other) {
+    public void copyFrom(CellController other, Coordinates newCoordinates) {
         // Copy Coordinates (assuming Coordinates is immutable or copied appropriately)
-        this.coordinates = other.coordinates;
+        this.coordinates = newCoordinates;
 
         // Copy TableCellType and Color fields
         this.tableCellType = other.tableCellType;

@@ -10,12 +10,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="need to continue working on filtering...">
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Filter is working better now...">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/Engine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/utils/Filter.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/utils/Filter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/builder/ControllersBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/builder/ControllersBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/builder/DynamicBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/builder/DynamicSheetBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/builder/DynamicSheetTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/builder/DynamicSheet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/appearance/appearance.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/appearance/appearance.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/commands/CommandsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/commands/CommandsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/commands/commands.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/commands/commands.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/gui/components/filter/FilterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/filter/FilterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/filter/filter.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/filter/filter.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/header/header.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/header/header.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/gui/components/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/main/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sort/ControllersBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/builder/ControllersBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sheet/SheetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/sheet/SheetController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sheet/cell/CellController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/sheet/cell/CellController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sheet/sheet.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/sheet/sheet.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sort/SortController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/sort/SortController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sort/sort.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/sort/sort.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/core/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/core/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/utils/Utils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,15 +177,8 @@
       <workItem from="1726665558170" duration="4020000" />
       <workItem from="1726756155882" duration="11512000" />
       <workItem from="1726768599780" duration="4524000" />
-      <workItem from="1726779537113" duration="2808000" />
-    </task>
-    <task id="LOCAL‎-00009" summary="Added versions handling and fixed sheet show">
-      <option name="closed" value="true" />
-      <created>1724502418065</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL‎-00009" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1724502418066</updated>
+      <workItem from="1726779537113" duration="2835000" />
+      <workItem from="1726827592598" duration="8988000" />
     </task>
     <task id="LOCAL‎-00010" summary="Added version names and minor changes">
       <option name="closed" value="true" />
@@ -555,7 +564,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1726773163407</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL‎-00058" summary="Filter is working better now...">
+      <option name="closed" value="true" />
+      <created>1726782394597</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL‎-00058" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1726782394597</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -574,7 +591,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added update option" />
     <MESSAGE value="Fixed bug of empty cell update" />
     <MESSAGE value="Changed dynamic sheet building structure, now its modular" />
     <MESSAGE value="Added ranges in engine" />
@@ -599,7 +615,8 @@
     <MESSAGE value="Added first-row-ignoring option, and added button for animations" />
     <MESSAGE value="Added filtering dialog with working menu..." />
     <MESSAGE value="need to continue working on filtering..." />
-    <option name="LAST_COMMIT_MESSAGE" value="need to continue working on filtering..." />
+    <MESSAGE value="Filter is working better now..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Filter is working better now..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -608,11 +625,6 @@
           <url>file://$PROJECT_DIR$/service/src/entities/coordinates/CoordinateFactory.java</url>
           <line>97</line>
           <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/service/src/operations/impl/math/PERCENTOperation.java</url>
-          <line>24</line>
-          <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

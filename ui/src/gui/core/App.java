@@ -11,6 +11,7 @@ import gui.components.sort.SortController;
 import gui.exceptions.RowOutOfBoundsException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
@@ -62,19 +63,19 @@ public class App extends Application {
 
     private void loadSubControllers() throws IOException {
         FXMLLoader headerLoader = new FXMLLoader(getClass().getResource("/gui/components/header/header.fxml"));
-        VBox headerVbox = headerLoader.load();
+        VBox headerNode = headerLoader.load();
         HeaderController headerController = headerLoader.getController();
 
         FXMLLoader sheetLoader = new FXMLLoader(getClass().getResource("/gui/components/sheet/sheet.fxml"));
-        VBox sheetVbox = sheetLoader.load();
+        VBox sheetNode = sheetLoader.load();
         SheetController sheetController = sheetLoader.getController();
 
         FXMLLoader commandsLoader = new FXMLLoader(getClass().getResource("/gui/components/commands/commands.fxml"));
-        VBox commandsVbox = commandsLoader.load();
+        VBox commandsNode = commandsLoader.load();
         CommandsController commandsController = commandsLoader.getController();
 
         FXMLLoader appearanceLoader = new FXMLLoader(getClass().getResource("/gui/components/appearance/appearance.fxml"));
-        VBox appearanceVbox = appearanceLoader.load();
+        VBox appearanceNode = appearanceLoader.load();
         AppearanceController appearanceController = appearanceLoader.getController();
 
 
@@ -93,9 +94,12 @@ public class App extends Application {
 
         // Add the headerPane to the top of the root layout
         BorderPane root = mainController.getMainBorderPane();
-        root.setTop(headerVbox);
-        root.setCenter(sheetVbox);
-        root.setLeft(commandsVbox);
-        root.setRight(appearanceVbox);
+        root.setTop(headerNode);
+        root.setCenter(sheetNode);
+        root.setLeft(commandsNode);
+        root.setRight(appearanceNode);
+
+        BorderPane.setAlignment(commandsNode, Pos.TOP_LEFT);
+        BorderPane.setAlignment(appearanceNode, Pos.TOP_RIGHT);
     }
 }
