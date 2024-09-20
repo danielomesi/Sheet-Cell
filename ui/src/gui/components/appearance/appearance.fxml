@@ -10,27 +10,34 @@
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="250.0" spacing="10.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.components.appearance.AppearanceController">
    <children>
-      <Label text="Customize">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font></Label>
+      <Label styleClass="main-header" text="Customize" />
       <Separator prefWidth="200.0" />
       <VBox spacing="10.0">
          <children>
-            <Label text="Animations" />
-            <ToggleButton fx:id="animationsToggleButton" mnemonicParsing="false" onAction="#animationsToggleButtonClicked" text="OFF" />
-            <Separator prefWidth="200.0" />
+            <Label styleClass="sub-header" text="Graphics" />
+            <HBox spacing="10.0">
+               <children>
+                  <Label styleClass="sub-header" text="Animations" />
+                  <ToggleButton fx:id="animationsToggleButton" mnemonicParsing="false" onAction="#animationsToggleButtonClicked" text="OFF" />
+               </children>
+            </HBox>
+            <HBox spacing="10.0">
+               <children>
+                  <Label text="Style" wrapText="true" />
+                  <ComboBox fx:id="stylesComboBox" onAction="#styleInStylesComboBoxSelected" />
+               </children>
+            </HBox>
          </children>
       </VBox>
+      <Separator />
       <VBox spacing="10.0">
          <children>
             <HBox spacing="10.0">
                <children>
-                  <Label text="Sheet Size" wrapText="true" />
+                  <Label styleClass="sub-header" text="Sheet Size" wrapText="true" />
                </children>
             </HBox>
             <HBox spacing="10.0">
@@ -41,9 +48,10 @@
             </HBox>
          </children>
       </VBox>
-      <Separator prefWidth="200.0" />
+      <Separator />
       <VBox spacing="10.0">
          <children>
+            <Label styleClass="sub-header" text="Column Settings" />
             <HBox spacing="10.0">
                <children>
                   <Label text="Select Column: " wrapText="true" />
@@ -64,9 +72,10 @@
             </HBox>
          </children>
       </VBox>
-      <Separator prefWidth="200.0" />
+      <Separator />
       <VBox spacing="10.0">
          <children>
+            <Label styleClass="sub-header" text="Row Settings" />
             <HBox spacing="10.0">
                <children>
                   <Label text="Select row:" wrapText="true" />
@@ -81,10 +90,10 @@
             </HBox>
          </children>
       </VBox>
-      <Separator prefWidth="200.0" />
+      <Separator />
       <VBox spacing="10.0">
          <children>
-            <Label text="Cell Properties" />
+            <Label styleClass="sub-header" text="Cell Properties" />
             <VBox spacing="10.0">
                <children>
                   <HBox spacing="10.0">

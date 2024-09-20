@@ -25,7 +25,9 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+import java.net.URL;
 import java.util.List;
+import java.util.Objects;
 
 public class MainController {
 
@@ -40,6 +42,7 @@ public class MainController {
     private Sheet currentLoadedSheet;
     private BooleanProperty isSheetLoaded;
     private DataModule dataModule;
+    private List<String> cssStyles;
 
     //stage
     private Stage stage;
@@ -92,6 +95,10 @@ public class MainController {
         }
 
         toDoOnSuccessfulFileLoad();
+    }
+
+    public void saveFile(String filePath) {
+        engine.saveStateToFile(filePath);
     }
 
     public void toDoOnSuccessfulFileLoad() {
@@ -168,6 +175,11 @@ public class MainController {
             Utils.openWindow(filterController.getWrapper(), "Filter Dialog");
         });
     }
+
+    public void setStyle(String styleFileName) {
+        Utils.setStyle(mainScrollPane, styleFileName);
+    }
+
 
 
 

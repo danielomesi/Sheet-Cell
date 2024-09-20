@@ -13,19 +13,26 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class AppearanceController {
 
     private MainController mainController;
+    private String selectedStyle;
     private final int CELL_SIZE_SCALER = 10;
     private final List<String> ALLIGNMENT_OPTIONS = List.of("Center", "Left", "Right");
     private static final double MIN_SCALE = 0.1;
     private static final double MAX_SCALE = 5;
-
+    private static final String DEFAULT_STYLE = "Default Style";
+    private static final String SECOND_STYLE = "Dark Mode Style";
+    private static final String THIRD_STYLE = "Maccabi Mode Style";
 
     @FXML
     private ToggleButton animationsToggleButton;
+    @FXML
+    private ComboBox<String> stylesComboBox;
     @FXML
     private Slider sheetScalerSlider;
     @FXML
@@ -47,6 +54,7 @@ public class AppearanceController {
 
     //getters
     public boolean isAnimationsEnabled() {return animationsToggleButton.isSelected();}
+    public String getSelectedStyle() {return selectedStyle;}
 
     //setters
     public void setMainController(MainController mainController) {
@@ -61,6 +69,8 @@ public class AppearanceController {
             cellBackgroundColorPicker.disableProperty().bind(isSelectedCell);
             cellFontColorPicker.disableProperty().bind(isSelectedCell);
             resetCellColorsButtons.disableProperty().bind(isSelectedCell);
+            initStylesComboBox();
+
         }
     }
 
@@ -77,6 +87,13 @@ public class AppearanceController {
         colWidthSlider.disableProperty().bind(isColComboBoxEmpty);
         ObservableList<String> observableList = FXCollections.observableArrayList(ALLIGNMENT_OPTIONS);
         selectedAlignmentComboBox.setItems(observableList);
+    }
+
+    public void initStylesComboBox() {
+        ObservableList<String> stylesList = FXCollections.observableArrayList(DEFAULT_STYLE, SECOND_STYLE, THIRD_STYLE);
+        stylesComboBox.setItems(stylesList);
+        stylesComboBox.getSelectionModel().selectFirst();
+        styleInStylesComboBoxSelected(null);
     }
 
     public void updateMyControlsOnFileLoad() {
@@ -165,6 +182,14 @@ public class AppearanceController {
     void handleResetCellColorsOnClick(ActionEvent event) {
         CellController selectedCell = mainController.getSheetController().getSelectedCellController().get();
         selectedCell.resetColorStyles();
+    }
+
+    @FXML
+    void styleInStylesComboBoxSelected(ActionEvent event) {
+        selectedStyle = stylesComboBox.getSelectionModel().getSelectedItem();
+        if (selectedStyle!=null) {
+            mainController.setStyle(selectedStyle);
+        }
     }
 
 }

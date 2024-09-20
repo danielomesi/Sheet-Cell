@@ -41,15 +41,30 @@ public class HeaderController {
     }
 
     @FXML
-    void handleSaveToFileButton(ActionEvent event) {}
+    void handleSaveToFileButton(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save File");
+
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Data Files", "*.dat"));
+
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        File file = fileChooser.showSaveDialog(stage);
+
+        if (file != null) {
+            boolean isAnimationsEnabled = mainController.getAppearanceController().isAnimationsEnabled();
+            Task<Void> task = Utils.getTaskFromRunnable(() -> mainController.saveFile(file.getAbsolutePath())
+                    , taskStatusLabel,taskProgressBar, isAnimationsEnabled);
+            Utils.runTaskInADaemonThread(task);
+        }
+    }
 
     @FXML
     void handleLoadFileButtonClick(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
         
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("XML Files", "*.xml"));
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Data Files", "*.dat"));
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("XML Files", "*.xml")
+                ,new FileChooser.ExtensionFilter("Data Files", "*.dat"));
         
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow(); 
         File file = fileChooser.showOpenDialog(stage);

@@ -13,6 +13,7 @@ import gui.exceptions.RowOutOfBoundsException;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.concurrent.Worker;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -22,13 +23,14 @@ import javafx.scene.control.ProgressIndicator;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 public class Utils {
     public static final String NON_EXISTING_CELL_NAME = "[EMPTY-CELL]";
-
+    private static final String GENERIC_STYLE = "Generic Style";
     public static String objectToString(Object obj) {
         String result = "";
 
@@ -154,7 +156,19 @@ public class Utils {
         sortWindow.show();
     }
 
+    public static void setStyle(Parent parent,String styleSheetName) {
+        URL firstResource =getResourceFromStyleSheetName(GENERIC_STYLE);
+        URL secondResource = getResourceFromStyleSheetName(styleSheetName);
+        if (firstResource != null && secondResource != null) {
+            parent.getStylesheets().clear();
+            parent.getStylesheets().add(firstResource.toExternalForm());
+            parent.getStylesheets().add(secondResource.toExternalForm());
+        }
+    }
 
+    private static URL getResourceFromStyleSheetName(String styleSheetName) {
+        return Utils.class.getResource("/gui/components/styles/" + styleSheetName + ".css");
+    }
 
 
 }

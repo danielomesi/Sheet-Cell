@@ -14,6 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
+import java.net.URL;
 import java.util.List;
 
 public class SortController {
@@ -82,6 +83,9 @@ public class SortController {
 
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
+        if (mainController != null) {
+            setStyle(mainController.getAppearanceController().getSelectedStyle());
+        }
     }
 
     public void setDynamicSheetTable(DynamicSheet dynamicSheet) {
@@ -174,6 +178,10 @@ public class SortController {
         items.set(nextIndex, colToMoveDown);
 
         selectedColsListView.getSelectionModel().select(nextIndex);
+    }
+
+    public void setStyle(String styleFileName) {
+        Utils.setStyle(wrapperHbox,styleFileName);
     }
 
 }

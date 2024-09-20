@@ -9,60 +9,51 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 <VBox fx:id="commandsWrapperVbox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="250.0" spacing="10.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.components.commands.CommandsController">
    <children>
-      <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
+      <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
          <children>
-            <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Ranges">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-            <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
+            <Label styleClass="main-header" text="Ranges" />
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
                <children>
-                  <ComboBox fx:id="rangeComboBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#handleOnRangeSelect" HBox.hgrow="SOMETIMES" />
-                  <Button fx:id="removeRangeButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleOnRemoveRangeButtonClick" text="Remove" />
+                  <ComboBox fx:id="rangeComboBox" onAction="#handleOnRangeSelect" />
+                  <Button fx:id="removeRangeButton" mnemonicParsing="false" onAction="#handleOnRemoveRangeButtonClick" text="Remove" />
                </children>
             </HBox>
          </children>
       </VBox>
-      <Separator prefWidth="200.0" />
-      <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Commands" wrapText="true">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Label>
-      <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Note: prior using any command, please select a range by clickng the &quot;Select Cells&quot; button" wrapText="true" />
-      <Separator prefWidth="200.0" />
+      <Separator />
+      <Label styleClass="main-header" text="Commands" wrapText="true" />
+      <Label alignment="CENTER" text="Note: prior using any command, please select a range by clickng the &quot;Select Cells&quot; button" wrapText="true" />
+      <Separator />
       <VBox spacing="10.0">
          <children>
-            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Add new range" />
-            <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
+            <Label text="Add new range" />
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
                <children>
-                  <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Name: " />
-                  <TextField fx:id="rangeNameTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Range Name" />
+                  <Label text="Name: " />
+                  <TextField fx:id="rangeNameTextField" promptText="Range Name" />
                </children>
             </HBox>
             <Button fx:id="addRangeButton" mnemonicParsing="false" onAction="#addRangeButtonOnClick" text="Add range" />
          </children>
       </VBox>
-      <Separator prefWidth="200.0" />
+      <Separator />
       <VBox spacing="10.0">
          <children>
-            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Sort" />
+            <Label text="Sort" />
             <Button fx:id="openSortDialogButton" mnemonicParsing="false" onAction="#openSortDialogButtonClicked" text="Open sort dialog" />
          </children>
       </VBox>
-      <Separator prefWidth="200.0" />
+      <Separator />
       <VBox spacing="10.0">
          <children>
-            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Filter" />
+            <Label text="Filter" />
             <Button fx:id="openFilterDialogButton" mnemonicParsing="false" onAction="#openFilterDialogClicked" text="Open filter dialog" />
          </children>
       </VBox>
-      <Separator prefWidth="200.0" />
+      <Separator />
       <VBox spacing="10.0">
          <children>
             <Label text="Status" />

@@ -13,7 +13,7 @@
 
 <ScrollPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.components.sort.SortController">
    <content>
-      <HBox fx:id="wrapperHbox" spacing="10.0">
+      <HBox id="root-container" fx:id="wrapperHbox" spacing="10.0">
          <children>
             <VBox alignment="TOP_CENTER" prefWidth="250.0" spacing="10.0">
                <children>

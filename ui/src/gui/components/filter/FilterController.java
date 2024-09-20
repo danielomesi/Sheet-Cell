@@ -18,6 +18,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
+import java.net.URL;
 import java.util.*;
 
 public class FilterController {
@@ -56,7 +57,12 @@ public class FilterController {
     private Button resetButton;
 
     //setters
-    public void setMainController(MainController mainController) {this.mainController = mainController;}
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
+        if (mainController!=null) {
+            setStyle(mainController.getAppearanceController().getSelectedStyle());
+        }
+    }
     public void setDynamicSheetTable(DynamicSheet dynamicSheet) {this.dynamicSheet = dynamicSheet;}
     public void setFromCellID(String fromCellID) {this.fromCellID = fromCellID;}
     public void setToCellID(String toCellID) {this.toCellID = toCellID;}
@@ -183,6 +189,10 @@ public class FilterController {
         selectedValuesListView.getItems().clear();
         setTable(dynamicSheet.getGridPane());
         isFilteringActive.setValue(true);
+    }
+
+    public void setStyle(String styleFileName) {
+        Utils.setStyle(wrapperHbox,styleFileName);
     }
 
 }

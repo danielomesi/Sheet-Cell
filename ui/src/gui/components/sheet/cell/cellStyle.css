@@ -19,15 +19,7 @@
     -fx-background-color: #3584a0;
 }
 
-.default-cell {
-    -fx-background-color: lightgray; /* Light gray background */
-}
-
-
 .cell-label {
-    -fx-border-color: #cccccc; /* Light gray border color */
-    -fx-border-width: 1px; /* Border width */
-    -fx-border-radius: 4px; /* Rounded corners for the border */
     -fx-padding: 10px; /* Padding inside the cell */
     -fx-font-size: 14px; /* Font size */
     -fx-font-weight: bold; /* Bold text */

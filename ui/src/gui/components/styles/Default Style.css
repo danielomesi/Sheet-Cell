@@ -1,0 +1,53 @@
+/* General Container Style */
+#root-container {
+    -fx-background-image: url("resources/background-1.jpg");
+}
+
+
+.button {
+    -fx-background-color: rgb(150, 220, 177);
+    -fx-text-fill: #13598f;
+}
+
+.label {
+    -fx-text-fill: black   ;
+}
+
+.text-field {
+    -fx-background-color: rgb(255, 255, 255);
+}
+
+.combo-box {
+    -fx-background-color: rgb(255, 255, 255);
+}
+
+
+.combo-box:disabled {
+    -fx-background-color: rgb(104, 101, 101);
+}
+
+.color-picker {
+    -fx-background-color: rgb(255, 255, 255);
+}
+
+.toggle-button {
+    -fx-text-fill: Ivory;
+}
+
+.progress-indicator {
+    -fx-progress-color: green;
+}
+
+.progress-indicator .percentage {
+    -fx-text-fill: black;
+}
+
+.default-cell {
+    -fx-background-color: AliceBlue;
+}
+
+.cell-label {
+    -fx-border-color: #31636c;
+}
+
+
