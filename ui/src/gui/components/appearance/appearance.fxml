@@ -20,7 +20,7 @@
             <Label styleClass="sub-header" text="Graphics" />
             <HBox spacing="10.0">
                <children>
-                  <Label styleClass="sub-header" text="Animations" />
+                  <Label text="Animations" />
                   <ToggleButton fx:id="animationsToggleButton" mnemonicParsing="false" onAction="#animationsToggleButtonClicked" text="OFF" />
                </children>
             </HBox>
@@ -99,13 +99,13 @@
                   <HBox spacing="10.0">
                      <children>
                         <Label text="Background Color:" wrapText="true" />
-                        <ColorPicker fx:id="cellBackgroundColorPicker" onAction="#handleCellBackgroundOnColorPick" />
+                        <ColorPicker fx:id="cellBackgroundColorPicker" minHeight="30.0" onAction="#handleCellBackgroundOnColorPick" />
                      </children>
                   </HBox>
                   <HBox spacing="10.0">
                      <children>
                         <Label text="Font Color:" wrapText="true" />
-                        <ColorPicker fx:id="cellFontColorPicker" onAction="#handleCellFontOnColorPick" />
+                        <ColorPicker fx:id="cellFontColorPicker" minHeight="30.0" onAction="#handleCellFontOnColorPick" />
                      </children>
                   </HBox>
                   <Button fx:id="resetCellColorsButtons" mnemonicParsing="false" onAction="#handleResetCellColorsOnClick" text="Reset Cell" wrapText="true" />

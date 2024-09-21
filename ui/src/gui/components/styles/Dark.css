@@ -12,6 +12,7 @@
 
 .label {
    -fx-text-fill: gold;
+    -fx-font-family: "Comic Sans MS";
 }
 
 .text-field {
