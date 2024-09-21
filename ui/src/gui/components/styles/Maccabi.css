@@ -1,25 +1,25 @@
 /* General Container Style */
 #root-container {
-    -fx-background-image: url("resources/background-1.jpg");
+    -fx-background-image: url("resources/background-3.jpg");
 }
 
 
 .button {
-    -fx-background-color: rgb(150, 220, 177);
+    -fx-background-color: rgb(255, 222, 0);
     -fx-text-fill: #13598f;
 }
 
 .label {
-    -fx-text-fill: black;
+    -fx-text-fill: lavender;
 }
 
 .text-field {
-    -fx-background-color: rgb(255, 255, 255);
+    -fx-background-color: rgb(247, 255, 137);
     -fx-text-fill: black;
 }
 
 .combo-box {
-    -fx-background-color: rgb(255, 255, 255);
+    -fx-background-color: rgb(247, 255, 137);
 }
 
 
@@ -28,7 +28,7 @@
 }
 
 .color-picker {
-    -fx-background-color: rgb(255, 255, 255);
+    -fx-background-color: rgb(247, 255, 137);
 }
 
 .toggle-button {
@@ -43,12 +43,17 @@
     -fx-text-fill: black;
 }
 
-.default-cell {
-    -fx-background-color: AliceBlue;
-}
-
 .cell-label {
     -fx-border-color: #31636c;
+}
+
+.toggle-button:selected {
+    -fx-background-color: #ecca15;
+}
+
+.toggle-button {
+    -fx-background-color: #00266c;
+    -fx-text-fill: black
 }
 
 

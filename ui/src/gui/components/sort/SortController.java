@@ -35,7 +35,9 @@ public class SortController {
     @FXML
     private ListView<String> selectedColsListView;
     @FXML
-    private HBox wrapperHbox;
+    private ScrollPane wrapperScrollPane;
+    @FXML
+    private HBox containerHBox;
     @FXML
     private ListView<String> allColsListView;
     @FXML
@@ -101,8 +103,8 @@ public class SortController {
         this.toCellID = toCellID;
     }
 
-    public HBox getWrapper() {
-        return wrapperHbox;
+    public ScrollPane getWrapper() {
+        return wrapperScrollPane;
     }
 
     public void setTable(GridPane gridPane) {
@@ -188,7 +190,7 @@ public class SortController {
     }
 
     public void setStyle(String styleFileName) {
-        Utils.setStyle(wrapperHbox,styleFileName);
+        Utils.setStyle(wrapperScrollPane,styleFileName);
     }
 
 }

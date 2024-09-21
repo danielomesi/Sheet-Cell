@@ -39,14 +39,6 @@
     -fx-background-color: transparent;
 }
 
-.toggle-button:selected {
-    -fx-background-color: green;
-}
-
-.toggle-button {
-    -fx-background-color: red;
-}
-
 .grid-pane {
     -fx-grid-lines-visible: true;
     -fx-background-color: transparent;
@@ -70,6 +62,22 @@
     -fx-padding: 5;
 }
 
+.default-cell {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical {
+    -fx-background-color: transparent; /* Change background color */
+}
+
+.scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}
+
+
+.scroll-bar .thumb {
+    -fx-background-radius: 10px;
+}
 
 
 

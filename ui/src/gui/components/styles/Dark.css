@@ -44,15 +44,19 @@
     -fx-text-fill: gold;
 }
 
-.default-cell {
-    -fx-background-color: black;
-}
 
 .cell-label {
     -fx-border-color: #cccccc;
 }
 
+.toggle-button:selected {
+    -fx-background-color: rgb(53, 132, 160);
+}
 
+.toggle-button {
+    -fx-background-color: lightgrey;
+    -fx-text-fill: yellow;
+}
 
 
 

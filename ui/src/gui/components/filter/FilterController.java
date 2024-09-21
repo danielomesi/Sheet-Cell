@@ -32,6 +32,10 @@ public class FilterController {
     BooleanProperty isExistValueToFilter = new SimpleBooleanProperty(false);
 
     @FXML
+    private ScrollPane wrapperScrollPane;
+    @FXML
+    private HBox containerHBox;
+    @FXML
     private Button addValueToFilterButton;
     @FXML
     private ListView<String> allValuesListView;
@@ -50,8 +54,6 @@ public class FilterController {
     @FXML
     private Label taskStatusLabel;
     @FXML
-    private HBox wrapperHbox;
-    @FXML
     private ToggleButton includeEmptyCellsInFilterButton;
     @FXML
     private Button resetButton;
@@ -66,14 +68,8 @@ public class FilterController {
     public void setDynamicSheetTable(DynamicSheet dynamicSheet) {this.dynamicSheet = dynamicSheet;}
     public void setFromCellID(String fromCellID) {this.fromCellID = fromCellID;}
     public void setToCellID(String toCellID) {this.toCellID = toCellID;}
-
-    public HBox getWrapper() {
-        return wrapperHbox;
-    }
-
-    public void setTable(GridPane gridPane) {
-        tableScrollPane.setContent(gridPane);
-    }
+    public ScrollPane getWrapper() {return wrapperScrollPane;}
+    public void setTable(GridPane gridPane) {tableScrollPane.setContent(gridPane);}
 
     public void initialize() {
         BooleanBinding isColSelected = colsComboBox.valueProperty().isNull();
@@ -192,7 +188,7 @@ public class FilterController {
     }
 
     public void setStyle(String styleFileName) {
-        Utils.setStyle(wrapperHbox,styleFileName);
+        Utils.setStyle(wrapperScrollPane,styleFileName);
     }
 
 }

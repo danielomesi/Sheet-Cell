@@ -10,11 +10,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Thing are working great for now :)">
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Fixed some styles...">
+      <change afterPath="$PROJECT_DIR$/ui/src/gui/components/styles/Dark.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/src/gui/components/styles/Default.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/src/gui/components/styles/Maccabi.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/src/gui/components/styles/resources/background-3.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/builder/DynamicSheetBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/builder/DynamicSheetBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sheet/sheet.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/sheet/sheet.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/styles/Dark Mode Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/styles/Dark Mode Style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/appearance/AppearanceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/appearance/AppearanceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/filter/FilterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/filter/FilterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/filter/filter.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/filter/filter.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sheet/cell/cellStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/sheet/cell/cellStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sort/SortController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/sort/SortController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sort/sort.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/sort/sort.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/styles/Dark Mode Style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/styles/Default Style.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/gui/components/styles/Generic Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/styles/Generic Style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,30 +71,30 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.App.executor": "Run",
-    "Application.Application.executor": "Run",
-    "Application.GUI.executor": "Run",
-    "Application.Unnamed.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/omesi/OneDrive - The Academic College of Tel-Aviv Jaffa - MTA/שנה 3/סמס קיץ/Java/דוגמאות הקורס/08. Java FX/08. Java FX",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.App.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Application.executor&quot;: &quot;Run&quot;,
+    &quot;Application.GUI.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/omesi/OneDrive - The Academic College of Tel-Aviv Jaffa - MTA/שנה 3/סמס קיץ/Java/דוגמאות הקורס/08. Java FX/08. Java FX&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\omesi\IdeaProjects\Sheet-Cell\ui\src\gui\components\styles" />
@@ -164,15 +173,8 @@
       <workItem from="1726756155882" duration="11512000" />
       <workItem from="1726768599780" duration="4524000" />
       <workItem from="1726779537113" duration="2835000" />
-      <workItem from="1726827592598" duration="35622000" />
-    </task>
-    <task id="LOCAL‎-00014" summary="Fixed minor bug in SUBOperation">
-      <option name="closed" value="true" />
-      <created>1724681762125</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL‎-00014" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1724681762125</updated>
+      <workItem from="1726827592598" duration="35647000" />
+      <workItem from="1726905834319" duration="6914000" />
     </task>
     <task id="LOCAL‎-00015" summary="Created new branch">
       <option name="closed" value="true" />
@@ -558,7 +560,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1726867924601</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL‎-00063" summary="Fixed some styles...">
+      <option name="closed" value="true" />
+      <created>1726871202436</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL‎-00063" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1726871202436</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -577,7 +587,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added left menu in app that includes range options" />
     <MESSAGE value="Implemented range capabilities" />
     <MESSAGE value="Changed mechanism of Operations" />
     <MESSAGE value="changed view of ranges buttons" />
@@ -602,7 +611,8 @@
     <MESSAGE value="Added styles..." />
     <MESSAGE value="Fixed bug in sort/filter show..." />
     <MESSAGE value="Thing are working great for now :)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Thing are working great for now :)" />
+    <MESSAGE value="Fixed some styles..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed some styles..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

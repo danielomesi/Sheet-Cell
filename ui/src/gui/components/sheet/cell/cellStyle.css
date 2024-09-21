@@ -20,7 +20,6 @@
 }
 
 .cell-label {
-    -fx-padding: 10px; /* Padding inside the cell */
     -fx-font-size: 14px; /* Font size */
     -fx-font-weight: bold; /* Bold text */
     -fx-background-insets: 0, 0, 0, 0; /* Remove any insets */
