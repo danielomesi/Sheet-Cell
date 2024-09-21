@@ -11,6 +11,7 @@ import gui.components.main.MainController;
 import gui.core.DataModule;
 import gui.builder.DynamicSheetBuilder;
 import gui.utils.Utils;
+import javafx.animation.*;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
@@ -18,9 +19,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
 
 import java.util.Map;
 
@@ -28,7 +29,7 @@ public class SheetController {
 
     private SimpleObjectProperty<CellController> selectedCellController;
     private SimpleObjectProperty<CellController> previousSelectedCellController;
-    private DynamicSheet DynamicSheet;
+    private DynamicSheet dynamicSheet;
     private MainController mainController;
     private final BooleanProperty isSelectingFirstCell = new SimpleBooleanProperty(false);
     private final BooleanProperty isSelectingSecondCell = new SimpleBooleanProperty(false); ;
@@ -72,7 +73,7 @@ public class SheetController {
     public Coordinates getSelectedCellCoordinates() {return selectedCellController.get() == null ? null : selectedCellController.get().getCoordinates();}
     public SimpleObjectProperty<CellController> getSelectedCellController() {return selectedCellController;}
     public BooleanProperty getIs2ValidCellsSelected() {return is2ValidCellsSelected;}
-    public DynamicSheet getDynamicSheetTable() {return DynamicSheet;}
+    public DynamicSheet getDynamicSheetTable() {return dynamicSheet;}
     public String getSelectedTopLeftCellID() {return selectedTopLeftCellLabel.getText();}
     public String getSelectedBottomRightCellID() {return selectedBottomRightCellLabel.getText();}
 
@@ -109,12 +110,10 @@ public class SheetController {
         });
     }
 
-
-
     public void buildMainCellsTableDynamically(Sheet sheet) {
-        DynamicSheet = DynamicSheetBuilder.buildDynamicSheet(sheet);
-        GridPane gridPane = DynamicSheet.getGridPane();
-        Map<Coordinates,CellController> cellControllersMap = DynamicSheet.getCoordinates2CellController();
+        dynamicSheet = DynamicSheetBuilder.buildDynamicSheet(sheet);
+        GridPane gridPane = dynamicSheet.getGridPane();
+        Map<Coordinates,CellController> cellControllersMap = dynamicSheet.getCoordinates2CellController();
         DataModule dataModule = mainController.getDataModule();
 
         int numRows = sheet.getNumOfRows();
@@ -131,10 +130,11 @@ public class SheetController {
         }
 
         sheetWrapperScrollPane.setContent(gridPane);
+        drawAnimationsIfNeeded(gridPane);
     }
 
     private void handleCellClick(Coordinates clickedCellCoordinates) {
-        CellController cellController = DynamicSheet.getCoordinates2CellController().get(clickedCellCoordinates);
+        CellController cellController = dynamicSheet.getCoordinates2CellController().get(clickedCellCoordinates);
         if (cellController != selectedCellController.get()) {
             resetStyles();
             selectedCellController.set(cellController);
@@ -144,10 +144,10 @@ public class SheetController {
                         getCell(clickedCellCoordinates.getRow(), clickedCellCoordinates.getCol());
                 if (clickedCell!= null) {
                     clickedCell.getCellsAffectingMe().forEach(dependentCell ->
-                            DynamicSheet.getCoordinates2CellController().get(dependentCell).setColorStyle("affecting-cell"));
+                            dynamicSheet.getCoordinates2CellController().get(dependentCell).setColorStyle("affecting-cell"));
 
                     clickedCell.getCellsAffectedByMe().forEach(affectedCell ->
-                            DynamicSheet.getCoordinates2CellController().get(affectedCell).setColorStyle("affected-cell"));
+                            dynamicSheet.getCoordinates2CellController().get(affectedCell).setColorStyle("affected-cell"));
                 }
             }
         }
@@ -184,14 +184,14 @@ public class SheetController {
         if (range != null) {
             resetStyles();
             for(Coordinates coordinates : range.getCells()) {
-                CellController cellController = DynamicSheet.getCoordinates2CellController().get(coordinates);
+                CellController cellController = dynamicSheet.getCoordinates2CellController().get(coordinates);
                 cellController.setColorStyle("range-cell");
             }
         }
     }
 
     public void resetStyles() {
-        DynamicSheet.getCoordinates2CellController().forEach((c, cellController) -> {cellController.setColorStyle("default-cell");});
+        dynamicSheet.getCoordinates2CellController().forEach((c, cellController) -> {cellController.setColorStyle("default-cell");});
     }
 
     public void resetProperties() {
@@ -240,6 +240,35 @@ public class SheetController {
         selectedBottomRightCellLabel.setText(bottomRightText);
     }
 
+    private void drawAnimationsIfNeeded(GridPane gridPane) {
+        boolean isAnimationsEnabled = mainController.getAppearanceController().isAnimationsEnabled();
+        if (isAnimationsEnabled) {
+            RotateTransition rotateTransition = createRotateTransition(gridPane);
+            TranslateTransition translateTransition =  applyTranslateTransitionAffect(gridPane);
+            SequentialTransition sequentialTransition = new SequentialTransition(rotateTransition,translateTransition);
+            sequentialTransition.play();
+            dynamicSheet.applyFadeTransitionForAllCells();
+        }
+    }
+
+    private RotateTransition createRotateTransition(GridPane gridPane) {
+        RotateTransition rotateTransition = new RotateTransition(Duration.seconds(1.5), gridPane);
+        rotateTransition.setByAngle(360); // Rotate 360 degrees
+        rotateTransition.setCycleCount(1);
+        rotateTransition.setAutoReverse(true);
+
+        return rotateTransition;
+    }
+
+    private TranslateTransition applyTranslateTransitionAffect(GridPane gridPane) {
+        TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(0.75), gridPane);
+        translateTransition.setByY(-100);
+        translateTransition.setCycleCount(2);
+        translateTransition.setAutoReverse(true);
+
+        return translateTransition;
+    }
+
     @FXML
     void handleSelectCellsButtonClick(ActionEvent event) {
         cellsSelectionStatusLabel.setTextFill(Color.BLACK);
@@ -271,4 +300,5 @@ public class SheetController {
         }
 
     }
+
 }

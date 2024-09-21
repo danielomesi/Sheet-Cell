@@ -7,12 +7,17 @@ import entities.sheet.Sheet;
 import gui.components.sheet.cell.CellController;
 import gui.components.sheet.cell.TableCellType;
 import gui.utils.Utils;
+import javafx.animation.FadeTransition;
+import javafx.animation.FillTransition;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 
 import java.util.*;
 
@@ -179,5 +184,19 @@ public class DynamicSheet {
                 }
             }
         }
+    }
+
+    public void applyFadeTransitionForAllCells() {
+        coordinates2CellController.forEach((coordinates, cellController) -> applyFadeTransition(cellController));
+        integer2RowCellController.forEach((integer, cellController) -> applyFadeTransition(cellController));
+        string2ColCellController.forEach((string, cellController) -> applyFadeTransition(cellController));
+    }
+
+    private void applyFadeTransition(CellController cellController) {
+        Label label = cellController.getLabel();
+        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(5), label);
+        fadeTransition.setFromValue(0.0);
+        fadeTransition.setToValue(1.0);
+        fadeTransition.play();
     }
 }
