@@ -19,22 +19,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-
-
-
-//make all the controls be centered
-//fix the bug in sorting not working
-//do not forget that the cell style determined by USER needs to stay after sorting/filtering etc
-//choose an arbitrary number in my opinion for every component and for the main component
-//add separators between sections in app
-//fix the bug of "add range" button enabled when choosing bad top left and bottom right?
-//fix the thing when you enter a number in the range name when adding a new range, so that it will work
-//make the app launch with the user defined layout requests!!
-//add the java fxml right/left/center to the main fxml as included (need to see how to in the video)
-//make the exception to string happen just on the frontend part
-//make a button to activate/disable animations (such as load file delay...)
-//delete all the "print stack trace" all over the code
-//fix the proper window size thing
 public class App extends Application {
     private MainController mainController;
 

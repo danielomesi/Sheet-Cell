@@ -10,21 +10,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Fixed some styles...">
-      <change afterPath="$PROJECT_DIR$/ui/src/gui/components/styles/Dark.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui/src/gui/components/styles/Default.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui/src/gui/components/styles/Maccabi.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui/src/gui/components/styles/resources/background-3.jpg" afterDir="false" />
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added another theme...">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/utils/FunctionParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/utils/FunctionParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/builder/ControllersBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/builder/ControllersBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/builder/DynamicSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/builder/DynamicSheet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/builder/DynamicSheetBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/builder/DynamicSheetBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/gui/components/appearance/AppearanceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/appearance/AppearanceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/commands/CommandsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/commands/CommandsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/gui/components/filter/FilterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/filter/FilterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/filter/filter.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/filter/filter.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sheet/cell/cellStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/sheet/cell/cellStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/header/HeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/header/HeaderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/main/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sheet/SheetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/sheet/SheetController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sheet/sheet.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/sheet/sheet.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sort/SortController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/sort/SortController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sort/sort.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/sort/sort.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/styles/Dark Mode Style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/styles/Default Style.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/gui/components/styles/Generic Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/styles/Generic Style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/core/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/core/App.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,15 +176,7 @@
       <workItem from="1726768599780" duration="4524000" />
       <workItem from="1726779537113" duration="2835000" />
       <workItem from="1726827592598" duration="35647000" />
-      <workItem from="1726905834319" duration="6914000" />
-    </task>
-    <task id="LOCAL‎-00015" summary="Created new branch">
-      <option name="closed" value="true" />
-      <created>1724693615934</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL‎-00015" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1724693615934</updated>
+      <workItem from="1726905834319" duration="11527000" />
     </task>
     <task id="LOCAL‎-00016" summary="Created new branch, made a change from using a 2d array to a map">
       <option name="closed" value="true" />
@@ -568,7 +562,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1726871202436</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL‎-00064" summary="Added another theme...">
+      <option name="closed" value="true" />
+      <created>1726912979264</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL‎-00064" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1726912979265</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -587,7 +589,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Implemented range capabilities" />
     <MESSAGE value="Changed mechanism of Operations" />
     <MESSAGE value="changed view of ranges buttons" />
     <MESSAGE value="Minor fix" />
@@ -612,7 +613,8 @@
     <MESSAGE value="Fixed bug in sort/filter show..." />
     <MESSAGE value="Thing are working great for now :)" />
     <MESSAGE value="Fixed some styles..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed some styles..." />
+    <MESSAGE value="Added another theme..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added another theme..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

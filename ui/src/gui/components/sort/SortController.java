@@ -52,6 +52,33 @@ public class SortController {
     @FXML
     private Label taskStatus;
 
+    //setters
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
+        if (mainController != null) {
+            setStyle(mainController.getAppearanceController().getSelectedStyle());
+        }
+    }
+    public void setDynamicSheetTable(DynamicSheet dynamicSheet) {
+        this.dynamicSheet = dynamicSheet;
+    }
+    public void setFromCellID(String fromCellID) {
+        this.fromCellID = fromCellID;
+    }
+    public void setToCellID(String toCellID) {
+        this.toCellID = toCellID;
+    }
+    public void setTable(GridPane gridPane) {
+        tableScrollPane.setContent(gridPane);
+    }
+    public void setStyle(String styleFileName) {
+        Utils.setStyle(wrapperScrollPane,styleFileName);
+    }
+
+    //getters
+    public ScrollPane getWrapper() {
+        return wrapperScrollPane;
+    }
 
     public void initialize() {
         BooleanBinding isSelectionEmptyInAllColsList = Bindings.createBooleanBinding(
@@ -84,40 +111,24 @@ public class SortController {
         sortFirstRowToggleButton.setSelected(true);
     }
 
-    public void setMainController(MainController mainController) {
-        this.mainController = mainController;
-        if (mainController != null) {
-            setStyle(mainController.getAppearanceController().getSelectedStyle());
-        }
-    }
-
-    public void setDynamicSheetTable(DynamicSheet dynamicSheet) {
-        this.dynamicSheet = dynamicSheet;
-    }
-
-    public void setFromCellID(String fromCellID) {
-        this.fromCellID = fromCellID;
-    }
-
-    public void setToCellID(String toCellID) {
-        this.toCellID = toCellID;
-    }
-
-    public ScrollPane getWrapper() {
-        return wrapperScrollPane;
-    }
-
-    public void setTable(GridPane gridPane) {
-        tableScrollPane.setContent(gridPane);
-    }
-
-
-
     public void populateListViewOfAllCols(List<String> columns) {
         allColsListView.getItems().clear();
         allColsListView.getItems().addAll(columns);
     }
 
+    private void moveChoiceNStepsInListView(int steps) {
+        String colToMoveDown = selectedColsListView.getSelectionModel().getSelectedItem();
+        ObservableList<String> items = selectedColsListView.getItems();
+
+        int selectedIndex = items.indexOf(colToMoveDown);
+        int nextIndex = selectedIndex + steps;
+        String itemBelow = items.get(nextIndex);
+
+        items.set(selectedIndex, itemBelow);
+        items.set(nextIndex, colToMoveDown);
+
+        selectedColsListView.getSelectionModel().select(nextIndex);
+    }
 
     @FXML
     void RemoveColumnFromSortButtonClicked(ActionEvent event) {
@@ -157,9 +168,9 @@ public class SortController {
             Platform.runLater(() -> {
                         //dynamicSheet.changeRowsOrder(sortedRowsOrder);
                         setTable(DynamicSheetBuilder.buildSortedDynamicSheetFromMainSheetAndSubDynamicSheet(
-                                mainController.getCurrentLoadedSheet(),dynamicSheet,fromCellID,toCellID,sortedRowsOrder)
+                                        mainController.getCurrentLoadedSheet(),dynamicSheet,fromCellID,toCellID,sortedRowsOrder)
                                 .getGridPane());
-            }
+                    }
             );};
         boolean isAnimationsEnabled = mainController.getAppearanceController().isAnimationsEnabled();
         Task<Void> sortTask =  Utils.getTaskFromRunnable(sort,taskStatus, taskProgressIndicator, isAnimationsEnabled);
@@ -173,24 +184,6 @@ public class SortController {
         } else {
             sortFirstRowToggleButton.setText("OFF");
         }
-    }
-
-    private void moveChoiceNStepsInListView(int steps) {
-        String colToMoveDown = selectedColsListView.getSelectionModel().getSelectedItem();
-        ObservableList<String> items = selectedColsListView.getItems();
-
-        int selectedIndex = items.indexOf(colToMoveDown);
-        int nextIndex = selectedIndex + steps;
-        String itemBelow = items.get(nextIndex);
-
-        items.set(selectedIndex, itemBelow);
-        items.set(nextIndex, colToMoveDown);
-
-        selectedColsListView.getSelectionModel().select(nextIndex);
-    }
-
-    public void setStyle(String styleFileName) {
-        Utils.setStyle(wrapperScrollPane,styleFileName);
     }
 
 }

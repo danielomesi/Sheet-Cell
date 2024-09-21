@@ -62,7 +62,7 @@ public class FunctionParser {
         if (arg.startsWith("{") && arg.endsWith("}")) {
             return parseFunctionExpression(sheet, coordinates, arg);
         }
-        else if (arg.trim().matches("-?\\d+(\\.\\d+)?")) {
+        else if (isStringANumber(arg)) {
             return Double.parseDouble(arg);
         } else if (arg.equalsIgnoreCase("true") || arg.equalsIgnoreCase("false")) {
             return Boolean.parseBoolean(arg);
@@ -166,6 +166,10 @@ public class FunctionParser {
         }
 
         return parts.toArray(new String[0]);
+    }
+
+    public static boolean isStringANumber(String str) {
+        return str.trim().matches("-?\\d+(\\.\\d+)?");
     }
 
 

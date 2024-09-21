@@ -105,6 +105,7 @@ public class MainController {
         currentLoadedSheet = engine.getSheet();
         Platform.runLater(() -> {
             dataModule.buildModule(currentLoadedSheet.getNumOfRows(),currentLoadedSheet.getNumOfCols(),currentLoadedSheet.getRangesNames());
+            sheetController.initActionLineControls();
             sheetController.buildMainCellsTableDynamically(currentLoadedSheet);
             sheetController.updateMyControlsOnFileLoad();
             commandsController.updateMyControlsOnFileLoad();
@@ -131,6 +132,8 @@ public class MainController {
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setContent(gridPane);
         Scene newScene = new Scene(scrollPane);
+        scrollPane.setId("root-container");
+        Utils.setStyle(scrollPane,appearanceController.getSelectedStyle());
 
         Stage versionWindow = new Stage();
         versionWindow.setTitle("Version " + (chosenVersion+1));
@@ -179,8 +182,4 @@ public class MainController {
     public void setStyle(String styleFileName) {
         Utils.setStyle(mainScrollPane, styleFileName);
     }
-
-
-
-
 }

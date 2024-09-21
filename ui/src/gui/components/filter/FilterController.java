@@ -70,6 +70,9 @@ public class FilterController {
     public void setToCellID(String toCellID) {this.toCellID = toCellID;}
     public ScrollPane getWrapper() {return wrapperScrollPane;}
     public void setTable(GridPane gridPane) {tableScrollPane.setContent(gridPane);}
+    public void setStyle(String styleFileName) {
+        Utils.setStyle(wrapperScrollPane,styleFileName);
+    }
 
     public void initialize() {
         BooleanBinding isColSelected = colsComboBox.valueProperty().isNull();
@@ -186,9 +189,4 @@ public class FilterController {
         setTable(dynamicSheet.getGridPane());
         isFilteringActive.setValue(true);
     }
-
-    public void setStyle(String styleFileName) {
-        Utils.setStyle(wrapperScrollPane,styleFileName);
-    }
-
 }

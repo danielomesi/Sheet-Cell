@@ -21,6 +21,9 @@ import java.io.*;
 import java.util.Map;
 import java.util.Set;
 
+import static utils.FunctionParser.isStringANumber;
+import static utils.FunctionParser.parseArgument;
+
 public class CoreSheet implements Sheet {
     private final Map<Coordinates, CoreCell> cellsMap = new HashMap<>();
     private Map<String, Range> rangesMap = new HashMap<>();
@@ -126,6 +129,9 @@ public class CoreSheet implements Sheet {
     public void addRange(String rangeName, String fromCellID, String toCellID) {
         if (rangesMap.containsKey(rangeName)) {
             throw new InvalidRangeException("Range already exists in core sheet", rangeName);
+        }
+        else if (isStringANumber(rangeName)) {
+            throw new InvalidRangeException("Range cannot be a number", rangeName);
         }
         else {
             rangesMap.put(rangeName,new Range(rangeName,this,fromCellID,toCellID));

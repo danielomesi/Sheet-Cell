@@ -6,7 +6,8 @@ import gui.components.sort.SortController;
 import javafx.fxml.FXMLLoader;
 
 public class ControllersBuilder {
-    public static SortController buildSortController(MainController mainController, DynamicSheet dynamicSheet, String fromCellID, String toCellID) {
+    public static SortController buildSortController(MainController mainController, DynamicSheet dynamicSheet,
+                                                     String fromCellID, String toCellID) {
         SortController sortController = null;
         try {
             FXMLLoader sortLoader = new FXMLLoader(ControllersBuilder.class.getResource("/gui/components/sort/sort.fxml"));
@@ -18,13 +19,13 @@ public class ControllersBuilder {
             sortController.setDynamicSheetTable(dynamicSheet);
             sortController.setTable(dynamicSheet.getGridPane());
         }
-        catch (Exception ignored) {
-        }
+        catch (Exception ignored) {}
 
         return sortController;
     }
 
-    public static FilterController buildFilterController(MainController mainController, DynamicSheet dynamicSheet, String fromCellID, String toCellID) {
+    public static FilterController buildFilterController(MainController mainController, DynamicSheet dynamicSheet,
+                                                         String fromCellID, String toCellID) {
         FilterController filterController = null;
         try {
             FXMLLoader filterLoader = new FXMLLoader(ControllersBuilder.class.getResource("/gui/components/filter/filter.fxml"));
@@ -36,10 +37,7 @@ public class ControllersBuilder {
             filterController.setDynamicSheetTable(dynamicSheet);
             filterController.setTable(dynamicSheet.getGridPane());
         }
-        catch (Exception e) {
-            e.printStackTrace();
-
-        }
+        catch (Exception ignored) {}
 
         return filterController;
     }

@@ -54,17 +54,45 @@ public class CommandsController {
         }
     }
 
+    public Range getSelectedRange() {
+        Range selectedRange = null;
+        try {
+            selectedRange = new Range(mainController.getCurrentLoadedSheet(),
+                    mainController.getSheetController().getSelectedTopLeftCellID(),
+                    mainController.getSheetController().getSelectedBottomRightCellID());
+        }
+        catch (Exception ignored) {
+
+        }
+        return selectedRange;
+    }
+
+    public void updateMyControlsOnFileLoad() {
+        SetProperty<String> rangesNamesSetProperty = mainController.getDataModule().getRangesNames();
+
+        Runnable updateComboBoxItems = () -> {
+            Set<String> names = rangesNamesSetProperty.get();
+            EventHandler<ActionEvent> originalOnAction = rangeComboBox.getOnAction();
+            rangeComboBox.setOnAction(null);
+            ObservableList<String> observableList = FXCollections.observableArrayList(names);
+            rangeComboBox.setItems(observableList);
+            rangeComboBox.setOnAction(originalOnAction);
+        };
+
+        rangesNamesSetProperty.addListener((observable, oldValue, newValue) -> updateComboBoxItems.run());
+    }
+
 
     @FXML
     void handleOnRangeSelect(ActionEvent event) {
-        String rangeName = rangeComboBox.getSelectionModel().getSelectedItem().toString();
+        String rangeName = rangeComboBox.getSelectionModel().getSelectedItem();
         Range range = mainController.getCurrentLoadedSheet().getRange(rangeName);
         mainController.getSheetController().highlightChosenRangeCells(range);
     }
 
     @FXML
     void handleOnRemoveRangeButtonClick(ActionEvent event) {
-        String rangeToRemove = rangeComboBox.getSelectionModel().getSelectedItem().toString();
+        String rangeToRemove = rangeComboBox.getSelectionModel().getSelectedItem();
         Runnable runnable = () -> mainController.deleteRange(rangeToRemove);
         boolean isAnimationsEnabled = mainController.getAppearanceController().isAnimationsEnabled();
         Task<Void> task = getTaskFromRunnable(runnable,commandsStatusLabel, commandsProgressIndicator, isAnimationsEnabled);
@@ -106,32 +134,5 @@ public class CommandsController {
 
 
 
-    public Range getSelectedRange() {
-        Range selectedRange = null;
-        try {
-            selectedRange = new Range(mainController.getCurrentLoadedSheet(),
-                    mainController.getSheetController().getSelectedTopLeftCellID(),
-                    mainController.getSheetController().getSelectedBottomRightCellID());
-        }
-        catch (Exception ignored) {
-
-        }
-        return selectedRange;
-    }
-
-    public void updateMyControlsOnFileLoad() {
-        SetProperty<String> rangesNamesSetProperty = mainController.getDataModule().getRangesNames();
-
-        Runnable updateComboBoxItems = () -> {
-            Set<String> names = rangesNamesSetProperty.get();
-            EventHandler<ActionEvent> originalOnAction = rangeComboBox.getOnAction();
-            rangeComboBox.setOnAction(null);
-            ObservableList<String> observableList = FXCollections.observableArrayList(names);
-            rangeComboBox.setItems(observableList);
-            rangeComboBox.setOnAction(originalOnAction);
-        };
-
-        rangesNamesSetProperty.addListener((observable, oldValue, newValue) -> updateComboBoxItems.run());
-    }
 
 }

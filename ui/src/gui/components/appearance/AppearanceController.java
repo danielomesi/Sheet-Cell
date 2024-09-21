@@ -114,15 +114,19 @@ public class AppearanceController {
         bindAlignmentComboBoxToColComboBox();
 
         sheetScalerSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            mainController.getSheetController().getDynamicSheetTable().updateSheetScale((Double) newValue);
-        });
+            if (newValue != null) {
+                mainController.getSheetController().getDynamicSheetTable().updateSheetScale((Double) newValue);
+            }});
         rowHeightSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            int rowToUpdate = selectedRowComboBox.getValue();
-            mainController.getSheetController().getDynamicSheetTable().updateRowHeight(rowToUpdate, (Double) newValue);});
-
+            Integer rowToUpdate = selectedRowComboBox.getValue();
+            if (rowToUpdate != null && newValue != null) {
+                mainController.getSheetController().getDynamicSheetTable().updateRowHeight(rowToUpdate, (Double) newValue);
+            }});
         colWidthSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
             String colToUpdate = selectedColComboBox.getValue();
-            mainController.getSheetController().getDynamicSheetTable().updateColumnWidth(colToUpdate, (Double) newValue);});
+            if (colToUpdate != null && newValue != null) {
+                mainController.getSheetController().getDynamicSheetTable().updateColumnWidth(colToUpdate, (Double) newValue);
+            }});
     }
 
     private void setRangesForSliders() {

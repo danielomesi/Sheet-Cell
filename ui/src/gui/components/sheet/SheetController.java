@@ -29,6 +29,10 @@ public class SheetController {
     private SimpleObjectProperty<CellController> selectedCellController;
     private SimpleObjectProperty<CellController> previousSelectedCellController;
     private DynamicSheet DynamicSheet;
+    private MainController mainController;
+    private final BooleanProperty isSelectingFirstCell = new SimpleBooleanProperty(false);
+    private final BooleanProperty isSelectingSecondCell = new SimpleBooleanProperty(false); ;
+    private final BooleanProperty is2ValidCellsSelected = new SimpleBooleanProperty(false);
 
     @FXML
     private Label currentCellIDLabel;
@@ -62,10 +66,7 @@ public class SheetController {
     private ComboBox<Integer> versionComboBox;
 
 
-    private MainController mainController;
-    private final BooleanProperty isSelectingFirstCell = new SimpleBooleanProperty(false);
-    private final BooleanProperty isSelectingSecondCell = new SimpleBooleanProperty(false); ;
-    private final BooleanProperty is2ValidCellsSelected = new SimpleBooleanProperty(false);
+
 
     //getters
     public Coordinates getSelectedCellCoordinates() {return selectedCellController.get() == null ? null : selectedCellController.get().getCoordinates();}
@@ -108,37 +109,7 @@ public class SheetController {
         });
     }
 
-    @FXML
-    void handleSelectCellsButtonClick(ActionEvent event) {
-        cellsSelectionStatusLabel.setTextFill(Color.BLACK);
-        cellsSelectionStatusLabel.setText("Please select the top left cell of the requested cell area");
-        is2ValidCellsSelected.set(false);
-        isSelectingFirstCell.set(true);
-        isSelectingSecondCell.set(true);
-    }
 
-    @FXML
-    void handleUpdateOnClick(ActionEvent event) {
-        Coordinates coordinates = getSelectedCellCoordinates();
-        Runnable runnable = () -> {
-            mainController.calculateCellUpdate(coordinates,newValueTextField.getText());
-            newValueTextField.clear();
-        };
-        Label taskStatusLabel = mainController.getHeaderController().getTaskStatusLabel();
-        ProgressBar progressBar = mainController.getHeaderController().getTaskProgressBar();
-        boolean isAnimationsEnabled = mainController.getAppearanceController().isAnimationsEnabled();
-        Task<Void> task = Utils.getTaskFromRunnable(runnable,taskStatusLabel,progressBar, isAnimationsEnabled);
-        Utils.runTaskInADaemonThread(task);
-    }
-
-    @FXML
-    void handleVersionOnChoose(ActionEvent event) {
-        int chosenVersion = versionComboBox.getSelectionModel().getSelectedIndex();
-        if (chosenVersion >= 0 && chosenVersion<versionComboBox.getItems().size() - 1) {
-            mainController.generateVersionWindow(chosenVersion);
-        }
-
-    }
 
     public void buildMainCellsTableDynamically(Sheet sheet) {
         DynamicSheet = DynamicSheetBuilder.buildDynamicSheet(sheet);
@@ -182,7 +153,6 @@ public class SheetController {
         }
     }
 
-
     private boolean isRangeChoice(Coordinates clickedCellCoordinates) {
         String topLeftCellID, bottomRightCellID;
         boolean res = isSelectingFirstCell.get() || isSelectingSecondCell.get();
@@ -224,19 +194,26 @@ public class SheetController {
         DynamicSheet.getCoordinates2CellController().forEach((c, cellController) -> {cellController.setColorStyle("default-cell");});
     }
 
+    public void resetProperties() {
+        selectedCellController.set(null);
+        is2ValidCellsSelected.set(false);
+        isSelectingFirstCell.set(false);
+        isSelectingSecondCell.set(false);
+    }
+
     public void updateMyControlsOnFileLoad() {
-        ComboBox<Integer> integerComboBox = (ComboBox<Integer>) versionComboBox;
+        resetProperties();
         SimpleIntegerProperty simpleIntegerProperty = mainController.getDataModule().getVersionNumber();
 
         Runnable updateComboBoxItems = () -> {
             int maxValue = simpleIntegerProperty.get();
-            EventHandler<ActionEvent> originalOnAction = integerComboBox.getOnAction();
-            integerComboBox.setOnAction(null);
-            integerComboBox.setItems(FXCollections.observableArrayList(
+            EventHandler<ActionEvent> originalOnAction = versionComboBox.getOnAction();
+            versionComboBox.setOnAction(null);
+            versionComboBox.setItems(FXCollections.observableArrayList(
                     java.util.stream.IntStream.rangeClosed(1, maxValue).boxed().toList()));
             //unfortunately, the "setItems" method invokes the on action method of the version combo box,
             //so the current solution is to nullify the on action before calling "setItems" and then returning its original value
-            integerComboBox.setOnAction(originalOnAction);
+            versionComboBox.setOnAction(originalOnAction);
         };
 
         simpleIntegerProperty.addListener((observable, oldValue, newValue) -> updateComboBoxItems.run());
@@ -252,8 +229,46 @@ public class SheetController {
         lastUpdatedVersionLabel.setText(String.valueOf(lastUpdatedVersion));
     }
 
+    public void initActionLineControls() {
+        currentCellIDLabel.setText("");
+        originalValueLabel.setText("");
+        lastUpdatedVersionLabel.setText("");
+    }
+
     public void updateSelectedCellSIDLabel(String topLeftText, String bottomRightText) {
         selectedTopLeftCellLabel.setText(topLeftText);
         selectedBottomRightCellLabel.setText(bottomRightText);
+    }
+
+    @FXML
+    void handleSelectCellsButtonClick(ActionEvent event) {
+        cellsSelectionStatusLabel.setTextFill(Color.BLACK);
+        cellsSelectionStatusLabel.setText("Please select the top left cell of the requested cell area");
+        is2ValidCellsSelected.set(false);
+        isSelectingFirstCell.set(true);
+        isSelectingSecondCell.set(true);
+    }
+
+    @FXML
+    void handleUpdateOnClick(ActionEvent event) {
+        Coordinates coordinates = getSelectedCellCoordinates();
+        Runnable runnable = () -> {
+            mainController.calculateCellUpdate(coordinates,newValueTextField.getText());
+            newValueTextField.clear();
+        };
+        Label taskStatusLabel = mainController.getHeaderController().getTaskStatusLabel();
+        ProgressBar progressBar = mainController.getHeaderController().getTaskProgressBar();
+        boolean isAnimationsEnabled = mainController.getAppearanceController().isAnimationsEnabled();
+        Task<Void> task = Utils.getTaskFromRunnable(runnable,taskStatusLabel,progressBar, isAnimationsEnabled);
+        Utils.runTaskInADaemonThread(task);
+    }
+
+    @FXML
+    void handleVersionOnChoose(ActionEvent event) {
+        int chosenVersion = versionComboBox.getSelectionModel().getSelectedIndex();
+        if (chosenVersion >= 0 && chosenVersion<versionComboBox.getItems().size() - 1) {
+            mainController.generateVersionWindow(chosenVersion);
+        }
+
     }
 }

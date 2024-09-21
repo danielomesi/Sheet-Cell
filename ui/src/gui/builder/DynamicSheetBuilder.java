@@ -30,7 +30,6 @@ public class DynamicSheetBuilder {
         int colWidth = sheet.getLayout().getColumnWidthUnits() * FACTOR;
 
         newDynamicSheet.setInitialRowAndColLayout(rowHeight,colWidth);
-
         newDynamicSheet.initRowAndColumnHeaders(sheet.getName(),numRows,numCols);
 
         for (int row = 0; row < numRows; row++) {
@@ -146,7 +145,6 @@ public class DynamicSheetBuilder {
         return newDynamicSheet;
     }
 
-
     public static CellController createCellController() {
         try {
             FXMLLoader loader = new FXMLLoader(DynamicSheetBuilder.class.getResource("/gui/components/sheet/cell/cell.fxml"));
@@ -159,7 +157,7 @@ public class DynamicSheetBuilder {
         }
     }
 
-    public static ColumnConstraints addColumnConstraints(GridPane gridPane, double width) {
+    public static ColumnConstraints createAddAndGetColumnConstraints(GridPane gridPane, double width) {
         ColumnConstraints columnConstraints = new ColumnConstraints();
         columnConstraints.setMinWidth(width);
         columnConstraints.setPrefWidth(width);
@@ -169,7 +167,7 @@ public class DynamicSheetBuilder {
         return columnConstraints;
     }
 
-    public static RowConstraints addRowConstraints(GridPane gridPane, double height) {
+    public static RowConstraints createAddAndGetRowConstraints(GridPane gridPane, double height) {
         RowConstraints rowConstraints = new RowConstraints();
         rowConstraints.setMinHeight(height);
         rowConstraints.setPrefHeight(height);
@@ -181,12 +179,8 @@ public class DynamicSheetBuilder {
 
     private static int getIndexOfTheRowInITHPlace(List<Integer> rowsOrder, int i) {
         for (int row = 0; row < rowsOrder.size(); row++) {
-            if (rowsOrder.get(row) == i) {
-                return row;
-            }
+            if (rowsOrder.get(row) == i)  return row;
         }
         throw new RowOutOfBoundsException("Row out of bounds");
     }
-
-
 }
