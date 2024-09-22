@@ -3,8 +3,10 @@ package gui.components.commands;
 import entities.range.Range;
 import gui.components.main.MainController;
 import gui.utils.Utils;
+import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SetProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -42,12 +44,13 @@ public class CommandsController {
 
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
+
         if (mainController != null) {
             BooleanProperty isSheetLoadedProperty = mainController.getIsSheetLoaded();
             BooleanProperty is2validCellsSelected = mainController.getSheetController().getIs2ValidCellsSelected();
             rangeComboBox.disableProperty().bind(isSheetLoadedProperty.not());
             rangeNameTextField.disableProperty().bind(isSheetLoadedProperty.not());
-            removeRangeButton.disableProperty().bind(isSheetLoadedProperty.not());
+            removeRangeButton.disableProperty().bind(isSheetLoadedProperty.not().or(rangeComboBox.getSelectionModel().selectedItemProperty().isNull()));
             addRangeButton.disableProperty().bind(is2validCellsSelected.not());
             openFilterDialogButton.disableProperty().bind(is2validCellsSelected.not());
             openSortDialogButton.disableProperty().bind(is2validCellsSelected.not());
@@ -68,6 +71,7 @@ public class CommandsController {
     }
 
     public void updateMyControlsOnFileLoad() {
+        rangeComboBox.getSelectionModel().clearSelection();
         SetProperty<String> rangesNamesSetProperty = mainController.getDataModule().getRangesNames();
 
         Runnable updateComboBoxItems = () -> {

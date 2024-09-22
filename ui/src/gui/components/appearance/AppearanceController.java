@@ -146,6 +146,7 @@ public class AppearanceController {
     }
 
     private void bindAlignmentComboBoxToColComboBox() {
+        selectedAlignmentComboBox.getSelectionModel().clearSelection();
         selectedAlignmentComboBox.disableProperty().bind(Bindings.isNull(selectedColComboBox.getSelectionModel().selectedItemProperty()));
     }
 

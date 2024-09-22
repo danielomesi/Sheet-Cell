@@ -25,7 +25,7 @@
       </VBox>
       <Separator />
       <Label styleClass="main-header" text="Commands" wrapText="true" />
-      <Label alignment="CENTER" text="Note: prior using any command, please select a range by clickng the &quot;Select Cells&quot; button" wrapText="true" />
+      <Label alignment="CENTER" text="Note: Before using any command, please select an area of cells. Click the &quot;Select Cells&quot; button to start the selection proccess" wrapText="true" />
       <Separator />
       <VBox spacing="10.0">
          <children>

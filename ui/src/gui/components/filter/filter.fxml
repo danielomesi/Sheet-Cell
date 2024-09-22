@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane id="root-container" fx:id="wrapperScrollPane" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.components.filter.FilterController">
+<ScrollPane id="root-container" fx:id="wrapperScrollPane" fitToHeight="true" fitToWidth="true" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.components.filter.FilterController">
    <content>
       <HBox fx:id="containerHBox" prefWidth="850.0" spacing="10.0">
          <children>
@@ -57,7 +57,7 @@
                   </HBox>
                </children>
             </VBox>
-            <ScrollPane fx:id="tableScrollPane" prefWidth="600.0" />
+            <ScrollPane fx:id="tableScrollPane" fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="600.0" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
    </content>

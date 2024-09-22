@@ -16,9 +16,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
+
+//handle the case when the sort/filter window is containing a big sheet,
+// but when I enlarge the window, the scroll pane won't move with it
 public class App extends Application {
     private MainController mainController;
 

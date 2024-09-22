@@ -130,6 +130,8 @@ public class MainController {
         DynamicSheet.populateSheetWithData(selectedSheet);
         GridPane gridPane = DynamicSheet.getGridPane();
         ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setMaxWidth(1200);
+        scrollPane.setMaxHeight(800);
         scrollPane.setContent(gridPane);
         Scene newScene = new Scene(scrollPane);
         scrollPane.setId("root-container");
