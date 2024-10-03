@@ -10,15 +10,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added animations on file loading...">
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Fixed some bugs... Final version">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/appearance/AppearanceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/appearance/AppearanceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/commands/CommandsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/commands/CommandsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/commands/commands.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/commands/commands.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/filter/filter.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/filter/filter.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/main/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sort/sort.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/sort/sort.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/core/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/core/App.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,15 +167,7 @@
       <workItem from="1726943515845" duration="539000" />
       <workItem from="1727007618860" duration="1581000" />
       <workItem from="1727009591520" duration="623000" />
-      <workItem from="1727010774305" duration="638000" />
-    </task>
-    <task id="LOCAL‎-00021" summary="Refactored ref handling - now you can reference any valid cell in a function, even if the value who sits in the cell is currently not defined/matching">
-      <option name="closed" value="true" />
-      <created>1724774743875</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL‎-00021" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1724774743875</updated>
+      <workItem from="1727010774305" duration="1167000" />
     </task>
     <task id="LOCAL‎-00022" summary="Fixed bug in ABSOpeation">
       <option name="closed" value="true" />
@@ -568,7 +553,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1726938177890</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL‎-00070" summary="Fixed some bugs... Final version">
+      <option name="closed" value="true" />
+      <created>1727011932840</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL‎-00070" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1727011932840</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -587,7 +580,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added sliders" />
     <MESSAGE value="Added alignment" />
     <MESSAGE value="Added color pickers for cell" />
     <MESSAGE value="Added scale slider" />
@@ -612,7 +604,8 @@
     <MESSAGE value="Reverted to working app" />
     <MESSAGE value="Final version" />
     <MESSAGE value="Added animations on file loading..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added animations on file loading..." />
+    <MESSAGE value="Fixed some bugs... Final version" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed some bugs... Final version" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
