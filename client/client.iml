@@ -9,5 +9,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="javafx" level="project" />
     <orderEntry type="library" name="OK Http" level="project" />
+    <orderEntry type="module" module-name="service" />
   </component>
 </module>

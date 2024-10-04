@@ -10,24 +10,50 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added animations on file loading...">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/OK_Http.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/javafx.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/client.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/components/dashboard/header/HeaderController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/components/dashboard/header/header.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/components/main/DashboardController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/http/HttpClientMessenger.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/OK Http/annotations-13.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/OK Http/kotlin-stdlib-1.4.10.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/OK Http/kotlin-stdlib-common-1.4.10.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/OK Http/okhttp-4.9.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/OK Http/okio-2.8.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="First step in ex3....">
+      <change afterPath="$PROJECT_DIR$/client/src/gui/builder/ControllersBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/builder/DynamicSheet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/builder/DynamicSheetBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/core/DataModule.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/exceptions/GUIException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/exceptions/RowOutOfBoundsException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/exceptions/UnsupportedFileFormatException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/DashboardHeaderController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/header.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/DashboardMainController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/main.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/appearance/AppearanceController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/appearance/appearance.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/commands/CommandsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/commands/commands.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/filter/FilterController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/filter/filter.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/header/HeaderController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/header/header.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/MainController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/main.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/SheetController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/cell/CellController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/cell/TableCellType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/cell/cell.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/cell/cellStyle.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/sheet.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sort/SortController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sort/sort.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/styles/Dark.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/styles/Default.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/styles/Generic Style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/styles/Maccabi.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/styles/resources/background-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/styles/resources/background-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/styles/resources/background-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/utils/Utils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/main/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/main/main.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/ui.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/ui.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/client/client.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/components/dashboard/header/HeaderController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/components/dashboard/header/header.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/components/main/DashboardController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +119,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "vue.rearranger.settings.migration": "true"
@@ -200,14 +226,6 @@
       <workItem from="1727007618860" duration="1581000" />
       <workItem from="1727009591520" duration="623000" />
       <workItem from="1727010774305" duration="638000" />
-    </task>
-    <task id="LOCAL‎-00021" summary="Refactored ref handling - now you can reference any valid cell in a function, even if the value who sits in the cell is currently not defined/matching">
-      <option name="closed" value="true" />
-      <created>1724774743875</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL‎-00021" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1724774743875</updated>
     </task>
     <task id="LOCAL‎-00022" summary="Fixed bug in ABSOpeation">
       <option name="closed" value="true" />
@@ -593,7 +611,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1726938177890</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL‎-00070" summary="First step in ex3....">
+      <option name="closed" value="true" />
+      <created>1728048968942</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL‎-00070" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1728048968943</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -612,7 +638,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added sliders" />
     <MESSAGE value="Added alignment" />
     <MESSAGE value="Added color pickers for cell" />
     <MESSAGE value="Added scale slider" />
@@ -637,7 +662,8 @@
     <MESSAGE value="Reverted to working app" />
     <MESSAGE value="Final version" />
     <MESSAGE value="Added animations on file loading..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added animations on file loading..." />
+    <MESSAGE value="First step in ex3...." />
+    <option name="LAST_COMMIT_MESSAGE" value="First step in ex3...." />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

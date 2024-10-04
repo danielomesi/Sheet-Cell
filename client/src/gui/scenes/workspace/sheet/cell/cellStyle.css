@@ -1,0 +1,35 @@
+/* Style for the StackPane */
+
+/* Highlight the selected cell with a distinct color */
+.selected-cell {
+    -fx-background-color: deepskyblue; /* Distinct blue for selected cell */
+}
+
+/* Highlight cells that affect the selected cell */
+.affecting-cell {
+    -fx-background-color: lightblue; /* Light blue for cells affecting the selected one */
+}
+
+/* Highlight cells affected by the selected cell */
+.affected-cell {
+    -fx-background-color: lightgreen; /* Light green for cells affected by the selected one */
+}
+
+.range-cell {
+    -fx-background-color: #3584a0;
+}
+
+.cell-label {
+    -fx-font-size: 14px; /* Font size */
+    -fx-font-weight: bold; /* Bold text */
+    -fx-background-insets: 0, 0, 0, 0; /* Remove any insets */
+}
+
+.cell-label:hover {
+    -fx-background-color: lightyellow; /* Change background on hover */
+    -fx-cursor: hand; /* Change cursor to hand */
+}
+
+
+
+

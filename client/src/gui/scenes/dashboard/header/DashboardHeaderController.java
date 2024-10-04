@@ -1,6 +1,6 @@
-package gui.components.dashboard.header;
+package gui.scenes.dashboard.header;
 
-import gui.components.main.DashboardController;
+import gui.scenes.dashboard.main.DashboardMainController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,9 +12,8 @@ import javafx.stage.Stage;
 
 import java.io.File;
 
-public class HeaderController {
-
-    private DashboardController dashboardController;
+public class DashboardHeaderController {
+    private DashboardMainController mainController;
 
     @FXML
     private Label filePathLabel;
@@ -34,7 +33,7 @@ public class HeaderController {
     @FXML
     private VBox vBoxHeader;
 
-    public void setDashboardController(DashboardController dashboardController) {this.dashboardController = dashboardController;}
+    public void setMainController(DashboardMainController mainController) {this.mainController = mainController;}
 
     @FXML
     void handleLoadFileButtonClick(ActionEvent event) {
@@ -48,7 +47,7 @@ public class HeaderController {
         File file = fileChooser.showOpenDialog(stage);
 
         if (file != null) {
-
+            System.out.println(file.getAbsolutePath());
         }
     }
 

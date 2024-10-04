@@ -1,0 +1,85 @@
+/* General Container Style */
+#root-container {
+    -fx-background-size: cover;
+}
+
+
+.main-header {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.sub-header {
+    -fx-font-size: 14px;
+}
+
+.button {
+    -fx-background-radius: 25;
+    -fx-border-radius: 25;
+    -fx-padding: 10;
+    -fx-font-weight: bold;
+}
+
+.button:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 8, 0, 0, 1);
+    -fx-opacity: 0.8;
+}
+
+
+.combo-box:hover {
+    -fx-opacity: 0.9;
+}
+
+.combo-box:disabled {
+    -fx-opacity: 0.5;
+}
+
+
+.progress-indicator {
+    -fx-background-color: transparent;
+}
+
+.grid-pane {
+    -fx-grid-lines-visible: true;
+    -fx-background-color: transparent;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.list-view {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 10;
+}
+
+.list-view .list-view-cell {
+    -fx-padding: 5;
+}
+
+.default-cell {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical {
+    -fx-background-color: transparent; /* Change background color */
+}
+
+.scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}
+
+
+.scroll-bar .thumb {
+    -fx-background-radius: 10px;
+}
+
+
+
+
+

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="commandsWrapperVbox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="250.0" spacing="10.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.scenes.workspace.commands.CommandsController">
+   <children>
+      <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
+         <children>
+            <Label styleClass="main-header" text="Ranges" />
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+               <children>
+                  <ComboBox fx:id="rangeComboBox" onAction="#handleOnRangeSelect" />
+                  <Button fx:id="removeRangeButton" mnemonicParsing="false" onAction="#handleOnRemoveRangeButtonClick" text="Remove" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Separator />
+      <Label styleClass="main-header" text="Commands" wrapText="true" />
+      <Label alignment="CENTER" text="Note: Before using any command, please select an area of cells. Click the &quot;Select Cells&quot; button to start the selection proccess" wrapText="true" />
+      <Separator />
+      <VBox spacing="10.0">
+         <children>
+            <Label text="Add new range" />
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+               <children>
+                  <Label text="Name: " />
+                  <TextField fx:id="rangeNameTextField" promptText="Range Name" />
+               </children>
+            </HBox>
+            <Button fx:id="addRangeButton" mnemonicParsing="false" onAction="#addRangeButtonOnClick" text="Add range" />
+         </children>
+      </VBox>
+      <Separator />
+      <VBox spacing="10.0">
+         <children>
+            <Label text="Sort" />
+            <Button fx:id="openSortDialogButton" mnemonicParsing="false" onAction="#openSortDialogButtonClicked" text="Open sort dialog" />
+         </children>
+      </VBox>
+      <Separator />
+      <VBox spacing="10.0">
+         <children>
+            <Label text="Filter" />
+            <Button fx:id="openFilterDialogButton" mnemonicParsing="false" onAction="#openFilterDialogClicked" text="Open filter dialog" />
+         </children>
+      </VBox>
+      <Separator />
+      <VBox spacing="10.0">
+         <children>
+            <Label text="Status" />
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+               <children>
+                  <ProgressIndicator fx:id="commandsProgressIndicator" progress="0.0" />
+                  <Label fx:id="commandsStatusLabel" alignment="CENTER" wrapText="true" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</VBox>
