@@ -1,6 +1,7 @@
 package gui.scenes.dashboard.header;
 
 import gui.scenes.dashboard.main.DashboardMainController;
+import http.HttpClientMessenger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -47,7 +48,7 @@ public class DashboardHeaderController {
         File file = fileChooser.showOpenDialog(stage);
 
         if (file != null) {
-            System.out.println(file.getAbsolutePath());
+            HttpClientMessenger.getInstance().sendFileToServer(file);
         }
     }
 

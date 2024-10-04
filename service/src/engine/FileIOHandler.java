@@ -21,6 +21,16 @@ public class FileIOHandler {
         return clazz.cast(unmarshaller.unmarshal(xmlFile));
     }
 
+    public static <T> T loadXMLStringToObject(String xmlString, Class<T> clazz) throws JAXBException {
+        if (xmlString == null || xmlString.trim().isEmpty()) {
+            throw new IllegalArgumentException("The XML string cannot be null or empty");
+        }
+        JAXBContext context = JAXBContext.newInstance(clazz);
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+        StringReader stringReader = new StringReader(xmlString);
+        return clazz.cast(unmarshaller.unmarshal(stringReader));
+    }
+
     public static void saveCoreSheetsToFile(List<CoreSheet> coreSheets, String filePath) {
         File file = new File(filePath);
         File parentDir = file.getParentFile();

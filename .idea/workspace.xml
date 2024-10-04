@@ -2,58 +2,28 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="service:jar" />
-      <artifact name="ui:jar" />
+      <artifact name="server" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="First step in ex3....">
-      <change afterPath="$PROJECT_DIR$/client/src/gui/builder/ControllersBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/builder/DynamicSheet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/builder/DynamicSheetBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/core/DataModule.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/exceptions/GUIException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/exceptions/RowOutOfBoundsException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/exceptions/UnsupportedFileFormatException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/DashboardHeaderController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/header.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/DashboardMainController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/main.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/appearance/AppearanceController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/appearance/appearance.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/commands/CommandsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/commands/commands.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/filter/FilterController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/filter/filter.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/header/HeaderController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/header/header.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/MainController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/main.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/SheetController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/cell/CellController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/cell/TableCellType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/cell/cell.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/cell/cellStyle.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/sheet.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sort/SortController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sort/sort.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/styles/Dark.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/styles/Default.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/styles/Generic Style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/styles/Maccabi.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/styles/resources/background-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/styles/resources/background-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/styles/resources/background-3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/utils/Utils.java" afterDir="false" />
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Small progress...">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/server.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/server.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/init/ContextInitializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/servlets/FileUploadServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/web/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/web/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/web/web/web/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/client/client.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/components/dashboard/header/HeaderController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/components/dashboard/header/header.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/components/main/DashboardController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/DashboardHeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/DashboardHeaderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/http/HttpClientMessenger.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/http/HttpClientMessenger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/Engine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/engine/FileIOHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/FileIOHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,6 +60,17 @@
     &quot;accountId&quot;: &quot;ebd5f9e4-f5f9-404f-abfd-66515f103515&quot;
   }
 }</component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -105,11 +86,14 @@
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "Application.App.executor": "Run",
     "Application.Application.executor": "Run",
+    "Application.Client.executor": "Run",
     "Application.Ex3.executor": "Run",
     "Application.GUI.executor": "Run",
     "Application.Unnamed.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Tomcat Server.Server.executor": "Run",
+    "Tomcat Server.Tomcat 10.1.26.executor": "Run",
     "extract.method.default.visibility": "private",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
@@ -119,7 +103,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "vue.rearranger.settings.migration": "true"
@@ -134,8 +118,8 @@
       <recent name="C:\Users\omesi\IdeaProjects\Sheet-Cell\lib\javafx-sdk-22.0.2" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Ex3">
-    <configuration name="Ex3" type="Application" factoryName="Application">
+  <component name="RunManager" selected="Application.Client">
+    <configuration name="Client" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="gui.core.ClientApp" />
@@ -155,9 +139,98 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Server" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.1.26" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="OPEN_IN_BROWSER" value="false" />
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="server">
+          <settings>
+            <option name="CONTEXT_PATH" value="/server" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="30ee8536-c488-478a-9ab6-15a27bde3679" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="3494" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Profile">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="server" />
+        </option>
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.GUI" />
-      <item itemvalue="Application.Ex3" />
+      <item itemvalue="Application.Client" />
+      <item itemvalue="Tomcat Server.Server" />
     </list>
   </component>
   <component name="SharedIndexes">
@@ -226,14 +299,7 @@
       <workItem from="1727007618860" duration="1581000" />
       <workItem from="1727009591520" duration="623000" />
       <workItem from="1727010774305" duration="638000" />
-    </task>
-    <task id="LOCAL‎-00022" summary="Fixed bug in ABSOpeation">
-      <option name="closed" value="true" />
-      <created>1724775790029</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL‎-00022" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1724775790029</updated>
+      <workItem from="1728061760100" duration="3905000" />
     </task>
     <task id="LOCAL‎-00023" summary="Fixed bug in expression spacing">
       <option name="closed" value="true" />
@@ -619,7 +685,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1728048968943</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL‎-00071" summary="Small progress...">
+      <option name="closed" value="true" />
+      <created>1728055129638</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL‎-00071" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1728055129639</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -638,7 +712,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added alignment" />
     <MESSAGE value="Added color pickers for cell" />
     <MESSAGE value="Added scale slider" />
     <MESSAGE value="Moved action line from header to main sheet area" />
@@ -663,7 +736,8 @@
     <MESSAGE value="Final version" />
     <MESSAGE value="Added animations on file loading..." />
     <MESSAGE value="First step in ex3...." />
-    <option name="LAST_COMMIT_MESSAGE" value="First step in ex3...." />
+    <MESSAGE value="Small progress..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Small progress..." />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

@@ -16,6 +16,8 @@ public interface Engine {
 
     public void loadSheetFromXMLFile(String fullFilePath);
 
+    void loadSheetFromXMLString(String xmlFileContent);
+
     public Cell getSpecificCell(String cellName);
 
     public void updateSpecificCell(String cellName, String originalExpression);

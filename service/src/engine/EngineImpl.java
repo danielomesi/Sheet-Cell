@@ -5,7 +5,6 @@ import entities.cell.CoreCell;
 import entities.coordinates.Coordinates;
 import entities.coordinates.CoordinateFactory;
 import entities.range.Range;
-import entities.sheet.Layout;
 import entities.sheet.Sheet;
 import entities.sheet.CoreSheet;
 import entities.sheet.DTOSheet;
@@ -98,6 +97,21 @@ public class EngineImpl implements Engine {
         fullFilePath = Utils.trimQuotes(fullFilePath);
         try {
             stlSheet = FileIOHandler.loadXMLToObject(fullFilePath, STLSheet.class);
+        }
+        catch (JAXBException e) {
+            throw new InvalidXMLException("Invalid XML file");
+        }
+        validateXMLSheetLayout(stlSheet);
+        CoreSheet coreSheet = new CoreSheet(stlSheet);
+        coreSheets.clear();
+        coreSheets.add(coreSheet);
+    }
+
+    @Override
+    public synchronized void loadSheetFromXMLString(String xmlFileContent) {
+        STLSheet stlSheet;
+        try {
+            stlSheet = FileIOHandler.loadXMLStringToObject(xmlFileContent, STLSheet.class);
         }
         catch (JAXBException e) {
             throw new InvalidXMLException("Invalid XML file");
