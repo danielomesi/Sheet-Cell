@@ -7,7 +7,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="service" />
     <orderEntry type="library" name="javafx" level="project" />
+    <orderEntry type="library" name="OK Http" level="project" />
   </component>
 </module>
