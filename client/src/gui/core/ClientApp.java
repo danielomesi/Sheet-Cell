@@ -2,6 +2,7 @@ package gui.core;
 
 import gui.scenes.dashboard.header.DashboardHeaderController;
 import gui.scenes.dashboard.main.DashboardMainController;
+import gui.scenes.login.LoginController;
 import gui.scenes.workspace.appearance.AppearanceController;
 import gui.scenes.workspace.commands.CommandsController;
 import gui.scenes.workspace.header.HeaderController;
@@ -22,13 +23,30 @@ import java.io.IOException;
 public class ClientApp extends Application {
     private MainController workspaceMainController;
     private DashboardMainController dashboardMainController;
+    private LoginController loginController;
     private Stage primaryStage;
 
     @Override
     public void start(Stage stage) throws Exception {
         this.primaryStage = stage;
-        loadDashBoard();
+        loadLogin();
 
+    }
+
+    public void loadLogin() throws IOException {
+        Parent root = setupAndGetLoginMainComponent();
+        Scene scene = new Scene(root);
+        primaryStage.setTitle("Sheet Cell");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    private Parent setupAndGetLoginMainComponent() throws IOException {
+        FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("/gui/scenes/login/login.fxml"));
+        ScrollPane root = mainLoader.load();
+        loginController = mainLoader.getController();
+
+        return root;
     }
 
     public void loadDashBoard() throws IOException {

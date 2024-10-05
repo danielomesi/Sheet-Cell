@@ -9,21 +9,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Small progress...">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/server.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/server.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/init/ContextInitializer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/servlets/FileUploadServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/web/WEB-INF/web.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/web/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/web/web/web/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="My first file upload!!!">
+      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/login/LoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/login/login.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/http/constants/Constants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/OK Http/okhttp-urlconnection-4.9.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/servlets/LoginServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/users/UserManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/DashboardHeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/DashboardHeaderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/http/HttpClientMessenger.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/http/HttpClientMessenger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/engine/FileIOHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/FileIOHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/init/ContextInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/init/ContextInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/servlets/FileUploadServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/FileUploadServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/web/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/main/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/main/main.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,8 +96,9 @@
     "Tomcat Server.Tomcat 10.1.26.executor": "Run",
     "extract.method.default.visibility": "private",
     "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/omesi/IdeaProjects/Sheet-Cell/lib/OK Http",
+    "last_opened_file_path": "C:/Users/omesi/OneDrive - The Academic College of Tel-Aviv Jaffa - MTA/שנה 3/סמס קיץ/Java/דוגמאות הקורס/Online Chat V3/Online Chat V3",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -299,15 +300,11 @@
       <workItem from="1727007618860" duration="1581000" />
       <workItem from="1727009591520" duration="623000" />
       <workItem from="1727010774305" duration="638000" />
-      <workItem from="1728061760100" duration="3905000" />
-    </task>
-    <task id="LOCAL‎-00023" summary="Fixed bug in expression spacing">
-      <option name="closed" value="true" />
-      <created>1724776509445</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL‎-00023" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1724776509445</updated>
+      <workItem from="1728061760100" duration="4658000" />
+      <workItem from="1728126123999" duration="140000" />
+      <workItem from="1728126291809" duration="15000" />
+      <workItem from="1728126460871" duration="6000" />
+      <workItem from="1728126478794" duration="7300000" />
     </task>
     <task id="LOCAL‎-00024" summary="Minor change">
       <option name="closed" value="true" />
@@ -693,7 +690,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1728055129639</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL‎-00072" summary="My first file upload!!!">
+      <option name="closed" value="true" />
+      <created>1728065695718</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL‎-00072" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1728065695718</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -712,7 +717,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added color pickers for cell" />
     <MESSAGE value="Added scale slider" />
     <MESSAGE value="Moved action line from header to main sheet area" />
     <MESSAGE value="Moved selecting cells from commands to sheet" />
@@ -737,7 +741,8 @@
     <MESSAGE value="Added animations on file loading..." />
     <MESSAGE value="First step in ex3...." />
     <MESSAGE value="Small progress..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Small progress..." />
+    <MESSAGE value="My first file upload!!!" />
+    <option name="LAST_COMMIT_MESSAGE" value="My first file upload!!!" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

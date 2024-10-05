@@ -13,6 +13,7 @@ import jakarta.servlet.annotation.MultipartConfig;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.Collection;
 import java.util.Scanner;
@@ -38,6 +39,8 @@ public class FileUploadServlet extends HttpServlet {
             allContent.append(content);
             printPartContent(content, out);
         }
+
+        System.out.println("Received: \n" + allContent.toString());
 
         try {
             Engine engine = new EngineImpl();
