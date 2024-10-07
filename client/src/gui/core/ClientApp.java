@@ -2,6 +2,7 @@ package gui.core;
 
 import gui.scenes.dashboard.header.DashboardHeaderController;
 import gui.scenes.dashboard.main.DashboardMainController;
+import gui.scenes.dashboard.sheetsTable.SheetsTableController;
 import gui.scenes.login.LoginController;
 import gui.scenes.workspace.appearance.AppearanceController;
 import gui.scenes.workspace.commands.CommandsController;
@@ -33,6 +34,10 @@ public class ClientApp extends Application {
 
     }
 
+    public void switchSceneToDashboard() throws IOException {
+        loadDashBoard();
+    }
+
     public void loadLogin() throws IOException {
         Parent root = setupAndGetLoginMainComponent();
         Scene scene = new Scene(root);
@@ -45,6 +50,7 @@ public class ClientApp extends Application {
         FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("/gui/scenes/login/login.fxml"));
         ScrollPane root = mainLoader.load();
         loginController = mainLoader.getController();
+        loginController.setClientApp(this);
 
         return root;
     }
@@ -73,17 +79,24 @@ public class ClientApp extends Application {
         Parent headerNode = headerLoader.load();
         DashboardHeaderController headerController = headerLoader.getController();
 
+        FXMLLoader sheetsTableLoader = new FXMLLoader(getClass().getResource("/gui/scenes/dashboard/sheetsTable/sheetsTable.fxml"));
+        Parent sheetsLoaderNode = sheetsTableLoader.load();
+        SheetsTableController sheetsTableController = sheetsTableLoader.getController();
+
         // Make main controller know its sub controllers
         dashboardMainController.setHeaderController(headerController);
+        dashboardMainController.setSheetsTableController(sheetsTableController);
 
 
         //Make sub controllers know the main controller
         headerController.setMainController(dashboardMainController);
+        sheetsTableController.setDashboardMainController(dashboardMainController);
 
 
         // Add the headerPane to the top of the root layout
         BorderPane root = dashboardMainController.getMainBorderPane();
         root.setTop(headerNode);
+        root.setCenter(sheetsLoaderNode);
     }
 
     public void loadWorkspace() throws IOException {

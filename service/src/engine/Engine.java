@@ -18,6 +18,8 @@ public interface Engine {
 
     void loadSheetFromXMLString(String xmlFileContent);
 
+    void loadSheetFromXMLString(String xmlFileContent, String uploaderUsername);
+
     public Cell getSpecificCell(String cellName);
 
     public void updateSpecificCell(String cellName, String originalExpression);

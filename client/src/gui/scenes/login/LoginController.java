@@ -1,5 +1,6 @@
 package gui.scenes.login;
 
+import gui.core.ClientApp;
 import http.HttpClientMessenger;
 import http.constants.Constants;
 import javafx.application.Platform;
@@ -18,6 +19,7 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 
 public class LoginController {
+    private ClientApp clientApp;
 
     @FXML
     private ScrollPane componentWrapper;
@@ -30,6 +32,8 @@ public class LoginController {
 
     @FXML
     private TextField usernameTextField;
+
+    public void setClientApp(ClientApp clientApp) {this.clientApp = clientApp;}
 
     @FXML
     void loginButtonClicked(ActionEvent event) {
@@ -64,7 +68,12 @@ public class LoginController {
                     );
                 } else {
                     Platform.runLater(() -> {
-                        errorLabel.setText("Success!");
+                        try {
+                            clientApp.switchSceneToDashboard();
+                            errorLabel.setText("Success!");
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
                     });
                 }
             }

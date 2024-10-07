@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fx:id="wrapper" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.scenes.dashboard.sheetsTable.SheetsTableController">
+   <content>
+      <VBox alignment="CENTER">
+         <children>
+            <TableView fx:id="tableView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+              <columns>
+                <TableColumn prefWidth="75.0" text="Uploader" />
+                <TableColumn prefWidth="75.0" text="Sheet Name" />
+                  <TableColumn prefWidth="75.0" text="Sheet Size" />
+                  <TableColumn prefWidth="75.0" text="Access Level" />
+              </columns>
+            </TableView>
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>

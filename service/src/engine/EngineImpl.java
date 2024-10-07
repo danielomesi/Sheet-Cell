@@ -13,6 +13,7 @@ import entities.stl.STLSheet;
 import exceptions.InvalidXMLException;
 import exceptions.NoExistenceException;
 import jakarta.xml.bind.JAXBException;
+import permission.SheetData;
 import utils.Filter;
 import utils.Sorter;
 import utils.Utils;
@@ -20,14 +21,17 @@ import utils.Utils;
 import java.util.*;
 
 public class EngineImpl implements Engine {
-    private List<CoreSheet> coreSheets;
+    private final int maxRows = 50;
+    private final int maxCols = 20;
+    //private List<CoreSheet> coreSheets;
     private CoreSheet subCoreSheet;
+    private Map<String,SheetData> sheetName2SheetDataList;
+
 
     public EngineImpl() {
         this.coreSheets = new LinkedList<>();
     }
-    private final int maxRows = 50;
-    private final int maxCols = 20;
+
 
     @Override
     public Sheet getSheet() {
@@ -62,9 +66,17 @@ public class EngineImpl implements Engine {
     }
 
     @Override
-    public synchronized void loadStateFromFile(String fullFilePath) {
+    public synchronized void loadStateFromFile(String fullFilePath, String uploaderUsername) {
         fullFilePath = Utils.trimQuotes(fullFilePath);
-        coreSheets = FileIOHandler.loadCoreSheetsFromFile(fullFilePath);
+        if (!sheetName2SheetDataList.containsKey(uploaderUsername)) {
+            List<CoreSheet> coreSheets = FileIOHandler.loadCoreSheetsFromFile(fullFilePath);
+            String sheetName = coreSheets.getLast().getName();
+            SheetData sheetData = new SheetData(sheetName,uploaderUsername);
+            sheetData.setSheetVersions(coreSheets);
+            sheetName2SheetDataList.put(sheetName,sheetData);
+
+        }
+
     }
 
     @Override
@@ -92,7 +104,7 @@ public class EngineImpl implements Engine {
     }
 
     @Override
-    public synchronized void loadSheetFromXMLFile(String fullFilePath) {
+    public synchronized void loadSheetFromXMLFile(String fullFilePath,String uploaderUsername) {
         STLSheet stlSheet;
         fullFilePath = Utils.trimQuotes(fullFilePath);
         try {
@@ -103,12 +115,19 @@ public class EngineImpl implements Engine {
         }
         validateXMLSheetLayout(stlSheet);
         CoreSheet coreSheet = new CoreSheet(stlSheet);
-        coreSheets.clear();
-        coreSheets.add(coreSheet);
+        String sheetName = coreSheet.getName();
+        if (!sheetName2SheetDataList.containsKey(sheetName)) {
+            List<CoreSheet> coreSheets = new ArrayList<>();
+            coreSheets.add(coreSheet);
+            SheetData sheetData = new SheetData(sheetName,uploaderUsername);
+            sheetData.setSheetVersions(coreSheets);
+            sheetName2SheetDataList.put(sheetName,sheetData);
+
+        }
     }
 
     @Override
-    public synchronized void loadSheetFromXMLString(String xmlFileContent) {
+    public synchronized void loadSheetFromXMLString(String xmlFileContent, String uploaderUsername) {
         STLSheet stlSheet;
         try {
             stlSheet = FileIOHandler.loadXMLStringToObject(xmlFileContent, STLSheet.class);
@@ -118,8 +137,15 @@ public class EngineImpl implements Engine {
         }
         validateXMLSheetLayout(stlSheet);
         CoreSheet coreSheet = new CoreSheet(stlSheet);
-        coreSheets.clear();
-        coreSheets.add(coreSheet);
+        String sheetName = coreSheet.getName();
+        if (!sheetName2SheetDataList.containsKey(sheetName)) {
+            List<CoreSheet> coreSheets = new ArrayList<>();
+            coreSheets.add(coreSheet);
+            SheetData sheetData = new SheetData(sheetName,uploaderUsername);
+            sheetData.setSheetVersions(coreSheets);
+            sheetName2SheetDataList.put(sheetName,sheetData);
+
+        }
     }
 
     private void validateXMLSheetLayout(STLSheet stlSheet) {
@@ -140,7 +166,8 @@ public class EngineImpl implements Engine {
     }
 
     @Override
-    public synchronized void updateSpecificCell(String cellName, String originalExpression) {
+    public synchronized void updateSpecificCell(String cellName, String originalExpression,String sheetName) {
+        if ()
         CoreSheet cloned = coreSheets.getLast().cloneWithSerialization();
         cloned.incrementVersion();
         cloned.initializeNumOfCellsChanged();

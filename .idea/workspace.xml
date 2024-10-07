@@ -9,21 +9,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="My first file upload!!!">
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/login/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/login/login.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/http/constants/Constants.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/OK Http/okhttp-urlconnection-4.9.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/servlets/LoginServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/src/users/UserManager.java" afterDir="false" />
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added session using cookies! :)">
+      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/SheetsTableController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/sheetsTable.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/permission/PermissionType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/permission/SheetData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/users/UserData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/http/HttpClientMessenger.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/http/HttpClientMessenger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/init/ContextInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/init/ContextInitializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/servlets/FileUploadServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/FileUploadServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/web/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/main/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/gui/components/main/main.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/header.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/header.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/DashboardMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/DashboardMainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/main.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/login/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/login/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/Engine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -304,15 +303,7 @@
       <workItem from="1728126123999" duration="140000" />
       <workItem from="1728126291809" duration="15000" />
       <workItem from="1728126460871" duration="6000" />
-      <workItem from="1728126478794" duration="7300000" />
-    </task>
-    <task id="LOCAL‎-00024" summary="Minor change">
-      <option name="closed" value="true" />
-      <created>1724779150443</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL‎-00024" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1724779150443</updated>
+      <workItem from="1728126478794" duration="13399000" />
     </task>
     <task id="LOCAL‎-00025" summary="Fixed bug in printing negative numbers">
       <option name="closed" value="true" />
@@ -698,7 +689,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1728065695718</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL‎-00073" summary="Added session using cookies! :)">
+      <option name="closed" value="true" />
+      <created>1728144806348</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL‎-00073" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1728144806348</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -717,7 +716,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added scale slider" />
     <MESSAGE value="Moved action line from header to main sheet area" />
     <MESSAGE value="Moved selecting cells from commands to sheet" />
     <MESSAGE value="Added sort dialog" />
@@ -742,7 +740,8 @@
     <MESSAGE value="First step in ex3...." />
     <MESSAGE value="Small progress..." />
     <MESSAGE value="My first file upload!!!" />
-    <option name="LAST_COMMIT_MESSAGE" value="My first file upload!!!" />
+    <MESSAGE value="Added session using cookies! :)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added session using cookies! :)" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
