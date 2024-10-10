@@ -1,12 +1,10 @@
 package engine;
 
 import entities.cell.Cell;
-import entities.coordinates.Coordinates;
 import entities.sheet.Sheet;
 import permission.SheetData;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 public interface Engine {

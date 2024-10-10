@@ -9,31 +9,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Another progress...">
-      <change afterPath="$PROJECT_DIR$/common/common.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/entities/range/RangeInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Adding a module for dtos...">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/client/client.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/gui/builder/DynamicSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/builder/DynamicSheet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/gui/builder/DynamicSheetBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/builder/DynamicSheetBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/commands/CommandsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/commands/CommandsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/SheetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/SheetController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/service.iml" beforeDir="false" afterPath="$PROJECT_DIR$/service/service.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/cell/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/entities/cell/Cell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/cell/CoreCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/cell/CoreCell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/cell/DTOCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/entities/cell/DTOCell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/coordinates/CoordinateFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/coordinates/CoordinateFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/coordinates/Coordinates.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/entities/coordinates/Coordinates.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/utils/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/init/ContextInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/init/ContextInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/servlets/FileUploadServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/FileUploadServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/web/web/web/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/Engine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/entities/range/Range.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/range/Range.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/sheet/DTOSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/entities/sheet/DTOSheet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/sheet/Layout.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/entities/sheet/Layout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/sheet/Sheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/entities/sheet/Sheet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/types/undefined/Undefined.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/entities/types/undefined/Undefined.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/types/undefined/UndefinedBoolean.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/entities/types/undefined/UndefinedBoolean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/types/undefined/UndefinedNumber.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/entities/types/undefined/UndefinedNumber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/types/undefined/UndefinedString.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/entities/types/undefined/UndefinedString.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/operations/core/OperationFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/core/OperationFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/utils/Filter.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/utils/Filter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/utils/Sorter.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/utils/Sorter.java" afterDir="false" />
     </list>
@@ -104,7 +93,7 @@
     "Application.Unnamed.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Tomcat Server.Server.executor": "Run",
+    "Tomcat Server.Server.executor": "Debug",
     "Tomcat Server.Tomcat 10.1.26.executor": "Run",
     "extract.method.default.visibility": "private",
     "git-widget-placeholder": "master",
@@ -316,15 +305,8 @@
       <workItem from="1728126123999" duration="140000" />
       <workItem from="1728126291809" duration="15000" />
       <workItem from="1728126460871" duration="6000" />
-      <workItem from="1728126478794" duration="20743000" />
-    </task>
-    <task id="LOCAL‎-00027" summary="Took out tostrings out of the service module, to the ui module">
-      <option name="closed" value="true" />
-      <created>1725278970834</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL‎-00027" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1725278970834</updated>
+      <workItem from="1728126478794" duration="21422000" />
+      <workItem from="1728573584321" duration="3669000" />
     </task>
     <task id="LOCAL‎-00028" summary="Simplified coordinates handling and and convertion">
       <option name="closed" value="true" />
@@ -710,7 +692,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1728545060203</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL‎-00076" summary="Adding a module for dtos...">
+      <option name="closed" value="true" />
+      <created>1728553407701</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL‎-00076" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1728553407701</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -729,7 +719,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added sort dialog" />
     <MESSAGE value="Sort started working a bit..." />
     <MESSAGE value="Sort is working (On my tests...)" />
     <MESSAGE value="Some tries to improve functionality..." />
@@ -754,7 +743,8 @@
     <MESSAGE value="Added session using cookies! :)" />
     <MESSAGE value="Added some preparations for user and permission modules in engine..." />
     <MESSAGE value="Another progress..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Another progress..." />
+    <MESSAGE value="Adding a module for dtos..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding a module for dtos..." />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

@@ -7,7 +7,6 @@ import entities.stl.STLSheet;
 import exceptions.InvalidRangeException;
 import utils.Utils;
 
-import java.io.Serializable;
 import java.util.*;
 
 public class Range implements RangeInterface {

@@ -5,9 +5,9 @@ import entities.cell.CoreCell;
 import entities.coordinates.Coordinates;
 import entities.coordinates.CoordinateFactory;
 import entities.range.Range;
-import entities.sheet.Sheet;
 import entities.sheet.CoreSheet;
 import entities.sheet.DTOSheet;
+import entities.sheet.Sheet;
 import entities.stl.STLLayout;
 import entities.stl.STLSheet;
 import exceptions.InvalidXMLException;
@@ -25,13 +25,7 @@ public class EngineImpl implements Engine {
     private final int MAX_COLS = 20;
     //private List<CoreSheet> coreSheets;
     private CoreSheet subCoreSheet;
-    private final Map<String,SheetData> sheetName2SheetDataList;
-
-
-    public EngineImpl() {
-        this.sheetName2SheetDataList = new HashMap<>();
-    }
-
+    private final Map<String,SheetData> sheetName2SheetDataList = new HashMap<>();
 
     @Override
     public Sheet getSheet(String sheetName) {

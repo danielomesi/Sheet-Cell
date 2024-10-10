@@ -8,15 +8,12 @@ import gui.components.sheet.cell.TableCellType;
 import gui.scenes.workspace.sheet.cell.CellController;
 import gui.utils.Utils;
 import javafx.animation.FadeTransition;
-import javafx.animation.FillTransition;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 import java.util.*;

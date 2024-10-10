@@ -1,32 +1,23 @@
 package gui.utils;
 
-import entities.coordinates.CoordinateFactory;
 import entities.coordinates.Coordinates;
-import entities.sheet.Sheet;
 import entities.types.undefined.Undefined;
 import entities.types.undefined.UndefinedBoolean;
 import entities.types.undefined.UndefinedNumber;
 import entities.types.undefined.UndefinedString;
 import exceptions.ServiceException;
 import gui.exceptions.GUIException;
-import gui.exceptions.RowOutOfBoundsException;
-import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.concurrent.Worker;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class Utils {
     public static final String NON_EXISTING_CELL_NAME = "[EMPTY-CELL]";

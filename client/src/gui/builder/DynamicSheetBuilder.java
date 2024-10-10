@@ -1,6 +1,5 @@
 package gui.builder;
 
-import entities.coordinates.CoordinateFactory;
 import entities.coordinates.Coordinates;
 import entities.sheet.Sheet;
 import gui.components.sheet.cell.TableCellType;

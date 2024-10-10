@@ -1,7 +1,6 @@
 package utils;
 
 import entities.cell.Cell;
-import entities.coordinates.CoordinateFactory;
 import entities.coordinates.Coordinates;
 import entities.sheet.Sheet;
 
