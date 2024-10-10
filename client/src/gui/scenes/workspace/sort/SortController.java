@@ -164,7 +164,7 @@ public class SortController {
     void sortButtonClicked(ActionEvent event) {
         List<String> colsToSortBy = selectedColsListView.getItems();
         Runnable sort = () -> {
-            List<Integer> sortedRowsOrder = mainController.getEngine().sort(colsToSortBy, fromCellID, toCellID,sortFirstRowToggleButton.isSelected());
+            List<Integer> sortedRowsOrder = mainController.getEngine().sort(mainController.getCurrentSheetName(),colsToSortBy, fromCellID, toCellID,sortFirstRowToggleButton.isSelected());
             Platform.runLater(() -> {
                         //dynamicSheet.changeRowsOrder(sortedRowsOrder);
                         setTable(DynamicSheetBuilder.buildSortedDynamicSheetFromMainSheetAndSubDynamicSheet(

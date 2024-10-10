@@ -132,7 +132,7 @@ public class FilterController {
             String selectedColName = colsComboBox.getSelectionModel().getSelectedItem();
             Runnable runnable = () -> {
                 List<Object> effectiveValuesOfSelectedCol = mainController.getEngine().
-                        getEffectiveValuesInSpecificCol(selectedColName, fromCellID, toCellID);
+                        getEffectiveValuesInSpecificCol(mainController.getCurrentSheetName(), selectedColName, fromCellID, toCellID);
                 Platform.runLater(() -> populateAllDistinctValuesListView(effectiveValuesOfSelectedCol));
             };
             Task<Void> task = Utils.getTaskFromRunnable(runnable,taskStatusLabel, taskProgressIndicator,false);
@@ -149,7 +149,7 @@ public class FilterController {
             selectedEffectiveValues.add(str2EffectiveValueMap.get(effectiveValue));
         });
         Runnable filter = () -> {
-            Set<Integer> rowsToInclude = mainController.getEngine().filter(selectedColName,selectedEffectiveValues,fromCellID,toCellID,
+            Set<Integer> rowsToInclude = mainController.getEngine().filter(mainController.getCurrentSheetName(),selectedColName,selectedEffectiveValues,fromCellID,toCellID,
                     includeEmptyCellsInFilterButton.isSelected());
             Platform.runLater(() -> {
                 setTable(DynamicSheetBuilder.buildFilteredDynamicSheetFromMainSheetAndSubDynamicSheet(mainController.getCurrentLoadedSheet()

@@ -14,7 +14,6 @@ import gui.scenes.workspace.appearance.AppearanceController;
 import gui.scenes.workspace.sort.SortController;
 import gui.builder.ControllersBuilder;
 import gui.core.DataModule;
-import gui.exceptions.UnsupportedFileFormatException;
 import gui.utils.Utils;
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
@@ -25,9 +24,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-import java.net.URL;
 import java.util.List;
-import java.util.Objects;
 
 public class MainController {
 
@@ -39,6 +36,7 @@ public class MainController {
 
 
     private Engine engine;
+    private String currentSheetName;
     private Sheet currentLoadedSheet;
     private BooleanProperty isSheetLoaded;
     private DataModule dataModule;
@@ -66,6 +64,7 @@ public class MainController {
     public SortController getSortController() {return sortController;}
     public BooleanProperty getIsSheetLoaded() {return isSheetLoaded;}
     public DataModule getDataModule() {return dataModule;}
+    public String getCurrentSheetName() {return currentSheetName;}
 
     //setters
     public void setStage(Stage stage) {this.stage = stage;}
@@ -84,16 +83,6 @@ public class MainController {
     }
 
     public void loadFile(String filePath) {
-        if (filePath.endsWith(".xml")) {
-            engine.loadSheetFromXMLFile(filePath);
-        }
-        else if (filePath.endsWith(".dat")) {
-            engine.loadStateFromFile(filePath);
-        }
-        else {
-            throw new UnsupportedFileFormatException("The selected file is not supported");
-        }
-
         toDoOnSuccessfulFileLoad();
     }
 
@@ -102,7 +91,7 @@ public class MainController {
     }
 
     public void toDoOnSuccessfulFileLoad() {
-        currentLoadedSheet = engine.getSheet();
+        currentLoadedSheet = engine.getSheet(currentSheetName);
         Platform.runLater(() -> {
             dataModule.buildModule(currentLoadedSheet.getNumOfRows(),currentLoadedSheet.getNumOfCols(),currentLoadedSheet.getRangesNames());
             sheetController.initActionLineControls();
@@ -116,8 +105,8 @@ public class MainController {
     }
 
     public void calculateCellUpdate(Coordinates coordinates, String originalExpression) {
-        engine.updateSpecificCell(coordinates.getCellID(), originalExpression);
-        currentLoadedSheet = engine.getSheet();
+        engine.updateSpecificCell(currentSheetName, coordinates.getCellID(), originalExpression);
+        currentLoadedSheet = engine.getSheet(currentSheetName);
         Platform.runLater(()-> {
             dataModule.updateModule(currentLoadedSheet);
             sheetController.resetVersionComboBoxChoice();
@@ -125,7 +114,7 @@ public class MainController {
     }
 
     public void generateVersionWindow(int chosenVersion) {
-        Sheet selectedSheet = engine.getSheet(chosenVersion);
+        Sheet selectedSheet = engine.getSheet(currentSheetName,chosenVersion);
         DynamicSheet DynamicSheet = DynamicSheetBuilder.buildDynamicSheet(selectedSheet);
         DynamicSheet.populateSheetWithData(selectedSheet);
         GridPane gridPane = DynamicSheet.getGridPane();
@@ -145,23 +134,23 @@ public class MainController {
     }
 
     public void addRange(String rangeName,String fromCellID,String toCellID) {
-        engine.addRange(rangeName, fromCellID, toCellID);
-        currentLoadedSheet = engine.getSheet();
+        engine.addRange(currentSheetName, rangeName, fromCellID, toCellID);
+        currentLoadedSheet = engine.getSheet(currentSheetName);
         Platform.runLater(() -> dataModule.updateModule(currentLoadedSheet));
     }
 
     public void deleteRange(String rangeName) {
-        engine.deleteRange(rangeName);
-        currentLoadedSheet = engine.getSheet();
+        engine.deleteRange(currentSheetName, rangeName);
+        currentLoadedSheet = engine.getSheet(currentSheetName);
         Platform.runLater(() -> dataModule.updateModule(currentLoadedSheet));
     }
 
     public void openSortDialog(String fromCellID,String toCellID) {
-        engine.setSubSheet(fromCellID, toCellID);
+        engine.setSubSheet(currentSheetName,fromCellID, toCellID);
         Sheet subSheet = engine.getSubSheet();
         Platform.runLater(() -> {
             sheetController.resetStyles();
-            DynamicSheet dynamicSheet = DynamicSheetBuilder.buildSubDynamicSheetFromMainSheet(engine.getSheet(),sheetController.getDynamicSheetTable(),fromCellID,toCellID);
+            DynamicSheet dynamicSheet = DynamicSheetBuilder.buildSubDynamicSheetFromMainSheet(engine.getSheet(currentSheetName),sheetController.getDynamicSheetTable(),fromCellID,toCellID);
             sortController = ControllersBuilder.buildSortController(this, dynamicSheet,fromCellID,toCellID);
             List<String> colNames = Utils.getLettersFromAToTheNLetter(subSheet.getNumOfCols());
             sortController.populateListViewOfAllCols(colNames);
@@ -170,11 +159,11 @@ public class MainController {
     }
 
     public void openFilterDialog(String fromCellID,String toCellID) {
-        engine.setSubSheet(fromCellID, toCellID);
+        engine.setSubSheet(currentSheetName,fromCellID, toCellID);
         Sheet subSheet = engine.getSubSheet();
         Platform.runLater(() -> {
             sheetController.resetStyles();
-            DynamicSheet dynamicSheet = DynamicSheetBuilder.buildSubDynamicSheetFromMainSheet(engine.getSheet(),sheetController.getDynamicSheetTable(),fromCellID,toCellID);
+            DynamicSheet dynamicSheet = DynamicSheetBuilder.buildSubDynamicSheetFromMainSheet(engine.getSheet(currentSheetName),sheetController.getDynamicSheetTable(),fromCellID,toCellID);
             filterController = ControllersBuilder.buildFilterController(this, dynamicSheet,fromCellID,toCellID);
             filterController.populateColComboBox(subSheet.getNumOfCols());
             Utils.openWindow(filterController.getWrapper(), "Filter Dialog");

@@ -47,8 +47,6 @@ public class HttpClientMessenger {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else {
-            System.err.println("File does not exist: " + file.getAbsolutePath());
         }
     }
 
@@ -61,5 +59,4 @@ public class HttpClientMessenger {
 
         call.enqueue(callback);
     }
-
 }

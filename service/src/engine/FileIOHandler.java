@@ -25,10 +25,14 @@ public class FileIOHandler {
         if (xmlString == null || xmlString.trim().isEmpty()) {
             throw new IllegalArgumentException("The XML string cannot be null or empty");
         }
+
         JAXBContext context = JAXBContext.newInstance(clazz);
         Unmarshaller unmarshaller = context.createUnmarshaller();
-        StringReader stringReader = new StringReader(xmlString);
-        return clazz.cast(unmarshaller.unmarshal(stringReader));
+
+        // Use try-with-resources to ensure StringReader is closed
+        try (StringReader stringReader = new StringReader(xmlString)) {
+            return clazz.cast(unmarshaller.unmarshal(stringReader));  // Safe casting
+        }
     }
 
     public static void saveCoreSheetsToFile(List<CoreSheet> coreSheets, String filePath) {

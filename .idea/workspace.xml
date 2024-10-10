@@ -9,20 +9,54 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added session using cookies! :)">
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/SheetsTableController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/sheetsTable.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/src/permission/PermissionType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/src/permission/SheetData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/src/users/UserData.java" afterDir="false" />
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added some preparations for user and permission modules in engine...">
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/header.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/header.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/DashboardMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/DashboardMainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/main.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/login/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/login/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/filter/FilterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/filter/FilterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sort/SortController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sort/SortController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/http/HttpClientMessenger.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/http/HttpClientMessenger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/servlets/FileUploadServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/FileUploadServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/Engine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/engine/FileIOHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/FileIOHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/builder/ControllersBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/builder/DynamicSheet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/builder/DynamicSheetBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/appearance/AppearanceController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/appearance/appearance.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/commands/CommandsController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/commands/commands.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/filter/FilterController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/filter/filter.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/header/HeaderController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/header/header.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/main/MainController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/main/main.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sheet/SheetController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sheet/cell/CellController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sheet/cell/TableCellType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sheet/cell/cell.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sheet/cell/cellStyle.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sheet/sheet.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sort/SortController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sort/sort.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/styles/Dark.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/styles/Default.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/styles/Generic Style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/styles/Maccabi.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/styles/resources/background-1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/styles/resources/background-2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/styles/resources/background-3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/core/App.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/core/DataModule.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/exceptions/GUIException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/exceptions/RowOutOfBoundsException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/exceptions/UnsupportedFileFormatException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/gui/utils/Utils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/ui.iml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -303,15 +337,7 @@
       <workItem from="1728126123999" duration="140000" />
       <workItem from="1728126291809" duration="15000" />
       <workItem from="1728126460871" duration="6000" />
-      <workItem from="1728126478794" duration="13399000" />
-    </task>
-    <task id="LOCAL‎-00025" summary="Fixed bug in printing negative numbers">
-      <option name="closed" value="true" />
-      <created>1724782291523</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL‎-00025" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1724782291523</updated>
+      <workItem from="1728126478794" duration="17689000" />
     </task>
     <task id="LOCAL‎-00026" summary="Fixed bug in ref operation handling">
       <option name="closed" value="true" />
@@ -697,7 +723,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1728144806348</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL‎-00074" summary="Added some preparations for user and permission modules in engine...">
+      <option name="closed" value="true" />
+      <created>1728297146638</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL‎-00074" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1728297146638</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -716,7 +750,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Moved action line from header to main sheet area" />
     <MESSAGE value="Moved selecting cells from commands to sheet" />
     <MESSAGE value="Added sort dialog" />
     <MESSAGE value="Sort started working a bit..." />
@@ -741,7 +774,8 @@
     <MESSAGE value="Small progress..." />
     <MESSAGE value="My first file upload!!!" />
     <MESSAGE value="Added session using cookies! :)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added session using cookies! :)" />
+    <MESSAGE value="Added some preparations for user and permission modules in engine..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added some preparations for user and permission modules in engine..." />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

@@ -11,8 +11,8 @@ import entities.sheet.DTOSheet;
 import entities.stl.STLLayout;
 import entities.stl.STLSheet;
 import exceptions.InvalidXMLException;
-import exceptions.NoExistenceException;
 import jakarta.xml.bind.JAXBException;
+import permission.PermissionType;
 import permission.SheetData;
 import utils.Filter;
 import utils.Sorter;
@@ -21,48 +21,77 @@ import utils.Utils;
 import java.util.*;
 
 public class EngineImpl implements Engine {
-    private final int maxRows = 50;
-    private final int maxCols = 20;
+    private final int MAX_ROWS = 50;
+    private final int MAX_COLS = 20;
     //private List<CoreSheet> coreSheets;
     private CoreSheet subCoreSheet;
-    private Map<String,SheetData> sheetName2SheetDataList;
+    private final Map<String,SheetData> sheetName2SheetDataList;
 
 
     public EngineImpl() {
-        this.coreSheets = new LinkedList<>();
+        this.sheetName2SheetDataList = new HashMap<>();
     }
 
 
     @Override
-    public Sheet getSheet() {
-        if (coreSheets.isEmpty()) {
+    public Sheet getSheet(String sheetName) {
+        SheetData sheetData = sheetName2SheetDataList.get(sheetName);
+        if (sheetData == null) {
             return null;
         }
-        return getSheet(coreSheets.size() - 1);
+        List<CoreSheet> coreSheetsVersions = sheetData.getSheetVersions();
+        if (coreSheetsVersions == null) {
+            return null;
+        }
+
+        return coreSheetsVersions.getLast();
     }
 
     @Override
-    public Sheet getSheet(int version) {
-        return Optional.ofNullable(coreSheets.get(version))
-                .map(this::generateDTOSheet)
-                .orElseThrow(() -> new NoExistenceException("No sheet found"));
+    public Sheet getSheet(String sheetName, int version) {
+        SheetData sheetData = sheetName2SheetDataList.get(sheetName);
+        if (sheetData == null) {
+            return null;
+        }
+        List<CoreSheet> coreSheetsVersions = sheetData.getSheetVersions();
+        if (coreSheetsVersions == null || coreSheetsVersions.size() <= version) {
+            return null;
+        }
+
+        return coreSheetsVersions.get(version);
     }
 
     @Override
-    public synchronized List<Sheet> getSheetList() {
-        List<Sheet> sheets = new LinkedList<>();
-        coreSheets.forEach(coreSheet -> {
-            DTOSheet dtoSheet = generateDTOSheet(coreSheet);
-            sheets.add(dtoSheet);
-        });
+    public synchronized List<Sheet> getSheetList(String sheetName) {
+        if (sheetName2SheetDataList.containsKey(sheetName)) {
+            List<Sheet> sheets = new LinkedList<>();
+            sheetName2SheetDataList.get(sheetName).getSheetVersions().forEach(coreSheet -> {
+                DTOSheet dtoSheet = generateDTOSheet(coreSheet);
+                sheets.add(dtoSheet);
+            });
 
-        return sheets;
+            return sheets;
+        }
+        return null;
+    }
+
+    @Override
+    public List<SheetData> getUserSheets(String username) {
+        List<SheetData> userSheets = new ArrayList<>();
+        for (String sheetName : sheetName2SheetDataList.keySet()) {
+            SheetData sheetData = sheetName2SheetDataList.get(sheetName);
+            PermissionType permission = sheetData.getPermission(username);
+            if (permission == PermissionType.OWNER) {
+                userSheets.add(sheetData);
+            }
+        }
+        return userSheets;
     }
 
     @Override
     public synchronized void saveStateToFile(String fullFilePath) {
         fullFilePath = Utils.trimQuotes(fullFilePath);
-        FileIOHandler.saveCoreSheetsToFile(coreSheets, fullFilePath);
+        //FileIOHandler.saveCoreSheetsToFile(coreSheets, fullFilePath);
     }
 
     @Override
@@ -80,18 +109,24 @@ public class EngineImpl implements Engine {
     }
 
     @Override
-    public synchronized void addRange(String rangeName, String fromCellID, String toCellID) {
-        coreSheets.getLast().addRange(rangeName, fromCellID, toCellID);
+    public synchronized void addRange(String sheetName, String rangeName, String fromCellID, String toCellID) {
+        if (sheetName2SheetDataList.containsKey(sheetName)) {
+            SheetData sheetData = sheetName2SheetDataList.get(sheetName);
+            sheetData.getSheetVersions().getLast().addRange(rangeName, fromCellID, toCellID);
+        }
     }
 
     @Override
-    public synchronized void deleteRange(String rangeName) {
-        coreSheets.getLast().deleteRange(rangeName);
+    public synchronized void deleteRange(String sheetName, String rangeName) {
+        if (sheetName2SheetDataList.containsKey(sheetName)) {
+            SheetData sheetData = sheetName2SheetDataList.get(sheetName);
+            sheetData.getSheetVersions().getLast().deleteRange(rangeName);
+        }
     }
 
     @Override
-    public void setSubSheet(String fromCellID, String toCellID) {
-        subCoreSheet = makeSubSheet(fromCellID, toCellID);
+    public void setSubSheet(String sheetName, String fromCellID, String toCellID) {
+        subCoreSheet = makeSubSheet(sheetName,fromCellID, toCellID);
     }
 
     @Override
@@ -104,7 +139,7 @@ public class EngineImpl implements Engine {
     }
 
     @Override
-    public synchronized void loadSheetFromXMLFile(String fullFilePath,String uploaderUsername) {
+    public synchronized void loadSheetFromXMLFile(String fullFilePath, String uploaderUsername) {
         STLSheet stlSheet;
         fullFilePath = Utils.trimQuotes(fullFilePath);
         try {
@@ -154,20 +189,21 @@ public class EngineImpl implements Engine {
             STLLayout stlLayout = optionalSTLSheet.get().getSTLLayout();
             int rows = stlLayout.getRows();
             int columns = stlLayout.getColumns();
-            if (rows > maxRows || columns > maxCols || rows < 1 || columns < 1 ) {
+            if (rows > MAX_ROWS || columns > MAX_COLS || rows < 1 || columns < 1 ) {
                 throw new InvalidXMLException("Sheet layout is invalid", String.valueOf(rows) + "," + String.valueOf(columns));
             }
         }
     }
 
     @Override
-    public Cell getSpecificCell(String cellName) {
-        return CoordinateFactory.getCellObjectFromCellID(coreSheets.getLast(), cellName);
+    public Cell getSpecificCell(String sheetName, String cellName) {
+        CoreSheet coreSheet = sheetName2SheetDataList.get(sheetName).getSheetVersions().getLast();
+        return CoordinateFactory.getCellObjectFromCellID(coreSheet, cellName);
     }
 
     @Override
-    public synchronized void updateSpecificCell(String cellName, String originalExpression,String sheetName) {
-        if ()
+    public synchronized void updateSpecificCell(String cellName, String originalExpression, String sheetName) {
+        List<CoreSheet> coreSheets = sheetName2SheetDataList.get(sheetName).getSheetVersions();
         CoreSheet cloned = coreSheets.getLast().cloneWithSerialization();
         cloned.incrementVersion();
         cloned.initializeNumOfCellsChanged();
@@ -189,29 +225,31 @@ public class EngineImpl implements Engine {
         return new DTOSheet(coreSheet);
     }
 
-    private CoreSheet makeSubSheet(String fromCellID, String toCellID) {
+    private CoreSheet makeSubSheet(String sheetName, String fromCellID, String toCellID) {
+        CoreSheet coreSheet = sheetName2SheetDataList.get(sheetName).getSheetVersions().getLast();
         int numOfRows, numOfCols;
         Coordinates topLeftCoordinates = new Coordinates(fromCellID);
         Coordinates bottomRightCoordinates = new Coordinates(toCellID);
-        Range.validateRange(coreSheets.getLast(),topLeftCoordinates.getRow(), topLeftCoordinates.getCol(),
+        Range.validateRange(coreSheet,topLeftCoordinates.getRow(), topLeftCoordinates.getCol(),
                 bottomRightCoordinates.getRow(), bottomRightCoordinates.getCol());
-        return new CoreSheet(coreSheets.getLast(),topLeftCoordinates,bottomRightCoordinates);
+        return new CoreSheet(coreSheet,topLeftCoordinates,bottomRightCoordinates);
     }
 
-    public List<Integer> sort(List<String> colNames, String fromCellID, String toCellID, boolean isSortingFirstRow) {
-        Sheet subSheet = makeSubSheet(fromCellID, toCellID);
+    @Override
+    public List<Integer> sort(String sheetName, List<String> colNames, String fromCellID, String toCellID, boolean isSortingFirstRow) {
+        Sheet subSheet = makeSubSheet(sheetName, fromCellID, toCellID);
         return Sorter.sortRowsByColumns(subSheet,colNames,isSortingFirstRow);
     }
 
     @Override
-    public List<Object> getEffectiveValuesInSpecificCol(String colName, String fromCellID, String toCellID) {
-        Sheet subSheet = makeSubSheet(fromCellID, toCellID);
+    public List<Object> getEffectiveValuesInSpecificCol(String sheetName, String colName, String fromCellID, String toCellID) {
+        Sheet subSheet = makeSubSheet(sheetName,fromCellID, toCellID);
         return Filter.getEffectiveValuesInSpecificCol(subSheet,colName);
     }
 
     @Override
-    public Set<Integer> filter(String colName,List<Object> effectiveValuesToFilterBy, String fromCellID, String toCellID, boolean isFilteringEmptyCells) {
-        Sheet subSheet = makeSubSheet(fromCellID, toCellID);
+    public Set<Integer> filter(String sheetName, String colName, List<Object> effectiveValuesToFilterBy, String fromCellID, String toCellID, boolean isFilteringEmptyCells) {
+        Sheet subSheet = makeSubSheet(sheetName, fromCellID, toCellID);
         return Filter.filter(subSheet,colName,effectiveValuesToFilterBy,isFilteringEmptyCells);
     }
 }
