@@ -9,22 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Adding a module for dtos...">
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Small updates...">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/client_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/common_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/server.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/server.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/ui_jar.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/builder/DynamicSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/builder/DynamicSheet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/builder/DynamicSheetBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/builder/DynamicSheetBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/SheetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/SheetController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/utils/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/init/ContextInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/init/ContextInitializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/servlets/FileUploadServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/FileUploadServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/web/web/web/WEB-INF/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/range/Range.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/range/Range.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/core/OperationFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/core/OperationFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/utils/Filter.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/utils/Filter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/utils/Sorter.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/utils/Sorter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +84,7 @@
     "Application.Unnamed.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Tomcat Server.Server.executor": "Debug",
+    "Tomcat Server.Server.executor": "Run",
     "Tomcat Server.Tomcat 10.1.26.executor": "Run",
     "extract.method.default.visibility": "private",
     "git-widget-placeholder": "master",
@@ -105,7 +96,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "vue.rearranger.settings.migration": "true"
@@ -120,7 +111,7 @@
       <recent name="C:\Users\omesi\IdeaProjects\Sheet-Cell\lib\javafx-sdk-22.0.2" />
     </key>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Server">
+  <component name="RunManager" selected="Application.Client">
     <configuration name="Client" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -306,15 +297,7 @@
       <workItem from="1728126291809" duration="15000" />
       <workItem from="1728126460871" duration="6000" />
       <workItem from="1728126478794" duration="21422000" />
-      <workItem from="1728573584321" duration="3669000" />
-    </task>
-    <task id="LOCAL‎-00028" summary="Simplified coordinates handling and and convertion">
-      <option name="closed" value="true" />
-      <created>1725281080412</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL‎-00028" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1725281080412</updated>
+      <workItem from="1728573584321" duration="5540000" />
     </task>
     <task id="LOCAL‎-00029" summary="Added logical operations">
       <option name="closed" value="true" />
@@ -700,7 +683,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1728553407701</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL‎-00077" summary="Small updates...">
+      <option name="closed" value="true" />
+      <created>1728577305984</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL‎-00077" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1728577305984</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -719,7 +710,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Sort started working a bit..." />
     <MESSAGE value="Sort is working (On my tests...)" />
     <MESSAGE value="Some tries to improve functionality..." />
     <MESSAGE value="Added first-row-ignoring option, and added button for animations" />
@@ -744,7 +734,8 @@
     <MESSAGE value="Added some preparations for user and permission modules in engine..." />
     <MESSAGE value="Another progress..." />
     <MESSAGE value="Adding a module for dtos..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding a module for dtos..." />
+    <MESSAGE value="Small updates..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Small updates..." />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
