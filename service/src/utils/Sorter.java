@@ -75,7 +75,7 @@ public class Sorter {
             List<Cell> values = new ArrayList<>();
             RowData currentRow;
             for (String colName : colNames) {
-                int col = CoordinateFactory.convertColumnStringToIndex(colName);
+                int col = Coordinates.convertColumnStringToIndex(colName);
                 Cell cell = sheet.getCell(row, col);
                 values.add(cell);
             }
@@ -118,7 +118,7 @@ public class Sorter {
         int numCols = sheet.getNumOfCols();
         for (int i = isSortingFirstRow? 0 : 1; i < numRows; i++) {
             for (String colName : colNames) {
-                int j = CoordinateFactory.convertColumnStringToIndex(colName);
+                int j = Coordinates.convertColumnStringToIndex(colName);
                 Cell cell = sheet.getCell(i, j);
                 if (cell != null) {
                     Object effectiveValue = cell.getEffectiveValue();

@@ -13,7 +13,7 @@ public class DTOCell implements Cell {
     private final Set<Coordinates> cellsAffectedByMe;
     private final Set<Coordinates> cellsAffectingMe;
 
-    public DTOCell(CoreCell coreCell)
+    public DTOCell(Cell coreCell)
     {
         coordinates= coreCell.getCoordinates();
         version = coreCell.getVersion();

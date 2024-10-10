@@ -52,10 +52,10 @@ public class DynamicSheetBuilder {
         GridPane gridPane = newDynamicSheet.getGridPane();
         Map<Coordinates,CellController> coordinates2CellController = newDynamicSheet.getCoordinates2CellController();
 
-        int rowStart = CoordinateFactory.getRowIndexFromCellID(fromCellID);
-        int colStart = CoordinateFactory.getColIndexFromCellID(fromCellID);
-        int rowEnd = CoordinateFactory.getRowIndexFromCellID(toCellID);
-        int colEnd = CoordinateFactory.getColIndexFromCellID(toCellID);
+        int rowStart = Coordinates.getRowIndexFromCellID(fromCellID);
+        int colStart = Coordinates.getColIndexFromCellID(fromCellID);
+        int rowEnd = Coordinates.getRowIndexFromCellID(toCellID);
+        int colEnd = Coordinates.getColIndexFromCellID(toCellID);
         int numRows = rowEnd - rowStart + 1;
         int numCols = colEnd - colStart + 1;
         int rowHeight = mainSheet.getLayout().getRowHeightUnits() * FACTOR;
@@ -118,8 +118,8 @@ public class DynamicSheetBuilder {
         GridPane gridPane = newDynamicSheet.getGridPane();
         Map<Coordinates,CellController> coordinates2CellController = newDynamicSheet.getCoordinates2CellController();
 
-        int rowStart = CoordinateFactory.getRowIndexFromCellID(fromCellID);
-        int colStart = CoordinateFactory.getColIndexFromCellID(fromCellID);
+        int rowStart = Coordinates.getRowIndexFromCellID(fromCellID);
+        int colStart = Coordinates.getColIndexFromCellID(fromCellID);
         int numRows = subDynamicSheet.getGridPane().getRowCount()-1;
         int numCols = subDynamicSheet.getGridPane().getColumnCount()-1;
         int rowHeight = mainSheet.getLayout().getRowHeightUnits() * FACTOR;

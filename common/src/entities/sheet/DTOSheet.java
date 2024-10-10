@@ -3,15 +3,16 @@ package entities.sheet;
 import entities.cell.Cell;
 import entities.cell.DTOCell;
 import entities.coordinates.Coordinates;
-import entities.range.Range;
+import entities.range.RangeInterface;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class DTOSheet implements Sheet {
     private Map<Coordinates,DTOCell> cellsMap;
-    private Map<String, Range> rangesMap;
+    private Map<String, RangeInterface> rangesMap;
     private final int numOfRows;
     private final int numOfColumns;
     private final int version;
@@ -19,27 +20,41 @@ public class DTOSheet implements Sheet {
     private final Layout layout;
     private final String name;
 
-    public DTOSheet(CoreSheet coreSheet) {
+    public DTOSheet(Sheet coreSheet) {
         this.numOfRows = coreSheet.getNumOfRows();
         this.numOfColumns = coreSheet.getNumOfCols();
         this.version = coreSheet.getVersion();
         this.layout = coreSheet.getLayout();
         this.name = coreSheet.getName();
         this.numOfCellsChanged = coreSheet.getNumOfCellsChanged();
-        this.rangesMap = coreSheet.getRangesMap();
-        if (coreSheet.getCoreCellsMap() != null) {
+        this.rangesMap = coreSheet.getRangesInterfaceMap();
+        if (coreSheet.getCellMap() != null) {
             this.cellsMap = new HashMap<>();
-            coreSheet.getCoreCellsMap().forEach((coordinates, cell) -> cellsMap.put(coordinates, new DTOCell(cell)));
+            coreSheet.getCellMap().forEach((coordinates, cell) -> cellsMap.put(coordinates, new DTOCell(cell)));
         }
     }
 
     public int getNumOfRows() {return this.numOfRows;}
     public int getNumOfCols() {return this.numOfColumns;}
     public int getVersion() {return this.version;}
-    public Range getRange(String name) {return rangesMap.get(name);}
+    public RangeInterface getRange(String name) {return rangesMap.get(name);}
     public Set<String> getRangesNames() {return rangesMap.keySet();}
+
+    @Override
+    public Map<String, RangeInterface> getRangesInterfaceMap() {
+        return Map.of();
+    }
+
     public Layout getLayout() {return layout;}
     public String getName() {return name;}
     public int getNumOfCellsChanged() {return this.numOfCellsChanged;}
     public Cell getCell(int row, int col) {return cellsMap.get(new Coordinates(row, col));}
+
+    @Override
+    public Map<Coordinates, Cell> getCellMap() {
+        Map<Coordinates, Cell> result = cellsMap.entrySet().stream()
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
+        return result;
+    }
 }

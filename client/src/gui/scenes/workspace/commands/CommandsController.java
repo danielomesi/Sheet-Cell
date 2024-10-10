@@ -1,6 +1,7 @@
 package gui.scenes.workspace.commands;
 
 import entities.range.Range;
+import entities.range.RangeInterface;
 import gui.scenes.workspace.main.MainController;
 import gui.utils.Utils;
 import javafx.beans.binding.BooleanBinding;
@@ -90,7 +91,7 @@ public class CommandsController {
     @FXML
     void handleOnRangeSelect(ActionEvent event) {
         String rangeName = rangeComboBox.getSelectionModel().getSelectedItem();
-        Range range = mainController.getCurrentLoadedSheet().getRange(rangeName);
+        RangeInterface range = mainController.getCurrentLoadedSheet().getRange(rangeName);
         mainController.getSheetController().highlightChosenRangeCells(range);
     }
 

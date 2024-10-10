@@ -3,6 +3,7 @@ package gui.scenes.workspace.sheet;
 import entities.cell.Cell;
 import entities.coordinates.Coordinates;
 import entities.range.Range;
+import entities.range.RangeInterface;
 import entities.sheet.Sheet;
 import gui.builder.DynamicSheet;
 import gui.scenes.workspace.sheet.cell.CellController;
@@ -180,7 +181,7 @@ public class SheetController {
         return res;
     }
 
-    public void highlightChosenRangeCells(Range range) {
+    public void highlightChosenRangeCells(RangeInterface range) {
         if (range != null) {
             resetStyles();
             for(Coordinates coordinates : range.getCells()) {

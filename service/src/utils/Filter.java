@@ -2,6 +2,7 @@ package utils;
 
 import entities.cell.Cell;
 import entities.coordinates.CoordinateFactory;
+import entities.coordinates.Coordinates;
 import entities.sheet.Sheet;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class Filter {
 
         for (int row = 0; row < numRows; row++) {
             List<Cell> values = new ArrayList<>();
-            int col = CoordinateFactory.convertColumnStringToIndex(colName);
+            int col = Coordinates.convertColumnStringToIndex(colName);
             Cell cell = sheet.getCell(row, col);
             if (cell != null) {
                 effectiveValues.add(cell.getEffectiveValue());
@@ -28,7 +29,7 @@ public class Filter {
 
     public static Set<Integer> filter(Sheet sheet,String colName, List<Object> effectiveValues, boolean isFilteringEmptyCells) {
         Set<Integer> rowsIndexedToIncludeInFilterRes = new HashSet<>();
-        int colIndex = CoordinateFactory.convertColumnStringToIndex(colName);
+        int colIndex = Coordinates.convertColumnStringToIndex(colName);
         for (int row = 0; row < sheet.getNumOfRows(); row++) {
             Cell cell = sheet.getCell(row, colIndex);
             if (cell == null) {

@@ -5,6 +5,7 @@ import entities.coordinates.Coordinates;
 import entities.cell.CoreCell;
 import entities.coordinates.CoordinateFactory;
 import entities.range.Range;
+import entities.range.RangeInterface;
 import entities.stl.STLCell;
 import entities.stl.STLSheet;
 import exceptions.CloneFailureException;
@@ -20,9 +21,9 @@ import java.util.List;
 import java.io.*;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static utils.FunctionParser.isStringANumber;
-import static utils.FunctionParser.parseArgument;
 
 public class CoreSheet implements Sheet {
     private final Map<Coordinates, CoreCell> cellsMap = new HashMap<>();
@@ -74,7 +75,7 @@ public class CoreSheet implements Sheet {
         CoreCell coreCell;
         for (STLCell stlCell : STLCells) {
             int i = stlCell.getRow() - 1;
-            int j = CoordinateFactory.convertColumnStringToIndex(stlCell.getColumn());
+            int j = Coordinates.convertColumnStringToIndex(stlCell.getColumn());
             Utils.validateInRange(i, 0, numOfRows);
             Utils.validateInRange(j, 0, numOfCols);
             Coordinates coordinates = new Coordinates(i, j);
@@ -120,8 +121,23 @@ public class CoreSheet implements Sheet {
     public Cell getCell(int row, int col) {return CoordinateFactory.getCellObjectFromIndices(this, row, col);}
     public Set<String> getRangesNames() {return rangesMap.keySet();}
 
+    @Override
+    public Map<Coordinates, Cell> getCellMap() {
+        Map<Coordinates, Cell> result = cellsMap.entrySet().stream()
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
+        return result;
+    }
+
     public Map<Coordinates, CoreCell> getCoreCellsMap() {return cellsMap;}
-    public Map<String,Range> getRangesMap() {return rangesMap;}
+    public Map<String, Range> getRangesMap() {return rangesMap;}
+    public Map<String, RangeInterface> getRangesInterfaceMap() {
+        Map<String,RangeInterface> result = new HashMap<>();
+        for (String rangeName : rangesMap.keySet()) {
+            result.put(rangeName, rangesMap.get(rangeName));
+        }
+        return result;
+    }
     public void incrementVersion() {version++;}
     public void incrementNumOfCellsChanged() {numOfCellsChanged++;}
     public void initializeNumOfCellsChanged() {numOfCellsChanged = 0;}
@@ -174,7 +190,7 @@ public class CoreSheet implements Sheet {
 
     private boolean isCellInsideSTLList(int i, int j, List<STLCell> stlCells) {
         for (STLCell stlCell : stlCells) {
-            if ( (i == stlCell.getRow()-1) && (j == CoordinateFactory.convertColumnStringToIndex(stlCell.getColumn())) ) {
+            if ( (i == stlCell.getRow()-1) && (j == Coordinates.convertColumnStringToIndex(stlCell.getColumn())) ) {
                 return true;
             }
         }

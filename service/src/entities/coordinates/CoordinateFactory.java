@@ -5,6 +5,8 @@ import entities.sheet.CoreSheet;
 import exceptions.CellOutOfBoundsException;
 import exceptions.InvalidArgumentException;
 
+import static entities.coordinates.Coordinates.*;
+
 public class CoordinateFactory {
 
     public static CoreCell getCellObjectFromCellID(CoreSheet sheet, String cellName) {
@@ -22,10 +24,7 @@ public class CoordinateFactory {
         return getCellObjectFromIndices(sheet,rowIndex,colIndex);
     }
 
-    public static int convertColumnCharToIndex(Character ch) {
-        ch = Character.toUpperCase(ch);
-        return ch - 'A';
-    }
+
 
     public static Coordinates getIndicesFromCellObject(CoreCell cell) {
         return new Coordinates(cell.getCoordinates().getRow(), cell.getCoordinates().getCol());
@@ -42,12 +41,7 @@ public class CoordinateFactory {
         return sheet.getCoreCellsMap().get(coordinates);
     }
 
-    public static String getCellIDFromIndices(int rowIndex, int colIndex) {
-        char colChar = (char) ('A' + colIndex);
-        int rowNumber = rowIndex + 1;
 
-        return colChar + Integer.toString(rowNumber);
-    }
 
     public static int[] getIndicesFromCellID(String cellID) {
         int[] indices = new int[2];
@@ -63,43 +57,9 @@ public class CoordinateFactory {
         return indices;
     }
 
-    public static int getRowIndexFromCellID(String cellID) {
-        String rowPart = cellID.replaceAll("\\D", "");
-        if (rowPart.isEmpty()) {
-            throw new InvalidArgumentException("Invalid cell format", cellID);
-        }
 
-        return Integer.parseInt(rowPart) - 1;
-    }
 
-    public static int getColIndexFromCellID(String cellID) {
-        String columnPart = cellID.replaceAll("\\d", "");
-        if (columnPart.length() != 1) {
-            throw new InvalidArgumentException("Invalid cell format", cellID);
-        }
-        Character colChar = columnPart.charAt(0);
 
-        return convertColumnCharToIndex(colChar);
-    }
-
-    public static int convertColumnStringToIndex(String columnString) {
-        int result;
-        if (columnString !=null && columnString.length() == 1) {
-            char colChar = columnString.charAt(0);
-            colChar = Character.toUpperCase(colChar);
-            if (colChar >= 'A' && colChar <= 'Z') {
-                result = convertColumnCharToIndex(colChar);
-            }
-            else {
-                throw new InvalidArgumentException("Column id must be an alphabetical letter", columnString);
-            }
-        }
-        else {
-            throw new InvalidArgumentException("Invalid column id representation format", columnString);
-        }
-
-        return result;
-    }
 
     public static String numberToLetter(int number) {
         if (number < 0 || number > 25) {

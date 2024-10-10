@@ -10,7 +10,7 @@ import utils.Utils;
 import java.io.Serializable;
 import java.util.*;
 
-public class Range implements Serializable {
+public class Range implements RangeInterface {
     private String name;
     private Set<Coordinates> cells;
 

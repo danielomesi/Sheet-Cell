@@ -9,54 +9,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added some preparations for user and permission modules in engine...">
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Another progress...">
+      <change afterPath="$PROJECT_DIR$/common/common.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/entities/range/RangeInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/filter/FilterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/filter/FilterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sort/SortController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sort/SortController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/http/HttpClientMessenger.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/http/HttpClientMessenger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/servlets/FileUploadServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/FileUploadServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/engine/FileIOHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/FileIOHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/builder/ControllersBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/builder/DynamicSheet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/builder/DynamicSheetBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/appearance/AppearanceController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/appearance/appearance.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/commands/CommandsController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/commands/commands.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/filter/FilterController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/filter/filter.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/header/HeaderController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/header/header.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/main/MainController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/main/main.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sheet/SheetController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sheet/cell/CellController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sheet/cell/TableCellType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sheet/cell/cell.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sheet/cell/cellStyle.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sheet/sheet.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sort/SortController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/sort/sort.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/styles/Dark.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/styles/Default.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/styles/Generic Style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/styles/Maccabi.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/styles/resources/background-1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/styles/resources/background-2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/components/styles/resources/background-3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/core/App.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/core/DataModule.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/exceptions/GUIException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/exceptions/RowOutOfBoundsException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/exceptions/UnsupportedFileFormatException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/gui/utils/Utils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/ui.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/client/client.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/builder/DynamicSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/builder/DynamicSheet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/builder/DynamicSheetBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/builder/DynamicSheetBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/commands/CommandsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/commands/CommandsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/SheetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/SheetController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/service.iml" beforeDir="false" afterPath="$PROJECT_DIR$/service/service.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/cell/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/entities/cell/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/cell/CoreCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/cell/CoreCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/cell/DTOCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/entities/cell/DTOCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/coordinates/CoordinateFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/coordinates/CoordinateFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/coordinates/Coordinates.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/entities/coordinates/Coordinates.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/range/Range.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/range/Range.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/sheet/DTOSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/entities/sheet/DTOSheet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/sheet/Layout.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/entities/sheet/Layout.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/sheet/Sheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/entities/sheet/Sheet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/types/undefined/Undefined.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/entities/types/undefined/Undefined.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/types/undefined/UndefinedBoolean.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/entities/types/undefined/UndefinedBoolean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/types/undefined/UndefinedNumber.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/entities/types/undefined/UndefinedNumber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/types/undefined/UndefinedString.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/entities/types/undefined/UndefinedString.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/utils/Filter.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/utils/Filter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/utils/Sorter.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/utils/Sorter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,9 +46,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Interface" />
         <option value="FxmlFile" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -137,7 +116,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Artifacts",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "vue.rearranger.settings.migration": "true"
@@ -152,7 +131,7 @@
       <recent name="C:\Users\omesi\IdeaProjects\Sheet-Cell\lib\javafx-sdk-22.0.2" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Client">
+  <component name="RunManager" selected="Tomcat Server.Server">
     <configuration name="Client" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -337,15 +316,7 @@
       <workItem from="1728126123999" duration="140000" />
       <workItem from="1728126291809" duration="15000" />
       <workItem from="1728126460871" duration="6000" />
-      <workItem from="1728126478794" duration="17689000" />
-    </task>
-    <task id="LOCAL‎-00026" summary="Fixed bug in ref operation handling">
-      <option name="closed" value="true" />
-      <created>1724959894009</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL‎-00026" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1724959894009</updated>
+      <workItem from="1728126478794" duration="20743000" />
     </task>
     <task id="LOCAL‎-00027" summary="Took out tostrings out of the service module, to the ui module">
       <option name="closed" value="true" />
@@ -731,7 +702,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1728297146638</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL‎-00075" summary="Another progress...">
+      <option name="closed" value="true" />
+      <created>1728545060203</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL‎-00075" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1728545060203</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -750,7 +729,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Moved selecting cells from commands to sheet" />
     <MESSAGE value="Added sort dialog" />
     <MESSAGE value="Sort started working a bit..." />
     <MESSAGE value="Sort is working (On my tests...)" />
@@ -775,7 +753,8 @@
     <MESSAGE value="My first file upload!!!" />
     <MESSAGE value="Added session using cookies! :)" />
     <MESSAGE value="Added some preparations for user and permission modules in engine..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added some preparations for user and permission modules in engine..." />
+    <MESSAGE value="Another progress..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Another progress..." />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

@@ -109,6 +109,6 @@ public class CoreCell implements Cell {
 
     @Override
     public String toString() {
-        return "["+ CoordinateFactory.getCellIDFromIndices(coordinates.getRow(), coordinates.getCol()) +"]: "+effectiveValue.toString();
+        return "["+ Coordinates.getCellIDFromIndices(coordinates.getRow(), coordinates.getCol()) +"]: "+effectiveValue.toString();
     }
 }

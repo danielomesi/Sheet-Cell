@@ -80,7 +80,7 @@ public class DynamicSheet {
 
     public void addSuffixToHeaders(int colLenBetweenSubSheetToMasterSheet, int rowLenBetweenSubSheetAndMasterSheet) {
         string2ColCellController.forEach((colNumber1Indexed, cellController)->{
-            int colNum = CoordinateFactory.getColIndexFromCellID(colNumber1Indexed) - 1; //make zero-indexed
+            int colNum = Coordinates.getColIndexFromCellID(colNumber1Indexed) - 1; //make zero-indexed
             int suffixedColIndex = colNum + colLenBetweenSubSheetToMasterSheet;
             String suffixedCol = CoordinateFactory.numberToLetter(suffixedColIndex);
             String originalCol = cellController.getLabelText();
