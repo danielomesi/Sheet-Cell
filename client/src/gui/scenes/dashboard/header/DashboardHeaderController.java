@@ -42,6 +42,7 @@ public class DashboardHeaderController {
     @FXML
     private VBox vBoxHeader;
 
+    public Label getTaskStatusLabel() {return taskStatusLabel;}
     public void setMainController(DashboardMainController mainController) {this.mainController = mainController;}
 
     @FXML

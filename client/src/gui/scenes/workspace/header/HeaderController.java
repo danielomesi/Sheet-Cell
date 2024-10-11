@@ -60,25 +60,24 @@ public class HeaderController {
 
     @FXML
     void handleLoadFileButtonClick(ActionEvent event) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open Resource File");
-        
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("XML Files", "*.xml")
-                ,new FileChooser.ExtensionFilter("Data Files", "*.dat"));
-        
-        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow(); 
-        File file = fileChooser.showOpenDialog(stage);
-
-        if (file != null) {
-            boolean isAnimationsEnabled = mainController.getAppearanceController().isAnimationsEnabled();
-            Task<Void> task = Utils.getTaskFromRunnable(() -> mainController.loadFile(file.getAbsolutePath())
-                    , taskStatusLabel,taskProgressBar, isAnimationsEnabled);
-            task.setOnSucceeded(e -> {
-                filePathLabel.setText(file.getName());
-            });
-
-            Utils.runTaskInADaemonThread(task);
-        }
+//        FileChooser fileChooser = new FileChooser();
+//        fileChooser.setTitle("Open Resource File");
+//
+//        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("XML Files", "*.xml")
+//                ,new FileChooser.ExtensionFilter("Data Files", "*.dat"));
+//
+//        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+//        File file = fileChooser.showOpenDialog(stage);
+//
+//        if (file != null) {
+//            boolean isAnimationsEnabled = mainController.getAppearanceController().isAnimationsEnabled();
+//            Task<Void> task = Utils.getTaskFromRunnable(, isAnimationsEnabled);
+//            task.setOnSucceeded(e -> {
+//                filePathLabel.setText(file.getName());
+//            });
+//
+//            Utils.runTaskInADaemonThread(task);
+//        }
     }
 }
 

@@ -82,16 +82,16 @@ public class MainController {
         isSheetLoaded = new SimpleBooleanProperty(false);
     }
 
-    public void loadFile(String filePath) {
-        toDoOnSuccessfulFileLoad();
+    public void loadFile(Sheet sheet) {
+        toDoOnSuccessfulFileLoad(sheet);
     }
 
     public void saveFile(String filePath) {
         engine.saveStateToFile(filePath);
     }
 
-    public void toDoOnSuccessfulFileLoad() {
-        currentLoadedSheet = engine.getSheet(currentSheetName);
+    public void toDoOnSuccessfulFileLoad(Sheet sheet) {
+        currentLoadedSheet = sheet;
         Platform.runLater(() -> {
             dataModule.buildModule(currentLoadedSheet.getNumOfRows(),currentLoadedSheet.getNumOfCols(),currentLoadedSheet.getRangesNames());
             sheetController.initActionLineControls();

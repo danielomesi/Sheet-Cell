@@ -18,4 +18,5 @@ public class Constants {
     public final static String LOGIN = FULL_SERVER_PATH + "/login";
     public final static String LOGOUT = FULL_SERVER_PATH + "/logout";
     public final static String USERS_LIST = FULL_SERVER_PATH + "/userslist";
+    public final static String GET_SHEET = FULL_SERVER_PATH + "/sheet";
 }

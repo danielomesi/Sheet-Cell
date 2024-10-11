@@ -29,5 +29,7 @@ public class DashboardMainController {
     public void setHeaderController(DashboardHeaderController headerController) {this.headerController = headerController;}
     public void setSheetsTableController(SheetsTableController sheetsTableController) {this.sheetsTableController = sheetsTableController;}
     public SheetsTableController getSheetsTableController() {return sheetsTableController;}
+    public DashboardHeaderController getHeaderController() {return headerController;}
     public BorderPane getMainBorderPane() {return mainBorderPane;}
+    public ClientApp getClientApp() {return clientApp;}
 }

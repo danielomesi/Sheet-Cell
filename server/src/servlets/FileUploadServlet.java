@@ -9,11 +9,11 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.MultipartConfig;
+import utils.HttpResponseUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.io.PrintWriter;
 import java.util.Collection;
 import java.util.Scanner;
 
@@ -23,25 +23,11 @@ public class FileUploadServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession(false); // Get existing session, don't create if it doesn't exist
-        if (session == null) {
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            response.getWriter().println("No session found. Please log in.");
-            return;
-        }
-
-        // Retrieve the JSESSIONID
-        String sessionId = session.getId();
-        System.out.println("JSESSIONID: " + sessionId);
-
-        // Retrieve the username stored in the session
-        String username = (String) session.getAttribute("username");
+        HttpSession session = request.getSession(false);
+        String username = HttpResponseUtils.getUsernameBySessionOrUpdateResponse(session,response);
         if (username == null) {
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            response.getWriter().println("No username found in session. Please log in.");
             return;
         }
-
         System.out.println("Username from session: " + username);
 
         StringBuilder allContent = new StringBuilder();

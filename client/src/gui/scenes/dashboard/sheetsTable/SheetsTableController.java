@@ -1,14 +1,25 @@
 package gui.scenes.dashboard.sheetsTable;
 
+import com.google.gson.Gson;
+import entities.sheet.Sheet;
 import entities.sheet.SheetMetaData;
 import gui.scenes.dashboard.main.DashboardMainController;
+import http.HttpClientMessenger;
+import http.constants.Constants;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import okhttp3.*;
+import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
 
 public class SheetsTableController {
 
@@ -16,6 +27,9 @@ public class SheetsTableController {
 
     @FXML
     private TableView<SheetTableEntry> tableView;
+
+    @FXML
+    private Button viewSheetButton;
 
     @FXML
     private ScrollPane wrapper;
@@ -36,6 +50,11 @@ public class SheetsTableController {
 
         TableColumn<SheetTableEntry, String> accessLevelColumn = (TableColumn<SheetTableEntry, String>) tableView.getColumns().get(3);
         accessLevelColumn.setCellValueFactory(new PropertyValueFactory<>("accessLevel"));
+
+        tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            // Enable the button if a row is selected, otherwise disable it
+            viewSheetButton.setDisable(newValue == null);
+        });
     }
 
     public void addTableEntry(SheetMetaData sheetMetaData) {
@@ -43,5 +62,49 @@ public class SheetsTableController {
         SheetTableEntry tableEntry = new SheetTableEntry(sheetMetaData.getUploaderName(),sheetMetaData.getSheetName(),
                 sheetSize,"OWNER");
         tableView.getItems().add(tableEntry);
+    }
+
+    @FXML
+    void viewSheetButtonClicked(ActionEvent event) {
+        String sheetName = tableView.getSelectionModel().getSelectedItem().getSheetName();
+
+        String finalUrl = HttpUrl
+                .parse(Constants.GET_SHEET)
+                .newBuilder()
+                .addQueryParameter("name", sheetName)
+                .build()
+                .toString();
+
+        HttpClientMessenger.sendGetRequestWithoutBodyAsync(finalUrl, new Callback() {
+
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                Platform.runLater(() ->
+                        dashboardMainController.getHeaderController().getTaskStatusLabel().setText("Something went wrong: " + e.getMessage())
+                );
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                HttpClientMessenger.genericOnResponseHandler(
+                        () -> {
+                            try {
+                                ResponseBody responseBody = response.body();
+                                Gson gson = new Gson();
+                                Sheet sheet = gson.fromJson(responseBody.string(), Sheet.class);
+                                switchSceneToWorkspace(sheet);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+
+                        },
+                        response, dashboardMainController.getHeaderController().getTaskStatusLabel()
+                );
+            }
+        });
+    }
+
+    public void  switchSceneToWorkspace(Sheet sheet) throws IOException {
+        dashboardMainController.getClientApp().switchSceneToWorkspace(sheet);
     }
 }
