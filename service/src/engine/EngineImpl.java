@@ -38,7 +38,7 @@ public class EngineImpl implements Engine {
             return null;
         }
 
-        return coreSheetsVersions.getLast();
+        return new DTOSheet(coreSheetsVersions.getLast());
     }
 
     @Override
@@ -52,7 +52,7 @@ public class EngineImpl implements Engine {
             return null;
         }
 
-        return coreSheetsVersions.get(version);
+        return new DTOSheet(coreSheetsVersions.get(version));
     }
 
     @Override

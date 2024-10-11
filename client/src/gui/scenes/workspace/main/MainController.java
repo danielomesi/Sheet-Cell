@@ -92,7 +92,7 @@ public class MainController {
 
     public void toDoOnSuccessfulFileLoad(Sheet sheet) {
         currentLoadedSheet = sheet;
-        Platform.runLater(() -> {
+        //Platform.runLater(() -> {
             dataModule.buildModule(currentLoadedSheet.getNumOfRows(),currentLoadedSheet.getNumOfCols(),currentLoadedSheet.getRangesNames());
             sheetController.initActionLineControls();
             sheetController.buildMainCellsTableDynamically(currentLoadedSheet);
@@ -101,7 +101,7 @@ public class MainController {
             appearanceController.updateMyControlsOnFileLoad();
             dataModule.updateModule(currentLoadedSheet);
             isSheetLoaded.setValue(true);
-        } );
+       // } );
     }
 
     public void calculateCellUpdate(Coordinates coordinates, String originalExpression) {

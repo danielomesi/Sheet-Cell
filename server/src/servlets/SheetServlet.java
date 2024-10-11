@@ -2,6 +2,7 @@ package servlets;
 
 import com.google.gson.Gson;
 import engine.Engine;
+import entities.sheet.DTOSheet;
 import entities.sheet.Sheet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -47,17 +48,19 @@ public class SheetServlet extends HttpServlet {
         }
 
         Engine engine = (Engine) getServletContext().getAttribute("engine");
-        Sheet sheet;
+        DTOSheet sheet;
         if (version == -1) {
-            sheet = engine.getSheet(sheetName);
+            sheet = (DTOSheet) engine.getSheet(sheetName);
         }
         else {
-            sheet = engine.getSheet(sheetName, version);
+            sheet = (DTOSheet) engine.getSheet(sheetName, version);
         }
 
         Gson gson = new Gson();
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        gson.toJson(sheet, response.getWriter());
+        String responseJson = gson.toJson(sheet);
+        System.out.println("Sending: " + responseJson);
+        response.getWriter().write(responseJson);
     }
 }

@@ -9,20 +9,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Populated Sheets Table with actual data from server">
-      <change afterPath="$PROJECT_DIR$/server/src/servlets/SheetServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/utils/HttpResponseUtils.java" afterDir="false" />
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Managed to switch scene to workspace on button click">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/DashboardHeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/DashboardHeaderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/header.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/header.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/DashboardMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/DashboardMainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/SheetsTableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/SheetsTableController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/sheetsTable.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/sheetsTable.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/header/HeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/header/HeaderController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/http/constants/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/http/constants/Constants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/servlets/FileUploadServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/FileUploadServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/servlets/SheetServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/SheetServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +97,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Artifacts",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.pluginManager",
@@ -309,15 +303,7 @@
       <workItem from="1728581006442" duration="259000" />
       <workItem from="1728595482683" duration="25000" />
       <workItem from="1728595515488" duration="605000" />
-      <workItem from="1728635992036" duration="9158000" />
-    </task>
-    <task id="LOCAL‎-00032" summary="Created dynamic table for sheet view">
-      <option name="closed" value="true" />
-      <created>1725726253453</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL‎-00032" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1725726253453</updated>
+      <workItem from="1728635992036" duration="11148000" />
     </task>
     <task id="LOCAL‎-00033" summary="Added update option">
       <option name="closed" value="true" />
@@ -703,7 +689,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1728641531192</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL‎-00081" summary="Managed to switch scene to workspace on button click">
+      <option name="closed" value="true" />
+      <created>1728655032960</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL‎-00081" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1728655032961</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -722,7 +716,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added filtering dialog with working menu..." />
     <MESSAGE value="need to continue working on filtering..." />
     <MESSAGE value="Filter is working better now..." />
     <MESSAGE value="Done with all must requirements..." />
@@ -747,7 +740,8 @@
     <MESSAGE value="Finally fixed the tomcat launch error..." />
     <MESSAGE value="Populated Sheets Table" />
     <MESSAGE value="Populated Sheets Table with actual data from server" />
-    <option name="LAST_COMMIT_MESSAGE" value="Populated Sheets Table with actual data from server" />
+    <MESSAGE value="Managed to switch scene to workspace on button click" />
+    <option name="LAST_COMMIT_MESSAGE" value="Managed to switch scene to workspace on button click" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

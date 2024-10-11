@@ -1,6 +1,7 @@
 package gui.scenes.dashboard.sheetsTable;
 
 import com.google.gson.Gson;
+import entities.sheet.DTOSheet;
 import entities.sheet.Sheet;
 import entities.sheet.SheetMetaData;
 import gui.scenes.dashboard.main.DashboardMainController;
@@ -91,7 +92,9 @@ public class SheetsTableController {
                             try {
                                 ResponseBody responseBody = response.body();
                                 Gson gson = new Gson();
-                                Sheet sheet = gson.fromJson(responseBody.string(), Sheet.class);
+                                String responseBodyString = responseBody.string();
+                                System.out.println(responseBodyString);
+                                Sheet sheet = gson.fromJson(responseBodyString, DTOSheet.class);
                                 switchSceneToWorkspace(sheet);
                             } catch (IOException e) {
                                 throw new RuntimeException(e);

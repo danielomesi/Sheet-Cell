@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+//need to create a rangeDTO! it should maybe fix the problem of the deserilization not working
 public class ClientApp extends Application {
     private MainController workspaceMainController;
     private DashboardMainController dashboardMainController;
