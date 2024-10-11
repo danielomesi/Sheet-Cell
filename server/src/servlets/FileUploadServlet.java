@@ -1,8 +1,10 @@
 package servlets;
 
+import com.google.gson.Gson;
 import engine.Engine;
 import engine.EngineImpl;
 import entities.sheet.Sheet;
+import entities.sheet.SheetMetaData;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
@@ -10,6 +12,7 @@ import jakarta.servlet.annotation.MultipartConfig;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.Collection;
 import java.util.Scanner;
@@ -43,34 +46,34 @@ public class FileUploadServlet extends HttpServlet {
 
         StringBuilder allContent = new StringBuilder();
         response.setContentType("text/plain");
-        PrintWriter out = response.getWriter();
+        PrintStream consoleOut = System.out;
 
         // Get all parts from the request
         Collection<Part> parts = request.getParts();
-        out.println("Total parts: " + parts.size());
+        consoleOut.println("Total parts: " + parts.size());
 
         // Process each part
         for (Part part : parts) {
-            printPartDetails(part, out);
+            printPartDetails(part, consoleOut);
             String content = readFromInputStream(part.getInputStream());
             allContent.append(content);
-            printPartContent(content, out);
+            printPartContent(content, consoleOut);
         }
-
-        System.out.println("Received: \n" + allContent.toString());
 
         try {
             Engine engine = new EngineImpl();
             engine.loadSheetFromXMLString(allContent.toString(),username);
             Sheet sheet = engine.getUserSheets(username).getLast().getSheetVersions().getLast();
-            out.println("Sheet size is " + sheet.getNumOfRows() + ", " + sheet.getNumOfCols());
+            SheetMetaData sheetMetaData = new SheetMetaData(sheet.getName(),username,sheet.getNumOfRows(),sheet.getNumOfCols());
+            Gson gson = new Gson();
+            gson.toJson(sheetMetaData, response.getWriter());
         }
         catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void printPartDetails(Part part, PrintWriter out) {
+    private void printPartDetails(Part part, PrintStream out) {
         StringBuilder sb = new StringBuilder();
         sb.append("Parameter Name: ").append(part.getName()).append("\n")
                 .append("Content Type: ").append(part.getContentType()).append("\n")
@@ -89,7 +92,7 @@ public class FileUploadServlet extends HttpServlet {
         return new Scanner(inputStream).useDelimiter("\\Z").next();
     }
 
-    private void printPartContent(String content, PrintWriter out) {
+    private void printPartContent(String content, PrintStream out) {
         out.println("Part Content:");
         out.println(content);
     }

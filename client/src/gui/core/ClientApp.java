@@ -34,8 +34,8 @@ public class ClientApp extends Application {
 
     }
 
-    public void switchSceneToDashboard() throws IOException {
-        loadDashBoard();
+    public void switchSceneToDashboard(String username) throws IOException {
+        loadDashBoard(username);
     }
 
     public void loadLogin() throws IOException {
@@ -55,8 +55,8 @@ public class ClientApp extends Application {
         return root;
     }
 
-    public void loadDashBoard() throws IOException {
-        Parent root = setupAndGetDashboardMainComponent();
+    public void loadDashBoard(String username) throws IOException {
+        Parent root = setupAndGetDashboardMainComponent(username);
         Scene scene = new Scene(root);
         primaryStage.setTitle("Sheet Cell");
         primaryStage.setScene(scene);
@@ -64,17 +64,17 @@ public class ClientApp extends Application {
     }
 
 
-    private Parent setupAndGetDashboardMainComponent() throws IOException {
+    private Parent setupAndGetDashboardMainComponent(String username) throws IOException {
         FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("/gui/scenes/dashboard/main/main.fxml"));
         ScrollPane root = mainLoader.load();
         dashboardMainController = mainLoader.getController();
         dashboardMainController.setStage(primaryStage);
 
-        loadSubControllersOfDashboard();
+        loadSubControllersOfDashboard(username);
         return root;
     }
 
-    private void loadSubControllersOfDashboard() throws IOException {
+    private void loadSubControllersOfDashboard(String username) throws IOException {
         FXMLLoader headerLoader = new FXMLLoader(getClass().getResource("/gui/scenes/dashboard/header/header.fxml"));
         Parent headerNode = headerLoader.load();
         DashboardHeaderController headerController = headerLoader.getController();
@@ -82,6 +82,9 @@ public class ClientApp extends Application {
         FXMLLoader sheetsTableLoader = new FXMLLoader(getClass().getResource("/gui/scenes/dashboard/sheetsTable/sheetsTable.fxml"));
         Parent sheetsLoaderNode = sheetsTableLoader.load();
         SheetsTableController sheetsTableController = sheetsTableLoader.getController();
+
+        //Make main controller know the user it sits in
+        dashboardMainController.setUsername(username);
 
         // Make main controller know its sub controllers
         dashboardMainController.setHeaderController(headerController);

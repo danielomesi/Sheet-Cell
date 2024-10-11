@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 public class DashboardMainController {
     private Stage stage;
     private ClientApp clientApp;
+    private String username;
 
     //sub-controllers
     private DashboardHeaderController headerController;
@@ -22,6 +23,7 @@ public class DashboardMainController {
     @FXML
     private ScrollPane mainScrollPane;
 
+    public void setUsername(String username) {this.username = username;}
     public void setClientApp(ClientApp clientApp) {this.clientApp = clientApp;}
     public void setStage(Stage stage) {this.stage = stage;}
     public void setHeaderController(DashboardHeaderController headerController) {this.headerController = headerController;}

@@ -22,5 +22,6 @@
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 10.1.26" level="application_server_libraries" />
     <orderEntry type="module" module-name="service" />
     <orderEntry type="module" module-name="common" />
+    <orderEntry type="library" name="Gson" level="project" />
   </component>
 </module>

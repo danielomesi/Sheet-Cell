@@ -1,5 +1,6 @@
 package gui.scenes.dashboard.sheetsTable;
 
+import entities.sheet.SheetMetaData;
 import gui.scenes.dashboard.main.DashboardMainController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -37,8 +38,10 @@ public class SheetsTableController {
         accessLevelColumn.setCellValueFactory(new PropertyValueFactory<>("accessLevel"));
     }
 
-    public void addTableEntry() {
-        SheetTableEntry tableEntry = new SheetTableEntry("John","Beginner","8x10","READ");
+    public void addTableEntry(SheetMetaData sheetMetaData) {
+        String sheetSize = sheetMetaData.getNumberOfRows() + " x " + sheetMetaData.getNumberOfCols();
+        SheetTableEntry tableEntry = new SheetTableEntry(sheetMetaData.getUploaderName(),sheetMetaData.getSheetName(),
+                sheetSize,"OWNER");
         tableView.getItems().add(tableEntry);
     }
 }

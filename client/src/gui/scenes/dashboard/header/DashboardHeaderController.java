@@ -1,5 +1,7 @@
 package gui.scenes.dashboard.header;
 
+import com.google.gson.Gson;
+import entities.sheet.SheetMetaData;
 import gui.scenes.dashboard.main.DashboardMainController;
 import http.HttpClientMessenger;
 import javafx.application.Platform;
@@ -66,12 +68,24 @@ public class DashboardHeaderController {
                 @Override
                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                     HttpClientMessenger.genericOnResponseHandler( () ->
-                                    mainController.getSheetsTableController().addTableEntry(),
+                            {
+                                try {
+                                    mainController.getSheetsTableController().addTableEntry(getSheetMetaDataFromJson(response));
+                                } catch (IOException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            },
                             response, taskStatusLabel
                     );
                 }
             });
         }
+    }
+
+    private SheetMetaData getSheetMetaDataFromJson(Response response) throws IOException {
+        String json = response.body().string();
+        Gson gson = new Gson();
+        return gson.fromJson(json, SheetMetaData.class);
     }
 
     @FXML

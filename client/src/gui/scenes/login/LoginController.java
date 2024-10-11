@@ -64,7 +64,7 @@ public class LoginController {
                 HttpClientMessenger.genericOnResponseHandler(
                         () -> {
                             try {
-                                switchSceneToDashboard();
+                                switchSceneToDashboard(userName);
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
                             }
@@ -76,8 +76,8 @@ public class LoginController {
         });
     }
 
-    private void switchSceneToDashboard() throws IOException {
-        clientApp.switchSceneToDashboard();
+    private void switchSceneToDashboard(String username) throws IOException {
+        clientApp.switchSceneToDashboard(username);
     }
 
 }
