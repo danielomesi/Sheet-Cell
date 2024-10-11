@@ -26,5 +26,6 @@ public class DashboardMainController {
     public void setStage(Stage stage) {this.stage = stage;}
     public void setHeaderController(DashboardHeaderController headerController) {this.headerController = headerController;}
     public void setSheetsTableController(SheetsTableController sheetsTableController) {this.sheetsTableController = sheetsTableController;}
+    public SheetsTableController getSheetsTableController() {return sheetsTableController;}
     public BorderPane getMainBorderPane() {return mainBorderPane;}
 }

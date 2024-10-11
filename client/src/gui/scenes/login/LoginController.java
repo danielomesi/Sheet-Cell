@@ -61,23 +61,23 @@ public class LoginController {
 
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                if (response.code() != 200) {
-                    String responseBody = response.body().string();
-                    Platform.runLater(() ->
-                            errorLabel.setText("Something went wrong: " + responseBody)
-                    );
-                } else {
-                    Platform.runLater(() -> {
-                        try {
-                            clientApp.switchSceneToDashboard();
-                            errorLabel.setText("Success!");
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-                    });
-                }
+                HttpClientMessenger.genericOnResponseHandler(
+                        () -> {
+                            try {
+                                switchSceneToDashboard();
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+
+                        },
+                        response, errorLabel
+                );
             }
         });
+    }
+
+    private void switchSceneToDashboard() throws IOException {
+        clientApp.switchSceneToDashboard();
     }
 
 }

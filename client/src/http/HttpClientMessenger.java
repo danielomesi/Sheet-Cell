@@ -1,5 +1,7 @@
 package http;
 
+import javafx.application.Platform;
+import javafx.scene.control.Label;
 import okhttp3.*;
 import okhttp3.JavaNetCookieJar;
 import java.io.File;
@@ -23,7 +25,7 @@ public class HttpClientMessenger {
 
     public static HttpClientMessenger getInstance() {return messenger;}
 
-    public static void sendFileToServer(File file) {
+    public static void sendFileToServer(File file,Callback callback) {
         if (file.exists()) {
             try {
                 RequestBody requestBody = new MultipartBody.Builder()
@@ -37,14 +39,11 @@ public class HttpClientMessenger {
                         .post(requestBody)
                         .build();
 
-                try (Response response = messenger.client.newCall(request).execute()) {
-                    if (response.isSuccessful()) {
-                        System.out.println("Response from server: " + response.body().string());
-                    } else {
-                        System.err.println("Request failed: " + response.message());
-                    }
-                }
-            } catch (IOException e) {
+                Call call = messenger.client.newCall(request);
+                call.enqueue(callback);
+
+            }
+            catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -58,5 +57,16 @@ public class HttpClientMessenger {
         Call call = messenger.client.newCall(request);
 
         call.enqueue(callback);
+    }
+
+    public static void genericOnResponseHandler(Runnable runnable, Response response, Label errorLabel) throws IOException {
+        if (response.code() != 200) {
+            String responseBody = response.body().string();
+            Platform.runLater(() ->
+                    errorLabel.setText("Something went wrong: " + responseBody)
+            );
+        } else {
+            Platform.runLater(runnable);
+        }
     }
 }
