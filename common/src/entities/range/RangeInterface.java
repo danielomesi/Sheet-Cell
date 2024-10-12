@@ -9,5 +9,6 @@ public interface RangeInterface extends Serializable {
 
     public Set<Coordinates> getCells();
 
+    public String getName();
 }
 

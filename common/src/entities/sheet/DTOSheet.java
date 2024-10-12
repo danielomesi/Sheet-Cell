@@ -3,6 +3,7 @@ package entities.sheet;
 import entities.cell.Cell;
 import entities.cell.DTOCell;
 import entities.coordinates.Coordinates;
+import entities.range.RangeDTO;
 import entities.range.RangeInterface;
 
 import java.util.HashMap;
@@ -12,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class DTOSheet implements Sheet {
     private Map<Coordinates,DTOCell> cellsMap;
-    private Map<String, RangeInterface> rangesMap;
+    private final Map<String, RangeDTO> rangesMap;
     private final int numOfRows;
     private final int numOfColumns;
     private final int version;
@@ -27,7 +28,7 @@ public class DTOSheet implements Sheet {
         this.layout = coreSheet.getLayout();
         this.name = coreSheet.getName();
         this.numOfCellsChanged = coreSheet.getNumOfCellsChanged();
-        this.rangesMap = coreSheet.getRangesInterfaceMap();
+        this.rangesMap = coreSheet.getRangesDTOeMap();
         if (coreSheet.getCellMap() != null) {
             this.cellsMap = new HashMap<>();
             coreSheet.getCellMap().forEach((coordinates, cell) -> cellsMap.put(coordinates, new DTOCell(cell)));
@@ -41,9 +42,7 @@ public class DTOSheet implements Sheet {
     public Set<String> getRangesNames() {return rangesMap.keySet();}
 
     @Override
-    public Map<String, RangeInterface> getRangesInterfaceMap() {
-        return Map.of();
-    }
+    public Map<String, RangeDTO> getRangesDTOeMap() {return rangesMap;}
 
     public Layout getLayout() {return layout;}
     public String getName() {return name;}

@@ -14,7 +14,7 @@ public class Range implements RangeInterface {
     private Set<Coordinates> cells;
 
     public Set<Coordinates> getCells() {return cells;}
-
+    public String getName() {return name;}
     public Range(String name,Sheet sheet, String fromCellID, String toCellID) {
         this(sheet,fromCellID,toCellID);
         validateRangeName(name);

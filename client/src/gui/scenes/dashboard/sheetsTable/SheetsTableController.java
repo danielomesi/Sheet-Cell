@@ -1,6 +1,11 @@
 package gui.scenes.dashboard.sheetsTable;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonSyntaxException;
+import com.google.gson.reflect.TypeToken;
+import entities.cell.DTOCell;
+import entities.coordinates.Coordinates;
 import entities.sheet.DTOSheet;
 import entities.sheet.Sheet;
 import entities.sheet.SheetMetaData;
@@ -17,10 +22,13 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import json.CellsMapDeserializer;
+import json.EffectiveValueDeserializer;
 import okhttp3.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
+import java.util.Map;
 
 public class SheetsTableController {
 
@@ -91,12 +99,16 @@ public class SheetsTableController {
                         () -> {
                             try {
                                 ResponseBody responseBody = response.body();
-                                Gson gson = new Gson();
+                                Gson gson = new GsonBuilder().registerTypeAdapter(Object.class, new EffectiveValueDeserializer())
+                                        .registerTypeAdapter(new TypeToken<Map<Coordinates, DTOCell>>(){}.getType(), new CellsMapDeserializer())
+                                        .create();
                                 String responseBodyString = responseBody.string();
                                 System.out.println(responseBodyString);
-                                Sheet sheet = gson.fromJson(responseBodyString, DTOSheet.class);
+                                DTOSheet sheet = gson.fromJson(responseBodyString, DTOSheet.class);
                                 switchSceneToWorkspace(sheet);
-                            } catch (IOException e) {
+                            } catch (IOException | JsonSyntaxException e) {
+                                e.printStackTrace();
+                                System.out.println(e.getMessage());
                                 throw new RuntimeException(e);
                             }
 

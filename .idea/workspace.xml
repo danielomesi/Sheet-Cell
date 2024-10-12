@@ -9,14 +9,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Managed to switch scene to workspace on button click">
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added gson serialization and deserialization (still working on it...)">
+      <change afterPath="$PROJECT_DIR$/client/src/json/CellsMapDeserializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/json/EffectiveValueDeserializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/entities/range/RangeDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/SheetsTableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/SheetsTableController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/servlets/FileUploadServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/FileUploadServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/servlets/SheetServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/SheetServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/entities/range/RangeInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/entities/range/RangeInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/entities/sheet/DTOSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/entities/sheet/DTOSheet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/entities/sheet/Sheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/entities/sheet/Sheet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/range/Range.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/range/Range.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +116,7 @@
       <recent name="C:\Users\omesi\IdeaProjects\Sheet-Cell\lib\javafx-sdk-22.0.2" />
     </key>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Server">
+  <component name="RunManager" selected="Application.Client">
     <configuration name="Client" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -303,15 +306,8 @@
       <workItem from="1728581006442" duration="259000" />
       <workItem from="1728595482683" duration="25000" />
       <workItem from="1728595515488" duration="605000" />
-      <workItem from="1728635992036" duration="11148000" />
-    </task>
-    <task id="LOCAL‎-00033" summary="Added update option">
-      <option name="closed" value="true" />
-      <created>1725891402115</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL‎-00033" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1725891402115</updated>
+      <workItem from="1728635992036" duration="11192000" />
+      <workItem from="1728740640825" duration="4501000" />
     </task>
     <task id="LOCAL‎-00034" summary="Fixed bug of empty cell update">
       <option name="closed" value="true" />
@@ -697,7 +693,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1728655032961</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL‎-00082" summary="Added gson serialization and deserialization (still working on it...)">
+      <option name="closed" value="true" />
+      <created>1728656899143</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL‎-00082" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1728656899143</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -716,7 +720,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="need to continue working on filtering..." />
     <MESSAGE value="Filter is working better now..." />
     <MESSAGE value="Done with all must requirements..." />
     <MESSAGE value="Added styles..." />
@@ -741,9 +744,28 @@
     <MESSAGE value="Populated Sheets Table" />
     <MESSAGE value="Populated Sheets Table with actual data from server" />
     <MESSAGE value="Managed to switch scene to workspace on button click" />
-    <option name="LAST_COMMIT_MESSAGE" value="Managed to switch scene to workspace on button click" />
+    <MESSAGE value="Added gson serialization and deserialization (still working on it...)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added gson serialization and deserialization (still working on it...)" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.IllegalStateException" package="java.lang" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/client/src/json/EffectiveValueDeserializer.java</url>
+          <line>13</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$PROJECT_DIR$/lib/Gson/gson-2.1-sources.jar!/com/google/gson/stream/JsonReader.java</url>
+          <line>336</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="service.operations.PLUSOperation" memberName="sheet" />
@@ -753,6 +775,7 @@
     <watches-manager>
       <configuration name="Application">
         <watch expression="MainController.engine" language="JAVA" custom="gui.components.main.MainController" />
+        <watch expression="token" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>

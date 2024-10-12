@@ -5,6 +5,7 @@ import entities.coordinates.Coordinates;
 import entities.cell.CoreCell;
 import entities.coordinates.CoordinateFactory;
 import entities.range.Range;
+import entities.range.RangeDTO;
 import entities.range.RangeInterface;
 import entities.stl.STLCell;
 import entities.stl.STLSheet;
@@ -131,10 +132,10 @@ public class CoreSheet implements Sheet {
 
     public Map<Coordinates, CoreCell> getCoreCellsMap() {return cellsMap;}
     public Map<String, Range> getRangesMap() {return rangesMap;}
-    public Map<String, RangeInterface> getRangesInterfaceMap() {
-        Map<String,RangeInterface> result = new HashMap<>();
+    public Map<String, RangeDTO> getRangesDTOeMap() {
+        Map<String, RangeDTO> result = new HashMap<>();
         for (String rangeName : rangesMap.keySet()) {
-            result.put(rangeName, rangesMap.get(rangeName));
+            result.put(rangeName, new RangeDTO(rangesMap.get(rangeName)));
         }
         return result;
     }

@@ -2,6 +2,7 @@ package entities.sheet;
 
 import entities.cell.Cell;
 import entities.coordinates.Coordinates;
+import entities.range.RangeDTO;
 import entities.range.RangeInterface;
 
 import java.io.Serializable;
@@ -19,5 +20,5 @@ public interface Sheet extends Serializable {
     public int getNumOfCellsChanged();
     public RangeInterface getRange(String name);
     public Set<String> getRangesNames();
-    public Map<String, RangeInterface> getRangesInterfaceMap();
+    public Map<String, RangeDTO> getRangesDTOeMap();
 }
