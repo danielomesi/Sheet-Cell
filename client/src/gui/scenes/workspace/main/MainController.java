@@ -1,8 +1,10 @@
 package gui.scenes.workspace.main;
 
+import com.google.gson.JsonSyntaxException;
 import engine.Engine;
 import engine.EngineImpl;
 import entities.coordinates.Coordinates;
+import entities.sheet.DTOSheet;
 import entities.sheet.Sheet;
 import gui.builder.DynamicSheetBuilder;
 import gui.builder.DynamicSheet;
@@ -15,6 +17,8 @@ import gui.scenes.workspace.sort.SortController;
 import gui.builder.ControllersBuilder;
 import gui.core.DataModule;
 import gui.utils.Utils;
+import http.HttpClientMessenger;
+import http.constants.Constants;
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -23,7 +27,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import json.GsonInstance;
+import okhttp3.*;
+import org.jetbrains.annotations.NotNull;
 
+import java.io.IOException;
 import java.util.List;
 
 public class MainController {
@@ -92,25 +100,64 @@ public class MainController {
 
     public void toDoOnSuccessfulFileLoad(Sheet sheet) {
         currentLoadedSheet = sheet;
-        //Platform.runLater(() -> {
-            dataModule.buildModule(currentLoadedSheet.getNumOfRows(),currentLoadedSheet.getNumOfCols(),currentLoadedSheet.getRangesNames());
-            sheetController.initActionLineControls();
-            sheetController.buildMainCellsTableDynamically(currentLoadedSheet);
-            sheetController.updateMyControlsOnFileLoad();
-            commandsController.updateMyControlsOnFileLoad();
-            appearanceController.updateMyControlsOnFileLoad();
-            dataModule.updateModule(currentLoadedSheet);
-            isSheetLoaded.setValue(true);
-       // } );
+        currentSheetName = sheet.getName();
+        dataModule.buildModule(currentLoadedSheet.getNumOfRows(),currentLoadedSheet.getNumOfCols(),currentLoadedSheet.getRangesNames());
+        sheetController.initActionLineControls();
+        sheetController.buildMainCellsTableDynamically(currentLoadedSheet);
+        sheetController.updateMyControlsOnFileLoad();
+        commandsController.updateMyControlsOnFileLoad();
+        appearanceController.updateMyControlsOnFileLoad();
+        dataModule.updateModule(currentLoadedSheet);
+        isSheetLoaded.setValue(true);
     }
 
     public void calculateCellUpdate(Coordinates coordinates, String originalExpression) {
-        engine.updateSpecificCell(currentSheetName, coordinates.getCellID(), originalExpression);
-        currentLoadedSheet = engine.getSheet(currentSheetName);
-        Platform.runLater(()-> {
-            dataModule.updateModule(currentLoadedSheet);
-            sheetController.resetVersionComboBoxChoice();
+        String finalUrl = HttpUrl
+                .parse(Constants.GET_CELL_ON_UPDATE)
+                .newBuilder()
+                .addQueryParameter("name", currentSheetName)
+                .addQueryParameter("expression", originalExpression)
+                .addQueryParameter("cellID",coordinates.getCellID())
+                .build()
+                .toString();
+
+        HttpClientMessenger.sendGetRequestWithoutBodyAsync(finalUrl, new Callback() {
+
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                Platform.runLater(() ->
+                        getHeaderController().getTaskStatusLabel().setText("Something went wrong: " + e.getMessage())
+                );
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                HttpClientMessenger.genericOnResponseHandler(
+                        () -> {
+                            try (ResponseBody responseBody = response.body()) {
+                                try {
+                                    String responseBodyString = responseBody.string();
+                                    System.out.println(responseBodyString);
+                                    currentLoadedSheet = GsonInstance.getGson().fromJson(responseBodyString, DTOSheet.class);
+                                    response.close();
+                                    Platform.runLater(()-> {
+                                        dataModule.updateModule(currentLoadedSheet);
+                                        sheetController.resetVersionComboBoxChoice();
+                                    });
+                                } catch (IOException | JsonSyntaxException e) {
+                                    e.printStackTrace();
+                                    System.out.println(e.getMessage());
+                                    throw new RuntimeException(e);
+                                }
+                            }
+
+
+                        },
+                        response, getHeaderController().getTaskStatusLabel()
+                );
+            }
         });
+
     }
 
     public void generateVersionWindow(int chosenVersion) {

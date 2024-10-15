@@ -61,10 +61,12 @@ public class HttpClientMessenger {
 
     public static void genericOnResponseHandler(Runnable runnable, Response response, Label errorLabel) throws IOException {
         if (response.code() != 200) {
-            String responseBody = response.body().string();
-            Platform.runLater(() ->
-                    errorLabel.setText("Something went wrong: " + responseBody)
-            );
+            try (ResponseBody body = response.body()) {
+                String responseBody = response.body().string();
+                Platform.runLater(() ->
+                        errorLabel.setText("Something went wrong: " + responseBody)
+                );
+            }
         } else {
             Platform.runLater(runnable);
         }

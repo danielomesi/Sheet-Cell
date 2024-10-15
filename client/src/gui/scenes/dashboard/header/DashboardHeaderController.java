@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
@@ -70,11 +71,14 @@ public class DashboardHeaderController {
                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                     HttpClientMessenger.genericOnResponseHandler( () ->
                             {
-                                try {
-                                    mainController.getSheetsTableController().addTableEntry(getSheetMetaDataFromJson(response));
-                                } catch (IOException e) {
-                                    throw new RuntimeException(e);
+                                try (ResponseBody responseBody = response.body()) {
+                                    try {
+                                        mainController.getSheetsTableController().addTableEntry(getSheetMetaDataFromJson(response));
+                                    } catch (IOException e) {
+                                        throw new RuntimeException(e);
+                                    }
                                 }
+
                             },
                             response, taskStatusLabel
                     );

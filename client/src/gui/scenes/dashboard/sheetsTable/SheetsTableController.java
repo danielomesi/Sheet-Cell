@@ -24,6 +24,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import json.CellsMapDeserializer;
 import json.EffectiveValueDeserializer;
+import json.GsonInstance;
 import okhttp3.*;
 import org.jetbrains.annotations.NotNull;
 
@@ -97,21 +98,18 @@ public class SheetsTableController {
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 HttpClientMessenger.genericOnResponseHandler(
                         () -> {
-                            try {
-                                ResponseBody responseBody = response.body();
-                                Gson gson = new GsonBuilder().registerTypeAdapter(Object.class, new EffectiveValueDeserializer())
-                                        .registerTypeAdapter(new TypeToken<Map<Coordinates, DTOCell>>(){}.getType(), new CellsMapDeserializer())
-                                        .create();
-                                String responseBodyString = responseBody.string();
-                                System.out.println(responseBodyString);
-                                DTOSheet sheet = gson.fromJson(responseBodyString, DTOSheet.class);
-                                switchSceneToWorkspace(sheet);
-                            } catch (IOException | JsonSyntaxException e) {
-                                e.printStackTrace();
-                                System.out.println(e.getMessage());
-                                throw new RuntimeException(e);
+                            try (ResponseBody responseBody = response.body()) {
+                                try {
+                                    String responseBodyString = responseBody.string();
+                                    System.out.println(responseBodyString);
+                                    DTOSheet sheet = GsonInstance.getGson().fromJson(responseBodyString, DTOSheet.class);
+                                    switchSceneToWorkspace(sheet);
+                                } catch (IOException | JsonSyntaxException e) {
+                                    e.printStackTrace();
+                                    System.out.println(e.getMessage());
+                                    throw new RuntimeException(e);
+                                }
                             }
-
                         },
                         response, dashboardMainController.getHeaderController().getTaskStatusLabel()
                 );
