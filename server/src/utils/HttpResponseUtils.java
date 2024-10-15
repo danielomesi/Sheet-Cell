@@ -1,5 +1,7 @@
 package utils;
 
+import exceptions.ServiceException;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
@@ -26,5 +28,11 @@ public class HttpResponseUtils {
             return null;
         }
         return username;
+    }
+
+    public static void sendExceptionAsErrorToClient(Exception e, HttpServletResponse resp) throws IOException {
+        e.printStackTrace();
+        String errorBody = e instanceof ServiceException se ? se.toString() : e.getMessage();
+        resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, errorBody);
     }
 }

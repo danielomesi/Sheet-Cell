@@ -2,6 +2,7 @@ package gui.scenes.login;
 
 import gui.core.ClientApp;
 import http.HttpClientMessenger;
+import http.MyResponseHandler;
 import http.constants.Constants;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -61,15 +62,14 @@ public class LoginController {
 
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                HttpClientMessenger.genericOnResponseHandler(
-                        () -> {
-                            try {
-                                switchSceneToDashboard(userName);
-                            } catch (IOException e) {
-                                throw new RuntimeException(e);
-                            }
-
-                        },
+                HttpClientMessenger.genericOnResponseHandler(new MyResponseHandler() {
+                         @Override
+                         public void handle(String body) {
+                             try {
+                                 switchSceneToDashboard(userName);
+                             } catch (Exception ignored) {}
+                         }
+                     },
                         response, errorLabel
                 );
             }

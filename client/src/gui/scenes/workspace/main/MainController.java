@@ -18,7 +18,10 @@ import gui.builder.ControllersBuilder;
 import gui.core.DataModule;
 import gui.utils.Utils;
 import http.HttpClientMessenger;
+import http.MyResponseHandler;
 import http.constants.Constants;
+import http.dtos.AddRangeDTO;
+import http.dtos.CellUpdateDTO;
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -115,13 +118,12 @@ public class MainController {
         String finalUrl = HttpUrl
                 .parse(Constants.GET_CELL_ON_UPDATE)
                 .newBuilder()
-                .addQueryParameter("name", currentSheetName)
-                .addQueryParameter("expression", originalExpression)
-                .addQueryParameter("cellID",coordinates.getCellID())
                 .build()
                 .toString();
 
-        HttpClientMessenger.sendGetRequestWithoutBodyAsync(finalUrl, new Callback() {
+        CellUpdateDTO cellUpdateDTO = new CellUpdateDTO(coordinates.getCellID(),originalExpression,currentSheetName);
+
+        HttpClientMessenger.sendPostRequestWithBodyAsync(finalUrl,cellUpdateDTO, new Callback() {
 
             @Override
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
@@ -132,32 +134,16 @@ public class MainController {
 
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                HttpClientMessenger.genericOnResponseHandler(
-                        () -> {
-                            try (ResponseBody responseBody = response.body()) {
-                                try {
-                                    String responseBodyString = responseBody.string();
-                                    System.out.println(responseBodyString);
-                                    currentLoadedSheet = GsonInstance.getGson().fromJson(responseBodyString, DTOSheet.class);
-                                    response.close();
-                                    Platform.runLater(()-> {
-                                        dataModule.updateModule(currentLoadedSheet);
-                                        sheetController.resetVersionComboBoxChoice();
-                                    });
-                                } catch (IOException | JsonSyntaxException e) {
-                                    e.printStackTrace();
-                                    System.out.println(e.getMessage());
-                                    throw new RuntimeException(e);
-                                }
-                            }
-
-
-                        },
+                HttpClientMessenger.genericOnResponseHandler(new MyResponseHandler() {
+                                                                 @Override
+                                                                 public void handle(String body) {
+                                                                     updateSheet();
+                                                                 }
+                                                             },
                         response, getHeaderController().getTaskStatusLabel()
                 );
             }
         });
-
     }
 
     public void generateVersionWindow(int chosenVersion) {
@@ -181,9 +167,71 @@ public class MainController {
     }
 
     public void addRange(String rangeName,String fromCellID,String toCellID) {
-        engine.addRange(currentSheetName, rangeName, fromCellID, toCellID);
-        currentLoadedSheet = engine.getSheet(currentSheetName);
-        Platform.runLater(() -> dataModule.updateModule(currentLoadedSheet));
+        String finalUrl = HttpUrl
+                .parse(Constants.RANGE)
+                .newBuilder()
+                .build()
+                .toString();
+
+        AddRangeDTO addRangeDTO = new AddRangeDTO(currentSheetName, rangeName,fromCellID,toCellID);
+
+        HttpClientMessenger.sendPostRequestWithBodyAsync(finalUrl,addRangeDTO ,new Callback() {
+
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                Platform.runLater(() ->
+                        getHeaderController().getTaskStatusLabel().setText("Something went wrong: " + e.getMessage())
+                );
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                HttpClientMessenger.genericOnResponseHandler(new MyResponseHandler() {
+                         @Override
+                         public void handle(String body) {
+                             updateSheet();
+                         }
+                     },
+                        response, getHeaderController().getTaskStatusLabel()
+                );
+            }
+        });
+    }
+
+    public void updateSheet() {
+        String finalUrl = HttpUrl
+                .parse(Constants.GET_SHEET)
+                .newBuilder()
+                .addQueryParameter("name",currentSheetName)
+                .build()
+                .toString();
+
+
+        HttpClientMessenger.sendGetRequestWithoutBodyAsync(finalUrl, new Callback() {
+
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                Platform.runLater(() ->
+                        getHeaderController().getTaskStatusLabel().setText("Something went wrong: " + e.getMessage())
+                );
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                HttpClientMessenger.genericOnResponseHandler(new MyResponseHandler() {
+                         @Override
+                         public void handle(String body) {
+                             System.out.println(body);
+                             currentLoadedSheet = GsonInstance.getGson().fromJson(body, DTOSheet.class);
+                             dataModule.updateModule(currentLoadedSheet);
+                             sheetController.resetVersionComboBoxChoice();
+                         }
+                     }
+                        ,
+                        response, getHeaderController().getTaskStatusLabel()
+                );
+            }
+        });
     }
 
     public void deleteRange(String rangeName) {

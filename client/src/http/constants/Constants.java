@@ -20,4 +20,5 @@ public class Constants {
     public final static String USERS_LIST = FULL_SERVER_PATH + "/userslist";
     public final static String GET_SHEET = FULL_SERVER_PATH + "/sheet";
     public final static String GET_CELL_ON_UPDATE = FULL_SERVER_PATH + "/update";
+    public final static String RANGE = FULL_SERVER_PATH + "/range";
 }

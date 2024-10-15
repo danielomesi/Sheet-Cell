@@ -5,6 +5,7 @@ import engine.Engine;
 import entities.sheet.DTOSheet;
 import entities.sheet.Sheet;
 import exceptions.ServiceException;
+import http.dtos.AddRangeDTO;
 import http.dtos.CellUpdateDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -15,10 +16,9 @@ import jakarta.servlet.http.HttpSession;
 import utils.HttpResponseUtils;
 
 import java.io.IOException;
-import java.rmi.ServerException;
 
-@WebServlet(name = "Cell Update",urlPatterns = "/update")
-public class CellUpdateServlet extends HttpServlet {
+@WebServlet(name = "Range",urlPatterns = "/range")
+public class RangeServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
@@ -29,16 +29,21 @@ public class CellUpdateServlet extends HttpServlet {
             }
 
             Gson gson = new Gson();
-            CellUpdateDTO cellUpdateDTO = gson.fromJson(request.getReader(), CellUpdateDTO.class);
+            AddRangeDTO addRangeDTO = gson.fromJson(request.getReader(), AddRangeDTO.class);
 
 
-            String sheetName = cellUpdateDTO.getSheetName();
-            String expression = cellUpdateDTO.getExpression();
-            String cellID = cellUpdateDTO.getCellName();
+            String sheetName = addRangeDTO.getSheetName();
+            String fromCellID = addRangeDTO.getBottomRightCellID();
+            String toCellID = addRangeDTO.getTopLeftCellID();
+            String rangeName = addRangeDTO.getRangeName();
+
+            if (sheetName == null || sheetName.isEmpty()) {
+                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Sheet name is required");
+                return;
+            }
 
             Engine engine = (Engine) getServletContext().getAttribute("engine");
-            engine.updateSpecificCell(cellID,expression,sheetName);
-
+            engine.addRange(sheetName, rangeName, fromCellID, toCellID);
             response.setStatus(HttpServletResponse.SC_OK);
         }
         catch (Exception e) {
@@ -47,3 +52,4 @@ public class CellUpdateServlet extends HttpServlet {
 
     }
 }
+

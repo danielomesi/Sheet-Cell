@@ -11,6 +11,7 @@ import entities.sheet.Sheet;
 import entities.sheet.SheetMetaData;
 import gui.scenes.dashboard.main.DashboardMainController;
 import http.HttpClientMessenger;
+import http.MyResponseHandler;
 import http.constants.Constants;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -96,21 +97,20 @@ public class SheetsTableController {
 
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                HttpClientMessenger.genericOnResponseHandler(
-                        () -> {
-                            try (ResponseBody responseBody = response.body()) {
-                                try {
-                                    String responseBodyString = responseBody.string();
-                                    System.out.println(responseBodyString);
-                                    DTOSheet sheet = GsonInstance.getGson().fromJson(responseBodyString, DTOSheet.class);
-                                    switchSceneToWorkspace(sheet);
-                                } catch (IOException | JsonSyntaxException e) {
-                                    e.printStackTrace();
-                                    System.out.println(e.getMessage());
-                                    throw new RuntimeException(e);
-                                }
-                            }
-                        },
+                HttpClientMessenger.genericOnResponseHandler(new MyResponseHandler() {
+                     @Override
+                     public void handle(String body) {
+                         try {
+                             System.out.println(body);
+                             DTOSheet sheet = GsonInstance.getGson().fromJson(body, DTOSheet.class);
+                             switchSceneToWorkspace(sheet);
+                         } catch (IOException | JsonSyntaxException e) {
+                             e.printStackTrace();
+                             System.out.println(e.getMessage());
+                             throw new RuntimeException(e);
+                         }
+                     }
+                                                             },
                         response, dashboardMainController.getHeaderController().getTaskStatusLabel()
                 );
             }

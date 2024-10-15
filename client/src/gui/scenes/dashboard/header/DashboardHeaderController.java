@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import entities.sheet.SheetMetaData;
 import gui.scenes.dashboard.main.DashboardMainController;
 import http.HttpClientMessenger;
+import http.MyResponseHandler;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -69,17 +70,12 @@ public class DashboardHeaderController {
 
                 @Override
                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                    HttpClientMessenger.genericOnResponseHandler( () ->
-                            {
-                                try (ResponseBody responseBody = response.body()) {
-                                    try {
-                                        mainController.getSheetsTableController().addTableEntry(getSheetMetaDataFromJson(response));
-                                    } catch (IOException e) {
-                                        throw new RuntimeException(e);
-                                    }
-                                }
-
-                            },
+                    HttpClientMessenger.genericOnResponseHandler(new MyResponseHandler() {
+                         @Override
+                         public void handle(String body) {
+                             mainController.getSheetsTableController().addTableEntry(getSheetMetaDataFromJson(body)) ;
+                         }
+                     },
                             response, taskStatusLabel
                     );
                 }
@@ -87,10 +83,9 @@ public class DashboardHeaderController {
         }
     }
 
-    private SheetMetaData getSheetMetaDataFromJson(Response response) throws IOException {
-        String json = response.body().string();
-        Gson gson = new Gson();
-        return gson.fromJson(json, SheetMetaData.class);
+    private SheetMetaData getSheetMetaDataFromJson(String json) {
+            Gson gson = new Gson();
+            return gson.fromJson(json, SheetMetaData.class);
     }
 
     @FXML

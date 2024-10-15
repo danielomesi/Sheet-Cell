@@ -2,6 +2,7 @@ package http;
 
 import javafx.application.Platform;
 import javafx.scene.control.Label;
+import json.GsonInstance;
 import okhttp3.*;
 import okhttp3.JavaNetCookieJar;
 import java.io.File;
@@ -59,16 +60,47 @@ public class HttpClientMessenger {
         call.enqueue(callback);
     }
 
-    public static void genericOnResponseHandler(Runnable runnable, Response response, Label errorLabel) throws IOException {
-        if (response.code() != 200) {
-            try (ResponseBody body = response.body()) {
-                String responseBody = response.body().string();
+    public static<T> void sendPostRequestWithBodyAsync(String finalUrl,T objectToSerializeInBody, Callback callback) {
+        MediaType JSON = MediaType.get("application/json; charset=utf-8");
+
+        String jsonBody = GsonInstance.getGson().toJson(objectToSerializeInBody);
+        RequestBody requestBody = RequestBody.create(jsonBody, JSON);
+
+        Request request = new Request.Builder()
+                .url(finalUrl)
+                .post(requestBody)
+                .build();
+
+        Call call = messenger.client.newCall(request);
+
+        call.enqueue(callback);
+    }
+
+    public static void genericOnResponseHandler(MyResponseHandler responseHandler, Response response, Label errorLabel) {
+        try (ResponseBody body = response.body()) {
+            String bodyAsStr = body.string();
+            if (response.code() != 200) {
                 Platform.runLater(() ->
-                        errorLabel.setText("Something went wrong: " + responseBody)
+                        errorLabel.setText("Something went wrong: " + bodyAsStr)
                 );
+            } else {
+                Platform.runLater(() -> responseHandler.handle(bodyAsStr));
             }
-        } else {
-            Platform.runLater(runnable);
         }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static String getBodyFromResponse(Response response) {
+        String res = null;
+        try (ResponseBody body = response.body()) {
+            if (body != null) {
+                res = body.string();
+            }
+        } catch (IOException e) {
+            return null;
+        }
+        return res;
     }
 }
