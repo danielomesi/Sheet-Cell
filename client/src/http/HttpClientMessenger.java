@@ -60,6 +60,17 @@ public class HttpClientMessenger {
         call.enqueue(callback);
     }
 
+    public static void sendDeleteRequestWithoutBodyAsync(String finalUrl, Callback callback) {
+        Request request = new Request.Builder()
+                .delete()
+                .url(finalUrl)
+                .build();
+
+        Call call = messenger.client.newCall(request);
+
+        call.enqueue(callback);
+    }
+
     public static<T> void sendPostRequestWithBodyAsync(String finalUrl,T objectToSerializeInBody, Callback callback) {
         MediaType JSON = MediaType.get("application/json; charset=utf-8");
 

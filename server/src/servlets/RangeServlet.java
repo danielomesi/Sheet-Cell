@@ -51,5 +51,30 @@ public class RangeServlet extends HttpServlet {
         }
 
     }
+
+    @Override
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            HttpSession session = request.getSession(false);
+            String username = HttpResponseUtils.getUsernameBySessionOrUpdateResponse(session,response);
+            if (username == null) {
+                return;
+            }
+
+            String sheetName = request.getParameter("sheet-name");
+            String rangeName = request.getParameter("range-name");
+            if (sheetName == null || sheetName.isEmpty()) {
+                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Sheet name is required");
+                return;
+            }
+
+            Engine engine = (Engine) getServletContext().getAttribute("engine");
+            engine.deleteRange(sheetName, rangeName);
+            response.setStatus(HttpServletResponse.SC_OK);
+        }
+        catch (Exception e) {
+            HttpResponseUtils.sendExceptionAsErrorToClient(e,response);
+        }
+    }
 }
 

@@ -23,8 +23,8 @@ import java.util.*;
 public class EngineImpl implements Engine {
     private final int MAX_ROWS = 50;
     private final int MAX_COLS = 20;
-    //private List<CoreSheet> coreSheets;
-    private CoreSheet subCoreSheet;
+    private final Map<String,CoreSheet> username2SubSheet = new HashMap<>();
+    //private CoreSheet subCoreSheet;
     private final Map<String,SheetData> sheetName2SheetDataList = new HashMap<>();
 
     @Override
@@ -119,17 +119,16 @@ public class EngineImpl implements Engine {
     }
 
     @Override
-    public void setSubSheet(String sheetName, String fromCellID, String toCellID) {
-        subCoreSheet = makeSubSheet(sheetName,fromCellID, toCellID);
+    public void setSubSheet(String sheetName, String fromCellID, String toCellID, String username) {
+        CoreSheet temp = makeSubSheet(sheetName,fromCellID, toCellID);
+        username2SubSheet.put(username,temp);
     }
 
     @Override
-    public Sheet getSubSheet() {
-        if (subCoreSheet != null) {
-            return generateDTOSheet(subCoreSheet);
-        }
+    public Sheet getSubSheet(String username) {
+        CoreSheet temp = username2SubSheet.get(username);
 
-        return null;
+        return temp == null ? null : generateDTOSheet(temp);
     }
 
     @Override

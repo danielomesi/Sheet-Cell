@@ -9,6 +9,8 @@ import java.util.Set;
 
 public interface Engine {
 
+    public Sheet getSubSheet(String username);
+
     public void loadSheetFromXMLFile(String fullFilePath, String uploaderUsername);
 
     public void loadSheetFromXMLString(String xmlFileContent, String uploaderUsername);
@@ -29,9 +31,7 @@ public interface Engine {
 
     public void deleteRange(String sheetName, String rangeName);
 
-    public void setSubSheet(String sheetName, String fromCellID, String toCellID);
-
-    public Sheet getSubSheet();
+    public void setSubSheet(String sheetName, String fromCellID, String toCellID, String username);
 
     public Cell getSpecificCell(String sheetName, String cellName);
 
