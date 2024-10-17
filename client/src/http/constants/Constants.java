@@ -22,4 +22,7 @@ public class Constants {
     public final static String GET_CELL_ON_UPDATE = FULL_SERVER_PATH + "/update";
     public final static String RANGE = FULL_SERVER_PATH + "/range";
     public final static String SUB_SHEET = FULL_SERVER_PATH + "/subsheet";
+    public final static String SORT = FULL_SERVER_PATH + "/sort";
+    public final static String FILTER = FULL_SERVER_PATH + "/filter";
+    public final static String DISTINCT_VALUES_OF_COL = FULL_SERVER_PATH + "/filter/distinct";
 }

@@ -1,9 +1,17 @@
 package gui.scenes.workspace.sort;
 
+import entities.sheet.DTOSheet;
+import entities.sheet.Sheet;
+import gui.builder.ControllersBuilder;
 import gui.builder.DynamicSheet;
 import gui.builder.DynamicSheetBuilder;
 import gui.scenes.workspace.main.MainController;
 import gui.utils.Utils;
+import http.HttpClientMessenger;
+import http.MyResponseHandler;
+import http.constants.Constants;
+import http.dtos.SortRequestDTO;
+import http.dtos.SortResponseDTO;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
@@ -14,7 +22,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import json.GsonInstance;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.HttpUrl;
+import okhttp3.Response;
+import org.jetbrains.annotations.NotNull;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 
@@ -162,19 +177,52 @@ public class SortController {
 
     @FXML
     void sortButtonClicked(ActionEvent event) {
-        List<String> colsToSortBy = selectedColsListView.getItems();
-        Runnable sort = () -> {
-            List<Integer> sortedRowsOrder = mainController.getEngine().sort(mainController.getCurrentSheetName(),colsToSortBy, fromCellID, toCellID,sortFirstRowToggleButton.isSelected());
-            Platform.runLater(() -> {
-                        //dynamicSheet.changeRowsOrder(sortedRowsOrder);
-                        setTable(DynamicSheetBuilder.buildSortedDynamicSheetFromMainSheetAndSubDynamicSheet(
-                                        mainController.getCurrentLoadedSheet(),dynamicSheet,fromCellID,toCellID,sortedRowsOrder)
-                                .getGridPane());
-                    }
-            );};
         boolean isAnimationsEnabled = mainController.getAppearanceController().isAnimationsEnabled();
-        Task<Void> sortTask =  Utils.getTaskFromRunnable(sort,taskStatus, taskProgressIndicator, isAnimationsEnabled);
+        Task<Void> sortTask =  Utils.getTaskFromRunnable(this::sort,taskStatus, taskProgressIndicator, isAnimationsEnabled);
         Utils.runTaskInADaemonThread(sortTask);
+    }
+
+    private void sort() {
+        List<String> colsToSortBy = selectedColsListView.getItems();
+        String finalUrl = HttpUrl
+                .parse(Constants.SORT)
+                .newBuilder()
+                .build()
+                .toString();
+
+        SortRequestDTO sortRequestDTO = new SortRequestDTO(mainController.getCurrentSheetName(),colsToSortBy,
+                fromCellID, toCellID,sortFirstRowToggleButton.isSelected());
+        HttpClientMessenger.sendPostRequestWithBodyAsync(finalUrl, sortRequestDTO, new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                Platform.runLater(() ->
+                        taskStatus.setText("Something went wrong: " + e.getMessage())
+                );
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                HttpClientMessenger.genericOnResponseHandler(
+                        new MyResponseHandler() {
+                            @Override
+                            public void handle(String body) {
+                                System.out.println(body);
+                                SortResponseDTO sortResponseDTO = GsonInstance.getGson().fromJson(body, SortResponseDTO.class);
+                                List<Integer> sortedRowsOrder = sortResponseDTO.getSortedRowsOrder();
+                                Platform.runLater(() -> {
+                                            setTable(DynamicSheetBuilder.buildSortedDynamicSheetFromMainSheetAndSubDynamicSheet(
+                                                            mainController.getCurrentLoadedSheet(),dynamicSheet,fromCellID,toCellID,sortedRowsOrder)
+                                                    .getGridPane());
+                                        }
+                                );
+                            }
+                        },
+                        response,
+                        taskStatus
+                );
+            }
+        });
+
     }
 
     @FXML

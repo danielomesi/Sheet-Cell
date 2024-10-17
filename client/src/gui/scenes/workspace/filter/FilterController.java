@@ -4,6 +4,13 @@ import gui.builder.DynamicSheetBuilder;
 import gui.builder.DynamicSheet;
 import gui.scenes.workspace.main.MainController;
 import gui.utils.Utils;
+import http.HttpClientMessenger;
+import http.MyResponseHandler;
+import http.constants.Constants;
+import http.dtos.EffectiveValuesInSpecificColRequestDTO;
+import http.dtos.EffectiveValuesInSpecificColResponseDTO;
+import http.dtos.FilterRequestDTO;
+import http.dtos.FilterResponseDTO;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
@@ -17,8 +24,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import json.GsonInstance;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.HttpUrl;
+import okhttp3.Response;
+import org.jetbrains.annotations.NotNull;
 
-import java.net.URL;
+import java.io.IOException;
 import java.util.*;
 
 public class FilterController {
@@ -129,37 +142,102 @@ public class FilterController {
     void columnInComboBoxSelected(ActionEvent event) {
         if (colsComboBox.getSelectionModel().getSelectedItem() != null) {
             selectedValuesListView.getItems().clear();
-            String selectedColName = colsComboBox.getSelectionModel().getSelectedItem();
-            Runnable runnable = () -> {
-                List<Object> effectiveValuesOfSelectedCol = mainController.getEngine().
-                        getEffectiveValuesInSpecificCol(mainController.getCurrentSheetName(), selectedColName, fromCellID, toCellID);
-                Platform.runLater(() -> populateAllDistinctValuesListView(effectiveValuesOfSelectedCol));
-            };
-            Task<Void> task = Utils.getTaskFromRunnable(runnable,taskStatusLabel, taskProgressIndicator,false);
+            Task<Void> task = Utils.getTaskFromRunnable(this::getEffectiveValuesInSpecificCol,taskStatusLabel, taskProgressIndicator,false);
             Utils.runTaskInADaemonThread(task);
         }
+    }
+
+    private void getEffectiveValuesInSpecificCol() {
+        String selectedColName = colsComboBox.getSelectionModel().getSelectedItem();
+        String finalUrl = HttpUrl
+                .parse(Constants.DISTINCT_VALUES_OF_COL)
+                .newBuilder()
+                .build()
+                .toString();
+
+        EffectiveValuesInSpecificColRequestDTO effectiveValuesInSpecificColRequestDTO = new EffectiveValuesInSpecificColRequestDTO(
+                mainController.getCurrentSheetName(), selectedColName, fromCellID, toCellID);
+                includeEmptyCellsInFilterButton.isSelected();
+        HttpClientMessenger.sendPostRequestWithBodyAsync(finalUrl, effectiveValuesInSpecificColRequestDTO, new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                Platform.runLater(() ->
+                        taskStatusLabel.setText("Something went wrong: " + e.getMessage())
+                );
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                HttpClientMessenger.genericOnResponseHandler(
+                        new MyResponseHandler() {
+                            @Override
+                            public void handle(String body) {
+                                System.out.println(body);
+                                EffectiveValuesInSpecificColResponseDTO effectiveValuesInSpecificColResponseDTO =
+                                        GsonInstance.getGson().fromJson(body, EffectiveValuesInSpecificColResponseDTO.class);
+                                List<Object> effectiveValuesOfSelectedCol = effectiveValuesInSpecificColResponseDTO.getEffectiveValuesOfSelectedCol();
+                                Platform.runLater(() -> populateAllDistinctValuesListView(effectiveValuesOfSelectedCol));
+                            }
+                        },
+                        response,
+                        taskStatusLabel
+                );
+            }
+        });
 
     }
 
     @FXML
     void filterButtonClicked(ActionEvent event) {
+        boolean isAnimationsEnabled = mainController.getAppearanceController().isAnimationsEnabled();
+        Task<Void> task = Utils.getTaskFromRunnable(this::filter,taskStatusLabel, taskProgressIndicator,isAnimationsEnabled);
+        Utils.runTaskInADaemonThread(task);
+    }
+
+    private void filter() {
         List<Object> selectedEffectiveValues = new ArrayList<>();
         String selectedColName = colsComboBox.getSelectionModel().getSelectedItem();
         selectedValuesListView.getItems().forEach((effectiveValue) -> {
             selectedEffectiveValues.add(str2EffectiveValueMap.get(effectiveValue));
         });
-        Runnable filter = () -> {
-            Set<Integer> rowsToInclude = mainController.getEngine().filter(mainController.getCurrentSheetName(),selectedColName,selectedEffectiveValues,fromCellID,toCellID,
-                    includeEmptyCellsInFilterButton.isSelected());
-            Platform.runLater(() -> {
-                setTable(DynamicSheetBuilder.buildFilteredDynamicSheetFromMainSheetAndSubDynamicSheet(mainController.getCurrentLoadedSheet()
-                        , dynamicSheet,fromCellID,toCellID,rowsToInclude).getGridPane());
-                isFilteringActive.setValue(false);
-            });
-        };
-        boolean isAnimationsEnabled = mainController.getAppearanceController().isAnimationsEnabled();
-        Task<Void> task = Utils.getTaskFromRunnable(filter,taskStatusLabel, taskProgressIndicator,isAnimationsEnabled);
-        Utils.runTaskInADaemonThread(task);
+        String finalUrl = HttpUrl
+                .parse(Constants.FILTER)
+                .newBuilder()
+                .build()
+                .toString();
+
+        FilterRequestDTO filterRequestDTO = new FilterRequestDTO(mainController.getCurrentSheetName(),selectedColName,selectedEffectiveValues,fromCellID,toCellID,
+                includeEmptyCellsInFilterButton.isSelected());
+        HttpClientMessenger.sendPostRequestWithBodyAsync(finalUrl, filterRequestDTO, new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                Platform.runLater(() ->
+                        taskStatusLabel.setText("Something went wrong: " + e.getMessage())
+                );
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                HttpClientMessenger.genericOnResponseHandler(
+                        new MyResponseHandler() {
+                            @Override
+                            public void handle(String body) {
+                                System.out.println(body);
+                                FilterResponseDTO filterResponseDTO = GsonInstance.getGson().fromJson(body, FilterResponseDTO.class);
+                                Set<Integer> rowsToInclude = filterResponseDTO.getRowsToInclude();
+                                Platform.runLater(() -> {
+                                    setTable(DynamicSheetBuilder.buildFilteredDynamicSheetFromMainSheetAndSubDynamicSheet(mainController.getCurrentLoadedSheet()
+                                            , dynamicSheet,fromCellID,toCellID,rowsToInclude).getGridPane());
+                                    isFilteringActive.setValue(false);
+                                });
+                            }
+                        },
+                        response,
+                        taskStatusLabel
+                );
+            }
+        });
+
     }
 
     @FXML

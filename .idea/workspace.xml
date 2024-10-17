@@ -9,16 +9,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added range adding option and also added interface for handling responses in client">
-      <change afterPath="$PROJECT_DIR$/common/src/http/dtos/SetSubSheetDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/servlets/SubSheetServlet.java" afterDir="false" />
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Implemented http interface for sub sheet for filter and sort features">
+      <change afterPath="$PROJECT_DIR$/common/src/http/dtos/EffectiveValuesInSpecificColRequestDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/http/dtos/EffectiveValuesInSpecificColResponseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/http/dtos/FilterRequestDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/http/dtos/FilterResponseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/http/dtos/SortRequestDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/http/dtos/SortResponseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/servlets/DistinctValuesServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/servlets/FilterServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/servlets/SortServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/http/HttpClientMessenger.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/http/HttpClientMessenger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/filter/FilterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/filter/FilterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sort/SortController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sort/SortController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/http/constants/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/http/constants/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/servlets/RangeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/RangeServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +119,7 @@
       <recent name="C:\Users\omesi\IdeaProjects\Sheet-Cell\lib\javafx-sdk-22.0.2" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Client">
+  <component name="RunManager" selected="Tomcat Server.Server">
     <configuration name="Client" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -295,15 +299,7 @@
       <workItem from="1728595482683" duration="25000" />
       <workItem from="1728595515488" duration="605000" />
       <workItem from="1728635992036" duration="11192000" />
-      <workItem from="1728740640825" duration="19691000" />
-    </task>
-    <task id="LOCAL‎-00037" summary="Minor fix in range">
-      <option name="closed" value="true" />
-      <created>1726000548160</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL‎-00037" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1726000548160</updated>
+      <workItem from="1728740640825" duration="24730000" />
     </task>
     <task id="LOCAL‎-00038" summary="Added left menu in app that includes range options">
       <option name="closed" value="true" />
@@ -689,7 +685,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1728990415562</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL‎-00086" summary="Implemented http interface for sub sheet for filter and sort features">
+      <option name="closed" value="true" />
+      <created>1729157471937</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL‎-00086" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1729157471937</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -708,7 +712,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Fixed bug in sort/filter show..." />
     <MESSAGE value="Thing are working great for now :)" />
     <MESSAGE value="Fixed some styles..." />
     <MESSAGE value="Added another theme..." />
@@ -733,7 +736,8 @@
     <MESSAGE value="Finally deserializatiion works!!!" />
     <MESSAGE value="Cell update works via http" />
     <MESSAGE value="Added range adding option and also added interface for handling responses in client" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added range adding option and also added interface for handling responses in client" />
+    <MESSAGE value="Implemented http interface for sub sheet for filter and sort features" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented http interface for sub sheet for filter and sort features" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
