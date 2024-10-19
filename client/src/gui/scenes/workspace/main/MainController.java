@@ -17,6 +17,7 @@ import gui.builder.ControllersBuilder;
 import gui.core.DataModule;
 import gui.utils.Utils;
 import http.HttpClientMessenger;
+import http.MyCallBack;
 import http.MyResponseHandler;
 import http.constants.Constants;
 import http.dtos.AddRangeDTO;
@@ -172,31 +173,28 @@ public class MainController {
 
         CellUpdateDTO cellUpdateDTO = new CellUpdateDTO(coordinates.getCellID(), originalExpression, currentSheetName);
 
-        HttpClientMessenger.sendPostRequestWithBodyAsync(finalUrl, cellUpdateDTO, new Callback() {
-
-            @Override
-            public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                Platform.runLater(() ->
-                        getHeaderController().getTaskStatusLabel().setText("Something went wrong: " + e.getMessage())
-                );
-            }
-
-            @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                HttpClientMessenger.genericOnResponseHandler(new MyResponseHandler() {
-                                                                 @Override
-                                                                 public void handle(String body) {
-                                                                     updateSheet();
-                                                                 }
-                                                             },
-                        response, getHeaderController().getTaskStatusLabel()
-                );
-            }
-        });
+        HttpClientMessenger.sendPostRequestWithBodyAsync(finalUrl, cellUpdateDTO, new MyCallBack(headerController.getTaskStatusLabel(),
+                (body -> updateSheet())));
     }
 
     public void generateVersionWindow(int chosenVersion) {
-        Sheet selectedSheet = engine.getSheet(currentSheetName, chosenVersion);
+        String finalUrl = HttpUrl
+                .parse(Constants.GET_SHEET)
+                .newBuilder()
+                .addQueryParameter("name", currentSheetName)
+                .addQueryParameter("version", String.valueOf(chosenVersion))
+                .build()
+                .toString();
+
+        HttpClientMessenger.sendGetRequestWithoutBodyAsync(finalUrl,new MyCallBack(
+                getHeaderController().getTaskStatusLabel(),
+                body -> {
+                    Sheet sheet = GsonInstance.getGson().fromJson(body, DTOSheet.class);
+                                     generateWindowForSheet(sheet, chosenVersion);}));
+
+    }
+
+    private void generateWindowForSheet(Sheet selectedSheet, int chosenVersion) {
         DynamicSheet DynamicSheet = DynamicSheetBuilder.buildDynamicSheet(selectedSheet);
         DynamicSheet.populateSheetWithData(selectedSheet);
         GridPane gridPane = DynamicSheet.getGridPane();
@@ -226,27 +224,8 @@ public class MainController {
 
         AddRangeDTO addRangeDTO = new AddRangeDTO(currentSheetName, rangeName, fromCellID, toCellID);
 
-        HttpClientMessenger.sendPostRequestWithBodyAsync(finalUrl, addRangeDTO, new Callback() {
-
-            @Override
-            public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                Platform.runLater(() ->
-                        getHeaderController().getTaskStatusLabel().setText("Something went wrong: " + e.getMessage())
-                );
-            }
-
-            @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                HttpClientMessenger.genericOnResponseHandler(new MyResponseHandler() {
-                                                                 @Override
-                                                                 public void handle(String body) {
-                                                                     updateSheet();
-                                                                 }
-                                                             },
-                        response, getHeaderController().getTaskStatusLabel()
-                );
-            }
-        });
+        HttpClientMessenger.sendPostRequestWithBodyAsync(finalUrl, addRangeDTO, new MyCallBack(headerController.getTaskStatusLabel(),
+                (body -> updateSheet())));
     }
 
     public void updateSheet() {
@@ -258,31 +237,12 @@ public class MainController {
                 .toString();
 
 
-        HttpClientMessenger.sendGetRequestWithoutBodyAsync(finalUrl, new Callback() {
-
-            @Override
-            public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                Platform.runLater(() ->
-                        getHeaderController().getTaskStatusLabel().setText("Something went wrong: " + e.getMessage())
-                );
-            }
-
-            @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                HttpClientMessenger.genericOnResponseHandler(new MyResponseHandler() {
-                                                                 @Override
-                                                                 public void handle(String body) {
-                                                                     System.out.println(body);
-                                                                     currentLoadedSheet = GsonInstance.getGson().fromJson(body, DTOSheet.class);
-                                                                     dataModule.updateModule(currentLoadedSheet);
-                                                                     sheetController.resetVersionComboBoxChoice();
-                                                                 }
-                                                             }
-                        ,
-                        response, getHeaderController().getTaskStatusLabel()
-                );
-            }
-        });
+        HttpClientMessenger.sendGetRequestWithoutBodyAsync(finalUrl, new MyCallBack(headerController.getTaskStatusLabel(),
+                (body -> {
+                    currentLoadedSheet = GsonInstance.getGson().fromJson(body, DTOSheet.class);
+                    dataModule.updateModule(currentLoadedSheet);
+                    sheetController.resetVersionComboBoxChoice();
+                })));
     }
 
     public void deleteRange(String rangeName) {
@@ -294,27 +254,8 @@ public class MainController {
                 .build()
                 .toString();
 
-        HttpClientMessenger.sendDeleteRequestWithoutBodyAsync(finalUrl, new Callback() {
-
-            @Override
-            public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                Platform.runLater(() ->
-                        getHeaderController().getTaskStatusLabel().setText("Something went wrong: " + e.getMessage())
-                );
-            }
-
-            @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                HttpClientMessenger.genericOnResponseHandler(new MyResponseHandler() {
-                                                                 @Override
-                                                                 public void handle(String body) {
-                                                                     updateSheet();
-                                                                 }
-                                                             },
-                        response, getHeaderController().getTaskStatusLabel()
-                );
-            }
-        });
+        HttpClientMessenger.sendDeleteRequestWithoutBodyAsync(finalUrl, new MyCallBack(headerController.getTaskStatusLabel(),
+                (body -> updateSheet())));
     }
 
     public void openSortDialog(String fromCellID, String toCellID) {
@@ -326,27 +267,8 @@ public class MainController {
 
         SetSubSheetDTO subSheetDTO = new SetSubSheetDTO(currentSheetName, fromCellID, toCellID);
 
-        HttpClientMessenger.sendPostRequestWithBodyAsync(finalUrl, subSheetDTO, new Callback() {
-
-            @Override
-            public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                Platform.runLater(() ->
-                        getHeaderController().getTaskStatusLabel().setText("Something went wrong: " + e.getMessage())
-                );
-            }
-
-            @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                HttpClientMessenger.genericOnResponseHandler(new MyResponseHandler() {
-                                                                 @Override
-                                                                 public void handle(String body) {
-                                                                     getSubSheetAndLoadSortDialog(fromCellID, toCellID);
-                                                                 }
-                                                             },
-                        response, getHeaderController().getTaskStatusLabel()
-                );
-            }
-        });
+        HttpClientMessenger.sendPostRequestWithBodyAsync(finalUrl, subSheetDTO, new MyCallBack(headerController.getTaskStatusLabel(),
+                (body -> getSubSheetAndLoadSortDialog(fromCellID, toCellID))));
     }
 
 
@@ -359,37 +281,16 @@ public class MainController {
 
         MainController mainController = this;
 
-        HttpClientMessenger.sendGetRequestWithoutBodyAsync(finalUrl, new Callback() {
-
-            @Override
-            public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                Platform.runLater(() ->
-                        getHeaderController().getTaskStatusLabel().setText("Something went wrong: " + e.getMessage())
-                );
-            }
-
-            @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                HttpClientMessenger.genericOnResponseHandler(
-                        new MyResponseHandler() {
-                            @Override
-                            public void handle(String body) {
-                                System.out.println(body);
-                                Sheet subSheet = GsonInstance.getGson().fromJson(body, DTOSheet.class);
-                                sheetController.resetStyles();
-                                DynamicSheet dynamicSheet = DynamicSheetBuilder.buildSubDynamicSheetFromMainSheet(currentLoadedSheet, sheetController.getDynamicSheetTable(), fromCellID, toCellID);
-                                sortController = ControllersBuilder.buildSortController(mainController, dynamicSheet, fromCellID, toCellID);
-                                List<String> colNames = Utils.getLettersFromAToTheNLetter(subSheet.getNumOfCols());
-                                sortController.populateListViewOfAllCols(colNames);
-                                Utils.openWindow(sortController.getWrapper(), "Sort Dialog");
-                            }
-                        },
-                        response,
-                        getHeaderController().getTaskStatusLabel()
-                );
-            }
-
-        });
+        HttpClientMessenger.sendGetRequestWithoutBodyAsync(finalUrl, new MyCallBack(headerController.getTaskStatusLabel(),
+                (body -> {
+                    Sheet subSheet = GsonInstance.getGson().fromJson(body, DTOSheet.class);
+                    sheetController.resetStyles();
+                    DynamicSheet dynamicSheet = DynamicSheetBuilder.buildSubDynamicSheetFromMainSheet(currentLoadedSheet, sheetController.getDynamicSheetTable(), fromCellID, toCellID);
+                    sortController = ControllersBuilder.buildSortController(mainController, dynamicSheet, fromCellID, toCellID);
+                    List<String> colNames = Utils.getLettersFromAToTheNLetter(subSheet.getNumOfCols());
+                    sortController.populateListViewOfAllCols(colNames);
+                    Utils.openWindow(sortController.getWrapper(), "Sort Dialog");
+                })));
     }
 
 
@@ -402,27 +303,8 @@ public class MainController {
 
         SetSubSheetDTO subSheetDTO = new SetSubSheetDTO(currentSheetName, fromCellID, toCellID);
 
-        HttpClientMessenger.sendPostRequestWithBodyAsync(finalUrl, subSheetDTO, new Callback() {
-
-            @Override
-            public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                Platform.runLater(() ->
-                        getHeaderController().getTaskStatusLabel().setText("Something went wrong: " + e.getMessage())
-                );
-            }
-
-            @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                HttpClientMessenger.genericOnResponseHandler(new MyResponseHandler() {
-                                                                 @Override
-                                                                 public void handle(String body) {
-                                                                     getSubSheetAndLoadFilterDialog(fromCellID, toCellID);
-                                                                 }
-                                                             },
-                        response, getHeaderController().getTaskStatusLabel()
-                );
-            }
-        });
+        HttpClientMessenger.sendPostRequestWithBodyAsync(finalUrl, subSheetDTO, new MyCallBack(headerController.getTaskStatusLabel(),
+                (body -> getSubSheetAndLoadFilterDialog(fromCellID, toCellID))));
     }
 
     private void getSubSheetAndLoadFilterDialog(String fromCellID, String toCellID) {
@@ -434,36 +316,16 @@ public class MainController {
 
         MainController mainController = this;
 
-        HttpClientMessenger.sendGetRequestWithoutBodyAsync(finalUrl, new Callback() {
-
-            @Override
-            public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                Platform.runLater(() ->
-                        getHeaderController().getTaskStatusLabel().setText("Something went wrong: " + e.getMessage())
-                );
-            }
-
-            @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                HttpClientMessenger.genericOnResponseHandler(
-                        new MyResponseHandler() {
-                            @Override
-                            public void handle(String body) {
-                                System.out.println(body);
-                                Sheet subSheet = GsonInstance.getGson().fromJson(body, DTOSheet.class);
-                                sheetController.resetStyles();
-                                DynamicSheet dynamicSheet = DynamicSheetBuilder.buildSubDynamicSheetFromMainSheet(currentLoadedSheet,sheetController.getDynamicSheetTable(),fromCellID,toCellID);
-                                filterController = ControllersBuilder.buildFilterController(mainController, dynamicSheet,fromCellID,toCellID);
-                                filterController.populateColComboBox(subSheet.getNumOfCols());
-                                Utils.openWindow(filterController.getWrapper(), "Filter Dialog");
-                            }
-                        },
-                        response,
-                        getHeaderController().getTaskStatusLabel()
-                );
-            }
-
-        });
+        HttpClientMessenger.sendGetRequestWithoutBodyAsync(finalUrl, new MyCallBack(headerController.getTaskStatusLabel(),
+                (body -> {
+                    System.out.println(body);
+                    Sheet subSheet = GsonInstance.getGson().fromJson(body, DTOSheet.class);
+                    sheetController.resetStyles();
+                    DynamicSheet dynamicSheet = DynamicSheetBuilder.buildSubDynamicSheetFromMainSheet(currentLoadedSheet,sheetController.getDynamicSheetTable(),fromCellID,toCellID);
+                    filterController = ControllersBuilder.buildFilterController(mainController, dynamicSheet,fromCellID,toCellID);
+                    filterController.populateColComboBox(subSheet.getNumOfCols());
+                    Utils.openWindow(filterController.getWrapper(), "Filter Dialog");
+                })));
     }
 
     public void setStyle(String styleFileName) {

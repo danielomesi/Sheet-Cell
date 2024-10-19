@@ -8,6 +8,7 @@ import gui.builder.DynamicSheetBuilder;
 import gui.scenes.workspace.main.MainController;
 import gui.utils.Utils;
 import http.HttpClientMessenger;
+import http.MyCallBack;
 import http.MyResponseHandler;
 import http.constants.Constants;
 import http.dtos.SortRequestDTO;
@@ -192,36 +193,17 @@ public class SortController {
 
         SortRequestDTO sortRequestDTO = new SortRequestDTO(mainController.getCurrentSheetName(),colsToSortBy,
                 fromCellID, toCellID,sortFirstRowToggleButton.isSelected());
-        HttpClientMessenger.sendPostRequestWithBodyAsync(finalUrl, sortRequestDTO, new Callback() {
-            @Override
-            public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                Platform.runLater(() ->
-                        taskStatus.setText("Something went wrong: " + e.getMessage())
-                );
-            }
-
-            @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                HttpClientMessenger.genericOnResponseHandler(
-                        new MyResponseHandler() {
-                            @Override
-                            public void handle(String body) {
-                                System.out.println(body);
-                                SortResponseDTO sortResponseDTO = GsonInstance.getGson().fromJson(body, SortResponseDTO.class);
-                                List<Integer> sortedRowsOrder = sortResponseDTO.getSortedRowsOrder();
-                                Platform.runLater(() -> {
-                                            setTable(DynamicSheetBuilder.buildSortedDynamicSheetFromMainSheetAndSubDynamicSheet(
-                                                            mainController.getCurrentLoadedSheet(),dynamicSheet,fromCellID,toCellID,sortedRowsOrder)
-                                                    .getGridPane());
-                                        }
-                                );
+        HttpClientMessenger.sendPostRequestWithBodyAsync(finalUrl, sortRequestDTO, new MyCallBack(taskStatus,
+                (body -> {
+                    SortResponseDTO sortResponseDTO = GsonInstance.getGson().fromJson(body, SortResponseDTO.class);
+                    List<Integer> sortedRowsOrder = sortResponseDTO.getSortedRowsOrder();
+                    Platform.runLater(() -> {
+                                setTable(DynamicSheetBuilder.buildSortedDynamicSheetFromMainSheetAndSubDynamicSheet(
+                                                mainController.getCurrentLoadedSheet(),dynamicSheet,fromCellID,toCellID,sortedRowsOrder)
+                                        .getGridPane());
                             }
-                        },
-                        response,
-                        taskStatus
-                );
-            }
-        });
+                    );
+                })));
 
     }
 

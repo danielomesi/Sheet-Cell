@@ -2,6 +2,7 @@ package engine;
 
 import entities.cell.Cell;
 import entities.sheet.Sheet;
+import entities.sheet.SheetMetaData;
 import permission.SheetData;
 
 import java.util.List;
@@ -42,4 +43,7 @@ public interface Engine {
     public List<Object> getEffectiveValuesInSpecificCol(String sheetName, String colName, String fromCellID, String toCellID);
 
     public Set<Integer> filter(String sheetName, String colName, List<Object> effectiveValuesToFilterBy, String fromCellID, String toCellID, boolean isFilteringEmptyCells);
+
+    public List<SheetMetaData> getAllSheetsMetaData();
+
 }

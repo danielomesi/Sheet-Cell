@@ -8,6 +8,7 @@ import entities.range.Range;
 import entities.sheet.CoreSheet;
 import entities.sheet.DTOSheet;
 import entities.sheet.Sheet;
+import entities.sheet.SheetMetaData;
 import entities.stl.STLLayout;
 import entities.stl.STLSheet;
 import exceptions.InvalidXMLException;
@@ -24,7 +25,6 @@ public class EngineImpl implements Engine {
     private final int MAX_ROWS = 50;
     private final int MAX_COLS = 20;
     private final Map<String,CoreSheet> username2SubSheet = new HashMap<>();
-    //private CoreSheet subCoreSheet;
     private final Map<String,SheetData> sheetName2SheetDataList = new HashMap<>();
 
     @Override
@@ -244,5 +244,16 @@ public class EngineImpl implements Engine {
     public Set<Integer> filter(String sheetName, String colName, List<Object> effectiveValuesToFilterBy, String fromCellID, String toCellID, boolean isFilteringEmptyCells) {
         Sheet subSheet = makeSubSheet(sheetName, fromCellID, toCellID);
         return Filter.filter(subSheet,colName,effectiveValuesToFilterBy,isFilteringEmptyCells);
+    }
+
+    @Override
+    public List<SheetMetaData> getAllSheetsMetaData() {
+        List<SheetMetaData> result = new ArrayList<>();
+        sheetName2SheetDataList.forEach((username, sheetData) -> {
+            result.add(new SheetMetaData(sheetData.getName(),username,
+                    sheetData.getSheetVersions().getLast().getNumOfRows(),
+                    sheetData.getSheetVersions().getLast().getNumOfCols()));
+        });
+        return result;
     }
 }

@@ -2,6 +2,7 @@ package gui.scenes.login;
 
 import gui.core.ClientApp;
 import http.HttpClientMessenger;
+import http.MyCallBack;
 import http.MyResponseHandler;
 import http.constants.Constants;
 import javafx.application.Platform;
@@ -51,29 +52,12 @@ public class LoginController {
                 .build()
                 .toString();
 
-        HttpClientMessenger.sendGetRequestWithoutBodyAsync(finalUrl, new Callback() {
-
-            @Override
-            public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                Platform.runLater(() ->
-                        errorLabel.setText("Something went wrong: " + e.getMessage())
-                );
-            }
-
-            @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                HttpClientMessenger.genericOnResponseHandler(new MyResponseHandler() {
-                         @Override
-                         public void handle(String body) {
-                             try {
-                                 switchSceneToDashboard(userName);
-                             } catch (Exception ignored) {}
-                         }
-                     },
-                        response, errorLabel
-                );
-            }
-        });
+        HttpClientMessenger.sendGetRequestWithoutBodyAsync(finalUrl, new MyCallBack(errorLabel,
+                (body -> {
+                    try {
+                        switchSceneToDashboard(userName);
+                    } catch (Exception ignored) {}
+                })));
     }
 
     private void switchSceneToDashboard(String username) throws IOException {

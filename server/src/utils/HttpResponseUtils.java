@@ -31,8 +31,9 @@ public class HttpResponseUtils {
     }
 
     public static void sendExceptionAsErrorToClient(Exception e, HttpServletResponse resp) throws IOException {
-        e.printStackTrace();
+        resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        resp.setContentType("text/plain");
         String errorBody = e instanceof ServiceException se ? se.toString() : e.getMessage();
-        resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, errorBody);
+        resp.getWriter().write(errorBody);
     }
 }

@@ -55,7 +55,7 @@ public class FileUploadServlet extends HttpServlet {
             gson.toJson(sheetMetaData, response.getWriter());
         }
         catch (Exception e) {
-            e.printStackTrace();
+            HttpResponseUtils.sendExceptionAsErrorToClient(e,response);
         }
     }
 

@@ -9,20 +9,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Implemented http interface for sub sheet for filter and sort features">
-      <change afterPath="$PROJECT_DIR$/common/src/http/dtos/EffectiveValuesInSpecificColRequestDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/http/dtos/EffectiveValuesInSpecificColResponseDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/http/dtos/FilterRequestDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/http/dtos/FilterResponseDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/http/dtos/SortRequestDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/http/dtos/SortResponseDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/servlets/DistinctValuesServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/servlets/FilterServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/servlets/SortServlet.java" afterDir="false" />
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Both filter and sort are now working...">
+      <change afterPath="$PROJECT_DIR$/client/src/http/MyCallBack.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/servlets/DashboardSheetListServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/DashboardHeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/DashboardHeaderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/SheetsTableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/SheetsTableController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/login/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/login/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/filter/FilterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/filter/FilterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sort/SortController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sort/SortController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/http/constants/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/http/constants/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/servlets/FileUploadServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/FileUploadServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/utils/HttpResponseUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/utils/HttpResponseUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/Engine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,8 +120,8 @@
       <recent name="C:\Users\omesi\IdeaProjects\Sheet-Cell\lib\javafx-sdk-22.0.2" />
     </key>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Server">
-    <configuration name="Client" type="Application" factoryName="Application">
+  <component name="RunManager" selected="Application.Client">
+    <configuration name="Client" type="Application" factoryName="Application" singleton="false">
       <option name="ALTERNATIVE_JRE_PATH" value="21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="gui.core.ClientApp" />
@@ -299,15 +300,7 @@
       <workItem from="1728595482683" duration="25000" />
       <workItem from="1728595515488" duration="605000" />
       <workItem from="1728635992036" duration="11192000" />
-      <workItem from="1728740640825" duration="24730000" />
-    </task>
-    <task id="LOCAL‎-00038" summary="Added left menu in app that includes range options">
-      <option name="closed" value="true" />
-      <created>1726047491343</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL‎-00038" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1726047491343</updated>
+      <workItem from="1728740640825" duration="31395000" />
     </task>
     <task id="LOCAL‎-00039" summary="Implemented range capabilities">
       <option name="closed" value="true" />
@@ -693,7 +686,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1729157471937</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL‎-00087" summary="Both filter and sort are now working...">
+      <option name="closed" value="true" />
+      <created>1729164281347</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL‎-00087" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1729164281347</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -712,7 +713,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Thing are working great for now :)" />
     <MESSAGE value="Fixed some styles..." />
     <MESSAGE value="Added another theme..." />
     <MESSAGE value="In the way to finish..." />
@@ -737,7 +737,8 @@
     <MESSAGE value="Cell update works via http" />
     <MESSAGE value="Added range adding option and also added interface for handling responses in client" />
     <MESSAGE value="Implemented http interface for sub sheet for filter and sort features" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented http interface for sub sheet for filter and sort features" />
+    <MESSAGE value="Both filter and sort are now working..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Both filter and sort are now working..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import entities.sheet.SheetMetaData;
 import gui.scenes.dashboard.main.DashboardMainController;
 import http.HttpClientMessenger;
+import http.MyCallBack;
 import http.MyResponseHandler;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -59,27 +60,8 @@ public class DashboardHeaderController {
         File file = fileChooser.showOpenDialog(stage);
 
         if (file != null) {
-            HttpClientMessenger.getInstance().sendFileToServer(file,new Callback() {
-
-                @Override
-                public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                    Platform.runLater(() ->
-                            taskStatusLabel.setText("Something went wrong: " + e.getMessage())
-                    );
-                }
-
-                @Override
-                public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                    HttpClientMessenger.genericOnResponseHandler(new MyResponseHandler() {
-                         @Override
-                         public void handle(String body) {
-                             mainController.getSheetsTableController().addTableEntry(getSheetMetaDataFromJson(body)) ;
-                         }
-                     },
-                            response, taskStatusLabel
-                    );
-                }
-            });
+            HttpClientMessenger.sendFileToServer(file,new MyCallBack(taskStatusLabel,
+                    (body -> mainController.getSheetsTableController().fetchSheetData())));
         }
     }
 

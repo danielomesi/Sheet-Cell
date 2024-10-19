@@ -5,6 +5,7 @@ import gui.builder.DynamicSheet;
 import gui.scenes.workspace.main.MainController;
 import gui.utils.Utils;
 import http.HttpClientMessenger;
+import http.MyCallBack;
 import http.MyResponseHandler;
 import http.constants.Constants;
 import http.dtos.EffectiveValuesInSpecificColRequestDTO;
@@ -158,32 +159,15 @@ public class FilterController {
         EffectiveValuesInSpecificColRequestDTO effectiveValuesInSpecificColRequestDTO = new EffectiveValuesInSpecificColRequestDTO(
                 mainController.getCurrentSheetName(), selectedColName, fromCellID, toCellID);
                 includeEmptyCellsInFilterButton.isSelected();
-        HttpClientMessenger.sendPostRequestWithBodyAsync(finalUrl, effectiveValuesInSpecificColRequestDTO, new Callback() {
-            @Override
-            public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                Platform.runLater(() ->
-                        taskStatusLabel.setText("Something went wrong: " + e.getMessage())
-                );
-            }
-
-            @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                HttpClientMessenger.genericOnResponseHandler(
-                        new MyResponseHandler() {
-                            @Override
-                            public void handle(String body) {
-                                System.out.println(body);
-                                EffectiveValuesInSpecificColResponseDTO effectiveValuesInSpecificColResponseDTO =
-                                        GsonInstance.getGson().fromJson(body, EffectiveValuesInSpecificColResponseDTO.class);
-                                List<Object> effectiveValuesOfSelectedCol = effectiveValuesInSpecificColResponseDTO.getEffectiveValuesOfSelectedCol();
-                                Platform.runLater(() -> populateAllDistinctValuesListView(effectiveValuesOfSelectedCol));
-                            }
-                        },
-                        response,
-                        taskStatusLabel
-                );
-            }
-        });
+        HttpClientMessenger.sendPostRequestWithBodyAsync(finalUrl, effectiveValuesInSpecificColRequestDTO, new MyCallBack(
+                taskStatusLabel,
+                (body -> {
+                    EffectiveValuesInSpecificColResponseDTO effectiveValuesInSpecificColResponseDTO =
+                            GsonInstance.getGson().fromJson(body, EffectiveValuesInSpecificColResponseDTO.class);
+                    List<Object> effectiveValuesOfSelectedCol = effectiveValuesInSpecificColResponseDTO.getEffectiveValuesOfSelectedCol();
+                    Platform.runLater(() -> populateAllDistinctValuesListView(effectiveValuesOfSelectedCol));
+                })
+        ));
 
     }
 
@@ -208,36 +192,16 @@ public class FilterController {
 
         FilterRequestDTO filterRequestDTO = new FilterRequestDTO(mainController.getCurrentSheetName(),selectedColName,selectedEffectiveValues,fromCellID,toCellID,
                 includeEmptyCellsInFilterButton.isSelected());
-        HttpClientMessenger.sendPostRequestWithBodyAsync(finalUrl, filterRequestDTO, new Callback() {
-            @Override
-            public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                Platform.runLater(() ->
-                        taskStatusLabel.setText("Something went wrong: " + e.getMessage())
-                );
-            }
-
-            @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                HttpClientMessenger.genericOnResponseHandler(
-                        new MyResponseHandler() {
-                            @Override
-                            public void handle(String body) {
-                                System.out.println(body);
-                                FilterResponseDTO filterResponseDTO = GsonInstance.getGson().fromJson(body, FilterResponseDTO.class);
-                                Set<Integer> rowsToInclude = filterResponseDTO.getRowsToInclude();
-                                Platform.runLater(() -> {
-                                    setTable(DynamicSheetBuilder.buildFilteredDynamicSheetFromMainSheetAndSubDynamicSheet(mainController.getCurrentLoadedSheet()
-                                            , dynamicSheet,fromCellID,toCellID,rowsToInclude).getGridPane());
-                                    isFilteringActive.setValue(false);
-                                });
-                            }
-                        },
-                        response,
-                        taskStatusLabel
-                );
-            }
-        });
-
+        HttpClientMessenger.sendPostRequestWithBodyAsync(finalUrl, filterRequestDTO, new MyCallBack(taskStatusLabel,
+                (body -> {
+                    FilterResponseDTO filterResponseDTO = GsonInstance.getGson().fromJson(body, FilterResponseDTO.class);
+                    Set<Integer> rowsToInclude = filterResponseDTO.getRowsToInclude();
+                    Platform.runLater(() -> {
+                        setTable(DynamicSheetBuilder.buildFilteredDynamicSheetFromMainSheetAndSubDynamicSheet(mainController.getCurrentLoadedSheet()
+                                , dynamicSheet,fromCellID,toCellID,rowsToInclude).getGridPane());
+                        isFilteringActive.setValue(false);
+                    });
+                })));
     }
 
     @FXML
