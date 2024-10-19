@@ -28,7 +28,7 @@ public class DashboardHeaderController {
     private DashboardMainController mainController;
 
     @FXML
-    private Label filePathLabel;
+    private Label greetingLabel;
 
     @FXML
     private Button loadFileButton;
@@ -48,6 +48,8 @@ public class DashboardHeaderController {
     public Label getTaskStatusLabel() {return taskStatusLabel;}
     public void setMainController(DashboardMainController mainController) {this.mainController = mainController;}
 
+    //
+    public void setGreetingLabel(String username) {greetingLabel.setText("Hi " + username + "!");}
     @FXML
     void handleLoadFileButtonClick(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();

@@ -16,6 +16,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import java.io.IOException;
 import java.util.Set;
 
 import static gui.utils.Utils.getTaskFromRunnable;
@@ -137,7 +138,10 @@ public class CommandsController {
         Utils.runTaskInADaemonThread(task);
     }
 
-
+    @FXML
+    void backToDashboardButtonClicked(ActionEvent event) {
+        mainController.getClientApp().switchSceneBackToDashboardFromWorkspace();
+    }
 
 
 }

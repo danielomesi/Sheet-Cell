@@ -22,11 +22,15 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-//need to create a rangeDTO! it should maybe fix the problem of the deserilization not working
+//fix the problem when I sort the table view and there is an update - it unsorts it every 2 seconds (because of the update)
+//add the permissions handling mechanism
+//add the notification on new version update from within the workspace area
+
 public class ClientApp extends Application {
     private MainController workspaceMainController;
     private DashboardMainController dashboardMainController;
     private LoginController loginController;
+    private Scene dashboardScene;
     private Stage primaryStage;
 
     @Override
@@ -50,6 +54,7 @@ public class ClientApp extends Application {
         primaryStage.setTitle("Sheet Cell");
         primaryStage.setScene(scene);
         primaryStage.show();
+        primaryStage.centerOnScreen();
     }
 
     private Parent setupAndGetLoginMainComponent() throws IOException {
@@ -63,10 +68,11 @@ public class ClientApp extends Application {
 
     public void loadDashBoard(String username) throws IOException {
         Parent root = setupAndGetDashboardMainComponent(username);
-        Scene scene = new Scene(root);
+        dashboardScene = new Scene(root);
         primaryStage.setTitle("Sheet Cell");
-        primaryStage.setScene(scene);
+        primaryStage.setScene(dashboardScene);
         primaryStage.show();
+        primaryStage.centerOnScreen();
     }
 
 
@@ -100,6 +106,7 @@ public class ClientApp extends Application {
 
         //Make sub controllers know the main controller
         headerController.setMainController(dashboardMainController);
+        headerController.setGreetingLabel(username);
         sheetsTableController.setDashboardMainController(dashboardMainController);
 
 
@@ -115,6 +122,7 @@ public class ClientApp extends Application {
         primaryStage.setTitle("Sheet Cell");
         primaryStage.setScene(scene);
         primaryStage.show();
+        primaryStage.centerOnScreen();
     }
 
     private Parent setupAndGetWorkspaceMainComponent(Sheet sheet) throws IOException {
@@ -122,6 +130,7 @@ public class ClientApp extends Application {
         ScrollPane root = mainLoader.load();
         workspaceMainController = mainLoader.getController();
         workspaceMainController.setStage(primaryStage);
+        workspaceMainController.setClientApp(this);
 
         loadSubControllersOfWorkspace(sheet);
         return root;
@@ -169,5 +178,12 @@ public class ClientApp extends Application {
         BorderPane.setAlignment(appearanceNode, Pos.TOP_RIGHT);
 
         workspaceMainController.toDoOnSuccessfulFileLoad(sheet);
+    }
+
+    public void switchSceneBackToDashboardFromWorkspace() {
+        primaryStage.setTitle("Dashboard");
+        primaryStage.setScene(dashboardScene);
+        primaryStage.show();
+        primaryStage.centerOnScreen();
     }
 }

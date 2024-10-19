@@ -23,6 +23,10 @@ public class DashboardMainController {
     @FXML
     private ScrollPane mainScrollPane;
 
+    //getters
+    public String getUsername() {return username;}
+
+    //setters
     public void setUsername(String username) {this.username = username;}
     public void setClientApp(ClientApp clientApp) {this.clientApp = clientApp;}
     public void setStage(Stage stage) {this.stage = stage;}

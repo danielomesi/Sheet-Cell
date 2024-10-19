@@ -49,10 +49,7 @@ public class FileUploadServlet extends HttpServlet {
         try {
             Engine engine = (Engine) getServletContext().getAttribute("engine");
             engine.loadSheetFromXMLString(allContent.toString(),username);
-            Sheet sheet = engine.getUserSheets(username).getLast().getSheetVersions().getLast();
-            SheetMetaData sheetMetaData = new SheetMetaData(sheet.getName(),username,sheet.getNumOfRows(),sheet.getNumOfCols());
-            Gson gson = new Gson();
-            gson.toJson(sheetMetaData, response.getWriter());
+            response.setStatus(HttpServletResponse.SC_OK);
         }
         catch (Exception e) {
             HttpResponseUtils.sendExceptionAsErrorToClient(e,response);

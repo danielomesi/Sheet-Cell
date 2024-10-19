@@ -13,7 +13,7 @@ import entities.stl.STLLayout;
 import entities.stl.STLSheet;
 import exceptions.InvalidXMLException;
 import jakarta.xml.bind.JAXBException;
-import permission.PermissionType;
+import entities.permission.PermissionType;
 import permission.SheetData;
 import utils.Filter;
 import utils.Sorter;
@@ -250,9 +250,10 @@ public class EngineImpl implements Engine {
     public List<SheetMetaData> getAllSheetsMetaData() {
         List<SheetMetaData> result = new ArrayList<>();
         sheetName2SheetDataList.forEach((username, sheetData) -> {
-            result.add(new SheetMetaData(sheetData.getName(),username,
+            result.add(new SheetMetaData(sheetData.getName(),sheetData.getOwnerUsername(),
                     sheetData.getSheetVersions().getLast().getNumOfRows(),
-                    sheetData.getSheetVersions().getLast().getNumOfCols()));
+                    sheetData.getSheetVersions().getLast().getNumOfCols(),
+                    sheetData.getPermissions()));
         });
         return result;
     }

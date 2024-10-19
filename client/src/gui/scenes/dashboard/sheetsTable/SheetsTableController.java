@@ -6,6 +6,7 @@ import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import entities.cell.DTOCell;
 import entities.coordinates.Coordinates;
+import entities.permission.PermissionType;
 import entities.sheet.DTOSheet;
 import entities.sheet.Sheet;
 import entities.sheet.SheetMetaData;
@@ -114,7 +115,7 @@ public class SheetsTableController {
         for (SheetMetaData sheetMetaData : sheetMetaDataList) {
             String sheetSize = sheetMetaData.getNumberOfRows() + " x " + sheetMetaData.getNumberOfCols();
             SheetTableEntry entry = new SheetTableEntry(sheetMetaData.getUploaderName(),
-                    sheetMetaData.getSheetName(), sheetSize, "OWNER");
+                    sheetMetaData.getSheetName(), sheetSize, getPermissionType(sheetMetaData).name());
             tableData.add(entry);
         }
 
@@ -128,12 +129,11 @@ public class SheetsTableController {
         }
     }
 
-//    public void addTableEntry(SheetMetaData sheetMetaData) {
-//        String sheetSize = sheetMetaData.getNumberOfRows() + " x " + sheetMetaData.getNumberOfCols();
-//        SheetTableEntry tableEntry = new SheetTableEntry(sheetMetaData.getUploaderName(),sheetMetaData.getSheetName(),
-//                sheetSize,"OWNER");
-//        tableView.getItems().add(tableEntry);
-//    }
+    private PermissionType getPermissionType(SheetMetaData sheetMetaData) {
+        String username = dashboardMainController.getUsername();
+
+        return sheetMetaData.getUsername2Permission().getOrDefault(username, PermissionType.NONE);
+    }
 
     @FXML
     void viewSheetButtonClicked(ActionEvent event) {

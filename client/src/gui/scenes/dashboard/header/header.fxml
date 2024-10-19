@@ -11,16 +11,20 @@
 
 <VBox fx:id="vBoxHeader" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.scenes.dashboard.header.DashboardHeaderController">
    <children>
-      <Label alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="main-header" text="Sheet-Cell">
+      <Label alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="main-header" text="Dashboard">
          <font>
             <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="greetingLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+         <font>
+            <Font size="16.0" />
          </font>
       </Label>
       <Separator />
       <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
          <children>
             <Button fx:id="loadFileButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleLoadFileButtonClick" text="Load File" />
-            <Label fx:id="filePathLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
             <Button fx:id="saveToFileButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleSaveToFileButton" text="Save to File" />
          </children>
       </HBox>

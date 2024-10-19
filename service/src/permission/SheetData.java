@@ -1,5 +1,6 @@
 package permission;
 
+import entities.permission.PermissionType;
 import entities.sheet.CoreSheet;
 
 import java.util.ArrayList;
@@ -22,8 +23,16 @@ public class SheetData {
 
     //getters
     public void setPermission(String username, PermissionType permission) {username2Permission.put(username,permission);}
-
+    public String getOwnerUsername() {
+        for (Map.Entry<String, PermissionType> entry : username2Permission.entrySet()) {
+            if (entry.getValue().equals(PermissionType.OWNER)) {
+                return entry.getKey();
+            }
+        }
+        return null; // Return null if no OWNER permission is found
+    }
     //setters
+    public Map<String, PermissionType> getPermissions() {return username2Permission;}
     public PermissionType getPermission(String username) {return username2Permission.get(username);}
     public List<CoreSheet> getSheetVersions() {return sheetVersions;}
     public void setSheetVersions(List<CoreSheet> sheetVersions) {this.sheetVersions = sheetVersions;}

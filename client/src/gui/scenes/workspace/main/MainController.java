@@ -7,6 +7,7 @@ import entities.sheet.DTOSheet;
 import entities.sheet.Sheet;
 import gui.builder.DynamicSheetBuilder;
 import gui.builder.DynamicSheet;
+import gui.core.ClientApp;
 import gui.scenes.workspace.filter.FilterController;
 import gui.scenes.workspace.sheet.SheetController;
 import gui.scenes.workspace.header.HeaderController;
@@ -53,7 +54,7 @@ public class MainController {
     private BooleanProperty isSheetLoaded;
     private DataModule dataModule;
     private List<String> cssStyles;
-
+    private ClientApp clientApp;
     //stage
     private Stage stage;
 
@@ -66,6 +67,7 @@ public class MainController {
     private FilterController filterController;
 
     //getters
+    public ClientApp getClientApp() {return clientApp;}
     public BorderPane getMainBorderPane() {
         return mainBorderPane;
     }
@@ -111,6 +113,7 @@ public class MainController {
     }
 
     //setters
+    public void setClientApp(ClientApp clientApp) {this.clientApp = clientApp;}
     public void setStage(Stage stage) {
         this.stage = stage;
     }
