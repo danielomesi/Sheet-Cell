@@ -26,4 +26,5 @@ public class Constants {
     public final static String FILTER = FULL_SERVER_PATH + "/filter";
     public final static String DISTINCT_VALUES_OF_COL = FULL_SERVER_PATH + "/filter/distinct";
     public static final String GET_SHEETS_META_DATA = FULL_SERVER_PATH + "/dashboard/sheets";;
+    public final static String NUM_OF_VERSIONS = FULL_SERVER_PATH + "/versions";
 }

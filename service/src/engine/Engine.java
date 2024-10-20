@@ -20,6 +20,8 @@ public interface Engine {
 
     public Sheet getSheet(String sheetName, int version);
 
+    public int getNumOfVersions(String sheetName);
+
     public List<Sheet> getSheetList(String sheetName);
 
     public List<SheetData> getUserSheets(String username);

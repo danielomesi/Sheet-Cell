@@ -165,6 +165,7 @@ public class MainController {
         appearanceController.updateMyControlsOnFileLoad();
         dataModule.updateModule(currentLoadedSheet);
         isSheetLoaded.setValue(true);
+        sheetController.startVersionRefresher();
     }
 
     public void calculateCellUpdate(Coordinates coordinates, String originalExpression) {
@@ -245,6 +246,7 @@ public class MainController {
                     currentLoadedSheet = GsonInstance.getGson().fromJson(body, DTOSheet.class);
                     dataModule.updateModule(currentLoadedSheet);
                     sheetController.resetVersionComboBoxChoice();
+                    sheetController.makeOnSync();
                 })));
     }
 

@@ -4,6 +4,7 @@ import entities.cell.Cell;
 import entities.coordinates.Coordinates;
 import entities.range.RangeInterface;
 import entities.sheet.Sheet;
+import gui.animation.BlinkingEffect;
 import gui.builder.DynamicSheet;
 import gui.scenes.workspace.sheet.cell.CellController;
 import gui.components.sheet.cell.TableCellType;
@@ -11,6 +12,10 @@ import gui.scenes.workspace.main.MainController;
 import gui.core.DataModule;
 import gui.builder.DynamicSheetBuilder;
 import gui.utils.Utils;
+import http.HttpClientMessenger;
+import http.MyCallBack;
+import http.RequestScheduler;
+import http.constants.Constants;
 import javafx.animation.*;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
@@ -22,6 +27,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
+import json.GsonInstance;
+import okhttp3.HttpUrl;
 
 import java.util.Map;
 
@@ -34,7 +41,7 @@ public class SheetController {
     private final BooleanProperty isSelectingFirstCell = new SimpleBooleanProperty(false);
     private final BooleanProperty isSelectingSecondCell = new SimpleBooleanProperty(false); ;
     private final BooleanProperty is2ValidCellsSelected = new SimpleBooleanProperty(false);
-
+    private final BooleanProperty isSheetSynced = new SimpleBooleanProperty(true);
     @FXML
     private Label currentCellIDLabel;
 
@@ -43,7 +50,10 @@ public class SheetController {
 
     @FXML
     private TextField newValueTextField;
-
+    @FXML
+    private Label newVersionNotifyLabel;
+    @FXML
+    private Button syncButton;
     @FXML
     private Label originalValueLabel;
     @FXML
@@ -76,6 +86,7 @@ public class SheetController {
     public DynamicSheet getDynamicSheetTable() {return dynamicSheet;}
     public String getSelectedTopLeftCellID() {return selectedTopLeftCellLabel.getText();}
     public String getSelectedBottomRightCellID() {return selectedBottomRightCellLabel.getText();}
+    public BooleanProperty getIsSheetSynced() {return isSheetSynced;}
 
     //setters
     public void setMainController(MainController mainController) {
@@ -83,7 +94,8 @@ public class SheetController {
         if (mainController != null) {
             SheetController sheetController = mainController.getSheetController();
             BooleanProperty isSheetLoadedProperty = mainController.getIsSheetLoaded();
-            updateButton.disableProperty().bind(isSheetLoadedProperty.not().or(sheetController.getSelectedCellController().isNull()));
+            updateButton.disableProperty().bind(isSheetLoadedProperty.not().or(sheetController.getSelectedCellController().isNull()).or(isSheetSynced.not()));
+            syncButton.visibleProperty().bind(isSheetSynced.not());
             versionComboBox.disableProperty().bind(isSheetLoadedProperty.not());
             newValueTextField.disableProperty().bind(isSheetLoadedProperty.not());
             selectCellsButton.disableProperty().bind(isSheetLoadedProperty.not().or(isSelectingFirstCell).
@@ -269,6 +281,29 @@ public class SheetController {
         return translateTransition;
     }
 
+    public void startVersionRefresher() {
+        String sheetName = mainController.getCurrentSheetName();
+        String finalUrl = HttpUrl
+                .parse(Constants.NUM_OF_VERSIONS)
+                .newBuilder()
+                .addQueryParameter("name",sheetName)
+                .build()
+                .toString();
+
+        RequestScheduler.startHttpRequestScheduler(finalUrl,new MyCallBack(mainController.getHeaderController().getTaskStatusLabel(),
+                (body -> {
+                    int numOfVersions = GsonInstance.getGson().fromJson(body, Integer.class);
+                    int currentMaximumVersion = mainController.getDataModule().getVersionNumber().get();
+                    if (numOfVersions > currentMaximumVersion) {
+                        isSheetSynced.set(false);
+                        BlinkingEffect.startEffect(newVersionNotifyLabel,"New version Detected! Click sync to update");
+                    }
+                    else {
+                        isSheetSynced.set(true);
+                    }
+                })));
+    }
+
     @FXML
     void handleSelectCellsButtonClick(ActionEvent event) {
         cellsSelectionStatusLabel.setTextFill(Color.BLACK);
@@ -299,6 +334,16 @@ public class SheetController {
             mainController.generateVersionWindow(chosenVersion);
         }
 
+    }
+
+    @FXML
+    void syncButtonClicked(ActionEvent event) {
+        mainController.updateSheet();
+    }
+
+    public void makeOnSync() {
+        isSheetSynced.set(true);
+        BlinkingEffect.finishEffect(newVersionNotifyLabel,null);
     }
 
 }

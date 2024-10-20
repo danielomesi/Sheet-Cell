@@ -9,21 +9,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Made a nice progress...">
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Made auto updates of new sheets loaded">
+      <change afterPath="$PROJECT_DIR$/client/src/gui/animation/BlinkingEffect.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/http/RequestScheduler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/servlets/VersionsServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/DashboardHeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/DashboardHeaderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/header.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/header.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/DashboardMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/DashboardMainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/SheetsTableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/SheetsTableController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/commands/CommandsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/commands/CommandsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/commands/commands.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/commands/commands.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/entities/sheet/SheetMetaData.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/entities/sheet/SheetMetaData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/servlets/FileUploadServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/FileUploadServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/SheetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/SheetController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/sheet.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/sheet.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/http/constants/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/http/constants/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/Engine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/permission/PermissionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/entities/permission/PermissionType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/permission/SheetData.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/permission/SheetData.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -300,15 +296,7 @@
       <workItem from="1728595482683" duration="25000" />
       <workItem from="1728595515488" duration="605000" />
       <workItem from="1728635992036" duration="11192000" />
-      <workItem from="1728740640825" duration="36015000" />
-    </task>
-    <task id="LOCAL‎-00040" summary="Changed mechanism of Operations">
-      <option name="closed" value="true" />
-      <created>1726074239484</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL‎-00040" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1726074239484</updated>
+      <workItem from="1728740640825" duration="41240000" />
     </task>
     <task id="LOCAL‎-00041" summary="changed view of ranges buttons">
       <option name="closed" value="true" />
@@ -694,7 +682,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1729335396015</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL‎-00089" summary="Made auto updates of new sheets loaded">
+      <option name="closed" value="true" />
+      <created>1729350403198</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL‎-00089" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1729350403198</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -713,7 +709,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added another theme..." />
     <MESSAGE value="In the way to finish..." />
     <MESSAGE value="Minor changes" />
     <MESSAGE value="Reverted to working app" />
@@ -738,7 +733,8 @@
     <MESSAGE value="Implemented http interface for sub sheet for filter and sort features" />
     <MESSAGE value="Both filter and sort are now working..." />
     <MESSAGE value="Made a nice progress..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Made a nice progress..." />
+    <MESSAGE value="Made auto updates of new sheets loaded" />
+    <option name="LAST_COMMIT_MESSAGE" value="Made auto updates of new sheets loaded" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -56,6 +56,13 @@ public class EngineImpl implements Engine {
     }
 
     @Override
+    public int getNumOfVersions(String sheetName) {
+        SheetData sheetData = sheetName2SheetDataList.get(sheetName);
+
+        return sheetData == null ? 0 : sheetData.getSheetVersions().size();
+    }
+
+    @Override
     public synchronized List<Sheet> getSheetList(String sheetName) {
         if (sheetName2SheetDataList.containsKey(sheetName)) {
             List<Sheet> sheets = new LinkedList<>();
