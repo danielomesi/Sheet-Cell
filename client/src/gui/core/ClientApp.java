@@ -92,10 +92,10 @@ public class ClientApp extends Application {
         Parent headerNode = headerLoader.load();
         DashboardHeaderController headerController = headerLoader.getController();
 
+
         FXMLLoader sheetsTableLoader = new FXMLLoader(getClass().getResource("/gui/scenes/dashboard/sheetsTable/sheetsTable.fxml"));
         Parent sheetsLoaderNode = sheetsTableLoader.load();
         SheetsTableController sheetsTableController = sheetsTableLoader.getController();
-
         //Make main controller know the user it sits in
         dashboardMainController.setUsername(username);
 

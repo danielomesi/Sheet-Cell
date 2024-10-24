@@ -95,7 +95,7 @@ public class HttpClientMessenger {
                         errorLabel.setText("Something went wrong: " + bodyAsStr)
                 );
             } else {
-                Platform.runLater(() -> responseHandler.handle(bodyAsStr));
+                Platform.runLater(() ->  responseHandler.handle(bodyAsStr));
             }
         }
         catch (Exception e) {

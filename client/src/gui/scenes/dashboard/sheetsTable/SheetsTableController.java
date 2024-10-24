@@ -7,6 +7,7 @@ import com.google.gson.reflect.TypeToken;
 import entities.cell.DTOCell;
 import entities.coordinates.Coordinates;
 import entities.permission.PermissionType;
+import entities.permission.PermissionTypeFactory;
 import entities.sheet.DTOSheet;
 import entities.sheet.Sheet;
 import entities.sheet.SheetMetaData;
@@ -14,6 +15,7 @@ import gui.scenes.dashboard.main.DashboardMainController;
 import http.HttpClientMessenger;
 import http.MyCallBack;
 import http.MyResponseHandler;
+import http.RequestScheduler;
 import http.constants.Constants;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -44,12 +46,17 @@ public class SheetsTableController {
     private TableView<SheetTableEntry> tableView;
 
     @FXML
+    private Label statusLabel;
+
+    @FXML
     private Button viewSheetButton;
 
     @FXML
     private ScrollPane wrapper;
 
     private final ObservableList<SheetTableEntry> tableData = FXCollections.observableArrayList();
+
+    public Label getStatusLabel() {return statusLabel;}
 
     public void setDashboardMainController(DashboardMainController DashboardMainController) {this.dashboardMainController = DashboardMainController;}
 
@@ -71,42 +78,34 @@ public class SheetsTableController {
         tableView.setItems(tableData);
 
         tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            // Enable the button if a row is selected, otherwise disable it
-            viewSheetButton.setDisable(newValue == null);
+            if (newValue != null) {
+                String accessLevel = newValue.getAccessLevel();
+                PermissionType permissionType = PermissionTypeFactory.permissionName2PermissionType(accessLevel);
+                viewSheetButton.setDisable(permissionType.ordinal() < PermissionType.READ.ordinal());
+            }
+            else {
+                viewSheetButton.setDisable(false);
+            }
         });
 
         startRefreshingTableData();
     }
 
-    private void startRefreshingTableData() {
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), event -> fetchSheetData()));
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
-    }
-
-    public void fetchSheetData() {
+    public void startRefreshingTableData() {
         String url = HttpUrl
                 .parse(Constants.GET_SHEETS_META_DATA) // Update with your actual endpoint
                 .toString();
 
-        HttpClientMessenger.sendGetRequestWithoutBodyAsync(url, new MyCallBack(
-                dashboardMainController.getHeaderController().getTaskStatusLabel(),
-                this::handleSheetDataResponse
-        ));
+        RequestScheduler.startHttpRequestScheduler(url, new MyCallBack(
+                        statusLabel, (this::handleSheetDataResponse)));
     }
 
     private void handleSheetDataResponse(String body) {
-        try {
-            Gson gson = GsonInstance.getGson();
-            Type listType = new TypeToken<List<SheetMetaData>>() {}.getType();
-            List<SheetMetaData> sheetMetaDataList = gson.fromJson(body, listType);
+        Gson gson = GsonInstance.getGson();
+        Type listType = new TypeToken<List<SheetMetaData>>() {}.getType();
+        List<SheetMetaData> sheetMetaDataList = gson.fromJson(body, listType);
 
-            // Update the table view on the JavaFX application thread
-            Platform.runLater(() -> updateTableData(sheetMetaDataList));
-
-        } catch (JsonSyntaxException e) {
-            e.printStackTrace();
-        }
+        Platform.runLater(() -> updateTableData(sheetMetaDataList));
     }
 
     private void updateTableData(List<SheetMetaData> sheetMetaDataList) {

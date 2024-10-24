@@ -63,7 +63,7 @@ public class DashboardHeaderController {
 
         if (file != null) {
             HttpClientMessenger.sendFileToServer(file,new MyCallBack(taskStatusLabel,
-                    (body -> mainController.getSheetsTableController().fetchSheetData())));
+                    (body -> {})));
         }
     }
 
