@@ -9,22 +9,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added in dashboard the disabling view sheet button in case of no permissions">
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/permissionsTable/PermissionsTableController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/permissionsTable/PermissionsTableEntry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/permissionsTable/permissionsTable.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/entities/permission/PermissionRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/entities/permission/PermissionStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/http/dtos/RequestPermissionDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/servlets/PermissionRequestServlet.java" afterDir="false" />
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added request permission option">
+      <change afterPath="$PROJECT_DIR$/server/src/servlets/PermissionDecisionServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/header.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/header.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/DashboardMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/DashboardMainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/main.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/permissionsTable/PermissionsTableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/permissionsTable/PermissionsTableController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/permissionsTable/permissionsTable.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/permissionsTable/permissionsTable.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/SheetsTableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/SheetsTableController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/sheetsTable.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/sheetsTable.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/http/constants/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/http/constants/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/entities/permission/PermissionTypeFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/entities/permission/PermissionFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/entities/sheet/SheetMetaData.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/entities/sheet/SheetMetaData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/Engine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" afterDir="false" />
@@ -86,36 +80,36 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Application.App.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Application.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Client.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Ex3.executor&quot;: &quot;Run&quot;,
-    &quot;Application.GUI.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Tomcat Server.Server.executor&quot;: &quot;Run&quot;,
-    &quot;Tomcat Server.Tomcat 10.1.26.executor&quot;: &quot;Run&quot;,
-    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/omesi/IdeaProjects/Sheet-Cell/lib/Gson&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.App.executor": "Run",
+    "Application.Application.executor": "Run",
+    "Application.Client.executor": "Run",
+    "Application.Ex3.executor": "Run",
+    "Application.GUI.executor": "Run",
+    "Application.Unnamed.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Tomcat Server.Server.executor": "Run",
+    "Tomcat Server.Tomcat 10.1.26.executor": "Run",
+    "extract.method.default.visibility": "private",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/omesi/IdeaProjects/Sheet-Cell/lib/Gson",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\omesi\IdeaProjects\Sheet-Cell\ui\src\gui\components\styles" />
@@ -306,15 +300,7 @@
       <workItem from="1728595515488" duration="605000" />
       <workItem from="1728635992036" duration="11192000" />
       <workItem from="1728740640825" duration="46404000" />
-      <workItem from="1729765715350" duration="7318000" />
-    </task>
-    <task id="LOCAL‎-00043" summary="Changed styling mechansim">
-      <option name="closed" value="true" />
-      <created>1726313594145</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL‎-00043" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1726313594145</updated>
+      <workItem from="1729765715350" duration="12218000" />
     </task>
     <task id="LOCAL‎-00044" summary="Added sliders">
       <option name="closed" value="true" />
@@ -700,7 +686,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1729763766782</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL‎-00092" summary="Added request permission option">
+      <option name="closed" value="true" />
+      <created>1729773237135</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL‎-00092" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1729773237135</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -719,7 +713,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Reverted to working app" />
     <MESSAGE value="Final version" />
     <MESSAGE value="Added animations on file loading..." />
     <MESSAGE value="First step in ex3...." />
@@ -744,7 +737,8 @@
     <MESSAGE value="Made auto updates of new sheets loaded" />
     <MESSAGE value="Added feature of update notification alert..." />
     <MESSAGE value="Added in dashboard the disabling view sheet button in case of no permissions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added in dashboard the disabling view sheet button in case of no permissions" />
+    <MESSAGE value="Added request permission option" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added request permission option" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -757,11 +751,6 @@
           <url>file://$PROJECT_DIR$/client/src/json/EffectiveValueDeserializer.java</url>
           <line>13</line>
           <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/server/src/servlets/FileUploadServlet.java</url>
-          <line>50</line>
-          <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/client/src/gui/scenes/login/LoginController.java</url>

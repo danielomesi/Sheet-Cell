@@ -261,7 +261,7 @@ public class EngineImpl implements Engine {
             result.add(new SheetMetaData(sheetData.getName(),sheetData.getOwnerUsername(),
                     sheetData.getSheetVersions().getLast().getNumOfRows(),
                     sheetData.getSheetVersions().getLast().getNumOfCols(),
-                    sheetData.getPermissions(),sheetData.getPendingRequests()));
+                    sheetData.getPermissions(),sheetData.getPendingRequests(),sheetData.getDeniedRequests()));
         });
         return result;
     }
@@ -270,5 +270,12 @@ public class EngineImpl implements Engine {
     public void requestPermission(String requestingUsername, String sheetName, PermissionType permissionType) {
         SheetData sheetData = sheetName2SheetDataList.get(sheetName);
         sheetData.addPermissionRequest(new PermissionRequest(requestingUsername,permissionType));
+    }
+
+    @Override
+    public void applyAccessDecision(String usernameWithPendingRequest, String sheetName,
+                                    PermissionType permissionType, boolean isAccessAllowed) {
+        SheetData sheetData = sheetName2SheetDataList.get(sheetName);
+        sheetData.ApplyPermissionAccessDecision(usernameWithPendingRequest,permissionType,isAccessAllowed);
     }
 }

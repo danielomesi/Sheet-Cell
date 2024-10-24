@@ -17,11 +17,15 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Separator;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 //make sure the thread that is refreshing data (like in dashboard and/or in version) stops working when window is closed
@@ -118,11 +122,24 @@ public class ClientApp extends Application {
         permissionsTableController.setDashboardMainController(dashboardMainController);
 
 
+        List<Parent> nodesToCombine = new ArrayList<>();
+        nodesToCombine.add(sheetsLoaderNode);
+        nodesToCombine.add(permissionsTableNode);
+
         // Add the headerPane to the top of the root layout
         BorderPane root = dashboardMainController.getMainBorderPane();
         root.setTop(headerNode);
-        root.setLeft(sheetsLoaderNode);
-        root.setRight(permissionsTableNode);
+        root.setCenter(combineNodesTogether(nodesToCombine));
+    }
+
+    private Parent combineNodesTogether(List<Parent> nodes) {
+        HBox hbox = new HBox();
+        hbox.setSpacing(10);
+        for (Parent node : nodes) {
+            hbox.getChildren().add(node);
+            hbox.getChildren().add(new Separator());
+        }
+        return hbox;
     }
 
     public void loadWorkspace(Sheet sheet) throws IOException {

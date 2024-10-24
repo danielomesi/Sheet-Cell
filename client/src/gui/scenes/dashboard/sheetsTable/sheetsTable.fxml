@@ -24,10 +24,10 @@
             <Separator />
             <TableView fx:id="tableView" maxHeight="300.0" maxWidth="1.7976931348623157E308">
               <columns>
-                <TableColumn minWidth="70.0" prefWidth="-1.0" text="Uploader" />
-                <TableColumn minWidth="80.0" prefWidth="-1.0" text="Sheet Name" />
-                  <TableColumn minWidth="80.0" prefWidth="-1.0" text="Sheet Size" />
-                  <TableColumn minWidth="80.0" prefWidth="-1.0" text="Access Level" />
+                <TableColumn editable="false" minWidth="70.0" prefWidth="-1.0" sortable="false" text="Uploader" />
+                <TableColumn editable="false" minWidth="80.0" prefWidth="-1.0" sortable="false" text="Sheet Name" />
+                  <TableColumn editable="false" minWidth="80.0" prefWidth="-1.0" sortable="false" text="Sheet Size" />
+                  <TableColumn editable="false" minWidth="80.0" prefWidth="-1.0" sortable="false" text="Access Level" />
               </columns>
             </TableView>
          </children>

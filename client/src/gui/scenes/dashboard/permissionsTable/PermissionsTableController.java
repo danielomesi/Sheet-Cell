@@ -1,17 +1,22 @@
 package gui.scenes.dashboard.permissionsTable;
 
+import entities.permission.PermissionFactory;
 import entities.permission.PermissionRequest;
 import entities.permission.PermissionStatus;
 import entities.permission.PermissionType;
 import entities.sheet.SheetMetaData;
 import gui.scenes.dashboard.main.DashboardMainController;
-import gui.scenes.dashboard.sheetsTable.SheetTableEntry;
+import http.HttpClientMessenger;
+import http.MyCallBack;
+import http.constants.Constants;
+import http.dtos.RequestPermissionDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import okhttp3.HttpUrl;
 
 import java.util.Map;
 
@@ -24,9 +29,6 @@ public class PermissionsTableController {
 
     @FXML
     private Button grantPermissionButton;
-
-    @FXML
-    private Button refreshPermissionsTableButton;
 
     @FXML
     private Label statusLabel;
@@ -57,9 +59,30 @@ public class PermissionsTableController {
         sheetSizeColumn.setCellValueFactory(new PropertyValueFactory<>("permissionStatus"));
 
         tableView.setItems(tableData);
+
+        bindMethodToRunWhenEntryInTableSelected();
+    }
+
+    private void bindMethodToRunWhenEntryInTableSelected() {
+        tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                PermissionStatus permissionStatus =
+                        PermissionFactory.permissionName2PermissionStatus(newValue.getPermissionStatus());
+                String ownerUsername = dashboardMainController.getSheetsTableController().getCurrentlySelectedSheetMetaData().getUploaderName();
+                if (permissionStatus == PermissionStatus.PENDING) {
+                    grantPermissionButton.setDisable(!ownerUsername.equals(dashboardMainController.getUsername()));
+                    denyPermissionButton.setDisable(!ownerUsername.equals(dashboardMainController.getUsername()));
+                }
+                else {
+                    grantPermissionButton.setDisable(true);
+                    denyPermissionButton.setDisable(true);
+                }
+                }
+            });
     }
 
     public void populatePermissionsTable(SheetMetaData sheetMetaData) {
+        PermissionsTableEntry selectedEntry = tableView.getSelectionModel().getSelectedItem();
         if (sheetMetaData == null) return;
         tableData.clear();
         for (PermissionRequest permissionRequest : sheetMetaData.getPendingRequests()) {
@@ -72,17 +95,51 @@ public class PermissionsTableController {
                     pair.getValue().name(), PermissionStatus.APPROVED.name());
             tableData.add(entry);
         }
+        for (PermissionRequest permissionRequest : sheetMetaData.getDeniedRequests()) {
+            PermissionsTableEntry entry = new PermissionsTableEntry(permissionRequest.getUsername(),
+                    permissionRequest.getPermissionType().name(), PermissionStatus.REJECTED.name());
+            tableData.add(entry);
+        }
+
+        if (selectedEntry != null) {
+            for (PermissionsTableEntry entry : tableData) {
+                if (entry.getUsername().equals(selectedEntry.getUsername()) && entry.getPermissionType().equals(selectedEntry.getPermissionType())) {
+                    tableView.getSelectionModel().select(entry);
+                    break;
+                }
+            }
+        }
 
     }
 
     @FXML
     void denyPermissionButtonClicked(ActionEvent event) {
-
+        applyPermissionDecision(false);
     }
 
     @FXML
     void grantPermissionButtonClicked(ActionEvent event) {
+        applyPermissionDecision(true);
+    }
 
+    private void applyPermissionDecision(boolean isAccessAllowed) {
+        PermissionType permissionType = PermissionFactory.permissionName2PermissionType(
+                tableView.getSelectionModel().getSelectedItem().getPermissionType());
+        String sheetName = dashboardMainController.getSheetsTableController().
+                getCurrentlySelectedSheetMetaData().getSheetName();
+        String accessor = tableView.getSelectionModel().getSelectedItem().getUsername();
+        RequestPermissionDTO requestPermissionDTO = new RequestPermissionDTO(sheetName,permissionType);
+
+        String finalUrl = HttpUrl
+                .parse(Constants.DECIDE_PERMISSION_REQUEST)
+                .newBuilder()
+                .addQueryParameter("access", String.valueOf(isAccessAllowed))
+                .addQueryParameter("accessor",accessor)
+                .build()
+                .toString();
+
+        HttpClientMessenger.sendPostRequestWithBodyAsync(finalUrl, requestPermissionDTO, new MyCallBack(statusLabel,
+                (body -> {})));
     }
 
 }

@@ -1,25 +1,18 @@
 package gui.scenes.dashboard.sheetsTable;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
-import entities.cell.DTOCell;
-import entities.coordinates.Coordinates;
 import entities.permission.PermissionType;
-import entities.permission.PermissionTypeFactory;
+import entities.permission.PermissionFactory;
 import entities.sheet.DTOSheet;
 import entities.sheet.Sheet;
 import entities.sheet.SheetMetaData;
 import gui.scenes.dashboard.main.DashboardMainController;
 import http.HttpClientMessenger;
 import http.MyCallBack;
-import http.MyResponseHandler;
 import http.RequestScheduler;
 import http.constants.Constants;
 import http.dtos.RequestPermissionDTO;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,17 +20,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.util.Duration;
-import json.CellsMapDeserializer;
-import json.EffectiveValueDeserializer;
 import json.GsonInstance;
 import okhttp3.*;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
-import java.util.Map;
 
 public class SheetsTableController {
 
@@ -66,6 +54,7 @@ public class SheetsTableController {
 
     public Label getStatusLabel() {return statusLabel;}
 
+
     public void setDashboardMainController(DashboardMainController DashboardMainController) {this.dashboardMainController = DashboardMainController;}
 
     @FXML
@@ -88,7 +77,7 @@ public class SheetsTableController {
         tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 String accessLevel = newValue.getAccessLevel();
-                PermissionType permissionType = PermissionTypeFactory.permissionName2PermissionType(accessLevel);
+                PermissionType permissionType = PermissionFactory.permissionName2PermissionType(accessLevel);
                 viewSheetButton.setDisable(permissionType.ordinal() < PermissionType.READ.ordinal());
                 requestReadAccessButton.setDisable(permissionType.ordinal() >= PermissionType.READ.ordinal());
                 requestWriteAccessButton.setDisable(permissionType.ordinal() >= PermissionType.WRITE.ordinal());
@@ -208,5 +197,11 @@ public class SheetsTableController {
 
     public void  switchSceneToWorkspace(Sheet sheet) throws IOException {
         dashboardMainController.getClientApp().switchSceneToWorkspace(sheet);
+    }
+
+    public SheetMetaData getCurrentlySelectedSheetMetaData() {
+        String sheetName = tableView.getSelectionModel().getSelectedItem().getSheetName();
+
+        return getSheetMetaDataByName(sheetName);
     }
 }

@@ -28,4 +28,5 @@ public class Constants {
     public final static String GET_SHEETS_META_DATA = FULL_SERVER_PATH + "/dashboard/sheets";;
     public final static String NUM_OF_VERSIONS = FULL_SERVER_PATH + "/versions";
     public final static String ADD_PERMISSION_REQUEST = FULL_SERVER_PATH + "/permissions/request";
+    public final static String DECIDE_PERMISSION_REQUEST = FULL_SERVER_PATH + "/permissions/decide";
 }
