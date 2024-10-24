@@ -17,6 +17,7 @@ import http.MyCallBack;
 import http.MyResponseHandler;
 import http.RequestScheduler;
 import http.constants.Constants;
+import http.dtos.RequestPermissionDTO;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -47,6 +48,11 @@ public class SheetsTableController {
 
     @FXML
     private Label statusLabel;
+    @FXML
+    private Button requestReadAccessButton;
+
+    @FXML
+    private Button requestWriteAccessButton;
 
     @FXML
     private Button viewSheetButton;
@@ -55,6 +61,8 @@ public class SheetsTableController {
     private ScrollPane wrapper;
 
     private final ObservableList<SheetTableEntry> tableData = FXCollections.observableArrayList();
+
+    private List<SheetMetaData> sheetMetaDataList;
 
     public Label getStatusLabel() {return statusLabel;}
 
@@ -82,6 +90,10 @@ public class SheetsTableController {
                 String accessLevel = newValue.getAccessLevel();
                 PermissionType permissionType = PermissionTypeFactory.permissionName2PermissionType(accessLevel);
                 viewSheetButton.setDisable(permissionType.ordinal() < PermissionType.READ.ordinal());
+                requestReadAccessButton.setDisable(permissionType.ordinal() >= PermissionType.READ.ordinal());
+                requestWriteAccessButton.setDisable(permissionType.ordinal() >= PermissionType.WRITE.ordinal());
+                dashboardMainController.getPermissionsTableController().
+                        populatePermissionsTable(getSheetMetaDataByName(newValue.getSheetName()));
             }
             else {
                 viewSheetButton.setDisable(false);
@@ -89,6 +101,17 @@ public class SheetsTableController {
         });
 
         startRefreshingTableData();
+    }
+
+    private SheetMetaData getSheetMetaDataByName(String sheetName) {
+        SheetMetaData res = null;
+        for (SheetMetaData sheetMetaData : sheetMetaDataList) {
+            if (sheetMetaData.getSheetName().equals(sheetName)) {
+                res = sheetMetaData;
+            }
+        }
+
+        return res;
     }
 
     public void startRefreshingTableData() {
@@ -103,7 +126,7 @@ public class SheetsTableController {
     private void handleSheetDataResponse(String body) {
         Gson gson = GsonInstance.getGson();
         Type listType = new TypeToken<List<SheetMetaData>>() {}.getType();
-        List<SheetMetaData> sheetMetaDataList = gson.fromJson(body, listType);
+        sheetMetaDataList = gson.fromJson(body, listType);
 
         Platform.runLater(() -> updateTableData(sheetMetaDataList));
     }
@@ -157,6 +180,30 @@ public class SheetsTableController {
                         taskLabel.setText(e.getMessage());
                     }
                 })));
+    }
+
+    @FXML
+    void requestReadAccessButtonClicked(ActionEvent event) {
+        requestPermission(PermissionType.READ);
+    }
+
+    @FXML
+    void requestWriteAccessButtonClicked(ActionEvent event) {
+        requestPermission(PermissionType.WRITE);
+    }
+
+    private void requestPermission(PermissionType permissionType) {
+        String sheetName = tableView.getSelectionModel().getSelectedItem().getSheetName();
+        RequestPermissionDTO requestPermissionDTO = new RequestPermissionDTO(sheetName, permissionType);
+
+        String finalUrl = HttpUrl
+                .parse(Constants.ADD_PERMISSION_REQUEST)
+                .newBuilder()
+                .build()
+                .toString();
+
+        HttpClientMessenger.sendPostRequestWithBodyAsync(finalUrl, requestPermissionDTO, new MyCallBack(statusLabel,
+                (body -> {})));
     }
 
     public void  switchSceneToWorkspace(Sheet sheet) throws IOException {

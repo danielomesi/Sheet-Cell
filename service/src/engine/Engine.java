@@ -1,6 +1,7 @@
 package engine;
 
 import entities.cell.Cell;
+import entities.permission.PermissionType;
 import entities.sheet.Sheet;
 import entities.sheet.SheetMetaData;
 import permission.SheetData;
@@ -47,5 +48,7 @@ public interface Engine {
     public Set<Integer> filter(String sheetName, String colName, List<Object> effectiveValuesToFilterBy, String fromCellID, String toCellID, boolean isFilteringEmptyCells);
 
     public List<SheetMetaData> getAllSheetsMetaData();
+
+    public void requestPermission(String requestingUsername, String sheetName, PermissionType permissionType);
 
 }

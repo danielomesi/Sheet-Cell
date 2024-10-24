@@ -2,6 +2,7 @@ package gui.scenes.dashboard.main;
 
 import gui.core.ClientApp;
 import gui.scenes.dashboard.header.DashboardHeaderController;
+import gui.scenes.dashboard.permissionsTable.PermissionsTableController;
 import gui.scenes.dashboard.sheetsTable.SheetsTableController;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
@@ -16,7 +17,7 @@ public class DashboardMainController {
     //sub-controllers
     private DashboardHeaderController headerController;
     private SheetsTableController sheetsTableController;
-
+    private PermissionsTableController permissionsTableController;
     @FXML
     private BorderPane mainBorderPane;
 
@@ -25,15 +26,16 @@ public class DashboardMainController {
 
     //getters
     public String getUsername() {return username;}
-
+    public SheetsTableController getSheetsTableController() {return sheetsTableController;}
+    public DashboardHeaderController getHeaderController() {return headerController;}
+    public PermissionsTableController getPermissionsTableController() {return permissionsTableController;}
+    public BorderPane getMainBorderPane() {return mainBorderPane;}
+    public ClientApp getClientApp() {return clientApp;}
     //setters
     public void setUsername(String username) {this.username = username;}
     public void setClientApp(ClientApp clientApp) {this.clientApp = clientApp;}
     public void setStage(Stage stage) {this.stage = stage;}
     public void setHeaderController(DashboardHeaderController headerController) {this.headerController = headerController;}
     public void setSheetsTableController(SheetsTableController sheetsTableController) {this.sheetsTableController = sheetsTableController;}
-    public SheetsTableController getSheetsTableController() {return sheetsTableController;}
-    public DashboardHeaderController getHeaderController() {return headerController;}
-    public BorderPane getMainBorderPane() {return mainBorderPane;}
-    public ClientApp getClientApp() {return clientApp;}
+    public void setPermissionsTableController(PermissionsTableController permissionsTableController) {this.permissionsTableController = permissionsTableController;}
 }

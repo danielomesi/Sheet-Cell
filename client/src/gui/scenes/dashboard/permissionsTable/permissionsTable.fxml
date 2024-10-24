@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fx:id="wrapper" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.scenes.dashboard.permissionsTable.PermissionsTableController">
+   <content>
+      <VBox alignment="CENTER" spacing="10.0">
+         <children>
+            <HBox alignment="CENTER" spacing="10.0">
+               <children>
+                  <Button fx:id="refreshPermissionsTableButton" mnemonicParsing="false" text="Refresh" />
+                  <Button fx:id="grantPermissionButton" disable="true" mnemonicParsing="false" onAction="#grantPermissionButtonClicked" text="Grant Permission" wrapText="true" />
+                  <Button fx:id="denyPermissionButton" disable="true" mnemonicParsing="false" onAction="#denyPermissionButtonClicked" text="Deny Permission" />
+                  <Label fx:id="statusLabel" disable="true" wrapText="true" />
+               </children>
+            </HBox>
+            <Separator />
+            <TableView fx:id="tableView" maxHeight="300.0" maxWidth="1.7976931348623157E308">
+              <columns>
+                <TableColumn minWidth="70.0" prefWidth="-1.0" text="Username" />
+                <TableColumn minWidth="100.0" prefWidth="-1.0" text="Permission Type" />
+                  <TableColumn minWidth="50.0" prefWidth="-1.0" text="Status" />
+              </columns>
+            </TableView>
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>

@@ -3,6 +3,7 @@ package gui.core;
 import entities.sheet.Sheet;
 import gui.scenes.dashboard.header.DashboardHeaderController;
 import gui.scenes.dashboard.main.DashboardMainController;
+import gui.scenes.dashboard.permissionsTable.PermissionsTableController;
 import gui.scenes.dashboard.sheetsTable.SheetsTableController;
 import gui.scenes.login.LoginController;
 import gui.scenes.workspace.appearance.AppearanceController;
@@ -22,9 +23,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+
+//make sure the thread that is refreshing data (like in dashboard and/or in version) stops working when window is closed
 //fix the problem when I sort the table view and there is an update - it unsorts it every 2 seconds (because of the update)
 //add the permissions handling mechanism
-//add the notification on new version update from within the workspace area
 
 public class ClientApp extends Application {
     private MainController workspaceMainController;
@@ -92,28 +94,35 @@ public class ClientApp extends Application {
         Parent headerNode = headerLoader.load();
         DashboardHeaderController headerController = headerLoader.getController();
 
-
         FXMLLoader sheetsTableLoader = new FXMLLoader(getClass().getResource("/gui/scenes/dashboard/sheetsTable/sheetsTable.fxml"));
         Parent sheetsLoaderNode = sheetsTableLoader.load();
         SheetsTableController sheetsTableController = sheetsTableLoader.getController();
+
+        FXMLLoader permissionsTableLoader = new FXMLLoader(getClass().getResource("/gui/scenes/dashboard/permissionsTable/permissionsTable.fxml"));
+        Parent permissionsTableNode = permissionsTableLoader.load();
+        PermissionsTableController permissionsTableController = permissionsTableLoader.getController();
+
+
         //Make main controller know the user it sits in
         dashboardMainController.setUsername(username);
 
         // Make main controller know its sub controllers
         dashboardMainController.setHeaderController(headerController);
         dashboardMainController.setSheetsTableController(sheetsTableController);
-
+        dashboardMainController.setPermissionsTableController(permissionsTableController);
 
         //Make sub controllers know the main controller
         headerController.setMainController(dashboardMainController);
         headerController.setGreetingLabel(username);
         sheetsTableController.setDashboardMainController(dashboardMainController);
+        permissionsTableController.setDashboardMainController(dashboardMainController);
 
 
         // Add the headerPane to the top of the root layout
         BorderPane root = dashboardMainController.getMainBorderPane();
         root.setTop(headerNode);
-        root.setCenter(sheetsLoaderNode);
+        root.setLeft(sheetsLoaderNode);
+        root.setRight(permissionsTableNode);
     }
 
     public void loadWorkspace(Sheet sheet) throws IOException {

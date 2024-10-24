@@ -15,17 +15,19 @@
          <children>
             <HBox alignment="CENTER" spacing="10.0">
                <children>
+                  <Button fx:id="requestReadAccessButton" disable="true" mnemonicParsing="false" onAction="#requestReadAccessButtonClicked" text="Request Read Access" wrapText="true" />
+                  <Button fx:id="requestWriteAccessButton" disable="true" mnemonicParsing="false" onAction="#requestWriteAccessButtonClicked" text="Request Write Access" wrapText="true" />
                   <Button fx:id="viewSheetButton" disable="true" mnemonicParsing="false" onAction="#viewSheetButtonClicked" text="View Sheet" wrapText="true" />
                   <Label fx:id="statusLabel" wrapText="true" />
                </children>
             </HBox>
-            <Separator prefWidth="200.0" />
-            <TableView fx:id="tableView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+            <Separator />
+            <TableView fx:id="tableView" maxHeight="300.0" maxWidth="1.7976931348623157E308">
               <columns>
-                <TableColumn prefWidth="75.0" text="Uploader" />
-                <TableColumn prefWidth="75.0" text="Sheet Name" />
-                  <TableColumn prefWidth="75.0" text="Sheet Size" />
-                  <TableColumn prefWidth="75.0" text="Access Level" />
+                <TableColumn minWidth="70.0" prefWidth="-1.0" text="Uploader" />
+                <TableColumn minWidth="80.0" prefWidth="-1.0" text="Sheet Name" />
+                  <TableColumn minWidth="80.0" prefWidth="-1.0" text="Sheet Size" />
+                  <TableColumn minWidth="80.0" prefWidth="-1.0" text="Access Level" />
               </columns>
             </TableView>
          </children>
