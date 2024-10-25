@@ -94,10 +94,11 @@ public class SheetController {
         if (mainController != null) {
             SheetController sheetController = mainController.getSheetController();
             BooleanProperty isSheetLoadedProperty = mainController.getIsSheetLoaded();
-            updateButton.disableProperty().bind(isSheetLoadedProperty.not().or(sheetController.getSelectedCellController().isNull()).or(isSheetSynced.not()));
+            updateButton.disableProperty().bind(isSheetLoadedProperty.not().or(sheetController.getSelectedCellController().isNull()).
+                    or(isSheetSynced.not()).or(mainController.getIsWriteAccessAllowed().not()));
             syncButton.visibleProperty().bind(isSheetSynced.not());
             versionComboBox.disableProperty().bind(isSheetLoadedProperty.not());
-            newValueTextField.disableProperty().bind(isSheetLoadedProperty.not());
+            newValueTextField.disableProperty().bind(isSheetLoadedProperty.not().or(mainController.getIsWriteAccessAllowed().not()));
             selectCellsButton.disableProperty().bind(isSheetLoadedProperty.not().or(isSelectingFirstCell).
                     or(isSelectingSecondCell));
         }

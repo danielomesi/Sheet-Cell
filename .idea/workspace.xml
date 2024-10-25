@@ -9,14 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Made some progress in handling permissions...">
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added write/read mode caption in workspace area">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/DashboardMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/DashboardMainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/SheetsTableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/SheetsTableController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/header/HeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/header/HeaderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/header/header.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/header/header.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/commands/CommandsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/commands/CommandsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/SheetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/SheetController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -294,15 +290,7 @@
       <workItem from="1728595515488" duration="605000" />
       <workItem from="1728635992036" duration="11192000" />
       <workItem from="1728740640825" duration="46404000" />
-      <workItem from="1729765715350" duration="14880000" />
-    </task>
-    <task id="LOCAL‎-00045" summary="Added alignment">
-      <option name="closed" value="true" />
-      <created>1726333210282</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL‎-00045" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1726333210282</updated>
+      <workItem from="1729765715350" duration="15273000" />
     </task>
     <task id="LOCAL‎-00046" summary="Added color pickers for cell">
       <option name="closed" value="true" />
@@ -688,7 +676,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1729803633987</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL‎-00094" summary="Added write/read mode caption in workspace area">
+      <option name="closed" value="true" />
+      <created>1729873102090</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL‎-00094" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1729873102090</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -707,7 +703,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added animations on file loading..." />
     <MESSAGE value="First step in ex3...." />
     <MESSAGE value="Small progress..." />
     <MESSAGE value="My first file upload!!!" />
@@ -732,7 +727,8 @@
     <MESSAGE value="Added in dashboard the disabling view sheet button in case of no permissions" />
     <MESSAGE value="Added request permission option" />
     <MESSAGE value="Made some progress in handling permissions..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Made some progress in handling permissions..." />
+    <MESSAGE value="Added write/read mode caption in workspace area" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added write/read mode caption in workspace area" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

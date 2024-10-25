@@ -51,9 +51,9 @@ public class CommandsController {
             BooleanProperty isSheetLoadedProperty = mainController.getIsSheetLoaded();
             BooleanProperty is2validCellsSelected = mainController.getSheetController().getIs2ValidCellsSelected();
             rangeComboBox.disableProperty().bind(isSheetLoadedProperty.not());
-            rangeNameTextField.disableProperty().bind(isSheetLoadedProperty.not());
-            removeRangeButton.disableProperty().bind(isSheetLoadedProperty.not().or(rangeComboBox.getSelectionModel().selectedItemProperty().isNull()));
-            addRangeButton.disableProperty().bind(is2validCellsSelected.not());
+            rangeNameTextField.disableProperty().bind(isSheetLoadedProperty.not().or(is2validCellsSelected.not().or(mainController.getIsWriteAccessAllowed().not())));
+            removeRangeButton.disableProperty().bind(isSheetLoadedProperty.not().or(rangeComboBox.getSelectionModel().selectedItemProperty().isNull()).or(mainController.getIsWriteAccessAllowed().not()));
+            addRangeButton.disableProperty().bind(is2validCellsSelected.not().or(mainController.getIsWriteAccessAllowed().not()));
             openFilterDialogButton.disableProperty().bind(is2validCellsSelected.not());
             openSortDialogButton.disableProperty().bind(is2validCellsSelected.not());
         }
