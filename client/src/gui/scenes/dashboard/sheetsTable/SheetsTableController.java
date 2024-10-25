@@ -150,6 +150,8 @@ public class SheetsTableController {
     void viewSheetButtonClicked(ActionEvent event) {
         String sheetName = tableView.getSelectionModel().getSelectedItem().getSheetName();
         Label taskLabel = dashboardMainController.getHeaderController().getTaskStatusLabel();
+        String permissionTypeAsString = tableView.getSelectionModel().getSelectedItem().getAccessLevel();
+        PermissionType permissionType = PermissionFactory.permissionName2PermissionType(permissionTypeAsString);
 
         String finalUrl = HttpUrl
                 .parse(Constants.GET_SHEET)
@@ -164,7 +166,7 @@ public class SheetsTableController {
                     try {
                         System.out.println(body);
                         DTOSheet sheet = GsonInstance.getGson().fromJson(body, DTOSheet.class);
-                        switchSceneToWorkspace(sheet);
+                        switchSceneToWorkspace(sheet,permissionType);
                     } catch (Exception e) {
                         taskLabel.setText(e.getMessage());
                     }
@@ -195,8 +197,8 @@ public class SheetsTableController {
                 (body -> {})));
     }
 
-    public void  switchSceneToWorkspace(Sheet sheet) throws IOException {
-        dashboardMainController.getClientApp().switchSceneToWorkspace(sheet);
+    public void  switchSceneToWorkspace(Sheet sheet, PermissionType permissionType) throws IOException {
+        dashboardMainController.getClientApp().switchSceneToWorkspace(sheet,permissionType);
     }
 
     public SheetMetaData getCurrentlySelectedSheetMetaData() {

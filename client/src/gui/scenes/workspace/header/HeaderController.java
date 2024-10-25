@@ -1,5 +1,6 @@
 package gui.scenes.workspace.header;
 
+import entities.permission.PermissionType;
 import gui.scenes.workspace.main.MainController;
 import gui.utils.Utils;
 import javafx.beans.property.BooleanProperty;
@@ -15,11 +16,8 @@ public class HeaderController {
 
     private MainController mainController;
 
-    //load and save controls
     @FXML
-    private Label filePathLabel;
-    @FXML
-    private Button saveToFileButton;
+    private Label mainLabel;
 
     //task progress controls
     @FXML
@@ -36,49 +34,16 @@ public class HeaderController {
         this.mainController = mainController;
         if (mainController != null) {
             BooleanProperty isSheetLoadedProperty = mainController.getIsSheetLoaded();
-            saveToFileButton.disableProperty().bind(isSheetLoadedProperty.not());
+            setHeaderLabel();
         }
     }
 
-    @FXML
-    void handleSaveToFileButton(ActionEvent event) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Save File");
-
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Data Files", "*.dat"));
-
-        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-        File file = fileChooser.showSaveDialog(stage);
-
-        if (file != null) {
-            boolean isAnimationsEnabled = mainController.getAppearanceController().isAnimationsEnabled();
-            Task<Void> task = Utils.getTaskFromRunnable(() -> mainController.saveFile(file.getAbsolutePath())
-                    , taskStatusLabel,taskProgressBar, isAnimationsEnabled);
-            Utils.runTaskInADaemonThread(task);
-        }
+    public void setHeaderLabel() {
+        boolean isWriteAccessAllowed = mainController.getIsWriteAccessAllowed().get();
+        String permission = isWriteAccessAllowed ? "WRITE" : "READ";
+        mainLabel.setText("Sheet View [" + permission + " Mode]");
     }
 
-    @FXML
-    void handleLoadFileButtonClick(ActionEvent event) {
-//        FileChooser fileChooser = new FileChooser();
-//        fileChooser.setTitle("Open Resource File");
-//
-//        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("XML Files", "*.xml")
-//                ,new FileChooser.ExtensionFilter("Data Files", "*.dat"));
-//
-//        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-//        File file = fileChooser.showOpenDialog(stage);
-//
-//        if (file != null) {
-//            boolean isAnimationsEnabled = mainController.getAppearanceController().isAnimationsEnabled();
-//            Task<Void> task = Utils.getTaskFromRunnable(, isAnimationsEnabled);
-//            task.setOnSucceeded(e -> {
-//                filePathLabel.setText(file.getName());
-//            });
-//
-//            Utils.runTaskInADaemonThread(task);
-//        }
-    }
 }
 
 

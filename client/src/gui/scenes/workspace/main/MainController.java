@@ -3,6 +3,7 @@ package gui.scenes.workspace.main;
 import engine.Engine;
 import engine.EngineImpl;
 import entities.coordinates.Coordinates;
+import entities.permission.PermissionType;
 import entities.sheet.DTOSheet;
 import entities.sheet.Sheet;
 import gui.builder.DynamicSheetBuilder;
@@ -19,14 +20,13 @@ import gui.core.DataModule;
 import gui.utils.Utils;
 import http.HttpClientMessenger;
 import http.MyCallBack;
-import http.MyResponseHandler;
 import http.constants.Constants;
 import http.dtos.AddRangeDTO;
 import http.dtos.CellUpdateDTO;
 import http.dtos.SetSubSheetDTO;
-import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
@@ -34,9 +34,7 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import json.GsonInstance;
 import okhttp3.*;
-import org.jetbrains.annotations.NotNull;
 
-import java.io.IOException;
 import java.util.List;
 
 public class MainController {
@@ -55,6 +53,7 @@ public class MainController {
     private DataModule dataModule;
     private List<String> cssStyles;
     private ClientApp clientApp;
+    private final SimpleBooleanProperty isWriteAccessAllowed = new SimpleBooleanProperty(false);
     //stage
     private Stage stage;
 
@@ -71,6 +70,7 @@ public class MainController {
     public BorderPane getMainBorderPane() {
         return mainBorderPane;
     }
+    public SimpleBooleanProperty getIsWriteAccessAllowed() {return isWriteAccessAllowed;}
 
     public Engine getEngine() {
         return engine;
@@ -114,6 +114,9 @@ public class MainController {
 
     //setters
     public void setClientApp(ClientApp clientApp) {this.clientApp = clientApp;}
+    public void setAccessAttributes(PermissionType permissionType) {
+        isWriteAccessAllowed.set(permissionType.ordinal() >= PermissionType.WRITE.ordinal());
+    }
     public void setStage(Stage stage) {
         this.stage = stage;
     }

@@ -4,6 +4,7 @@ import gui.core.ClientApp;
 import gui.scenes.dashboard.header.DashboardHeaderController;
 import gui.scenes.dashboard.permissionsTable.PermissionsTableController;
 import gui.scenes.dashboard.sheetsTable.SheetsTableController;
+import http.RequestScheduler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
@@ -38,4 +39,12 @@ public class DashboardMainController {
     public void setHeaderController(DashboardHeaderController headerController) {this.headerController = headerController;}
     public void setSheetsTableController(SheetsTableController sheetsTableController) {this.sheetsTableController = sheetsTableController;}
     public void setPermissionsTableController(PermissionsTableController permissionsTableController) {this.permissionsTableController = permissionsTableController;}
+
+    public void stopRefresher() {
+        RequestScheduler.stopHttpRequestScheduler();
+    }
+
+    public void startRefresher() {
+        sheetsTableController.startRefreshingTableData();
+    }
 }

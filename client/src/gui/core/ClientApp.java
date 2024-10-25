@@ -1,5 +1,6 @@
 package gui.core;
 
+import entities.permission.PermissionType;
 import entities.sheet.Sheet;
 import gui.scenes.dashboard.header.DashboardHeaderController;
 import gui.scenes.dashboard.main.DashboardMainController;
@@ -50,8 +51,9 @@ public class ClientApp extends Application {
         loadDashBoard(username);
     }
 
-    public void switchSceneToWorkspace(Sheet sheet) throws IOException {
-        loadWorkspace(sheet);
+    public void switchSceneToWorkspace(Sheet sheet, PermissionType permissionType) throws IOException {
+        dashboardMainController.stopRefresher();
+        loadWorkspace(sheet,permissionType);
     }
 
     public void loadLogin() throws IOException {
@@ -142,8 +144,8 @@ public class ClientApp extends Application {
         return hbox;
     }
 
-    public void loadWorkspace(Sheet sheet) throws IOException {
-        Parent root = setupAndGetWorkspaceMainComponent(sheet);
+    public void loadWorkspace(Sheet sheet, PermissionType permissionType) throws IOException {
+        Parent root = setupAndGetWorkspaceMainComponent(sheet,permissionType);
         Scene scene = new Scene(root);
         primaryStage.setTitle("Sheet Cell");
         primaryStage.setScene(scene);
@@ -151,12 +153,13 @@ public class ClientApp extends Application {
         primaryStage.centerOnScreen();
     }
 
-    private Parent setupAndGetWorkspaceMainComponent(Sheet sheet) throws IOException {
+    private Parent setupAndGetWorkspaceMainComponent(Sheet sheet, PermissionType permissionType) throws IOException {
         FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("/gui/scenes/workspace/main/main.fxml"));
         ScrollPane root = mainLoader.load();
         workspaceMainController = mainLoader.getController();
         workspaceMainController.setStage(primaryStage);
         workspaceMainController.setClientApp(this);
+        workspaceMainController.setAccessAttributes(permissionType);
 
         loadSubControllersOfWorkspace(sheet);
         return root;
@@ -193,6 +196,7 @@ public class ClientApp extends Application {
         commandsController.setMainController(workspaceMainController);
         appearanceController.setMainController(workspaceMainController);
 
+
         // Add the headerPane to the top of the root layout
         BorderPane root = workspaceMainController.getMainBorderPane();
         root.setTop(headerNode);
@@ -207,6 +211,7 @@ public class ClientApp extends Application {
     }
 
     public void switchSceneBackToDashboardFromWorkspace() {
+        dashboardMainController.startRefresher();
         primaryStage.setTitle("Dashboard");
         primaryStage.setScene(dashboardScene);
         primaryStage.show();

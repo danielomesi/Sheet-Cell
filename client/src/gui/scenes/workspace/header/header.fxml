@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.Separator?>
@@ -11,19 +10,12 @@
 
 <VBox fx:id="vBoxHeader" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="1200.0" spacing="10.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.scenes.workspace.header.HeaderController">
    <children>
-      <Label alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="main-header" text="Sheet-Cell">
+      <Label fx:id="mainLabel" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="main-header">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
       <Separator />
-      <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
-         <children>
-            <Button fx:id="loadFileButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleLoadFileButtonClick" text="Load File" />
-            <Label fx:id="filePathLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
-            <Button fx:id="saveToFileButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleSaveToFileButton" text="Save to File" />
-         </children>
-      </HBox>
       <ProgressBar fx:id="taskProgressBar" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefWidth="600.0" progress="0.0" />
       <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
          <children>
