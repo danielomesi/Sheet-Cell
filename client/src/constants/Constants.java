@@ -7,7 +7,12 @@ public class Constants {
     public final static int REFRESH_RATE = 2000;
     public final static String CHAT_LINE_FORMATTING = "%tH:%tM:%tS | %.10s: %s%n";
 
-    // fxml locations
+    //text messages in app
+    public static final String NEW_VERSION_DETECTED_MESSAGE = "New Version Detected! Writing is disabled, click Sync to update";
+
+
+    public static String USER_WELCOME_MESSAGE(String username) {return String.format("Hi %s! Welcome to the app!",username);}
+
     // FXML locations
     public static final String LOGIN_FXML = "/gui/scenes/login/login.fxml";
     public static final String DASHBOARD_MAIN_FXML = "/gui/scenes/dashboard/main/main.fxml";

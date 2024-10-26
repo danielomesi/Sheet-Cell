@@ -27,11 +27,11 @@
                </children>
             </HBox>
             <Separator />
-            <TableView fx:id="tableView" maxHeight="300.0" maxWidth="1.7976931348623157E308">
+            <TableView fx:id="tableView" maxHeight="200.0" maxWidth="1.7976931348623157E308">
               <columns>
-                <TableColumn editable="false" minWidth="70.0" prefWidth="-1.0" sortable="false" text="Username" />
+                <TableColumn editable="false" minWidth="100.0" prefWidth="-1.0" sortable="false" text="Username" />
                 <TableColumn editable="false" minWidth="100.0" prefWidth="-1.0" sortable="false" text="Permission Type" />
-                  <TableColumn editable="false" minWidth="50.0" prefWidth="-1.0" sortable="false" text="Status" />
+                  <TableColumn editable="false" minWidth="100.0" prefWidth="-1.0" sortable="false" text="Status" />
               </columns>
             </TableView>
          </children>

@@ -99,7 +99,8 @@ public class SheetController {
                     or(isSheetSynced.not()).or(mainController.getIsWriteAccessAllowed().not()));
             syncButton.visibleProperty().bind(isSheetSynced.not());
             versionComboBox.disableProperty().bind(isSheetLoadedProperty.not());
-            newValueTextField.disableProperty().bind(isSheetLoadedProperty.not().or(mainController.getIsWriteAccessAllowed().not()));
+            newValueTextField.disableProperty().bind(isSheetLoadedProperty.not().
+                    or(mainController.getIsWriteAccessAllowed().not()).or(isSheetSynced.not()));
             selectCellsButton.disableProperty().bind(isSheetLoadedProperty.not().or(isSelectingFirstCell).
                     or(isSelectingSecondCell));
         }
@@ -298,7 +299,7 @@ public class SheetController {
                     int currentMaximumVersion = mainController.getDataModule().getVersionNumber().get();
                     if (numOfVersions > currentMaximumVersion) {
                         isSheetSynced.set(false);
-                        BlinkingEffect.startEffect(newVersionNotifyLabel,"New version Detected! Click sync to update");
+                        BlinkingEffect.startEffect(newVersionNotifyLabel,NEW_VERSION_DETECTED_MESSAGE);
                     }
                     else {
                         isSheetSynced.set(true);

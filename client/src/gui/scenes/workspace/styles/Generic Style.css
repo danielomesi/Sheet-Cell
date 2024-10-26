@@ -3,6 +3,16 @@
     -fx-background-size: cover;
 }
 
+#greeting-label {
+    -fx-font-size: 16px;
+    -fx-text-fill: #333333;
+    -fx-padding: 5px;
+    -fx-background-color: #F9F9F9;
+    -fx-border-color: #CCCCCC;
+    -fx-border-width: 1px;
+}
+
+
 
 .main-header {
     -fx-font-size: 18px;

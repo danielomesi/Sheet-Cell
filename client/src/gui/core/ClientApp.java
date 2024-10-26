@@ -31,8 +31,7 @@ import static constants.Constants.*;
 
 
 //make sure the thread that is refreshing data (like in dashboard and/or in version) stops working when window is closed
-//fix the problem when I sort the table view and there is an update - it unsorts it every 2 seconds (because of the update)
-//add the permissions handling mechanism
+
 
 public class ClientApp extends Application {
     private MainController workspaceMainController;
@@ -136,13 +135,18 @@ public class ClientApp extends Application {
     }
 
     private Parent combineNodesTogether(List<Parent> nodes) {
-        HBox hbox = new HBox();
-        hbox.setSpacing(10);
+        VBox vbox = new VBox();
+        vbox.setAlignment(Pos.CENTER);
+        vbox.setMaxWidth(Double.MAX_VALUE);
+        vbox.setMaxHeight(Double.MAX_VALUE);
+        vbox.setSpacing(10);
         for (Parent node : nodes) {
-            hbox.getChildren().add(node);
-            hbox.getChildren().add(new Separator());
-        }
-        return hbox;
+            vbox.getChildren().add(node);
+            vbox.getChildren().add(new Separator());
+        };
+
+
+        return vbox;
     }
 
     public void loadWorkspace(Sheet sheet, PermissionType permissionType) throws IOException {

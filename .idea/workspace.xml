@@ -9,22 +9,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added write/read mode restrictions when in a workspace">
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added constants one-single-point in client">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/constants/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/constants/Constants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/DashboardMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/DashboardMainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/permissionsTable/PermissionsTableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/permissionsTable/PermissionsTableController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/DashboardHeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/DashboardHeaderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/header.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/header.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/permissionsTable/permissionsTable.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/permissionsTable/permissionsTable.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/SheetsTableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/SheetsTableController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/sheetsTable.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/sheetsTable.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/login/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/login/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/appearance/AppearanceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/appearance/AppearanceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/filter/FilterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/filter/FilterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/commands/CommandsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/commands/CommandsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/SheetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/SheetController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sort/SortController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sort/SortController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/utils/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/http/constants/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/constants/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/styles/Generic Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/styles/Generic Style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +116,7 @@
       <recent name="C:\Users\omesi\IdeaProjects\Sheet-Cell\lib\javafx-sdk-22.0.2" />
     </key>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Server">
+  <component name="RunManager" selected="Application.Client">
     <configuration name="Client" type="Application" factoryName="Application" singleton="false">
       <option name="ALTERNATIVE_JRE_PATH" value="21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -303,15 +298,7 @@
       <workItem from="1728635992036" duration="11192000" />
       <workItem from="1728740640825" duration="46404000" />
       <workItem from="1729765715350" duration="15307000" />
-      <workItem from="1729931258365" duration="4503000" />
-    </task>
-    <task id="LOCAL‎-00047" summary="Added scale slider">
-      <option name="closed" value="true" />
-      <created>1726399381270</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL‎-00047" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1726399381270</updated>
+      <workItem from="1729931258365" duration="10779000" />
     </task>
     <task id="LOCAL‎-00048" summary="Moved action line from header to main sheet area">
       <option name="closed" value="true" />
@@ -697,7 +684,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1729874292767</updated>
     </task>
-    <option name="localTasksCounter" value="96" />
+    <task id="LOCAL‎-00096" summary="Added constants one-single-point in client">
+      <option name="closed" value="true" />
+      <created>1729935859991</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL‎-00096" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1729935859991</updated>
+    </task>
+    <option name="localTasksCounter" value="97" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -716,7 +711,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Small progress..." />
     <MESSAGE value="My first file upload!!!" />
     <MESSAGE value="Added session using cookies! :)" />
     <MESSAGE value="Added some preparations for user and permission modules in engine..." />
@@ -741,7 +735,8 @@
     <MESSAGE value="Made some progress in handling permissions..." />
     <MESSAGE value="Added write/read mode caption in workspace area" />
     <MESSAGE value="Added write/read mode restrictions when in a workspace" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added write/read mode restrictions when in a workspace" />
+    <MESSAGE value="Added constants one-single-point in client" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added constants one-single-point in client" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -754,11 +749,6 @@
           <url>file://$PROJECT_DIR$/client/src/json/EffectiveValueDeserializer.java</url>
           <line>13</line>
           <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/SheetsTableController.java</url>
-          <line>168</line>
-          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
