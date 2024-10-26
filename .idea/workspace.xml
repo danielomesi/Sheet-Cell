@@ -9,10 +9,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added write/read mode caption in workspace area">
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added write/read mode restrictions when in a workspace">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/commands/CommandsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/commands/CommandsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/DashboardMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/DashboardMainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/permissionsTable/PermissionsTableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/permissionsTable/PermissionsTableController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/permissionsTable/permissionsTable.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/permissionsTable/permissionsTable.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/SheetsTableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/SheetsTableController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/sheetsTable.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/sheetsTable.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/login/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/login/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/appearance/AppearanceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/appearance/AppearanceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/filter/FilterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/filter/FilterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/SheetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/SheetController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sort/SortController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sort/SortController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/utils/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/http/constants/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/constants/Constants.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +121,7 @@
       <recent name="C:\Users\omesi\IdeaProjects\Sheet-Cell\lib\javafx-sdk-22.0.2" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Client">
+  <component name="RunManager" selected="Tomcat Server.Server">
     <configuration name="Client" type="Application" factoryName="Application" singleton="false">
       <option name="ALTERNATIVE_JRE_PATH" value="21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -290,15 +302,8 @@
       <workItem from="1728595515488" duration="605000" />
       <workItem from="1728635992036" duration="11192000" />
       <workItem from="1728740640825" duration="46404000" />
-      <workItem from="1729765715350" duration="15273000" />
-    </task>
-    <task id="LOCAL‎-00046" summary="Added color pickers for cell">
-      <option name="closed" value="true" />
-      <created>1726393813278</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL‎-00046" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1726393813278</updated>
+      <workItem from="1729765715350" duration="15307000" />
+      <workItem from="1729931258365" duration="4503000" />
     </task>
     <task id="LOCAL‎-00047" summary="Added scale slider">
       <option name="closed" value="true" />
@@ -684,7 +689,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1729873102090</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL‎-00095" summary="Added write/read mode restrictions when in a workspace">
+      <option name="closed" value="true" />
+      <created>1729874292767</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL‎-00095" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1729874292767</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -703,7 +716,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="First step in ex3...." />
     <MESSAGE value="Small progress..." />
     <MESSAGE value="My first file upload!!!" />
     <MESSAGE value="Added session using cookies! :)" />
@@ -728,7 +740,8 @@
     <MESSAGE value="Added request permission option" />
     <MESSAGE value="Made some progress in handling permissions..." />
     <MESSAGE value="Added write/read mode caption in workspace area" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added write/read mode caption in workspace area" />
+    <MESSAGE value="Added write/read mode restrictions when in a workspace" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added write/read mode restrictions when in a workspace" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -743,9 +756,9 @@
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/client/src/gui/scenes/login/LoginController.java</url>
-          <line>57</line>
-          <option name="timeStamp" value="11" />
+          <url>file://$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/SheetsTableController.java</url>
+          <line>168</line>
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

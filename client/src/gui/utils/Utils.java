@@ -17,11 +17,21 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import static constants.Constants.*;
 
 public class Utils {
-    public static final String NON_EXISTING_CELL_NAME = "[EMPTY-CELL]";
-    private static final String GENERIC_STYLE = "Generic Style";
+    private static final Map<String,String> cssStyleName2cssStylePath = new HashMap<>();
+
+    static {
+        cssStyleName2cssStylePath.put(DEFAULT_STYLE, DEFAULT_STYLE_CSS_PATH);
+        cssStyleName2cssStylePath.put(DARK_STYLE, DARK_STYLE_CSS_PATH);
+        cssStyleName2cssStylePath.put(MACCABI_STYLE, MACCABI_STYLE_CSS_PATH);
+    }
+
     public static String objectToString(Object obj) {
         String result = "";
 
@@ -148,18 +158,13 @@ public class Utils {
     }
 
     public static void setStyle(Parent parent,String styleSheetName) {
-        URL firstResource =getResourceFromStyleSheetName(GENERIC_STYLE);
-        URL secondResource = getResourceFromStyleSheetName(styleSheetName);
+        URL firstResource =Utils.class.getResource(GENERIC_STYLE_CSS_PATH);
+        URL secondResource = Utils.class.getResource(cssStyleName2cssStylePath.get(styleSheetName));
         if (firstResource != null && secondResource != null) {
             parent.getStylesheets().clear();
             parent.getStylesheets().add(firstResource.toExternalForm());
             parent.getStylesheets().add(secondResource.toExternalForm());
         }
     }
-
-    private static URL getResourceFromStyleSheetName(String styleSheetName) {
-        return Utils.class.getResource("/gui/scenes/workspace/styles/" + styleSheetName + ".css");
-    }
-
 
 }

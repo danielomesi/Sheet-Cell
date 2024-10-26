@@ -3,20 +3,14 @@ package gui.scenes.login;
 import gui.core.ClientApp;
 import http.HttpClientMessenger;
 import http.MyCallBack;
-import http.MyResponseHandler;
-import http.constants.Constants;
-import javafx.application.Platform;
+import constants.Constants;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import okhttp3.Call;
-import okhttp3.Callback;
 import okhttp3.HttpUrl;
-import okhttp3.Response;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 

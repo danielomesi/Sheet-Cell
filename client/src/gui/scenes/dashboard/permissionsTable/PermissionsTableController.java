@@ -8,7 +8,7 @@ import entities.sheet.SheetMetaData;
 import gui.scenes.dashboard.main.DashboardMainController;
 import http.HttpClientMessenger;
 import http.MyCallBack;
-import http.constants.Constants;
+import constants.Constants;
 import http.dtos.RequestPermissionDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

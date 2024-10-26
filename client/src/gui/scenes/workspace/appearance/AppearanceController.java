@@ -15,6 +15,8 @@ import javafx.scene.paint.Color;
 
 import java.util.List;
 
+import static constants.Constants.*;
+
 public class AppearanceController {
 
     private MainController mainController;
@@ -23,9 +25,8 @@ public class AppearanceController {
     private final List<String> ALIGNMENT_OPTIONS = List.of("Center", "Left", "Right");
     private static final double MIN_SCALE = 0.1;
     private static final double MAX_SCALE = 5;
-    private static final String DEFAULT_STYLE = "Default";
-    private static final String SECOND_STYLE = "Dark";
-    private static final String THIRD_STYLE = "Maccabi";
+
+
 
     @FXML
     private ToggleButton animationsToggleButton;
@@ -88,7 +89,7 @@ public class AppearanceController {
     }
 
     public void initStylesComboBox() {
-        ObservableList<String> stylesList = FXCollections.observableArrayList(DEFAULT_STYLE, SECOND_STYLE, THIRD_STYLE);
+        ObservableList<String> stylesList = FXCollections.observableArrayList(DEFAULT_STYLE, DARK_STYLE, MACCABI_STYLE);
         stylesComboBox.setItems(stylesList);
         stylesComboBox.getSelectionModel().selectFirst();
         styleInStylesComboBoxSelected(null);

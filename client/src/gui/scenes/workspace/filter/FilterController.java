@@ -6,8 +6,7 @@ import gui.scenes.workspace.main.MainController;
 import gui.utils.Utils;
 import http.HttpClientMessenger;
 import http.MyCallBack;
-import http.MyResponseHandler;
-import http.constants.Constants;
+import constants.Constants;
 import http.dtos.EffectiveValuesInSpecificColRequestDTO;
 import http.dtos.EffectiveValuesInSpecificColResponseDTO;
 import http.dtos.FilterRequestDTO;
@@ -26,13 +25,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import json.GsonInstance;
-import okhttp3.Call;
-import okhttp3.Callback;
 import okhttp3.HttpUrl;
-import okhttp3.Response;
-import org.jetbrains.annotations.NotNull;
 
-import java.io.IOException;
 import java.util.*;
 
 public class FilterController {

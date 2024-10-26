@@ -11,7 +11,7 @@ import gui.scenes.dashboard.main.DashboardMainController;
 import http.HttpClientMessenger;
 import http.MyCallBack;
 import http.RequestScheduler;
-import http.constants.Constants;
+import constants.Constants;
 import http.dtos.RequestPermissionDTO;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;

@@ -10,6 +10,10 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+import java.util.Objects;
+
+import static constants.Constants.*;
+
 public class DashboardMainController {
     private Stage stage;
     private ClientApp clientApp;
@@ -39,6 +43,10 @@ public class DashboardMainController {
     public void setHeaderController(DashboardHeaderController headerController) {this.headerController = headerController;}
     public void setSheetsTableController(SheetsTableController sheetsTableController) {this.sheetsTableController = sheetsTableController;}
     public void setPermissionsTableController(PermissionsTableController permissionsTableController) {this.permissionsTableController = permissionsTableController;}
+
+    public void initialize() {
+        mainScrollPane.getStylesheets().add(Objects.requireNonNull(this.getClass().getResource(GENERIC_STYLE_CSS_PATH)).toExternalForm());
+    }
 
     public void stopRefresher() {
         RequestScheduler.stopHttpRequestScheduler();

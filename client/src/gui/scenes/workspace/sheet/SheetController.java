@@ -12,10 +12,9 @@ import gui.scenes.workspace.main.MainController;
 import gui.core.DataModule;
 import gui.builder.DynamicSheetBuilder;
 import gui.utils.Utils;
-import http.HttpClientMessenger;
 import http.MyCallBack;
 import http.RequestScheduler;
-import http.constants.Constants;
+import constants.Constants;
 import javafx.animation.*;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
@@ -29,8 +28,10 @@ import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import json.GsonInstance;
 import okhttp3.HttpUrl;
-
+import static constants.Constants.*;
 import java.util.Map;
+
+
 
 public class SheetController {
 
@@ -236,7 +237,7 @@ public class SheetController {
         String cellID = cellCoordinates.getCellID();
         currentCellIDLabel.setText(cellID);
         Cell cell = mainController.getCurrentLoadedSheet().getCell(cellCoordinates.getRow(), cellCoordinates.getCol());
-        String originalExpression = cell != null ? cell.getOriginalExpression() : Utils.NON_EXISTING_CELL_NAME;
+        String originalExpression = cell != null ? cell.getOriginalExpression() : NON_EXISTING_CELL_NAME;
         int lastUpdatedVersion = cell != null ? cell.getVersion() : 0;
         originalValueLabel.setText(originalExpression);
         lastUpdatedVersionLabel.setText(String.valueOf(lastUpdatedVersion));

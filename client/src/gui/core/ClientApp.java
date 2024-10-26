@@ -27,6 +27,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import static constants.Constants.*;
 
 
 //make sure the thread that is refreshing data (like in dashboard and/or in version) stops working when window is closed
@@ -66,7 +67,7 @@ public class ClientApp extends Application {
     }
 
     private Parent setupAndGetLoginMainComponent() throws IOException {
-        FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("/gui/scenes/login/login.fxml"));
+        FXMLLoader mainLoader = new FXMLLoader(getClass().getResource(LOGIN_FXML));
         ScrollPane root = mainLoader.load();
         loginController = mainLoader.getController();
         loginController.setClientApp(this);
@@ -85,7 +86,7 @@ public class ClientApp extends Application {
 
 
     private Parent setupAndGetDashboardMainComponent(String username) throws IOException {
-        FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("/gui/scenes/dashboard/main/main.fxml"));
+        FXMLLoader mainLoader = new FXMLLoader(getClass().getResource(DASHBOARD_MAIN_FXML));
         ScrollPane root = mainLoader.load();
         dashboardMainController = mainLoader.getController();
         dashboardMainController.setStage(primaryStage);
@@ -96,15 +97,15 @@ public class ClientApp extends Application {
     }
 
     private void loadSubControllersOfDashboard(String username) throws IOException {
-        FXMLLoader headerLoader = new FXMLLoader(getClass().getResource("/gui/scenes/dashboard/header/header.fxml"));
+        FXMLLoader headerLoader = new FXMLLoader(getClass().getResource(DASHBOARD_HEADER_FXML));
         Parent headerNode = headerLoader.load();
         DashboardHeaderController headerController = headerLoader.getController();
 
-        FXMLLoader sheetsTableLoader = new FXMLLoader(getClass().getResource("/gui/scenes/dashboard/sheetsTable/sheetsTable.fxml"));
+        FXMLLoader sheetsTableLoader = new FXMLLoader(getClass().getResource(DASHBOARD_SHEETS_TABLE_FXML));
         Parent sheetsLoaderNode = sheetsTableLoader.load();
         SheetsTableController sheetsTableController = sheetsTableLoader.getController();
 
-        FXMLLoader permissionsTableLoader = new FXMLLoader(getClass().getResource("/gui/scenes/dashboard/permissionsTable/permissionsTable.fxml"));
+        FXMLLoader permissionsTableLoader = new FXMLLoader(getClass().getResource(DASHBOARD_PERMISSIONS_TABLE_FXML));
         Parent permissionsTableNode = permissionsTableLoader.load();
         PermissionsTableController permissionsTableController = permissionsTableLoader.getController();
 
@@ -154,7 +155,7 @@ public class ClientApp extends Application {
     }
 
     private Parent setupAndGetWorkspaceMainComponent(Sheet sheet, PermissionType permissionType) throws IOException {
-        FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("/gui/scenes/workspace/main/main.fxml"));
+        FXMLLoader mainLoader = new FXMLLoader(getClass().getResource(WORKSPACE_MAIN_FXML));
         ScrollPane root = mainLoader.load();
         workspaceMainController = mainLoader.getController();
         workspaceMainController.setStage(primaryStage);
@@ -166,19 +167,19 @@ public class ClientApp extends Application {
     }
 
     private void loadSubControllersOfWorkspace(Sheet sheet) throws IOException {
-        FXMLLoader headerLoader = new FXMLLoader(getClass().getResource("/gui/scenes/workspace/header/header.fxml"));
+        FXMLLoader headerLoader = new FXMLLoader(getClass().getResource(WORKSPACE_HEADER_FXML));
         VBox headerNode = headerLoader.load();
         HeaderController headerController = headerLoader.getController();
 
-        FXMLLoader sheetLoader = new FXMLLoader(getClass().getResource("/gui/scenes/workspace/sheet/sheet.fxml"));
+        FXMLLoader sheetLoader = new FXMLLoader(getClass().getResource(WORKSPACE_SHEET_FXML));
         VBox sheetNode = sheetLoader.load();
         SheetController sheetController = sheetLoader.getController();
 
-        FXMLLoader commandsLoader = new FXMLLoader(getClass().getResource("/gui/scenes/workspace/commands/commands.fxml"));
+        FXMLLoader commandsLoader = new FXMLLoader(getClass().getResource(WORKSPACE_COMMANDS_FXML));
         VBox commandsNode = commandsLoader.load();
         CommandsController commandsController = commandsLoader.getController();
 
-        FXMLLoader appearanceLoader = new FXMLLoader(getClass().getResource("/gui/scenes/workspace/appearance/appearance.fxml"));
+        FXMLLoader appearanceLoader = new FXMLLoader(getClass().getResource(WORKSPACE_APPEARANCE_FXML));
         VBox appearanceNode = appearanceLoader.load();
         AppearanceController appearanceController = appearanceLoader.getController();
 
