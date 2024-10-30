@@ -9,6 +9,7 @@ import entities.sheet.Sheet;
 import gui.builder.DynamicSheetBuilder;
 import gui.builder.DynamicSheet;
 import gui.core.ClientApp;
+import gui.scenes.workspace.analyze.AnalyzeController;
 import gui.scenes.workspace.filter.FilterController;
 import gui.scenes.workspace.sheet.SheetController;
 import gui.scenes.workspace.header.HeaderController;
@@ -63,6 +64,7 @@ public class MainController {
     private AppearanceController appearanceController;
     private SortController sortController;
     private FilterController filterController;
+    private AnalyzeController analyzeController;
 
     //getters
     public ClientApp getClientApp() {return clientApp;}
@@ -201,9 +203,9 @@ public class MainController {
     }
 
     private void generateWindowForSheet(Sheet selectedSheet, int chosenVersion) {
-        DynamicSheet DynamicSheet = DynamicSheetBuilder.buildDynamicSheet(selectedSheet);
-        DynamicSheet.populateSheetWithData(selectedSheet);
-        GridPane gridPane = DynamicSheet.getGridPane();
+        DynamicSheet dynamicSheet = DynamicSheetBuilder.buildDynamicSheet(selectedSheet);
+        dynamicSheet.populateSheetWithData(selectedSheet);
+        GridPane gridPane = dynamicSheet.getGridPane();
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setMaxWidth(1200);
         scrollPane.setMaxHeight(800);
@@ -219,6 +221,11 @@ public class MainController {
         });
         versionWindow.setScene(newScene);
         versionWindow.show();
+    }
+
+    public void openAnalyzeWindow(String cellID) {
+        analyzeController = ControllersBuilder.buildAnalyzeController(this,cellID,currentSheetName,currentLoadedSheet.getVersion());
+        Utils.openWindow(analyzeController.getWrapper(), "Dynamic Analyze");
     }
 
     public void addRange(String rangeName, String fromCellID, String toCellID) {

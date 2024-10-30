@@ -52,4 +52,6 @@ public interface Engine {
     public void requestPermission(String requestingUsername, String sheetName, PermissionType permissionType);
 
     public void applyAccessDecision(String usernameWithPendingRequest, String sheetName, PermissionType permissionType, boolean isAccessAllowed);
+
+    public Sheet previewSpecificUpdateOnCell(String cellName, String originalExpression, String sheetName, int sheetVersion);
 }

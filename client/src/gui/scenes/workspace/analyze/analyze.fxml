@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fx:id="wrapper" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.scenes.workspace.analyze.AnalyzeController">
+   <content>
+      <VBox alignment="CENTER" spacing="10.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+               <children>
+                  <Label text="Cell ID:" />
+                  <Label fx:id="cellIDLabel" />
+                  <Label text="Minimum Value" />
+                  <TextField fx:id="minValTextField" />
+                  <Label text="Maximum Value" />
+                  <TextField fx:id="maxValTextField" />
+                  <Label text="Step" />
+                  <TextField fx:id="stepTextField" />
+                  <Button fx:id="setButton" mnemonicParsing="false" onAction="#setButtonClicked" text="Set" />
+                  <Slider fx:id="slider" />
+                  <Button fx:id="resetButton" mnemonicParsing="false" text="Reset" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+               <children>
+                  <Label fx:id="statusLabel" />
+               </children>
+            </HBox>
+            <ScrollPane fx:id="sheetViewScrollPane" prefWidth="1200.0" />
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>

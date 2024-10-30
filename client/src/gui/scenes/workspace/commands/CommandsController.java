@@ -37,6 +37,8 @@ public class CommandsController {
     @FXML
     private Button addRangeButton;
     @FXML
+    private Button openDynamicAnalyzeDialogButton;
+    @FXML
     private Button openFilterDialogButton;
 
     @FXML
@@ -59,6 +61,8 @@ public class CommandsController {
                     or(mainController.getIsWriteAccessAllowed().not()).or(isSheetSynced.not()));
             addRangeButton.disableProperty().bind(is2validCellsSelected.not().
                     or(mainController.getIsWriteAccessAllowed().not()).or(isSheetSynced.not()));
+            openDynamicAnalyzeDialogButton.disableProperty().bind(mainController.getSheetController().getSelectedCellController().isNull().
+                    or(mainController.getIsWriteAccessAllowed().not()).or(isSheetSynced.not()));;
             openFilterDialogButton.disableProperty().bind(is2validCellsSelected.not());
             openSortDialogButton.disableProperty().bind(is2validCellsSelected.not());
         }
@@ -121,6 +125,12 @@ public class CommandsController {
         boolean isAnimationsEnabled = mainController.getAppearanceController().isAnimationsEnabled();
         Task<Void> task = Utils.getTaskFromRunnable(runnable, commandsStatusLabel, commandsProgressIndicator,isAnimationsEnabled);
         Utils.runTaskInADaemonThread(task);
+    }
+
+    @FXML
+    void openDynamicAnalyzeDialogButtonClicked(ActionEvent event) {
+        String cellID = mainController.getSheetController().getSelectedCellCoordinates().getCellID();
+        mainController.openAnalyzeWindow(cellID);
     }
 
     @FXML

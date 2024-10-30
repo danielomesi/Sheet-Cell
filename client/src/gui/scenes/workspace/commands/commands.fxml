@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
@@ -25,7 +26,11 @@
       </VBox>
       <Separator />
       <Label styleClass="main-header" text="Commands" wrapText="true" />
-      <Label alignment="CENTER" text="Note: Before using any command, please select an area of cells. Click the &quot;Select Cells&quot; button to start the selection proccess" wrapText="true" />
+      <ScrollPane>
+         <content>
+            <Label alignment="CENTER" text="Note: Before using any command, please select an area of cells. Click the &quot;Select Cells&quot; button to start the selection proccess" wrapText="true" />
+         </content>
+      </ScrollPane>
       <Separator />
       <VBox spacing="10.0">
          <children>
@@ -40,6 +45,12 @@
          </children>
       </VBox>
       <Separator />
+      <VBox spacing="10.0">
+         <children>
+            <Label text="Dynamic Analyze" />
+            <Button fx:id="openDynamicAnalyzeDialogButton" mnemonicParsing="false" onAction="#openDynamicAnalyzeDialogButtonClicked" text="Open dynamic analyze dialog" />
+         </children>
+      </VBox>
       <VBox spacing="10.0">
          <children>
             <Label text="Sort" />

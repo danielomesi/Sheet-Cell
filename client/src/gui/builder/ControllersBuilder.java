@@ -1,6 +1,7 @@
 package gui.builder;
 
 
+import gui.scenes.workspace.analyze.AnalyzeController;
 import gui.scenes.workspace.filter.FilterController;
 import gui.scenes.workspace.main.MainController;
 import gui.scenes.workspace.sort.SortController;
@@ -41,5 +42,21 @@ public class ControllersBuilder {
         catch (Exception ignored) {}
 
         return filterController;
+    }
+
+    public static AnalyzeController buildAnalyzeController(MainController mainController, String cellID, String sheetName, int sheetVersion) {
+        AnalyzeController analyzeController = null;
+        try {
+            FXMLLoader analyzeLoader = new FXMLLoader(ControllersBuilder.class.getResource("/gui/scenes/workspace/analyze/analyze.fxml"));
+            analyzeLoader.load();
+            analyzeController = analyzeLoader.getController();
+            analyzeController.setMainController(mainController);
+            analyzeController.setSheetName(sheetName);
+            analyzeController.setSheetVersion(sheetVersion);
+            analyzeController.setCellID(cellID);
+        }
+        catch (Exception ignored) {}
+
+        return analyzeController;
     }
 }

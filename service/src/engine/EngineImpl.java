@@ -278,4 +278,25 @@ public class EngineImpl implements Engine {
         SheetData sheetData = sheetName2SheetDataList.get(sheetName);
         sheetData.ApplyPermissionAccessDecision(usernameWithPendingRequest,permissionType,isAccessAllowed);
     }
+
+    @Override
+    public Sheet previewSpecificUpdateOnCell(String cellName, String originalExpression, String sheetName, int sheetVersion) {
+        List<CoreSheet> coreSheets = sheetName2SheetDataList.get(sheetName).getSheetVersions();
+        int versionNumber = sheetVersion >=0 ? sheetVersion : coreSheets.size() - 1;
+        CoreSheet cloned = coreSheets.get(versionNumber).cloneWithSerialization();
+        cloned.incrementVersion();
+        cloned.initializeNumOfCellsChanged();
+        CoreCell coreCell, toUpdate;
+        coreCell = CoordinateFactory.getCellObjectFromCellID(cloned, cellName);
+        if (coreCell != null) {
+            toUpdate = coreCell;
+        }
+        else {
+            Coordinates coordinates = new Coordinates(cellName);
+            toUpdate = new CoreCell(cloned, coordinates.getRow(), coordinates.getCol());
+            cloned.getCoreCellsMap().put(coordinates,toUpdate);
+        }
+        toUpdate.executeCalculationProcedure(originalExpression);
+        return generateDTOSheet(cloned);
+    }
 }

@@ -9,17 +9,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added constants one-single-point in client">
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Changed styling of dashboard">
+      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/analyze/AnalyzeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/analyze/analyze.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/servlets/CellUpdatePreviewServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/constants/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/constants/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/DashboardHeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/DashboardHeaderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/header.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/header.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/permissionsTable/permissionsTable.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/permissionsTable/permissionsTable.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/sheetsTable.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/sheetsTable.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/builder/ControllersBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/builder/ControllersBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/commands/CommandsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/commands/CommandsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/SheetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/SheetController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/styles/Generic Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/styles/Generic Style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/commands/commands.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/commands/commands.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/http/dtos/CellUpdateDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/http/dtos/CellUpdateDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/Engine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,9 +31,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="Interface" />
         <option value="Enum" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -298,15 +300,8 @@
       <workItem from="1728635992036" duration="11192000" />
       <workItem from="1728740640825" duration="46404000" />
       <workItem from="1729765715350" duration="15307000" />
-      <workItem from="1729931258365" duration="10779000" />
-    </task>
-    <task id="LOCAL‎-00048" summary="Moved action line from header to main sheet area">
-      <option name="closed" value="true" />
-      <created>1726481769575</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL‎-00048" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1726481769575</updated>
+      <workItem from="1729931258365" duration="10814000" />
+      <workItem from="1730282950228" duration="8003000" />
     </task>
     <task id="LOCAL‎-00049" summary="Moved selecting cells from commands to sheet">
       <option name="closed" value="true" />
@@ -692,7 +687,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1729935859991</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <task id="LOCAL‎-00097" summary="Changed styling of dashboard">
+      <option name="closed" value="true" />
+      <created>1729942473604</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL‎-00097" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1729942473604</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -711,7 +714,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="My first file upload!!!" />
     <MESSAGE value="Added session using cookies! :)" />
     <MESSAGE value="Added some preparations for user and permission modules in engine..." />
     <MESSAGE value="Another progress..." />
@@ -736,7 +738,8 @@
     <MESSAGE value="Added write/read mode caption in workspace area" />
     <MESSAGE value="Added write/read mode restrictions when in a workspace" />
     <MESSAGE value="Added constants one-single-point in client" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added constants one-single-point in client" />
+    <MESSAGE value="Changed styling of dashboard" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed styling of dashboard" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
