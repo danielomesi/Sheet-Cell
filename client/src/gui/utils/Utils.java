@@ -166,5 +166,4 @@ public class Utils {
             parent.getStylesheets().add(secondResource.toExternalForm());
         }
     }
-
 }

@@ -307,6 +307,10 @@ public class SheetController {
                 })));
     }
 
+    public void stopVersionRefresher() {
+        RequestScheduler.stopHttpRequestScheduler();
+    }
+
     @FXML
     void handleSelectCellsButtonClick(ActionEvent event) {
         cellsSelectionStatusLabel.setTextFill(Color.BLACK);

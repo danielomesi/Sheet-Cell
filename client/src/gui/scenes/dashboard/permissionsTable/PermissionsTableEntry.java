@@ -1,7 +1,5 @@
 package gui.scenes.dashboard.permissionsTable;
 
-import entities.permission.PermissionStatus;
-import entities.permission.PermissionType;
 import javafx.beans.property.SimpleStringProperty;
 
 public class PermissionsTableEntry {

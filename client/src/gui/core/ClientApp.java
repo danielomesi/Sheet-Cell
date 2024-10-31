@@ -29,10 +29,6 @@ import java.util.ArrayList;
 import java.util.List;
 import static constants.Constants.*;
 
-
-//make sure the thread that is refreshing data (like in dashboard and/or in version) stops working when window is closed
-
-
 public class ClientApp extends Application {
     private MainController workspaceMainController;
     private DashboardMainController dashboardMainController;
@@ -43,8 +39,18 @@ public class ClientApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         this.primaryStage = stage;
+        primaryStage.setOnCloseRequest((event)->makeOnWindowClose());
         loadLogin();
 
+    }
+
+    private void makeOnWindowClose() {
+        if (workspaceMainController != null) {
+            workspaceMainController.close();
+        }
+        if (dashboardMainController != null) {
+            dashboardMainController.close();
+        }
     }
 
     public void switchSceneToDashboard(String username) throws IOException {

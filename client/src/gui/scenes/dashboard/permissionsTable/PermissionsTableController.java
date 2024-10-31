@@ -23,6 +23,7 @@ import java.util.Map;
 public class PermissionsTableController {
 
     private DashboardMainController dashboardMainController;
+    private final ObservableList<PermissionsTableEntry> tableData = FXCollections.observableArrayList();
 
     @FXML
     private Button denyPermissionButton;
@@ -39,13 +40,11 @@ public class PermissionsTableController {
     @FXML
     private ScrollPane wrapper;
 
-    private final ObservableList<PermissionsTableEntry> tableData = FXCollections.observableArrayList();
+    //getters
+    public DashboardMainController getDashboardMainController() {return this.dashboardMainController;}
 
     //setters
     public void setDashboardMainController(DashboardMainController dashboardMainController) {this.dashboardMainController = dashboardMainController;}
-
-    //getters
-    public DashboardMainController getDashboardMainController() {return this.dashboardMainController;}
 
     public void initialize() {
         // Bind the columns to the Sheet properties
@@ -59,7 +58,6 @@ public class PermissionsTableController {
         sheetSizeColumn.setCellValueFactory(new PropertyValueFactory<>("permissionStatus"));
 
         tableView.setItems(tableData);
-
         bindMethodToRunWhenEntryInTableSelected();
     }
 

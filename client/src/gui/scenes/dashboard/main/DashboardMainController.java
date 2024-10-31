@@ -9,12 +9,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-
+import java.io.Closeable;
 import java.util.Objects;
 
 import static constants.Constants.*;
 
-public class DashboardMainController {
+public class DashboardMainController implements Closeable {
     private Stage stage;
     private ClientApp clientApp;
     private String username;
@@ -23,6 +23,7 @@ public class DashboardMainController {
     private DashboardHeaderController headerController;
     private SheetsTableController sheetsTableController;
     private PermissionsTableController permissionsTableController;
+
     @FXML
     private BorderPane mainBorderPane;
 
@@ -44,9 +45,6 @@ public class DashboardMainController {
     public void setSheetsTableController(SheetsTableController sheetsTableController) {this.sheetsTableController = sheetsTableController;}
     public void setPermissionsTableController(PermissionsTableController permissionsTableController) {this.permissionsTableController = permissionsTableController;}
 
-    public void initialize() {
-        mainScrollPane.getStylesheets().add(Objects.requireNonNull(this.getClass().getResource(GENERIC_STYLE_CSS_PATH)).toExternalForm());
-    }
 
     public void stopRefresher() {
         RequestScheduler.stopHttpRequestScheduler();
@@ -54,5 +52,10 @@ public class DashboardMainController {
 
     public void startRefresher() {
         sheetsTableController.startRefreshingTableData();
+    }
+
+    @Override
+    public void close() {
+        stopRefresher();
     }
 }

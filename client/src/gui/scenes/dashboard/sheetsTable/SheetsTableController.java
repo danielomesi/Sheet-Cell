@@ -30,6 +30,8 @@ import java.util.List;
 public class SheetsTableController {
 
     private DashboardMainController dashboardMainController;
+    private final ObservableList<SheetTableEntry> tableData = FXCollections.observableArrayList();
+    private List<SheetMetaData> sheetMetaDataList;
 
     @FXML
     private TableView<SheetTableEntry> tableView;
@@ -48,13 +50,10 @@ public class SheetsTableController {
     @FXML
     private ScrollPane wrapper;
 
-    private final ObservableList<SheetTableEntry> tableData = FXCollections.observableArrayList();
-
-    private List<SheetMetaData> sheetMetaDataList;
-
+    //getters
     public Label getStatusLabel() {return statusLabel;}
 
-
+    //setters
     public void setDashboardMainController(DashboardMainController DashboardMainController) {this.dashboardMainController = DashboardMainController;}
 
     @FXML
@@ -73,7 +72,6 @@ public class SheetsTableController {
         accessLevelColumn.setCellValueFactory(new PropertyValueFactory<>("accessLevel"));
 
         tableView.setItems(tableData);
-
         tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 String accessLevel = newValue.getAccessLevel();
@@ -146,6 +144,30 @@ public class SheetsTableController {
         return sheetMetaData.getUsername2Permission().getOrDefault(username, PermissionType.NONE);
     }
 
+    private void requestPermission(PermissionType permissionType) {
+        String sheetName = tableView.getSelectionModel().getSelectedItem().getSheetName();
+        RequestPermissionDTO requestPermissionDTO = new RequestPermissionDTO(sheetName, permissionType);
+
+        String finalUrl = HttpUrl
+                .parse(Constants.ADD_PERMISSION_REQUEST)
+                .newBuilder()
+                .build()
+                .toString();
+
+        HttpClientMessenger.sendPostRequestWithBodyAsync(finalUrl, requestPermissionDTO, new MyCallBack(statusLabel,
+                (body -> {})));
+    }
+
+    public void  switchSceneToWorkspace(Sheet sheet, PermissionType permissionType) throws IOException {
+        dashboardMainController.getClientApp().switchSceneToWorkspace(sheet,permissionType);
+    }
+
+    public SheetMetaData getCurrentlySelectedSheetMetaData() {
+        String sheetName = tableView.getSelectionModel().getSelectedItem().getSheetName();
+
+        return getSheetMetaDataByName(sheetName);
+    }
+
     @FXML
     void viewSheetButtonClicked(ActionEvent event) {
         String sheetName = tableView.getSelectionModel().getSelectedItem().getSheetName();
@@ -183,27 +205,5 @@ public class SheetsTableController {
         requestPermission(PermissionType.WRITE);
     }
 
-    private void requestPermission(PermissionType permissionType) {
-        String sheetName = tableView.getSelectionModel().getSelectedItem().getSheetName();
-        RequestPermissionDTO requestPermissionDTO = new RequestPermissionDTO(sheetName, permissionType);
 
-        String finalUrl = HttpUrl
-                .parse(Constants.ADD_PERMISSION_REQUEST)
-                .newBuilder()
-                .build()
-                .toString();
-
-        HttpClientMessenger.sendPostRequestWithBodyAsync(finalUrl, requestPermissionDTO, new MyCallBack(statusLabel,
-                (body -> {})));
-    }
-
-    public void  switchSceneToWorkspace(Sheet sheet, PermissionType permissionType) throws IOException {
-        dashboardMainController.getClientApp().switchSceneToWorkspace(sheet,permissionType);
-    }
-
-    public SheetMetaData getCurrentlySelectedSheetMetaData() {
-        String sheetName = tableView.getSelectionModel().getSelectedItem().getSheetName();
-
-        return getSheetMetaDataByName(sheetName);
-    }
 }

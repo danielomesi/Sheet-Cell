@@ -1,9 +1,11 @@
 package gui.scenes.login;
 
 import gui.core.ClientApp;
+import gui.utils.Utils;
 import http.HttpClientMessenger;
 import http.MyCallBack;
 import constants.Constants;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -11,7 +13,6 @@ import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import okhttp3.HttpUrl;
-
 import java.io.IOException;
 
 public class LoginController {
@@ -29,7 +30,12 @@ public class LoginController {
     @FXML
     private TextField usernameTextField;
 
+    //setters
     public void setClientApp(ClientApp clientApp) {this.clientApp = clientApp;}
+
+    private void switchSceneToDashboard(String username) throws IOException {
+        clientApp.switchSceneToDashboard(username);
+    }
 
     @FXML
     void loginButtonClicked(ActionEvent event) {
@@ -39,6 +45,8 @@ public class LoginController {
             return;
         }
 
+        progressIndicator.setVisible(true);
+
         String finalUrl = HttpUrl
                 .parse(Constants.LOGIN)
                 .newBuilder()
@@ -46,17 +54,41 @@ public class LoginController {
                 .build()
                 .toString();
 
-        HttpClientMessenger.sendGetRequestWithoutBodyAsync(finalUrl, new MyCallBack(errorLabel,
-                (body -> {
-                    try {
-                        switchSceneToDashboard(userName);
-                    } catch (Exception ignored) {}
-                })));
-    }
+        Task<Void> task = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                Thread.sleep(2000);
 
-    private void switchSceneToDashboard(String username) throws IOException {
-        clientApp.switchSceneToDashboard(username);
-    }
+                HttpClientMessenger.sendGetRequestWithoutBodyAsync(finalUrl, new MyCallBack(errorLabel,
+                        (body -> {
+                            try {
+                                switchSceneToDashboard(userName);
+                            } catch (Exception ignored) {}
+                        })));
 
+                return null;
+            }
+
+            @Override
+            protected void succeeded() {
+                super.succeeded();
+                progressIndicator.setVisible(false);
+            }
+
+            @Override
+            protected void failed() {
+                super.failed();
+                progressIndicator.setVisible(false);
+            }
+
+            @Override
+            protected void cancelled() {
+                super.cancelled();
+                progressIndicator.setVisible(false);
+            }
+        };
+
+        new Thread(task).start();
+    }
 }
 

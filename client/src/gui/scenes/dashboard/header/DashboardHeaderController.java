@@ -33,11 +33,13 @@ public class DashboardHeaderController {
     @FXML
     private VBox vBoxHeader;
 
+    //getters
     public Label getTaskStatusLabel() {return taskStatusLabel;}
-    public void setMainController(DashboardMainController mainController) {this.mainController = mainController;}
 
-    //
+    //setters
+    public void setMainController(DashboardMainController mainController) {this.mainController = mainController;}
     public void setGreetingLabel(String username) {greetingLabel.setText(USER_WELCOME_MESSAGE(username));}
+
     @FXML
     void handleLoadFileButtonClick(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -60,5 +62,4 @@ public class DashboardHeaderController {
                     (body -> {})));
         }
     }
-
 }

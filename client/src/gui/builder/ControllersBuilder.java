@@ -6,15 +6,14 @@ import gui.scenes.workspace.filter.FilterController;
 import gui.scenes.workspace.main.MainController;
 import gui.scenes.workspace.sort.SortController;
 import javafx.fxml.FXMLLoader;
+import static constants.Constants.*;
 
 public class ControllersBuilder {
     public static SortController buildSortController(MainController mainController, DynamicSheet dynamicSheet,
                                                      String fromCellID, String toCellID) {
         SortController sortController = null;
         try {
-            FXMLLoader sortLoader = new FXMLLoader(ControllersBuilder.class.getResource("/gui/scenes/workspace/sort/sort.fxml"));
-            sortLoader.load();
-            sortController = sortLoader.getController();
+            sortController = buildController(WORKSPACE_SORT_FXML);
             sortController.setMainController(mainController);
             sortController.setFromCellID(fromCellID);
             sortController.setToCellID(toCellID);
@@ -30,9 +29,7 @@ public class ControllersBuilder {
                                                          String fromCellID, String toCellID) {
         FilterController filterController = null;
         try {
-            FXMLLoader filterLoader = new FXMLLoader(ControllersBuilder.class.getResource("/gui/scenes/workspace/filter/filter.fxml"));
-            filterLoader.load();
-            filterController = filterLoader.getController();
+            filterController = buildController(WORKSPACE_FILTER_FXML);
             filterController.setMainController(mainController);
             filterController.setFromCellID(fromCellID);
             filterController.setToCellID(toCellID);
@@ -47,9 +44,7 @@ public class ControllersBuilder {
     public static AnalyzeController buildAnalyzeController(MainController mainController, String cellID, String sheetName, int sheetVersion) {
         AnalyzeController analyzeController = null;
         try {
-            FXMLLoader analyzeLoader = new FXMLLoader(ControllersBuilder.class.getResource("/gui/scenes/workspace/analyze/analyze.fxml"));
-            analyzeLoader.load();
-            analyzeController = analyzeLoader.getController();
+            analyzeController = buildController(WORKSPACE_ANALYZE_FXML);
             analyzeController.setMainController(mainController);
             analyzeController.setSheetName(sheetName);
             analyzeController.setSheetVersion(sheetVersion);
@@ -59,4 +54,17 @@ public class ControllersBuilder {
 
         return analyzeController;
     }
+
+    private static <T> T buildController(String pathToXml) {
+        T controller = null;
+        try {
+            FXMLLoader controllerLoader = new FXMLLoader(ControllersBuilder.class.getResource(pathToXml));
+            controllerLoader.load();
+            controller = controllerLoader.getController();
+        }
+        catch (Exception ignored) {}
+
+        return controller;
+    }
+
 }

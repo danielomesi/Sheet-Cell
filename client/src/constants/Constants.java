@@ -4,7 +4,7 @@ public class Constants {
 
     // global constants in the app
     public static final String NON_EXISTING_CELL_NAME = "[EMPTY-CELL]";
-    public final static int REFRESH_RATE = 2000;
+    public final static double REFRESH_RATE_IN_SECONDS = 0.5;
     public final static String CHAT_LINE_FORMATTING = "%tH:%tM:%tS | %.10s: %s%n";
 
     //text messages in app
@@ -24,6 +24,9 @@ public class Constants {
     public static final String WORKSPACE_SHEET_FXML = "/gui/scenes/workspace/sheet/sheet.fxml";
     public static final String WORKSPACE_COMMANDS_FXML = "/gui/scenes/workspace/commands/commands.fxml";
     public static final String WORKSPACE_APPEARANCE_FXML = "/gui/scenes/workspace/appearance/appearance.fxml";
+    public static final String WORKSPACE_SORT_FXML = "/gui/scenes/workspace/sort/sort.fxml";
+    public static final String WORKSPACE_FILTER_FXML = "/gui/scenes/workspace/filter/filter.fxml";
+    public static final String WORKSPACE_ANALYZE_FXML = "/gui/scenes/workspace/analyze/analyze.fxml";
 
     //Style Names
     public static final String GENERIC_STYLE = "Generic Style";

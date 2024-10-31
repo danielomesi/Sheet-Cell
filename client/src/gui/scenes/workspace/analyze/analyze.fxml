@@ -24,7 +24,7 @@
                   <TextField fx:id="stepTextField" />
                   <Button fx:id="setButton" mnemonicParsing="false" onAction="#setButtonClicked" text="Set" />
                   <Slider fx:id="slider" />
-                  <Button fx:id="resetButton" mnemonicParsing="false" text="Reset" />
+                  <Button fx:id="resetButton" mnemonicParsing="false" onAction="#resetButtonClicked" text="Reset" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" spacing="10.0">
@@ -32,7 +32,7 @@
                   <Label fx:id="statusLabel" />
                </children>
             </HBox>
-            <ScrollPane fx:id="sheetViewScrollPane" prefWidth="1200.0" />
+            <ScrollPane fx:id="sheetViewScrollPane" prefHeight="600.0" prefWidth="1200.0" />
          </children>
       </VBox>
    </content>

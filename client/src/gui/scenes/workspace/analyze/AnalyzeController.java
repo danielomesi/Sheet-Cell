@@ -1,24 +1,23 @@
 package gui.scenes.workspace.analyze;
 
-import com.google.gson.Gson;
+
 import constants.Constants;
+import entities.coordinates.Coordinates;
 import entities.sheet.DTOSheet;
 import entities.sheet.Sheet;
+import exceptions.InvalidArgumentException;
 import gui.builder.DynamicSheet;
 import gui.builder.DynamicSheetBuilder;
 import gui.scenes.workspace.main.MainController;
 import gui.utils.Utils;
 import http.HttpClientMessenger;
 import http.MyCallBack;
-import http.dtos.CellUpdateDTO;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 import json.GsonInstance;
 import okhttp3.HttpUrl;
 
@@ -32,6 +31,7 @@ public class AnalyzeController {
     private int sheetVersion;
     private String cellID;
     private final BooleanProperty isAnalyzeActive = new SimpleBooleanProperty(false);
+    private Double step;
 
     @FXML
     private ScrollPane wrapper;
@@ -90,6 +90,10 @@ public class AnalyzeController {
 
         slider.valueProperty().addListener((observable, oldValue, newValue) -> {
             double sliderValue = newValue.doubleValue();
+            if (step!=null) {
+                sliderValue = Math.round(newValue.doubleValue() / step) * step;
+                slider.setValue(sliderValue);
+            }
             handleSliderDrag(sliderValue);
         });
     }
@@ -99,13 +103,45 @@ public class AnalyzeController {
         String minValAsText = minValTextField.getText();
         String maxValAsText = maxValTextField.getText();
         String stepAsText = stepTextField.getText();
-        double minVal = Double.parseDouble(minValAsText);
-        double maxVal = Double.parseDouble(maxValAsText);
-        double step = Double.parseDouble(stepAsText);
+        try {
+            double minVal = Double.parseDouble(minValAsText);
+            double maxVal = Double.parseDouble(maxValAsText);
+            double step = Double.parseDouble(stepAsText);
+            validateSliderValuesOrThrow(minVal,maxVal,step);
+            startAnalyze(minVal,maxVal,step);
+        }
+        catch (NumberFormatException e) {
+            statusLabel.setText("All values must be numbers");
+        }
+        catch  (Exception e) {
+            statusLabel.setText(e.getMessage());
+        }
+    }
+
+    private void validateSliderValuesOrThrow(double minVal, double maxVal, double step) {
+        if (minVal >= maxVal) throw new InvalidArgumentException
+                ("the minimum value must be greater than the maximum value");
+        if (step<0) throw new IllegalArgumentException("step must be positive");
+        if (step>maxVal-minVal) throw new IllegalArgumentException
+                ("step must be bigger than the difference between the minimum and maximum values");
+    }
+
+    private void startAnalyze(double minVal, double maxVal, double step) {
         slider.setMin(minVal);
         slider.setMax(maxVal);
-        slider.setValue(step);
+        slider.setBlockIncrement(step);
+        this.step = step;
         isAnalyzeActive.set(true);
+    }
+
+    @FXML
+    void resetButtonClicked(ActionEvent event) {
+        minValTextField.clear();
+        maxValTextField.clear();
+        stepTextField.clear();
+        this.step = null;
+        sheetViewScrollPane.setContent(null);
+        isAnalyzeActive.set(false);
     }
 
     private void handleSliderDrag(Double originalExpression) {
@@ -127,9 +163,8 @@ public class AnalyzeController {
         Sheet sheet = GsonInstance.getGson().fromJson(body, DTOSheet.class);
         DynamicSheet dynamicSheet = DynamicSheetBuilder.buildDynamicSheet(sheet);
         dynamicSheet.populateSheetWithData(sheet);
+        dynamicSheet.getCoordinates2CellController().get(new Coordinates(cellID)).setColorStyle("selected-cell");
         GridPane gridPane = dynamicSheet.getGridPane();
-        sheetViewScrollPane.setMaxWidth(1200);
-        sheetViewScrollPane.setMaxHeight(800);
         sheetViewScrollPane.setContent(gridPane);
     }
 

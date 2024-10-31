@@ -35,9 +35,11 @@ import javafx.stage.Stage;
 import json.GsonInstance;
 import okhttp3.*;
 
+import java.io.Closeable;
+import java.io.IOException;
 import java.util.List;
 
-public class MainController {
+public class MainController implements Closeable {
 
     //Highest wrapper is scroll pane
     @FXML
@@ -344,5 +346,10 @@ public class MainController {
 
     public void setStyle(String styleFileName) {
         Utils.setStyle(mainScrollPane, styleFileName);
+    }
+
+    @Override
+    public void close() {
+        sheetController.stopVersionRefresher();
     }
 }
