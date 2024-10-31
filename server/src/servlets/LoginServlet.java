@@ -20,15 +20,18 @@ public class LoginServlet extends HttpServlet {
         synchronized (getServletContext()) {
             if (!userManager.isUserExists(username)) {
                 userManager.addUser(username);
-                login(request,response,username);
-            }
-            else if (!userManager.isUserActive(username)) {
                 userManager.connectUser(username);
                 login(request,response,username);
             }
             else {
-                response.getWriter().println("This user is already logged in");
-                response.setStatus(HttpServletResponse.SC_CONFLICT); // Optionally set a conflict status
+                if (!userManager.isUserActive(username)) {
+                    userManager.connectUser(username);
+                    login(request,response,username);
+                }
+                else {
+                    response.getWriter().println("This user is already logged in");
+                    response.setStatus(HttpServletResponse.SC_CONFLICT); // Optionally set a conflict status
+                }
             }
         }
     }

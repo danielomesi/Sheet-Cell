@@ -9,23 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added feature of modifying username data stored on update per cell">
-      <change afterPath="$PROJECT_DIR$/server/src/servlets/LogoutServlet.java" afterDir="false" />
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Changed user manager">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/constants/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/constants/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/DashboardHeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/DashboardHeaderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/header.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/header.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/DashboardMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/DashboardMainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/main.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/permissionsTable/permissionsTable.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/permissionsTable/permissionsTable.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/sheetsTable.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/sheetsTable.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/login/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/login/login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/http/HttpClientMessenger.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/http/HttpClientMessenger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/http/MyCallBack.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/http/MyCallBack.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/servlets/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/LoginServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/users/UserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/users/UserManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -307,15 +293,7 @@
       <workItem from="1729931258365" duration="10814000" />
       <workItem from="1730282950228" duration="8029000" />
       <workItem from="1730365789678" duration="7818000" />
-      <workItem from="1730390973231" duration="6074000" />
-    </task>
-    <task id="LOCAL‎-00052" summary="Sort started working a bit...">
-      <option name="closed" value="true" />
-      <created>1726584791042</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL‎-00052" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1726584791042</updated>
+      <workItem from="1730390973231" duration="7207000" />
     </task>
     <task id="LOCAL‎-00053" summary="Sort is working (On my tests...)">
       <option name="closed" value="true" />
@@ -701,7 +679,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1730392252765</updated>
     </task>
-    <option name="localTasksCounter" value="101" />
+    <task id="LOCAL‎-00101" summary="Changed user manager">
+      <option name="closed" value="true" />
+      <created>1730397098286</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL‎-00101" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1730397098286</updated>
+    </task>
+    <option name="localTasksCounter" value="102" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -720,7 +706,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Adding a module for dtos..." />
     <MESSAGE value="Small updates..." />
     <MESSAGE value="Finally fixed the tomcat launch error..." />
     <MESSAGE value="Populated Sheets Table" />
@@ -745,7 +730,8 @@
     <MESSAGE value="Added option for dynamic analyze" />
     <MESSAGE value="Dynamic analyze improved and login scene too" />
     <MESSAGE value="Added feature of modifying username data stored on update per cell" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added feature of modifying username data stored on update per cell" />
+    <MESSAGE value="Changed user manager" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed user manager" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
