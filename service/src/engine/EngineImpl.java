@@ -150,7 +150,7 @@ public class EngineImpl implements Engine {
             throw new InvalidXMLException("Invalid XML file");
         }
         validateXMLSheetLayout(stlSheet);
-        CoreSheet coreSheet = new CoreSheet(stlSheet);
+        CoreSheet coreSheet = new CoreSheet(stlSheet,uploaderUsername);
         String sheetName = coreSheet.getName();
         if (!sheetName2SheetDataList.containsKey(sheetName)) {
             List<CoreSheet> coreSheets = new ArrayList<>();
@@ -172,7 +172,7 @@ public class EngineImpl implements Engine {
             throw new InvalidXMLException("Invalid XML file");
         }
         validateXMLSheetLayout(stlSheet);
-        CoreSheet coreSheet = new CoreSheet(stlSheet);
+        CoreSheet coreSheet = new CoreSheet(stlSheet,uploaderUsername);
         String sheetName = coreSheet.getName();
         if (!sheetName2SheetDataList.containsKey(sheetName)) {
             List<CoreSheet> coreSheets = new ArrayList<>();
@@ -203,7 +203,7 @@ public class EngineImpl implements Engine {
     }
 
     @Override
-    public synchronized void updateSpecificCell(String cellName, String originalExpression, String sheetName) {
+    public synchronized void updateSpecificCell(String cellName, String originalExpression, String sheetName, String editingUsername) {
         List<CoreSheet> coreSheets = sheetName2SheetDataList.get(sheetName).getSheetVersions();
         CoreSheet cloned = coreSheets.getLast().cloneWithSerialization();
         cloned.incrementVersion();
@@ -218,7 +218,7 @@ public class EngineImpl implements Engine {
             toUpdate = new CoreCell(cloned, coordinates.getRow(), coordinates.getCol());
             cloned.getCoreCellsMap().put(coordinates,toUpdate);
         }
-        toUpdate.executeCalculationProcedure(originalExpression);
+        toUpdate.executeCalculationProcedure(originalExpression,editingUsername);
         coreSheets.addLast(cloned);
     }
 
@@ -280,7 +280,7 @@ public class EngineImpl implements Engine {
     }
 
     @Override
-    public Sheet previewSpecificUpdateOnCell(String cellName, String originalExpression, String sheetName, int sheetVersion) {
+    public Sheet previewSpecificUpdateOnCell(String cellName, String originalExpression, String sheetName, int sheetVersion,String editingUsername) {
         List<CoreSheet> coreSheets = sheetName2SheetDataList.get(sheetName).getSheetVersions();
         int versionNumber = sheetVersion >=0 ? sheetVersion : coreSheets.size() - 1;
         CoreSheet cloned = coreSheets.get(versionNumber).cloneWithSerialization();
@@ -296,7 +296,7 @@ public class EngineImpl implements Engine {
             toUpdate = new CoreCell(cloned, coordinates.getRow(), coordinates.getCol());
             cloned.getCoreCellsMap().put(coordinates,toUpdate);
         }
-        toUpdate.executeCalculationProcedure(originalExpression);
+        toUpdate.executeCalculationProcedure(originalExpression,editingUsername);
         return generateDTOSheet(cloned);
     }
 }

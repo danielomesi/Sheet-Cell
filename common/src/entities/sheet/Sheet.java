@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 
 public interface Sheet extends Serializable {
+    public String getOwnerUsername();
     public Cell getCell(int row, int col);
     public Map<Coordinates, Cell> getCellMap();
     public int getNumOfRows();

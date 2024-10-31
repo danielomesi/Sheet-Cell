@@ -30,6 +30,9 @@
                   <Label text="Last Updated Version:" />
                   <Label fx:id="lastUpdatedVersionLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
                   <Separator orientation="VERTICAL" />
+                  <Label text="Last Editor:" />
+                  <Label fx:id="lastEditorLabel" />
+                  <Separator orientation="VERTICAL" />
                   <Label text="Version:" />
                   <ComboBox fx:id="versionComboBox" onAction="#handleVersionOnChoose" />
                </children>

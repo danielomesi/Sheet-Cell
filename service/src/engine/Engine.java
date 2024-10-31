@@ -39,7 +39,7 @@ public interface Engine {
 
     public Cell getSpecificCell(String sheetName, String cellName);
 
-    public void updateSpecificCell(String cellName, String originalExpression, String sheetName);
+    public void updateSpecificCell(String cellName, String originalExpression, String sheetName, String editingUsername);
 
     public List<Integer> sort(String sheetName, List<String> colNames, String fromCellID, String toCellID, boolean isSortingFirstRow);
 
@@ -53,5 +53,5 @@ public interface Engine {
 
     public void applyAccessDecision(String usernameWithPendingRequest, String sheetName, PermissionType permissionType, boolean isAccessAllowed);
 
-    public Sheet previewSpecificUpdateOnCell(String cellName, String originalExpression, String sheetName, int sheetVersion);
+    public Sheet previewSpecificUpdateOnCell(String cellName, String originalExpression, String sheetName, int sheetVersion, String editingUsername);
 }

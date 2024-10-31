@@ -48,6 +48,8 @@ public class SheetController {
 
     @FXML
     private Label lastUpdatedVersionLabel;
+    @FXML
+    private Label lastEditorLabel;
 
     @FXML
     private TextField newValueTextField;
@@ -240,8 +242,10 @@ public class SheetController {
         Cell cell = mainController.getCurrentLoadedSheet().getCell(cellCoordinates.getRow(), cellCoordinates.getCol());
         String originalExpression = cell != null ? cell.getOriginalExpression() : NON_EXISTING_CELL_NAME;
         int lastUpdatedVersion = cell != null ? cell.getVersion() : 0;
+        String lastEditor = cell != null ? cell.getLastEditor() : NO_LAST_EDITOR_FOUND_MESSAGE;
         originalValueLabel.setText(originalExpression);
         lastUpdatedVersionLabel.setText(String.valueOf(lastUpdatedVersion));
+        lastEditorLabel.setText(lastEditor);
     }
 
     public void initActionLineControls() {

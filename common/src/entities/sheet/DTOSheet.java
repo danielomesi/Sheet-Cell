@@ -12,6 +12,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class DTOSheet implements Sheet {
+    private final String ownerUsername;
     private Map<Coordinates,DTOCell> cellsMap;
     private final Map<String, RangeDTO> rangesMap;
     private final int numOfRows;
@@ -29,12 +30,14 @@ public class DTOSheet implements Sheet {
         this.name = coreSheet.getName();
         this.numOfCellsChanged = coreSheet.getNumOfCellsChanged();
         this.rangesMap = coreSheet.getRangesDTOeMap();
+        this.ownerUsername = coreSheet.getOwnerUsername();
         if (coreSheet.getCellMap() != null) {
             this.cellsMap = new HashMap<>();
             coreSheet.getCellMap().forEach((coordinates, cell) -> cellsMap.put(coordinates, new DTOCell(cell)));
         }
     }
 
+    public String getOwnerUsername() {return ownerUsername;}
     public int getNumOfRows() {return this.numOfRows;}
     public int getNumOfCols() {return this.numOfColumns;}
     public int getVersion() {return this.version;}

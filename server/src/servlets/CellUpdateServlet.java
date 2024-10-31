@@ -37,7 +37,7 @@ public class CellUpdateServlet extends HttpServlet {
             String cellID = cellUpdateDTO.getCellName();
 
             Engine engine = (Engine) getServletContext().getAttribute("engine");
-            engine.updateSpecificCell(cellID,expression,sheetName);
+            engine.updateSpecificCell(cellID,expression,sheetName,username);
 
             response.setStatus(HttpServletResponse.SC_OK);
         }

@@ -35,12 +35,14 @@ public class CoreSheet implements Sheet {
     private int numOfCellsChanged;
     private final Layout layout;
     private final String name;
+    private final String ownerUsername;
 
-    public CoreSheet(int numOfRows, int numOfColumns, Layout layout, String name) {
+    public CoreSheet(int numOfRows, int numOfColumns, Layout layout, String name,String username) {
         this.numOfRows = numOfRows;
         this.numOfCols = numOfColumns;
         this.layout = layout;
         this.name = name;
+        this.ownerUsername = username;
     }
 
     public CoreSheet(CoreSheet masterSheet, Coordinates topLeftCoordinate, Coordinates bottomRightCoordinate) {
@@ -49,6 +51,7 @@ public class CoreSheet implements Sheet {
         version = masterSheet.getVersion();
         layout = masterSheet.getLayout();
         name = masterSheet.getName();
+        ownerUsername = null;
         Coordinates coordinate;
         CoreCell coreCellOfMasterSheet, coreCellOfSubSheet;
         for(int i=0; i<numOfRows; i++) {
@@ -64,7 +67,8 @@ public class CoreSheet implements Sheet {
         }
     }
 
-    public CoreSheet(STLSheet stlSheet) {
+    public CoreSheet(STLSheet stlSheet, String ownerUsername) {
+        this.ownerUsername = ownerUsername;
         this.numOfRows = stlSheet.getSTLLayout().getRows();
         this.numOfCols = stlSheet.getSTLLayout().getColumns();
         this.layout = new Layout(stlSheet.getSTLLayout().getSTLSize().getRowsHeightUnits(),
@@ -93,7 +97,7 @@ public class CoreSheet implements Sheet {
         }
         List<Coordinates> topologicalSort = Sorter.topologicalSort(this);
         cleanDependencies();
-        executeSheet(topologicalSort);
+        executeSheet(topologicalSort,ownerUsername);
     }
 
     public CoreSheet cloneWithSerialization() {
@@ -112,6 +116,7 @@ public class CoreSheet implements Sheet {
     }
 
     //implementing interface methods
+    public String getOwnerUsername() {return ownerUsername;}
     public int getVersion() {return version;}
     public int getNumOfRows() {return numOfRows;}
     public int getNumOfCols() {return numOfCols;}
@@ -199,12 +204,12 @@ public class CoreSheet implements Sheet {
         return false;
     }
 
-    private void executeSheet(List<Coordinates> topologicalSort) {
+    private void executeSheet(List<Coordinates> topologicalSort,String ownerUsername) {
         for (Coordinates coordinates : topologicalSort) {
             CoreCell cell = CoordinateFactory.getCellObjectFromCellID(this, coordinates.getCellID());
             String originalExpression = cell.getOriginalExpression();
             if (originalExpression != null) {
-                cell.executeCalculationProcedure(originalExpression);
+                cell.executeCalculationProcedure(originalExpression,ownerUsername);
             }
         }
     }

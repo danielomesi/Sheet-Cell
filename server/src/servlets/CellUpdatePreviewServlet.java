@@ -35,7 +35,7 @@ public class CellUpdatePreviewServlet extends HttpServlet {
             int version = ServletLogicUtils.parseOrDefault(versionParam,-1);
 
             Engine engine = (Engine) getServletContext().getAttribute("engine");
-            Sheet sheet = engine.previewSpecificUpdateOnCell(cellID,originalExpression,sheetName,version);
+            Sheet sheet = engine.previewSpecificUpdateOnCell(cellID,originalExpression,sheetName,version,username);
 
             Gson gson = new Gson();
             response.setContentType("application/json");

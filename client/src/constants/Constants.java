@@ -4,8 +4,8 @@ public class Constants {
 
     // global constants in the app
     public static final String NON_EXISTING_CELL_NAME = "[EMPTY-CELL]";
+    public static final String NO_LAST_EDITOR_FOUND_MESSAGE = "No Last Editor Found";
     public final static double REFRESH_RATE_IN_SECONDS = 0.5;
-    public final static String CHAT_LINE_FORMATTING = "%tH:%tM:%tS | %.10s: %s%n";
 
     //text messages in app
     public static final String NEW_VERSION_DETECTED_MESSAGE = "New Version Detected! Writing is disabled, click Sync to update";

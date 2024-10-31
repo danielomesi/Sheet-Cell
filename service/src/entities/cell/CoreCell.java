@@ -21,6 +21,7 @@ public class CoreCell implements Cell {
     private CoreSheet sheet;
     private final Coordinates coordinates;
     private int version;
+    private String lastEditor;
     private Object effectiveValue;
     private String originalExpression;
     private Operation operation;
@@ -32,6 +33,7 @@ public class CoreCell implements Cell {
     {
         this.sheet = sheet;
         this.version = sheet.getVersion();
+        this.lastEditor = sheet.getOwnerUsername();
         Utils.validateInRange(row, 0, sheet.getNumOfRows());
         Utils.validateInRange(col, 0, sheet.getNumOfCols());
         this.coordinates = new Coordinates(row, col);
@@ -45,6 +47,8 @@ public class CoreCell implements Cell {
     @Override
     public int getVersion() {return version;}
     @Override
+    public String getLastEditor() {return lastEditor;}
+    @Override
     public String getOriginalExpression() {return originalExpression;}
     public void setOriginalExpression(String originalExpression) {this.originalExpression = originalExpression;}
     public Operation getOperation() {return operation;}
@@ -57,7 +61,7 @@ public class CoreCell implements Cell {
     public Object getEffectiveValue() {return effectiveValue;};
     public void setEffectiveValue(Object effectiveValue) {this.effectiveValue = effectiveValue;}
 
-    public void executeCalculationProcedure(String expression) {
+    public void executeCalculationProcedure(String expression, String editingUsername) {
         resetListOfCellsThatAffectMe();
         originalExpression = expression;
         if (expression.startsWith("{") && expression.endsWith("}")) {
@@ -67,30 +71,31 @@ public class CoreCell implements Cell {
             operation = null;
             effectiveValue = parseArgument(sheet, coordinates, expression);
         }
-        update();
+        update(editingUsername);
         sheet.cleanVisits();
     }
 
-    private void notifyAffectedCells()
+    private void notifyAffectedCells(String editingUsername)
     {
         visitColor = Status.GREY;
         for (Coordinates coordinates : cellsAffectedByMe)
         {
-            CoordinateFactory.getCellObjectFromIndices(sheet, coordinates.getRow(), coordinates.getCol()).update();
+            CoordinateFactory.getCellObjectFromIndices(sheet, coordinates.getRow(), coordinates.getCol()).update(editingUsername);
         }
         visitColor = Status.BLACK;
     }
 
-    private void update()
+    private void update(String editingUsername)
     {
         if (visitColor != Status.GREY)
         {
+            this.lastEditor = editingUsername;
             sheet.incrementNumOfCellsChanged();
             if (operation!=null) {
                 this.effectiveValue = operation.execute();
             }
             version = sheet.getVersion();
-            notifyAffectedCells();
+            notifyAffectedCells(editingUsername);
         }
         else {
             throw new CircleReferenceException("Circular reference identified", coordinates);

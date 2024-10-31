@@ -8,6 +8,7 @@ import java.util.Set;
 public class DTOCell implements Cell {
     private final Coordinates coordinates;
     private final int version;
+    private final String lastEditor;
     private final Object effectiveValue;
     private final String originalExpression;
     private final Set<Coordinates> cellsAffectedByMe;
@@ -17,6 +18,7 @@ public class DTOCell implements Cell {
     {
         coordinates= coreCell.getCoordinates();
         version = coreCell.getVersion();
+        lastEditor = coreCell.getLastEditor();
         effectiveValue = coreCell.getEffectiveValue();
         originalExpression = coreCell.getOriginalExpression();
         Set<Coordinates> outerCellsAffectedByMe = coreCell.getCellsAffectedByMe();
@@ -37,4 +39,6 @@ public class DTOCell implements Cell {
     public Set<Coordinates> getCellsAffectedByMe() {return cellsAffectedByMe;}
     @Override
     public Set<Coordinates> getCellsAffectingMe() {return cellsAffectingMe;}
+    @Override
+    public String getLastEditor() {return lastEditor;}
 }
