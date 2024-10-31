@@ -1,14 +1,19 @@
 package gui.scenes.dashboard.main;
 
+import constants.Constants;
 import gui.core.ClientApp;
 import gui.scenes.dashboard.header.DashboardHeaderController;
 import gui.scenes.dashboard.permissionsTable.PermissionsTableController;
 import gui.scenes.dashboard.sheetsTable.SheetsTableController;
+import http.HttpClientMessenger;
+import http.MyCallBack;
 import http.RequestScheduler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import okhttp3.HttpUrl;
+
 import java.io.Closeable;
 import java.util.Objects;
 
@@ -54,8 +59,20 @@ public class DashboardMainController implements Closeable {
         sheetsTableController.startRefreshingTableData();
     }
 
+    public void logout() {
+        String finalUrl = HttpUrl
+                .parse(LOGOUT)
+                .newBuilder()
+                .build()
+                .toString();
+
+        HttpClientMessenger.sendGetRequestWithoutBodyAsync(finalUrl,new MyCallBack(headerController.getTaskStatusLabel(), (body) -> {}));
+    }
+
     @Override
     public void close() {
+        System.out.println("Performing close...");
         stopRefresher();
+        logout();
     }
 }

@@ -3,15 +3,16 @@ package constants;
 public class Constants {
 
     // global constants in the app
-    public static final String NON_EXISTING_CELL_NAME = "[EMPTY-CELL]";
-    public static final String NO_LAST_EDITOR_FOUND_MESSAGE = "No Last Editor Found";
+
     public final static double REFRESH_RATE_IN_SECONDS = 0.5;
 
     //text messages in app
     public static final String NEW_VERSION_DETECTED_MESSAGE = "New Version Detected! Writing is disabled, click Sync to update";
+    public static final String NON_EXISTING_CELL_NAME = "[EMPTY-CELL]";
+    public static final String NO_LAST_EDITOR_FOUND_MESSAGE = "No Last Editor Found";
+    public static final String GENERAL_ERROR_MESSAGE = "An Error Occurred";
 
-
-    public static String USER_WELCOME_MESSAGE(String username) {return String.format("Hi %s! Welcome to the app!",username);}
+    public static String USER_WELCOME_MESSAGE(String username) {return String.format("Hi %s! Welcome To The App!",username);}
 
     // FXML locations
     public static final String LOGIN_FXML = "/gui/scenes/login/login.fxml";

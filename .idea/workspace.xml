@@ -9,22 +9,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Dynamic analyze improved and login scene too">
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added feature of modifying username data stored on update per cell">
+      <change afterPath="$PROJECT_DIR$/server/src/servlets/LogoutServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/constants/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/constants/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/analyze/AnalyzeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/analyze/AnalyzeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/SheetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/SheetController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/sheet.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/sheet.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/entities/cell/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/entities/cell/Cell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/entities/cell/DTOCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/entities/cell/DTOCell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/entities/sheet/DTOSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/entities/sheet/DTOSheet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/entities/sheet/Sheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/entities/sheet/Sheet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/servlets/CellUpdatePreviewServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/CellUpdatePreviewServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/servlets/CellUpdateServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/CellUpdateServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/cell/CoreCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/cell/CoreCell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/DashboardHeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/DashboardHeaderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/header.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/header.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/DashboardMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/DashboardMainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/main.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/permissionsTable/permissionsTable.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/permissionsTable/permissionsTable.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/sheetsTable.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/sheetsTable.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/login/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/login/login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/http/HttpClientMessenger.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/http/HttpClientMessenger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/http/MyCallBack.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/http/MyCallBack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/servlets/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/LoginServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/users/UserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/users/UserManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,36 +83,36 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Application.App.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Application.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Client.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Ex3.executor&quot;: &quot;Run&quot;,
-    &quot;Application.GUI.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Tomcat Server.Server.executor&quot;: &quot;Run&quot;,
-    &quot;Tomcat Server.Tomcat 10.1.26.executor&quot;: &quot;Run&quot;,
-    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/omesi/IdeaProjects/Sheet-Cell/lib/Gson&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.App.executor": "Run",
+    "Application.Application.executor": "Run",
+    "Application.Client.executor": "Run",
+    "Application.Ex3.executor": "Run",
+    "Application.GUI.executor": "Run",
+    "Application.Unnamed.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Tomcat Server.Server.executor": "Run",
+    "Tomcat Server.Tomcat 10.1.26.executor": "Run",
+    "extract.method.default.visibility": "private",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/omesi/IdeaProjects/Sheet-Cell/lib/Gson",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\omesi\IdeaProjects\Sheet-Cell\ui\src\gui\components\styles" />
@@ -121,7 +122,7 @@
       <recent name="C:\Users\omesi\IdeaProjects\Sheet-Cell\lib\javafx-sdk-22.0.2" />
     </key>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Server">
+  <component name="RunManager" selected="Application.Client">
     <configuration name="Client" type="Application" factoryName="Application" singleton="false">
       <option name="ALTERNATIVE_JRE_PATH" value="21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -306,15 +307,7 @@
       <workItem from="1729931258365" duration="10814000" />
       <workItem from="1730282950228" duration="8029000" />
       <workItem from="1730365789678" duration="7818000" />
-      <workItem from="1730390973231" duration="1206000" />
-    </task>
-    <task id="LOCAL‎-00051" summary="Minor changes">
-      <option name="closed" value="true" />
-      <created>1726576403366</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL‎-00051" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1726576403367</updated>
+      <workItem from="1730390973231" duration="6074000" />
     </task>
     <task id="LOCAL‎-00052" summary="Sort started working a bit...">
       <option name="closed" value="true" />
@@ -700,7 +693,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1730373460888</updated>
     </task>
-    <option name="localTasksCounter" value="100" />
+    <task id="LOCAL‎-00100" summary="Added feature of modifying username data stored on update per cell">
+      <option name="closed" value="true" />
+      <created>1730392252764</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL‎-00100" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1730392252765</updated>
+    </task>
+    <option name="localTasksCounter" value="101" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -719,7 +720,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Another progress..." />
     <MESSAGE value="Adding a module for dtos..." />
     <MESSAGE value="Small updates..." />
     <MESSAGE value="Finally fixed the tomcat launch error..." />
@@ -744,7 +744,8 @@
     <MESSAGE value="Changed styling of dashboard" />
     <MESSAGE value="Added option for dynamic analyze" />
     <MESSAGE value="Dynamic analyze improved and login scene too" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dynamic analyze improved and login scene too" />
+    <MESSAGE value="Added feature of modifying username data stored on update per cell" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added feature of modifying username data stored on update per cell" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

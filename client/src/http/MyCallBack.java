@@ -1,12 +1,12 @@
 package http;
 
+import constants.Constants;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 import org.jetbrains.annotations.NotNull;
-
 import java.io.IOException;
 
 public class MyCallBack implements Callback {
@@ -21,7 +21,7 @@ public class MyCallBack implements Callback {
     @Override
     public void onFailure(@NotNull Call call, @NotNull IOException e) {
         Platform.runLater(() ->
-                label.setText("Something went wrong: " + e.getMessage())
+                label.setText(Constants.GENERAL_ERROR_MESSAGE + "\n" + e.getMessage())
         );
     }
 

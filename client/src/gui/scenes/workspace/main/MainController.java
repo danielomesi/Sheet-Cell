@@ -40,20 +40,10 @@ import java.io.IOException;
 import java.util.List;
 
 public class MainController implements Closeable {
-
-    //Highest wrapper is scroll pane
-    @FXML
-    private ScrollPane mainScrollPane;
-    @FXML
-    private BorderPane mainBorderPane;
-
-
-    private Engine engine;
     private String currentSheetName;
     private Sheet currentLoadedSheet;
     private BooleanProperty isSheetLoaded;
     private DataModule dataModule;
-    private List<String> cssStyles;
     private ClientApp clientApp;
     private final SimpleBooleanProperty isWriteAccessAllowed = new SimpleBooleanProperty(false);
     //stage
@@ -68,20 +58,18 @@ public class MainController implements Closeable {
     private FilterController filterController;
     private AnalyzeController analyzeController;
 
+    //Highest wrapper is scroll pane
+    @FXML
+    private ScrollPane mainScrollPane;
+    @FXML
+    private BorderPane mainBorderPane;
+
+
     //getters
     public ClientApp getClientApp() {return clientApp;}
-    public BorderPane getMainBorderPane() {
-        return mainBorderPane;
-    }
+    public BorderPane getMainBorderPane() {return mainBorderPane;}
     public SimpleBooleanProperty getIsWriteAccessAllowed() {return isWriteAccessAllowed;}
-
-    public Engine getEngine() {
-        return engine;
-    }
-
-    public Sheet getCurrentLoadedSheet() {
-        return currentLoadedSheet;
-    }
+    public Sheet getCurrentLoadedSheet() {return currentLoadedSheet;}
 
     public HeaderController getHeaderController() {
         return headerController;
@@ -145,19 +133,10 @@ public class MainController implements Closeable {
     }
 
     public void initialize() {
-        engine = new EngineImpl();
         dataModule = new DataModule();
 
         //bind the buttons relevant for sheet
         isSheetLoaded = new SimpleBooleanProperty(false);
-    }
-
-    public void loadFile(Sheet sheet) {
-        toDoOnSuccessfulFileLoad(sheet);
-    }
-
-    public void saveFile(String filePath) {
-        engine.saveStateToFile(filePath);
     }
 
     public void toDoOnSuccessfulFileLoad(Sheet sheet) {
@@ -287,7 +266,6 @@ public class MainController implements Closeable {
                 (body -> getSubSheetAndLoadSortDialog(fromCellID, toCellID))));
     }
 
-
     private void getSubSheetAndLoadSortDialog(String fromCellID, String toCellID) {
         String finalUrl = HttpUrl
                 .parse(Constants.SUB_SHEET)
@@ -308,7 +286,6 @@ public class MainController implements Closeable {
                     Utils.openWindow(sortController.getWrapper(), "Sort Dialog");
                 })));
     }
-
 
     public void openFilterDialog(String fromCellID,String toCellID) {
         String finalUrl = HttpUrl

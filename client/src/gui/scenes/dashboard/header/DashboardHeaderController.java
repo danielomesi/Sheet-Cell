@@ -25,9 +25,6 @@ public class DashboardHeaderController {
     private Button loadFileButton;
 
     @FXML
-    private ProgressBar taskProgressBar;
-
-    @FXML
     private Label taskStatusLabel;
 
     @FXML
@@ -45,15 +42,11 @@ public class DashboardHeaderController {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
 
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("XML Files", "*.xml")
-                ,new FileChooser.ExtensionFilter("Data Files", "*.dat"));
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("XML Files", "*.xml"));
 
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         File file = fileChooser.showOpenDialog(stage);
-
-        Runnable runnable = () -> loadFileAfterSelection(file);
-        Task<Void> task = Utils.getTaskFromRunnable(runnable,taskStatusLabel,taskProgressBar,false);
-        Utils.runTaskInADaemonThread(task);
+        loadFileAfterSelection(file);
     }
 
     private void loadFileAfterSelection(File file) {

@@ -1,8 +1,6 @@
 package users;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /*
 Adding and retrieving users is synchronized and in that manner - these actions are thread safe
@@ -11,25 +9,37 @@ of the user of this class to handle the synchronization of isUserExists with oth
  */
 public class UserManager {
 
-    private final Set<String> usersSet;
+    private final Map<String, Boolean> user2Active;
 
     public UserManager() {
-        usersSet = new HashSet<>();
+        user2Active = new HashMap<String, Boolean>();
     }
 
     public synchronized void addUser(String username) {
-        usersSet.add(username);
+        user2Active.put(username,false);
+    }
+
+    public synchronized void connectUser(String username) {
+        user2Active.put(username,true);
+    }
+
+    public synchronized void disconnectUser(String username) {
+        user2Active.put(username,false);
     }
 
     public synchronized void removeUser(String username) {
-        usersSet.remove(username);
+        user2Active.remove(username);
     }
 
     public synchronized Set<String> getUsers() {
-        return Collections.unmodifiableSet(usersSet);
+        return user2Active.keySet();
     }
 
-    public boolean isUserExists(String username) {
-        return usersSet.contains(username);
+    public synchronized boolean isUserExists(String username) {
+        return user2Active.containsKey(username);
+    }
+
+    public synchronized boolean isUserActive(String username) {
+        return user2Active.getOrDefault(username,false);
     }
 }

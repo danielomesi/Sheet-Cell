@@ -130,29 +130,11 @@ public class ClientApp extends Application {
         permissionsTableController.setDashboardMainController(dashboardMainController);
 
 
-        List<Parent> nodesToCombine = new ArrayList<>();
-        nodesToCombine.add(sheetsLoaderNode);
-        nodesToCombine.add(permissionsTableNode);
-
         // Add the headerPane to the top of the root layout
         BorderPane root = dashboardMainController.getMainBorderPane();
         root.setTop(headerNode);
-        root.setCenter(combineNodesTogether(nodesToCombine));
-    }
-
-    private Parent combineNodesTogether(List<Parent> nodes) {
-        VBox vbox = new VBox();
-        vbox.setAlignment(Pos.CENTER);
-        vbox.setMaxWidth(Double.MAX_VALUE);
-        vbox.setMaxHeight(Double.MAX_VALUE);
-        vbox.setSpacing(10);
-        for (Parent node : nodes) {
-            vbox.getChildren().add(node);
-            vbox.getChildren().add(new Separator());
-        };
-
-
-        return vbox;
+        root.setCenter(sheetsLoaderNode);
+        root.setBottom(permissionsTableNode);
     }
 
     public void loadWorkspace(Sheet sheet, PermissionType permissionType) throws IOException {
