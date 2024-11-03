@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import json.GsonInstance;
 import utils.HttpResponseUtils;
 
 import java.io.IOException;
@@ -28,7 +29,7 @@ public class RangeServlet extends HttpServlet {
                 return;
             }
 
-            Gson gson = new Gson();
+            Gson gson = GsonInstance.getGson();
             AddRangeDTO addRangeDTO = gson.fromJson(request.getReader(), AddRangeDTO.class);
 
 

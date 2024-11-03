@@ -1,5 +1,6 @@
 package servlets;
 
+
 import com.google.gson.Gson;
 import engine.Engine;
 import entities.sheet.DTOSheet;
@@ -12,6 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import json.GsonInstance;
 import utils.HttpResponseUtils;
 import utils.ServletLogicUtils;
 
@@ -37,7 +39,7 @@ public class CellUpdatePreviewServlet extends HttpServlet {
             Engine engine = (Engine) getServletContext().getAttribute("engine");
             Sheet sheet = engine.previewSpecificUpdateOnCell(cellID,originalExpression,sheetName,version,username);
 
-            Gson gson = new Gson();
+            Gson gson = GsonInstance.getGson();
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             String responseJson = gson.toJson(sheet);

@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import json.GsonInstance;
 import utils.HttpResponseUtils;
 
 import java.io.IOException;
@@ -30,7 +31,7 @@ public class PermissionDecisionServlet extends HttpServlet {
             String accessor = request.getParameter("accessor"); //the username of the user who wishes to get access
             boolean isAccessAllowed = Objects.equals(access, "true");
 
-            Gson gson = new Gson();
+            Gson gson = GsonInstance.getGson();
             RequestPermissionDTO requestPermissionDTO  = gson.fromJson(request.getReader(), RequestPermissionDTO.class);
 
 

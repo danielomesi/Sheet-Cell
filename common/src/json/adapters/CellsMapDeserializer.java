@@ -1,4 +1,4 @@
-package json;
+package json.adapters;
 
 import com.google.gson.*;
 import entities.cell.DTOCell;

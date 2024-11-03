@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import json.GsonInstance;
 import utils.HttpResponseUtils;
 
 import java.io.IOException;
@@ -29,7 +30,7 @@ public class VersionsServlet extends HttpServlet {
             Engine engine = (Engine) getServletContext().getAttribute("engine");
             Integer numOfVersions = engine.getNumOfVersions(sheetName);
 
-            Gson gson = new Gson();
+            Gson gson = GsonInstance.getGson();
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             String responseJson = gson.toJson(numOfVersions);

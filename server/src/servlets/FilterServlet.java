@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import json.GsonInstance;
 import utils.HttpResponseUtils;
 
 import java.io.IOException;
@@ -29,7 +30,7 @@ public class FilterServlet extends HttpServlet {
                 return;
             }
 
-            Gson gson = new Gson();
+            Gson gson = GsonInstance.getGson();
             FilterRequestDTO filterRequestDTO = gson.fromJson(request.getReader(), FilterRequestDTO.class);
 
             Engine engine = (Engine) getServletContext().getAttribute("engine");

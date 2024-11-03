@@ -92,7 +92,8 @@ public class HttpClientMessenger {
             String bodyAsStr = body.string();
             if (response.code() != 200) {
                 Platform.runLater(() ->
-                        errorLabel.setText(GENERAL_ERROR_MESSAGE + "\n" + bodyAsStr)
+                        //errorLabel.setText(GENERAL_ERROR_MESSAGE + "\n" + bodyAsStr)
+                        System.out.println("Error new error: "+ bodyAsStr)
                 );
             } else {
                 Platform.runLater(() ->  responseHandler.handle(bodyAsStr));

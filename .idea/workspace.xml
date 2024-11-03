@@ -9,9 +9,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Changed user manager">
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Fixed bug of multiple sessions for same user">
+      <change afterPath="$PROJECT_DIR$/common/src/json/GsonInstance.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/json/adapters/DTOCellAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/json/adapters/EffectiveValueAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Gson/gson-2.11.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/server.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/server.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gson.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gson.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/servlets/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/LoginServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/http/HttpClientMessenger.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/http/HttpClientMessenger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/json/CellsMapDeserializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/json/adapters/CellsMapDeserializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/json/EffectiveValueDeserializer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/json/GsonInstance.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/common.iml" beforeDir="false" afterPath="$PROJECT_DIR$/common/common.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/entities/cell/DTOCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/entities/cell/DTOCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Gson/gson-2.1-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Gson/gson-2.1-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Gson/gson-2.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/servlets/CellUpdatePreviewServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/CellUpdatePreviewServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/servlets/CellUpdateServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/CellUpdateServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/servlets/DashboardSheetListServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/DashboardSheetListServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/servlets/DistinctValuesServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/DistinctValuesServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/servlets/FilterServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/FilterServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/servlets/PermissionDecisionServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/PermissionDecisionServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/servlets/PermissionRequestServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/PermissionRequestServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/servlets/RangeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/RangeServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/servlets/SheetServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/SheetServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/servlets/SortServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/SortServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/servlets/SubSheetServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/SubSheetServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/servlets/VersionsServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/VersionsServlet.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +119,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.pluginManager",
@@ -294,6 +321,8 @@
       <workItem from="1730282950228" duration="8029000" />
       <workItem from="1730365789678" duration="7818000" />
       <workItem from="1730390973231" duration="7207000" />
+      <workItem from="1730643348721" duration="263000" />
+      <workItem from="1730643619408" duration="6727000" />
     </task>
     <task id="LOCAL‎-00053" summary="Sort is working (On my tests...)">
       <option name="closed" value="true" />
@@ -741,14 +770,20 @@
           <option name="timeStamp" value="2" />
         </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/client/src/json/EffectiveValueDeserializer.java</url>
+          <url>file://$PROJECT_DIR$/common/src/json/adapters/EffectiveValueDeserializer.java</url>
           <line>13</line>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/server/src/servlets/SheetServlet.java</url>
+          <line>50</line>
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
+        <PinnedItemInfo parentTag="java.lang.NoClassDefFoundError" memberName="stackTrace" />
         <PinnedItemInfo parentTag="service.operations.PLUSOperation" memberName="sheet" />
         <PinnedItemInfo parentTag="java.lang.ClassCastException" memberName="stackTrace" />
       </pinned-members>

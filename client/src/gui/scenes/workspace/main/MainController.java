@@ -1,7 +1,5 @@
 package gui.scenes.workspace.main;
 
-import engine.Engine;
-import engine.EngineImpl;
 import entities.coordinates.Coordinates;
 import entities.permission.PermissionType;
 import entities.sheet.DTOSheet;
@@ -36,7 +34,6 @@ import json.GsonInstance;
 import okhttp3.*;
 
 import java.io.Closeable;
-import java.io.IOException;
 import java.util.List;
 
 public class MainController implements Closeable {

@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import json.GsonInstance;
 import utils.HttpResponseUtils;
 import utils.ServletLogicUtils;
 
@@ -43,7 +44,7 @@ public class SheetServlet extends HttpServlet {
                 sheet = (DTOSheet) engine.getSheet(sheetName, version);
             }
 
-            Gson gson = new Gson();
+            Gson gson = GsonInstance.getGson();
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             String responseJson = gson.toJson(sheet);

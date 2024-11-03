@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import json.GsonInstance;
 import utils.HttpResponseUtils;
 
 import java.io.IOException;
@@ -28,7 +29,7 @@ public class CellUpdateServlet extends HttpServlet {
                 return;
             }
 
-            Gson gson = new Gson();
+            Gson gson = GsonInstance.getGson();
             CellUpdateDTO cellUpdateDTO = gson.fromJson(request.getReader(), CellUpdateDTO.class);
 
 

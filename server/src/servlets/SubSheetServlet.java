@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import json.GsonInstance;
 import utils.HttpResponseUtils;
 import utils.ServletLogicUtils;
 
@@ -33,7 +34,7 @@ public class SubSheetServlet extends HttpServlet {
             sheet = (DTOSheet) engine.getSubSheet(username);
 
 
-            Gson gson = new Gson();
+            Gson gson = GsonInstance.getGson();
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             String responseJson = gson.toJson(sheet);
@@ -53,7 +54,7 @@ public class SubSheetServlet extends HttpServlet {
                 return;
             }
 
-            Gson gson = new Gson();
+            Gson gson = GsonInstance.getGson();
             SetSubSheetDTO subSheetDTO = gson.fromJson(request.getReader(), SetSubSheetDTO.class);
 
             Engine engine = (Engine) getServletContext().getAttribute("engine");
