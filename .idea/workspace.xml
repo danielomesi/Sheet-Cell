@@ -10,72 +10,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Thank you good lord for being able to fix the gson error...">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/web/WEB-INF/lib/gson-2.11.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gson.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/client/client.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/constants/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/constants/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/builder/DynamicSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/builder/DynamicSheet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/DashboardMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/DashboardMainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/SheetsTableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/SheetsTableController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/analyze/AnalyzeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/analyze/AnalyzeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/commands/CommandsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/commands/CommandsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/filter/FilterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/filter/FilterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/SheetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/SheetController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sort/SortController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sort/SortController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/utils/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/http/HttpClientMessenger.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/http/HttpClientMessenger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/http/MyCallBack.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/http/MyCallBack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/entities/coordinates/Coordinates.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/entities/coordinates/Coordinates.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/entities/range/RangeDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/entities/range/RangeDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/common.iml" beforeDir="false" afterPath="$PROJECT_DIR$/common/common.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/json/GsonInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/json/GsonInstance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.base/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.base/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.controls/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.controls/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.fxml/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.fxml/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.graphics/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.graphics/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.media/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.media/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.media/glib.md" beforeDir="false" afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.media/glib.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.media/gstreamer.md" beforeDir="false" afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.media/gstreamer.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.swing/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.swing/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.web/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.web/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.web/webkit.md" beforeDir="false" afterPath="$PROJECT_DIR$/lib/javafx-sdk-22.0.2/legal/javafx.web/webkit.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/servlets/CellUpdatePreviewServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/CellUpdatePreviewServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/servlets/CellUpdateServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/CellUpdateServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/servlets/DashboardSheetListServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/DashboardSheetListServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/servlets/FileUploadServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/FileUploadServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/servlets/PermissionRequestServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/PermissionRequestServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/servlets/RangeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/RangeServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/servlets/SheetServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/SheetServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/servlets/SubSheetServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/SubSheetServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/servlets/VersionsServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/VersionsServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/utils/HttpResponseUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/utils/HttpResponseUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/engine/FileIOHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/FileIOHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/cell/CoreCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/cell/CoreCell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/coordinates/CoordinateFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/coordinates/CoordinateFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/range/Range.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/range/Range.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/sheet/CoreSheet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/exceptions/CellOutOfBoundsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/service_exceptions/CellOutOfBoundsException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/exceptions/CircleReferenceException.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/service_exceptions/CircleReferenceException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/exceptions/CloneFailureException.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/service_exceptions/CloneFailureException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/exceptions/InvalidArgumentException.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/service_exceptions/InvalidArgumentException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/exceptions/InvalidPathDetectedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/service_exceptions/InvalidPathDetectedException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/exceptions/InvalidRangeException.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/service_exceptions/InvalidRangeException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/exceptions/InvalidXMLException.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/service_exceptions/InvalidXMLException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/exceptions/NoExistenceException.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/service_exceptions/NoExistenceException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/exceptions/ServiceException.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/service_exceptions/ServiceException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/exceptions/SheetLoadFailureException.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/service_exceptions/SheetLoadFailureException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/exceptions/SheetSaveFailureException.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/service_exceptions/SheetSaveFailureException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/exceptions/StringIndexOutOfBoundsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/service_exceptions/StringIndexOutOfBoundsException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/exceptions/ZeroDivisionException.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/service_exceptions/ZeroDivisionException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/core/Operation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/core/Operation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/core/OperationFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/core/OperationFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/range/AVERAGERangeOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/range/AVERAGERangeOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/unique/IFOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/unique/IFOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/operations/impl/unique/REFOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/operations/impl/unique/REFOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/utils/FunctionParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/utils/FunctionParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/utils/RowData.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/utils/RowData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/utils/Sorter.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/utils/Sorter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/utils/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,7 +80,7 @@
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "Application.App.executor": "Run",
     "Application.Application.executor": "Run",
-    "Application.Client.executor": "Run",
+    "Application.Client.executor": "Debug",
     "Application.Ex3.executor": "Run",
     "Application.GUI.executor": "Run",
     "Application.Unnamed.executor": "Run",
@@ -150,13 +92,13 @@
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/omesi/IdeaProjects/Sheet-Cell/lib/Gson",
+    "last_opened_file_path": "C:/Users/omesi/IdeaProjects/Sheet-Cell/server/web/WEB-INF/lib",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.pluginManager",
@@ -265,10 +207,13 @@
         </SHUTDOWN>
       </ConfigurationWrapper>
       <method v="2">
-        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="common:jar" />
+        </option>
         <option name="BuildArtifacts" enabled="true">
           <artifact name="server" />
         </option>
+        <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
@@ -360,6 +305,8 @@
       <workItem from="1730390973231" duration="7207000" />
       <workItem from="1730643348721" duration="263000" />
       <workItem from="1730643619408" duration="10984000" />
+      <workItem from="1730667871715" duration="85000" />
+      <workItem from="1730667964919" duration="344000" />
     </task>
     <task id="LOCAL‎-00054" summary="Some tries to improve functionality...">
       <option name="closed" value="true" />

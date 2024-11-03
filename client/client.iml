@@ -10,6 +10,6 @@
     <orderEntry type="library" name="javafx" level="project" />
     <orderEntry type="library" name="OK Http" level="project" />
     <orderEntry type="module" module-name="common" />
-    <orderEntry type="library" name="Gson" level="project" />
+    <orderEntry type="library" name="lib" level="project" />
   </component>
 </module>
