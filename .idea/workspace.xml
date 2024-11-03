@@ -9,15 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Thank you good lord for being able to fix the gson error...">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/web/WEB-INF/lib/gson-2.11.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gson.xml" beforeDir="false" />
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="It works for now...">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/client/client.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/common.iml" beforeDir="false" afterPath="$PROJECT_DIR$/common/common.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/json/GsonInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/json/GsonInstance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +76,7 @@
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "Application.App.executor": "Run",
     "Application.Application.executor": "Run",
-    "Application.Client.executor": "Debug",
+    "Application.Client.executor": "Run",
     "Application.Ex3.executor": "Run",
     "Application.GUI.executor": "Run",
     "Application.Unnamed.executor": "Run",
@@ -92,13 +88,13 @@
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/omesi/IdeaProjects/Sheet-Cell/server/web/WEB-INF/lib",
+    "last_opened_file_path": "C:/Users/omesi/IdeaProjects/Sheet-Cell/lib/Gson",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.pluginManager",
@@ -306,15 +302,7 @@
       <workItem from="1730643348721" duration="263000" />
       <workItem from="1730643619408" duration="10984000" />
       <workItem from="1730667871715" duration="85000" />
-      <workItem from="1730667964919" duration="344000" />
-    </task>
-    <task id="LOCAL‎-00054" summary="Some tries to improve functionality...">
-      <option name="closed" value="true" />
-      <created>1726669613938</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL‎-00054" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1726669613938</updated>
+      <workItem from="1730667964919" duration="765000" />
     </task>
     <task id="LOCAL‎-00055" summary="Added first-row-ignoring option, and added button for animations">
       <option name="closed" value="true" />
@@ -700,7 +688,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1730650457243</updated>
     </task>
-    <option name="localTasksCounter" value="103" />
+    <task id="LOCAL‎-00103" summary="It works for now...">
+      <option name="closed" value="true" />
+      <created>1730668325526</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL‎-00103" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1730668325527</updated>
+    </task>
+    <option name="localTasksCounter" value="104" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -719,7 +715,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Finally fixed the tomcat launch error..." />
     <MESSAGE value="Populated Sheets Table" />
     <MESSAGE value="Populated Sheets Table with actual data from server" />
     <MESSAGE value="Managed to switch scene to workspace on button click" />
@@ -744,7 +739,8 @@
     <MESSAGE value="Added feature of modifying username data stored on update per cell" />
     <MESSAGE value="Changed user manager" />
     <MESSAGE value="Thank you good lord for being able to fix the gson error..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Thank you good lord for being able to fix the gson error..." />
+    <MESSAGE value="It works for now..." />
+    <option name="LAST_COMMIT_MESSAGE" value="It works for now..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -10,22 +10,10 @@ import json.adapters.DTOCellAdapter;
 import java.util.Map;
 
 public class GsonInstance {
-    private static Gson gson = null;
-
-    static {
-        try {
-            System.out.println("Tyring to create a gson builder");
-            gson = new GsonBuilder()
-                    .registerTypeAdapter(DTOCell.class, new DTOCellAdapter())
-                    .registerTypeAdapter(new TypeToken<Map<Coordinates, DTOCell>>(){}.getType(), new CellsMapDeserializer())
-                    .create();
-            System.out.println("Finished creating gson");
-        }
-        catch (Throwable e) {
-            System.out.println("Error creating gson");
-            e.printStackTrace();
-        }
-    }
+    private static final Gson gson = new GsonBuilder()
+            .registerTypeAdapter(DTOCell.class, new DTOCellAdapter())
+            .registerTypeAdapter(new TypeToken<Map<Coordinates, DTOCell>>(){}.getType(), new CellsMapDeserializer())
+            .create();
 
     public static Gson getGson() {
         return gson;
