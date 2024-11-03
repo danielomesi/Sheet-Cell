@@ -34,7 +34,6 @@ public class VersionsServlet extends HttpServlet {
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             String responseJson = gson.toJson(numOfVersions);
-            System.out.println("Sending: " + responseJson);
             response.getWriter().write(responseJson);
             response.setStatus(HttpServletResponse.SC_OK);
         }

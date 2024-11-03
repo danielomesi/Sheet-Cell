@@ -5,7 +5,7 @@ import constants.Constants;
 import entities.coordinates.Coordinates;
 import entities.sheet.DTOSheet;
 import entities.sheet.Sheet;
-import exceptions.InvalidArgumentException;
+import service_exceptions.InvalidArgumentException;
 import gui.builder.DynamicSheet;
 import gui.builder.DynamicSheetBuilder;
 import gui.scenes.workspace.main.MainController;

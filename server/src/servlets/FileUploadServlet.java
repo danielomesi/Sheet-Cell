@@ -28,7 +28,6 @@ public class FileUploadServlet extends HttpServlet {
         if (username == null) {
             return;
         }
-        System.out.println("Username from session: " + username);
 
         StringBuilder allContent = new StringBuilder();
         response.setContentType("text/plain");
@@ -36,14 +35,11 @@ public class FileUploadServlet extends HttpServlet {
 
         // Get all parts from the request
         Collection<Part> parts = request.getParts();
-        consoleOut.println("Total parts: " + parts.size());
 
         // Process each part
         for (Part part : parts) {
-            printPartDetails(part, consoleOut);
             String content = readFromInputStream(part.getInputStream());
             allContent.append(content);
-            printPartContent(content, consoleOut);
         }
 
         try {
@@ -54,6 +50,10 @@ public class FileUploadServlet extends HttpServlet {
         catch (Exception e) {
             HttpResponseUtils.sendExceptionAsErrorToClient(e,response);
         }
+    }
+
+    private String readFromInputStream(InputStream inputStream) {
+        return new Scanner(inputStream).useDelimiter("\\Z").next();
     }
 
     private void printPartDetails(Part part, PrintStream out) {
@@ -69,10 +69,6 @@ public class FileUploadServlet extends HttpServlet {
         );
 
         out.println(sb.toString());
-    }
-
-    private String readFromInputStream(InputStream inputStream) {
-        return new Scanner(inputStream).useDelimiter("\\Z").next();
     }
 
     private void printPartContent(String content, PrintStream out) {

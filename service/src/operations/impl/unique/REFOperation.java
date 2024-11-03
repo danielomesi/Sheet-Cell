@@ -4,7 +4,7 @@ import entities.coordinates.Coordinates;
 import entities.cell.CoreCell;
 import entities.coordinates.CoordinateFactory;
 import entities.sheet.CoreSheet;
-import exceptions.InvalidArgumentException;
+import service_exceptions.InvalidArgumentException;
 import operations.core.Operation;
 
 import java.util.List;

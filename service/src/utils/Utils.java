@@ -1,6 +1,6 @@
 package utils;
 
-import exceptions.CellOutOfBoundsException;
+import service_exceptions.CellOutOfBoundsException;
 
 public class Utils {
     public static String trimQuotes(String input) {

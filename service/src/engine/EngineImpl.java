@@ -12,7 +12,7 @@ import entities.sheet.Sheet;
 import entities.sheet.SheetMetaData;
 import entities.stl.STLLayout;
 import entities.stl.STLSheet;
-import exceptions.InvalidXMLException;
+import service_exceptions.InvalidXMLException;
 import jakarta.xml.bind.JAXBException;
 import entities.permission.PermissionType;
 import permission.SheetData;

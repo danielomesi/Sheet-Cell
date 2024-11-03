@@ -1,4 +1,4 @@
-package exceptions;
+package service_exceptions;
 
 import entities.coordinates.Coordinates;
 

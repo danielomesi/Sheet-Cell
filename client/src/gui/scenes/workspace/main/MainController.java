@@ -308,7 +308,6 @@ public class MainController implements Closeable {
 
         HttpClientMessenger.sendGetRequestWithoutBodyAsync(finalUrl, new MyCallBack(headerController.getTaskStatusLabel(),
                 (body -> {
-                    System.out.println(body);
                     Sheet subSheet = GsonInstance.getGson().fromJson(body, DTOSheet.class);
                     sheetController.resetStyles();
                     DynamicSheet dynamicSheet = DynamicSheetBuilder.buildSubDynamicSheetFromMainSheet(currentLoadedSheet,sheetController.getDynamicSheetTable(),fromCellID,toCellID);

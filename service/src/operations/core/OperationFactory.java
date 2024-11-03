@@ -5,7 +5,7 @@ import entities.coordinates.CoordinateFactory;
 import entities.coordinates.Coordinates;
 import entities.range.Range;
 import entities.sheet.CoreSheet;
-import exceptions.InvalidRangeException;
+import service_exceptions.InvalidRangeException;
 import operations.impl.logical.*;
 import operations.impl.math.*;
 import operations.impl.range.AVERAGERangeOperation;

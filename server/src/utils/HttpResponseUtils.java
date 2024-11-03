@@ -1,7 +1,6 @@
 package utils;
 
-import exceptions.ServiceException;
-import jakarta.servlet.ServletException;
+import service_exceptions.ServiceException;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
@@ -18,7 +17,6 @@ public class HttpResponseUtils {
 
         // Retrieve the JSESSIONID
         String sessionId = session.getId();
-        System.out.println("JSESSIONID: " + sessionId);
 
         // Retrieve the username stored in the session
         String username = (String) session.getAttribute("username");

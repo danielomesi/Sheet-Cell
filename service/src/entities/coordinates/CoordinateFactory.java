@@ -2,8 +2,8 @@ package entities.coordinates;
 
 import entities.cell.CoreCell;
 import entities.sheet.CoreSheet;
-import exceptions.CellOutOfBoundsException;
-import exceptions.InvalidArgumentException;
+import service_exceptions.CellOutOfBoundsException;
+import service_exceptions.InvalidArgumentException;
 
 import static entities.coordinates.Coordinates.*;
 
@@ -61,11 +61,5 @@ public class CoordinateFactory {
 
 
 
-    public static String numberToLetter(int number) {
-        if (number < 0 || number > 25) {
-            throw new CellOutOfBoundsException("Can't find a cell with a column which is not a letter");
-        }
-        char ch = (char) ('A' + number);
-        return Character.toString(ch);
-    }
+
 }

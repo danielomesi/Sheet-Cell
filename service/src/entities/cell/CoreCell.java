@@ -3,7 +3,7 @@ package entities.cell;
 import entities.coordinates.Coordinates;
 import entities.coordinates.CoordinateFactory;
 import entities.sheet.CoreSheet;
-import exceptions.CircleReferenceException;
+import service_exceptions.CircleReferenceException;
 import operations.core.Operation;
 import utils.Utils;
 

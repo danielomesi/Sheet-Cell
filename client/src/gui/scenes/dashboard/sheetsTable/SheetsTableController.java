@@ -107,7 +107,7 @@ public class SheetsTableController {
                 .toString();
 
         RequestScheduler.startHttpRequestScheduler(url, new MyCallBack(
-                        statusLabel, (this::handleSheetDataResponse)));
+                        null, (this::handleSheetDataResponse)));
     }
 
     private void handleSheetDataResponse(String body) {
@@ -186,7 +186,6 @@ public class SheetsTableController {
                 ,
                 (body -> {
                     try {
-                        System.out.println(body);
                         DTOSheet sheet = GsonInstance.getGson().fromJson(body, DTOSheet.class);
                         switchSceneToWorkspace(sheet,permissionType);
                     } catch (Exception e) {

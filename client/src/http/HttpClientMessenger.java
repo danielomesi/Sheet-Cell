@@ -1,5 +1,6 @@
 package http;
 
+import constants.Constants;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 import json.GsonInstance;
@@ -8,6 +9,8 @@ import okhttp3.JavaNetCookieJar;
 import java.io.File;
 import java.net.CookieManager;
 import java.net.CookiePolicy;
+import java.util.Optional;
+
 import static constants.Constants.*;
 
 public class HttpClientMessenger {
@@ -87,16 +90,24 @@ public class HttpClientMessenger {
         call.enqueue(callback);
     }
 
-    public static void genericOnResponseHandler(MyResponseHandler responseHandler, Response response, Label errorLabel) {
+    public static void genericOnResponseHandler(MyResponseHandler responseHandler, Response response, Label statusLabel) {
         try (ResponseBody body = response.body()) {
             String bodyAsStr = body.string();
             if (response.code() != 200) {
-                Platform.runLater(() ->
-                        //errorLabel.setText(GENERAL_ERROR_MESSAGE + "\n" + bodyAsStr)
-                        System.out.println("Error new error: "+ bodyAsStr)
+                Platform.runLater(() -> {
+                            if (statusLabel != null && !statusLabel.textProperty().isBound()) {
+                                statusLabel.setStyle(CSS_DEFINITION_FOR_RED_COLOR);
+                                statusLabel.setText(GENERAL_ERROR_MESSAGE + "\n" + bodyAsStr);
+                            }
+                        }
                 );
             } else {
-                Platform.runLater(() ->  responseHandler.handle(bodyAsStr));
+                Platform.runLater(() -> { responseHandler.handle(bodyAsStr);
+                    if (statusLabel != null && !statusLabel.textProperty().isBound()) {
+                        statusLabel.setStyle(CSS_DEFINITION_FOR_GREEN_COLOR);
+                        statusLabel.setText(GENERAL_TASK_SUCCESS_MESSAGE);
+                    }
+                });
             }
         }
         catch (Exception e) {

@@ -297,7 +297,7 @@ public class SheetController {
                 .build()
                 .toString();
 
-        RequestScheduler.startHttpRequestScheduler(finalUrl,new MyCallBack(mainController.getHeaderController().getTaskStatusLabel(),
+        RequestScheduler.startHttpRequestScheduler(finalUrl,new MyCallBack(null,
                 (body -> {
                     int numOfVersions = GsonInstance.getGson().fromJson(body, Integer.class);
                     int currentMaximumVersion = mainController.getDataModule().getVersionNumber().get();
@@ -331,10 +331,9 @@ public class SheetController {
             mainController.calculateCellUpdate(coordinates,newValueTextField.getText());
             newValueTextField.clear();
         };
-        Label taskStatusLabel = mainController.getHeaderController().getTaskStatusLabel();
         ProgressBar progressBar = mainController.getHeaderController().getTaskProgressBar();
         boolean isAnimationsEnabled = mainController.getAppearanceController().isAnimationsEnabled();
-        Task<Void> task = Utils.getTaskFromRunnable(runnable,taskStatusLabel,progressBar, isAnimationsEnabled);
+        Task<Void> task = Utils.getTaskFromRunnable(runnable,progressBar, isAnimationsEnabled);
         Utils.runTaskInADaemonThread(task);
     }
 

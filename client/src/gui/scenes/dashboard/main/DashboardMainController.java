@@ -71,7 +71,6 @@ public class DashboardMainController implements Closeable {
 
     @Override
     public void close() {
-        System.out.println("Performing close...");
         stopRefresher();
         logout();
     }

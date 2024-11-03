@@ -3,7 +3,7 @@ package operations.impl.unique;
 import entities.coordinates.Coordinates;
 import entities.sheet.CoreSheet;
 import entities.types.undefined.UndefinedBoolean;
-import exceptions.InvalidArgumentException;
+import service_exceptions.InvalidArgumentException;
 import operations.core.Operation;
 
 import java.util.List;

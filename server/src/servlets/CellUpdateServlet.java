@@ -2,9 +2,6 @@ package servlets;
 
 import com.google.gson.Gson;
 import engine.Engine;
-import entities.sheet.DTOSheet;
-import entities.sheet.Sheet;
-import exceptions.ServiceException;
 import http.dtos.CellUpdateDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -16,7 +13,6 @@ import json.GsonInstance;
 import utils.HttpResponseUtils;
 
 import java.io.IOException;
-import java.rmi.ServerException;
 
 @WebServlet(name = "Cell Update",urlPatterns = "/update")
 public class CellUpdateServlet extends HttpServlet {

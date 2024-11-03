@@ -1,6 +1,6 @@
 package gui.scenes.workspace.commands;
 
-import entities.range.Range;
+import entities.range.RangeDTO;
 import entities.range.RangeInterface;
 import gui.scenes.workspace.main.MainController;
 import gui.utils.Utils;
@@ -68,11 +68,10 @@ public class CommandsController {
         }
     }
 
-    public Range getSelectedRange() {
-        Range selectedRange = null;
+    public RangeInterface getSelectedRange() {
+        RangeInterface selectedRange = null;
         try {
-            selectedRange = new Range(mainController.getCurrentLoadedSheet(),
-                    mainController.getSheetController().getSelectedTopLeftCellID(),
+            selectedRange = new RangeDTO(mainController.getSheetController().getSelectedTopLeftCellID(),
                     mainController.getSheetController().getSelectedBottomRightCellID());
         }
         catch (Exception ignored) {
@@ -110,7 +109,7 @@ public class CommandsController {
         String rangeToRemove = rangeComboBox.getSelectionModel().getSelectedItem();
         Runnable runnable = () -> mainController.deleteRange(rangeToRemove);
         boolean isAnimationsEnabled = mainController.getAppearanceController().isAnimationsEnabled();
-        Task<Void> task = getTaskFromRunnable(runnable,commandsStatusLabel, commandsProgressIndicator, isAnimationsEnabled);
+        Task<Void> task = getTaskFromRunnable(runnable, commandsProgressIndicator, isAnimationsEnabled);
         Utils.runTaskInADaemonThread(task);
     }
 
@@ -123,7 +122,7 @@ public class CommandsController {
         String toCellID = mainController.getSheetController().getSelectedBottomRightCellID();
         Runnable runnable = () -> mainController.addRange(rangeName, fromCellID, toCellID);
         boolean isAnimationsEnabled = mainController.getAppearanceController().isAnimationsEnabled();
-        Task<Void> task = Utils.getTaskFromRunnable(runnable, commandsStatusLabel, commandsProgressIndicator,isAnimationsEnabled);
+        Task<Void> task = Utils.getTaskFromRunnable(runnable, commandsProgressIndicator,isAnimationsEnabled);
         Utils.runTaskInADaemonThread(task);
     }
 
@@ -139,7 +138,7 @@ public class CommandsController {
         String toCellID = mainController.getSheetController().getSelectedBottomRightCellID();
         Runnable runnable = () -> mainController.openSortDialog(fromCellID, toCellID);
         boolean isAnimationsEnabled = mainController.getAppearanceController().isAnimationsEnabled();
-        Task<Void> task = Utils.getTaskFromRunnable(runnable,commandsStatusLabel, commandsProgressIndicator,isAnimationsEnabled);
+        Task<Void> task = Utils.getTaskFromRunnable(runnable, commandsProgressIndicator,isAnimationsEnabled);
         Utils.runTaskInADaemonThread(task);
     }
 
@@ -149,7 +148,7 @@ public class CommandsController {
         String toCellID = mainController.getSheetController().getSelectedBottomRightCellID();
         Runnable runnable = () -> mainController.openFilterDialog(fromCellID, toCellID);
         boolean isAnimationsEnabled = mainController.getAppearanceController().isAnimationsEnabled();
-        Task<Void> task = Utils.getTaskFromRunnable(runnable,commandsStatusLabel, commandsProgressIndicator,isAnimationsEnabled);
+        Task<Void> task = Utils.getTaskFromRunnable(runnable, commandsProgressIndicator,isAnimationsEnabled);
         Utils.runTaskInADaemonThread(task);
     }
 

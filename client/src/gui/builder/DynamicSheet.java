@@ -1,7 +1,6 @@
 package gui.builder;
 
 import entities.cell.Cell;
-import entities.coordinates.CoordinateFactory;
 import entities.coordinates.Coordinates;
 import entities.sheet.Sheet;
 import gui.components.sheet.cell.TableCellType;
@@ -79,7 +78,7 @@ public class DynamicSheet {
         string2ColCellController.forEach((colNumber1Indexed, cellController)->{
             int colNum = Coordinates.getColIndexFromCellID(colNumber1Indexed) - 1; //make zero-indexed
             int suffixedColIndex = colNum + colLenBetweenSubSheetToMasterSheet;
-            String suffixedCol = CoordinateFactory.numberToLetter(suffixedColIndex);
+            String suffixedCol = Coordinates.numberToLetter(suffixedColIndex);
             String originalCol = cellController.getLabelText();
             String newDisplayedColName = String.format("%s [%s]", originalCol, suffixedCol);
             cellController.setLabelText(newDisplayedColName);

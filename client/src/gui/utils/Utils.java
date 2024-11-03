@@ -5,7 +5,7 @@ import entities.types.undefined.Undefined;
 import entities.types.undefined.UndefinedBoolean;
 import entities.types.undefined.UndefinedNumber;
 import entities.types.undefined.UndefinedString;
-import exceptions.ServiceException;
+import service_exceptions.ServiceException;
 import gui.exceptions.GUIException;
 import javafx.concurrent.Task;
 import javafx.concurrent.Worker;
@@ -111,7 +111,7 @@ public class Utils {
         thread.start();
     }
 
-    public static Task<Void> getTaskFromRunnable(Runnable runnable, Label labelToBindMessage, ProgressIndicator progressIndicatorToBind, boolean isDelayed) {
+    public static Task<Void> getTaskFromRunnable(Runnable runnable, ProgressIndicator progressIndicatorToBind, boolean isDelayed) {
         Task<Void> task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
@@ -124,7 +124,7 @@ public class Utils {
                 }
                 try {
                     runnable.run();
-                    updateMessage("The task finished successfully!");
+                    updateMessage(GENERAL_TASK_SUCCESS_MESSAGE);
                 } catch (Exception e) {
                     updateMessage(Utils.generateErrorMessageFromException(e));
                     throw e;
@@ -133,18 +133,9 @@ public class Utils {
             }
         };
 
-        labelToBindMessage.textProperty().bind(task.messageProperty());
         if (isDelayed) {
             progressIndicatorToBind.progressProperty().bind(task.progressProperty());
         }
-
-        task.stateProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue == Worker.State.SUCCEEDED) {
-                labelToBindMessage.setStyle("-fx-text-fill: green;");
-            } else if (newValue == Worker.State.FAILED) {
-                labelToBindMessage.setStyle("-fx-text-fill: red;");
-            }
-        });
 
         return task;
     }

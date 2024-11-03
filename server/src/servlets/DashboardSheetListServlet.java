@@ -36,7 +36,6 @@ public class DashboardSheetListServlet extends HttpServlet {
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             String responseJson = gson.toJson(allSheetsMetaData);
-            System.out.println("Sending: " + responseJson);
             response.getWriter().write(responseJson);
         }
         catch (Exception e) {

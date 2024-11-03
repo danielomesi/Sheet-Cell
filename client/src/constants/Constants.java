@@ -11,8 +11,14 @@ public class Constants {
     public static final String NON_EXISTING_CELL_NAME = "[EMPTY-CELL]";
     public static final String NO_LAST_EDITOR_FOUND_MESSAGE = "No Last Editor Found";
     public static final String GENERAL_ERROR_MESSAGE = "An Error Occurred";
+    public static final String GENERAL_TASK_SUCCESS_MESSAGE = "The task finished successfully!";
 
     public static String USER_WELCOME_MESSAGE(String username) {return String.format("Hi %s! Welcome To The App!",username);}
+
+    //css urls
+    public static final String CSS_DEFINITION_FOR_GREEN_COLOR = "-fx-text-fill: green;";
+    public static final String CSS_DEFINITION_FOR_RED_COLOR = "-fx-text-fill: red;";
+    public static final String CSS_DEFINITION_FOR_BLACK_COLOR = "-fx-text-fill: black;";
 
     // FXML locations
     public static final String LOGIN_FXML = "/gui/scenes/login/login.fxml";

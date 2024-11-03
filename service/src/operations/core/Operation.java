@@ -1,11 +1,7 @@
 package operations.core;
 
-import entities.cell.CoreCell;
-import entities.coordinates.CoordinateFactory;
 import entities.coordinates.Coordinates;
-import entities.range.Range;
 import entities.sheet.CoreSheet;
-import exceptions.InvalidRangeException;
 
 import java.io.Serializable;
 import java.util.*;

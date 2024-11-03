@@ -7,16 +7,11 @@ import entities.cell.DTOCell;
 import entities.coordinates.Coordinates;
 import json.adapters.CellsMapDeserializer;
 import json.adapters.DTOCellAdapter;
-
 import java.util.Map;
 
 public class GsonInstance {
     private static final Gson gson = new GsonBuilder()
-            //.registerTypeAdapter(Object.class, new EffectiveValueDeserializer())
-            //.registerTypeAdapter(UndefinedBoolean.class, new UndefinedBooleanSerializer())
-            //.registerTypeAdapter(UndefinedNumber.class, new UndefinedNumberSerializer())
-            //.registerTypeAdapter(UndefinedString.class, new UndefinedStringSerializer())
-            .registerTypeAdapter(DTOCell.class, new DTOCellAdapter()) // This line is okay since we aren't overriding built-in behavior
+            .registerTypeAdapter(DTOCell.class, new DTOCellAdapter())
             .registerTypeAdapter(new TypeToken<Map<Coordinates, DTOCell>>(){}.getType(), new CellsMapDeserializer())
             .create();
 

@@ -1,10 +1,9 @@
 package engine;
 
 import entities.sheet.CoreSheet;
-import exceptions.InvalidPathDetectedException;
-import exceptions.NoExistenceException;
-import exceptions.SheetLoadFailureException;
-import exceptions.SheetSaveFailureException;
+import service_exceptions.InvalidPathDetectedException;
+import service_exceptions.SheetLoadFailureException;
+import service_exceptions.SheetSaveFailureException;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Unmarshaller;

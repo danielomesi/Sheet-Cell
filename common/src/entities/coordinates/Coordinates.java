@@ -1,6 +1,7 @@
 package entities.coordinates;
 
 import entities.cell.Cell;
+import service_exceptions.CellOutOfBoundsException;
 
 import java.io.Serializable;
 
@@ -100,6 +101,14 @@ public class Coordinates implements Serializable
     @Override
     public int hashCode() {
         return 31*row + col; //31 is a prime number and it will make this function generate a unique id for each
+    }
+
+    public static String numberToLetter(int number) {
+        if (number < 0 || number > 25) {
+            throw new CellOutOfBoundsException("Can't find a cell with a column which is not a letter");
+        }
+        char ch = (char) ('A' + number);
+        return Character.toString(ch);
     }
 
 

@@ -5,8 +5,8 @@ import entities.coordinates.Coordinates;
 import entities.cell.CoreCell;
 import entities.sheet.CoreSheet;
 import entities.sheet.Sheet;
-import exceptions.CircleReferenceException;
-import exceptions.InvalidArgumentException;
+import service_exceptions.CircleReferenceException;
+import service_exceptions.InvalidArgumentException;
 
 import java.util.*;
 

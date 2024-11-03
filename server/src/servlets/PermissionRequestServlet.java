@@ -3,10 +3,6 @@ package servlets;
 import com.google.gson.Gson;
 import engine.Engine;
 import entities.permission.PermissionType;
-import entities.sheet.DTOSheet;
-import entities.sheet.Sheet;
-import exceptions.ServiceException;
-import http.dtos.CellUpdateDTO;
 import http.dtos.RequestPermissionDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -18,7 +14,6 @@ import json.GsonInstance;
 import utils.HttpResponseUtils;
 
 import java.io.IOException;
-import java.rmi.ServerException;
 
 @WebServlet(name = "Permission Request",urlPatterns = "/permissions/request")
 public class PermissionRequestServlet extends HttpServlet {

@@ -4,7 +4,7 @@ import entities.coordinates.Coordinates;
 import entities.range.Range;
 import entities.sheet.CoreSheet;
 import entities.types.undefined.UndefinedNumber;
-import exceptions.InvalidRangeException;
+import service_exceptions.InvalidRangeException;
 import operations.core.Operation;
 import operations.core.OperationFactory;
 

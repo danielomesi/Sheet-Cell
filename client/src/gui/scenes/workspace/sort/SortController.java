@@ -169,7 +169,7 @@ public class SortController {
     @FXML
     void sortButtonClicked(ActionEvent event) {
         boolean isAnimationsEnabled = mainController.getAppearanceController().isAnimationsEnabled();
-        Task<Void> sortTask =  Utils.getTaskFromRunnable(this::sort,taskStatus, taskProgressIndicator, isAnimationsEnabled);
+        Task<Void> sortTask =  Utils.getTaskFromRunnable(this::sort, taskProgressIndicator, isAnimationsEnabled);
         Utils.runTaskInADaemonThread(sortTask);
     }
 

@@ -137,7 +137,7 @@ public class FilterController {
     void columnInComboBoxSelected(ActionEvent event) {
         if (colsComboBox.getSelectionModel().getSelectedItem() != null) {
             selectedValuesListView.getItems().clear();
-            Task<Void> task = Utils.getTaskFromRunnable(this::getEffectiveValuesInSpecificCol,taskStatusLabel, taskProgressIndicator,false);
+            Task<Void> task = Utils.getTaskFromRunnable(this::getEffectiveValuesInSpecificCol, taskProgressIndicator,false);
             Utils.runTaskInADaemonThread(task);
         }
     }
@@ -168,7 +168,7 @@ public class FilterController {
     @FXML
     void filterButtonClicked(ActionEvent event) {
         boolean isAnimationsEnabled = mainController.getAppearanceController().isAnimationsEnabled();
-        Task<Void> task = Utils.getTaskFromRunnable(this::filter,taskStatusLabel, taskProgressIndicator,isAnimationsEnabled);
+        Task<Void> task = Utils.getTaskFromRunnable(this::filter, taskProgressIndicator,isAnimationsEnabled);
         Utils.runTaskInADaemonThread(task);
     }
 

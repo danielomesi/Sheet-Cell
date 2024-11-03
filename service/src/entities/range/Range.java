@@ -4,7 +4,7 @@ import entities.coordinates.Coordinates;
 import entities.sheet.Sheet;
 import entities.stl.STLRange;
 import entities.stl.STLSheet;
-import exceptions.InvalidRangeException;
+import service_exceptions.InvalidRangeException;
 import utils.Utils;
 
 import java.util.*;

@@ -3,7 +3,7 @@ package utils;
 import entities.cell.CoreCell;
 import entities.coordinates.Coordinates;
 import entities.sheet.CoreSheet;
-import exceptions.InvalidArgumentException;
+import service_exceptions.InvalidArgumentException;
 import operations.core.Operation;
 import operations.core.OperationFactory;
 import operations.core.OperationInfo;

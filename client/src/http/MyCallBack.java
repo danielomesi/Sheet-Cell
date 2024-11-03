@@ -20,8 +20,9 @@ public class MyCallBack implements Callback {
 
     @Override
     public void onFailure(@NotNull Call call, @NotNull IOException e) {
-        Platform.runLater(() ->
-                label.setText(Constants.GENERAL_ERROR_MESSAGE + "\n" + e.getMessage())
+        Platform.runLater(() -> {
+            if (label!=null) label.setText(Constants.GENERAL_ERROR_MESSAGE + "\n" + e.getMessage());
+        }
         );
     }
 
