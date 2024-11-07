@@ -16,7 +16,7 @@ public class DashboardHeaderController {
     private DashboardMainController mainController;
 
     @FXML
-    private Label greetingLabel;
+    private Label connectedAsLabel;
 
     @FXML
     private Button loadFileButton;
@@ -32,7 +32,8 @@ public class DashboardHeaderController {
 
     //setters
     public void setMainController(DashboardMainController mainController) {this.mainController = mainController;}
-    public void setGreetingLabel(String username) {greetingLabel.setText(CONNECTED_USER_MESSAGE(username));}
+    public void setConnectedAsLabel(String username) {
+        connectedAsLabel.setText(CONNECTED_USER_MESSAGE(username));}
 
     @FXML
     void handleLoadFileButtonClick(ActionEvent event) {

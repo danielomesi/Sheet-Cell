@@ -12,6 +12,7 @@ import entities.sheet.Sheet;
 import entities.sheet.SheetMetaData;
 import entities.stl.STLLayout;
 import entities.stl.STLSheet;
+import service_exceptions.ExistingSheetException;
 import service_exceptions.InvalidXMLException;
 import jakarta.xml.bind.JAXBException;
 import entities.permission.PermissionType;
@@ -180,7 +181,9 @@ public class EngineImpl implements Engine {
             SheetData sheetData = new SheetData(sheetName,uploaderUsername);
             sheetData.setSheetVersions(coreSheets);
             sheetName2SheetDataList.put(sheetName,sheetData);
-
+        }
+        else {
+            throw new ExistingSheetException("A sheet with the same name already exists");
         }
     }
 

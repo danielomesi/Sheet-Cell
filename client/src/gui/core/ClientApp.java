@@ -19,15 +19,12 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Separator;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+
 import static constants.Constants.*;
 
 public class ClientApp extends Application {
@@ -130,7 +127,7 @@ public class ClientApp extends Application {
 
         //Make sub controllers know the main controller
         headerController.setMainController(dashboardMainController);
-        headerController.setGreetingLabel(username);
+        headerController.setConnectedAsLabel(username);
         sheetsTableController.setDashboardMainController(dashboardMainController);
         permissionsTableController.setDashboardMainController(dashboardMainController);
 

@@ -9,30 +9,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Made client and server artifcats working...">
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/styles/resources/background-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/styles/resources/background-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/styles/resources/background-3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/client_jar2.xml" beforeDir="false" />
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Changed some things...">
+      <change afterPath="$PROJECT_DIR$/common/src/service_exceptions/ExistingSheetException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/constants/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/constants/Constants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/DashboardHeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/DashboardHeaderController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/header.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/header/header.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/main.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/login/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/login/login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/appearance/appearance.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/appearance/appearance.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/commands/commands.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/commands/commands.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/header/HeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/header/HeaderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/styles/resources/background-1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/styles/resources/background-1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/styles/resources/background-2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/styles/resources/background-2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/styles/resources/background-3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/styles/resources/background-3.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/header/header.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/header/header.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/styles/Dark.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/styles/Dark.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/styles/Default.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/styles/Default.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/styles/Generic Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/styles/Generic Style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/styles/Maccabi.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/styles/Maccabi.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/styles/resources/background-1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/styles/resources/background-2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/styles/resources/background-3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +116,7 @@
       <recent name="C:\Users\omesi\IdeaProjects\Sheet-Cell\service\src\entities\stl" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Client">
+  <component name="RunManager" selected="Tomcat Server.Server">
     <configuration name="Client" type="Application" factoryName="Application" singleton="false">
       <option name="ALTERNATIVE_JRE_PATH" value="21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -326,15 +313,7 @@
       <workItem from="1730984082095" duration="4617000" />
       <workItem from="1730988922985" duration="2792000" />
       <workItem from="1730991739471" duration="1289000" />
-      <workItem from="1730993042189" duration="84000" />
-    </task>
-    <task id="LOCAL‎-00058" summary="Filter is working better now...">
-      <option name="closed" value="true" />
-      <created>1726782394597</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL‎-00058" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1726782394597</updated>
+      <workItem from="1730993042189" duration="1189000" />
     </task>
     <task id="LOCAL‎-00059" summary="Done with all must requirements...">
       <option name="closed" value="true" />
@@ -720,7 +699,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1730988955674</updated>
     </task>
-    <option name="localTasksCounter" value="107" />
+    <task id="LOCAL‎-00107" summary="Changed some things...">
+      <option name="closed" value="true" />
+      <created>1730993154047</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL‎-00107" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1730993154047</updated>
+    </task>
+    <option name="localTasksCounter" value="108" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -739,7 +726,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added gson serialization and deserialization (still working on it...)" />
     <MESSAGE value="Finally deserializatiion works!!!" />
     <MESSAGE value="Cell update works via http" />
     <MESSAGE value="Added range adding option and also added interface for handling responses in client" />
@@ -764,7 +750,8 @@
     <MESSAGE value="Fixed gson error..." />
     <MESSAGE value="Added client closing handling..." />
     <MESSAGE value="Made client and server artifcats working..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Made client and server artifcats working..." />
+    <MESSAGE value="Changed some things..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed some things..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
