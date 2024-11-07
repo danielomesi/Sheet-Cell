@@ -34,7 +34,7 @@
       <Separator />
       <VBox spacing="10.0">
          <children>
-            <Label text="Add new range" />
+            <Label text="Add New Range" />
             <HBox alignment="CENTER_LEFT" spacing="10.0">
                <children>
                   <Label text="Name: " />
@@ -48,20 +48,20 @@
       <VBox spacing="10.0">
          <children>
             <Label text="Dynamic Analyze" />
-            <Button fx:id="openDynamicAnalyzeDialogButton" mnemonicParsing="false" onAction="#openDynamicAnalyzeDialogButtonClicked" text="Open dynamic analyze dialog" />
+            <Button fx:id="openDynamicAnalyzeDialogButton" mnemonicParsing="false" onAction="#openDynamicAnalyzeDialogButtonClicked" text="Open Dynamic Analyze Dialog" />
          </children>
       </VBox>
       <VBox spacing="10.0">
          <children>
             <Label text="Sort" />
-            <Button fx:id="openSortDialogButton" mnemonicParsing="false" onAction="#openSortDialogButtonClicked" text="Open sort dialog" />
+            <Button fx:id="openSortDialogButton" mnemonicParsing="false" onAction="#openSortDialogButtonClicked" text="Open Sort Dialog" />
          </children>
       </VBox>
       <Separator />
       <VBox spacing="10.0">
          <children>
             <Label text="Filter" />
-            <Button fx:id="openFilterDialogButton" mnemonicParsing="false" onAction="#openFilterDialogClicked" text="Open filter dialog" />
+            <Button fx:id="openFilterDialogButton" mnemonicParsing="false" onAction="#openFilterDialogClicked" text="Open Filter Dialog" />
          </children>
       </VBox>
       <Separator />
@@ -79,7 +79,7 @@
       <Separator />
       <VBox alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#backToDashboardButtonClicked" text="← Back to dashboard" />
+            <Button mnemonicParsing="false" onAction="#backToDashboardButtonClicked" text="← Back To Dashboard" />
          </children>
       </VBox>
    </children>

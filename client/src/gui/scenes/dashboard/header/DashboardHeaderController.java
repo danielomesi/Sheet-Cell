@@ -1,14 +1,11 @@
 package gui.scenes.dashboard.header;
 import gui.scenes.dashboard.main.DashboardMainController;
-import gui.utils.Utils;
 import http.HttpClientMessenger;
 import http.MyCallBack;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -35,7 +32,7 @@ public class DashboardHeaderController {
 
     //setters
     public void setMainController(DashboardMainController mainController) {this.mainController = mainController;}
-    public void setGreetingLabel(String username) {greetingLabel.setText(USER_WELCOME_MESSAGE(username));}
+    public void setGreetingLabel(String username) {greetingLabel.setText(CONNECTED_USER_MESSAGE(username));}
 
     @FXML
     void handleLoadFileButtonClick(ActionEvent event) {

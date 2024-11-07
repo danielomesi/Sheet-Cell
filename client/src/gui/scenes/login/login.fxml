@@ -10,13 +10,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane fx:id="componentWrapper" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../workspace/styles/Generic%20Style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.scenes.login.LoginController">
+<ScrollPane fx:id="componentWrapper" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../styles/Generic%20Style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.scenes.login.LoginController">
    <content>
       <AnchorPane id="root-container">
          <children>
             <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="600.0" spacing="10.0">
                <children>
-                  <Label alignment="CENTER" text="Welcome to Shticell app!" wrapText="true" />
+                  <Label id="app-welcome-label" alignment="CENTER" text="Welcome To The ShtiCell App!" wrapText="true" />
                   <HBox alignment="CENTER" spacing="10.0">
                      <children>
                         <Label text="Username: " wrapText="true" />

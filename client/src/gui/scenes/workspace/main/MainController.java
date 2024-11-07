@@ -43,6 +43,8 @@ public class MainController implements Closeable {
     private DataModule dataModule;
     private ClientApp clientApp;
     private final SimpleBooleanProperty isWriteAccessAllowed = new SimpleBooleanProperty(false);
+    private String username;
+
     //stage
     private Stage stage;
 
@@ -63,6 +65,7 @@ public class MainController implements Closeable {
 
 
     //getters
+    public String getUsername() {return username;}
     public ClientApp getClientApp() {return clientApp;}
     public BorderPane getMainBorderPane() {return mainBorderPane;}
     public SimpleBooleanProperty getIsWriteAccessAllowed() {return isWriteAccessAllowed;}
@@ -108,26 +111,18 @@ public class MainController implements Closeable {
     public void setStage(Stage stage) {
         this.stage = stage;
     }
-
     public void setHeaderController(HeaderController headerController) {
         this.headerController = headerController;
     }
-
     public void setSheetController(SheetController sheetController) {
         this.sheetController = sheetController;
     }
-
-    public void setCommandsController(CommandsController commandsController) {
-        this.commandsController = commandsController;
-    }
-
-    public void setAppearanceController(AppearanceController appearanceController) {
-        this.appearanceController = appearanceController;
-    }
-
+    public void setCommandsController(CommandsController commandsController) {this.commandsController = commandsController;}
+    public void setAppearanceController(AppearanceController appearanceController) {this.appearanceController = appearanceController;}
     public void setSortController(SortController sortController) {
         this.sortController = sortController;
     }
+    public void setUsername(String username) {this.username = username;}
 
     public void initialize() {
         dataModule = new DataModule();
@@ -137,6 +132,7 @@ public class MainController implements Closeable {
     }
 
     public void toDoOnSuccessfulFileLoad(Sheet sheet) {
+        headerController.setConnectedUserLabel(username);
         currentLoadedSheet = sheet;
         currentSheetName = sheet.getName();
         dataModule.buildModule(currentLoadedSheet.getNumOfRows(), currentLoadedSheet.getNumOfCols(), currentLoadedSheet.getRangesNames());

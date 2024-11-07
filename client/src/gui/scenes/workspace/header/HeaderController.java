@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import java.io.File;
+import static constants.Constants.*;
 
 public class HeaderController {
 
@@ -18,6 +19,8 @@ public class HeaderController {
 
     @FXML
     private Label mainLabel;
+    @FXML
+    private Label connectedUserLabel;
 
     //task progress controls
     @FXML
@@ -44,6 +47,9 @@ public class HeaderController {
         mainLabel.setText("Sheet View [" + permission + " Mode]");
     }
 
+    public void setConnectedUserLabel(String username) {
+        connectedUserLabel.setText(CONNECTED_USER_MESSAGE(username));
+    }
 }
 
 

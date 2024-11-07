@@ -12,6 +12,24 @@
     -fx-border-width: 1px;
 }
 
+#app-welcome-label {
+    -fx-font-size: 24px;  /* Large font size */
+    -fx-font-family: 'Arial', sans-serif;  /* Clean and modern font */
+    -fx-text-fill: #1f4b91;  /* Vibrant green color */
+    -fx-font-weight: bold;  /* Make the text bold */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0.0, 0, 4);  /* Drop shadow for a 3D effect */
+    -fx-alignment: center;  /* Center the text */
+    -fx-padding: 20px;  /* Add some space around the text */
+    -fx-background-color: #ffffff;  /* White background for contrast */
+    -fx-border-radius: 15px;  /* Rounded corners */
+    -fx-background-radius: 15px;  /* Rounded background corners */
+    -fx-border-color: #54698c;  /* Border color matching the text color */
+    -fx-border-width: 2px;  /* Border thickness */
+    -fx-min-width: 300px;  /* Ensure it's wide enough */
+    -fx-min-height: 100px;  /* Ensure it's tall enough */
+}
+
+
 
 
 .main-header {

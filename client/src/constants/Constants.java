@@ -7,13 +7,16 @@ public class Constants {
     public final static double REFRESH_RATE_IN_SECONDS = 0.5;
 
     //text messages in app
-    public static final String NEW_VERSION_DETECTED_MESSAGE = "New Version Detected! Writing is disabled, click Sync to update";
+    public static final String NEW_VERSION_DETECTED_MESSAGE = "New version detected! writing is disabled, click 'Sync' to update";
     public static final String NON_EXISTING_CELL_NAME = "[EMPTY-CELL]";
     public static final String NO_LAST_EDITOR_FOUND_MESSAGE = "No Last Editor Found";
     public static final String GENERAL_ERROR_MESSAGE = "An Error Occurred";
-    public static final String GENERAL_TASK_SUCCESS_MESSAGE = "The task finished successfully!";
+    public static final String GENERAL_TASK_SUCCESS_MESSAGE = "Task Completed Successfully";
+    public static final String DASHBOARD_SCENE_TITLE = "Dashboard";
+    public static final String WORKSPACE_SCENE_TITLE = "Workspace";
+    public static final String LOGIN_SCENE_TITLE = "Login";
 
-    public static String USER_WELCOME_MESSAGE(String username) {return String.format("Hi %s! Welcome To The App!",username);}
+    public static String CONNECTED_USER_MESSAGE(String username) {return String.format("Connected As: %s",username);}
 
     //css urls
     public static final String CSS_DEFINITION_FOR_GREEN_COLOR = "-fx-text-fill: green;";
@@ -42,10 +45,10 @@ public class Constants {
     public static final String MACCABI_STYLE = "Maccabi";
 
     //paths to css files
-    public static final String GENERIC_STYLE_CSS_PATH = "/gui/scenes/workspace/styles/Generic Style.css";
-    public static final String DEFAULT_STYLE_CSS_PATH = "/gui/scenes/workspace/styles/Default.css";
-    public static final String DARK_STYLE_CSS_PATH = "/gui/scenes/workspace/styles/Dark.css";
-    public static final String MACCABI_STYLE_CSS_PATH = "/gui/scenes/workspace/styles/Maccabi.css";
+    public static final String GENERIC_STYLE_CSS_PATH = "/gui/scenes/styles/Generic Style.css";
+    public static final String DEFAULT_STYLE_CSS_PATH = "/gui/scenes/styles/Default.css";
+    public static final String DARK_STYLE_CSS_PATH = "/gui/scenes/styles/Dark.css";
+    public static final String MACCABI_STYLE_CSS_PATH = "/gui/scenes/styles/Maccabi.css";
 
     // Server resources locations
     public final static String BASE_DOMAIN = "localhost";

@@ -36,6 +36,7 @@ public class ClientApp extends Application {
     private LoginController loginController;
     private Scene dashboardScene;
     private Stage primaryStage;
+    private String username;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -57,7 +58,8 @@ public class ClientApp extends Application {
     }
 
     public void switchSceneToDashboard(String username) throws IOException {
-        loadDashBoard(username);
+        this.username = username;
+        loadDashBoard();
     }
 
     public void switchSceneToWorkspace(Sheet sheet, PermissionType permissionType) throws IOException {
@@ -68,7 +70,7 @@ public class ClientApp extends Application {
     public void loadLogin() throws IOException {
         Parent root = setupAndGetLoginMainComponent();
         Scene scene = new Scene(root);
-        primaryStage.setTitle("Sheet Cell");
+        primaryStage.setTitle(LOGIN_SCENE_TITLE);
         primaryStage.setScene(scene);
         primaryStage.show();
         primaryStage.centerOnScreen();
@@ -83,28 +85,28 @@ public class ClientApp extends Application {
         return root;
     }
 
-    public void loadDashBoard(String username) throws IOException {
-        Parent root = setupAndGetDashboardMainComponent(username);
+    public void loadDashBoard() throws IOException {
+        Parent root = setupAndGetDashboardMainComponent();
         dashboardScene = new Scene(root);
-        primaryStage.setTitle("Sheet Cell");
+        primaryStage.setTitle(DASHBOARD_SCENE_TITLE + " [" + username + "]");
         primaryStage.setScene(dashboardScene);
         primaryStage.show();
         primaryStage.centerOnScreen();
     }
 
 
-    private Parent setupAndGetDashboardMainComponent(String username) throws IOException {
+    private Parent setupAndGetDashboardMainComponent() throws IOException {
         FXMLLoader mainLoader = new FXMLLoader(getClass().getResource(DASHBOARD_MAIN_FXML));
         ScrollPane root = mainLoader.load();
         dashboardMainController = mainLoader.getController();
         dashboardMainController.setStage(primaryStage);
         dashboardMainController.setClientApp(this);
 
-        loadSubControllersOfDashboard(username);
+        loadSubControllersOfDashboard();
         return root;
     }
 
-    private void loadSubControllersOfDashboard(String username) throws IOException {
+    private void loadSubControllersOfDashboard() throws IOException {
         FXMLLoader headerLoader = new FXMLLoader(getClass().getResource(DASHBOARD_HEADER_FXML));
         Parent headerNode = headerLoader.load();
         DashboardHeaderController headerController = headerLoader.getController();
@@ -143,7 +145,7 @@ public class ClientApp extends Application {
     public void loadWorkspace(Sheet sheet, PermissionType permissionType) throws IOException {
         Parent root = setupAndGetWorkspaceMainComponent(sheet,permissionType);
         Scene scene = new Scene(root);
-        primaryStage.setTitle("Sheet Cell");
+        primaryStage.setTitle(WORKSPACE_SCENE_TITLE + " [" + username + "]");
         primaryStage.setScene(scene);
         primaryStage.show();
         primaryStage.centerOnScreen();
@@ -178,7 +180,8 @@ public class ClientApp extends Application {
         VBox appearanceNode = appearanceLoader.load();
         AppearanceController appearanceController = appearanceLoader.getController();
 
-
+        //Make main controller know the username
+        workspaceMainController.setUsername(username);
 
         // Make main controller know its sub controllers
         workspaceMainController.setHeaderController(headerController);
@@ -208,7 +211,7 @@ public class ClientApp extends Application {
 
     public void switchSceneBackToDashboardFromWorkspace() {
         dashboardMainController.startRefresher();
-        primaryStage.setTitle("Dashboard");
+        primaryStage.setTitle(DASHBOARD_SCENE_TITLE + " [" + username + "]");
         primaryStage.setScene(dashboardScene);
         primaryStage.show();
         primaryStage.centerOnScreen();

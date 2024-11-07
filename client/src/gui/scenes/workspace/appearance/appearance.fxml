@@ -78,7 +78,7 @@
             <Label styleClass="sub-header" text="Row Settings" />
             <HBox spacing="10.0">
                <children>
-                  <Label text="Select row:" wrapText="true" />
+                  <Label text="Select Row:" wrapText="true" />
                   <ComboBox fx:id="selectedRowComboBox" />
                </children>
             </HBox>
