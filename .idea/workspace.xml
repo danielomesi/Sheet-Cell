@@ -9,11 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="It works for now...">
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Fixed gson error...">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/client/client.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/common.iml" beforeDir="false" afterPath="$PROJECT_DIR$/common/common.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/json/GsonInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/json/GsonInstance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,36 +69,35 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.App.executor": "Run",
-    "Application.Application.executor": "Run",
-    "Application.Client.executor": "Run",
-    "Application.Ex3.executor": "Run",
-    "Application.GUI.executor": "Run",
-    "Application.Unnamed.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Tomcat Server.Server.executor": "Run",
-    "Tomcat Server.Tomcat 10.1.26.executor": "Run",
-    "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/omesi/IdeaProjects/Sheet-Cell/lib/Gson",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.App.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Application.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Client.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Ex3.executor&quot;: &quot;Run&quot;,
+    &quot;Application.GUI.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Tomcat Server.Server.executor&quot;: &quot;Run&quot;,
+    &quot;Tomcat Server.Tomcat 10.1.26.executor&quot;: &quot;Run&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/omesi/IdeaProjects/Sheet-Cell/lib/Gson&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\omesi\IdeaProjects\Sheet-Cell\ui\src\gui\components\styles" />
@@ -110,7 +107,7 @@
       <recent name="C:\Users\omesi\IdeaProjects\Sheet-Cell\lib\javafx-sdk-22.0.2" />
     </key>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Server">
+  <component name="RunManager" selected="Application.Client">
     <configuration name="Client" type="Application" factoryName="Application" singleton="false">
       <option name="ALTERNATIVE_JRE_PATH" value="21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -302,15 +299,9 @@
       <workItem from="1730643348721" duration="263000" />
       <workItem from="1730643619408" duration="10984000" />
       <workItem from="1730667871715" duration="85000" />
-      <workItem from="1730667964919" duration="765000" />
-    </task>
-    <task id="LOCAL‎-00055" summary="Added first-row-ignoring option, and added button for animations">
-      <option name="closed" value="true" />
-      <created>1726762222345</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL‎-00055" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1726762222346</updated>
+      <workItem from="1730667964919" duration="797000" />
+      <workItem from="1730983728725" duration="344000" />
+      <workItem from="1730984082095" duration="317000" />
     </task>
     <task id="LOCAL‎-00056" summary="Added filtering dialog with working menu...">
       <option name="closed" value="true" />
@@ -696,7 +687,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1730668325527</updated>
     </task>
-    <option name="localTasksCounter" value="104" />
+    <task id="LOCAL‎-00104" summary="Fixed gson error...">
+      <option name="closed" value="true" />
+      <created>1730668758670</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL‎-00104" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1730668758670</updated>
+    </task>
+    <option name="localTasksCounter" value="105" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -715,7 +714,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Populated Sheets Table" />
     <MESSAGE value="Populated Sheets Table with actual data from server" />
     <MESSAGE value="Managed to switch scene to workspace on button click" />
     <MESSAGE value="Added gson serialization and deserialization (still working on it...)" />
@@ -740,7 +738,8 @@
     <MESSAGE value="Changed user manager" />
     <MESSAGE value="Thank you good lord for being able to fix the gson error..." />
     <MESSAGE value="It works for now..." />
-    <option name="LAST_COMMIT_MESSAGE" value="It works for now..." />
+    <MESSAGE value="Fixed gson error..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed gson error..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

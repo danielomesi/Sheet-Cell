@@ -13,6 +13,7 @@ import gui.scenes.workspace.header.HeaderController;
 import gui.scenes.workspace.main.MainController;
 import gui.scenes.workspace.sheet.SheetController;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -51,6 +52,8 @@ public class ClientApp extends Application {
         if (dashboardMainController != null) {
             dashboardMainController.close();
         }
+        Platform.exit();
+        System.exit(0);
     }
 
     public void switchSceneToDashboard(String username) throws IOException {
