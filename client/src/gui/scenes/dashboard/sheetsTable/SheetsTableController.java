@@ -14,6 +14,8 @@ import http.RequestScheduler;
 import constants.Constants;
 import http.dtos.RequestPermissionDTO;
 import javafx.application.Platform;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -32,6 +34,8 @@ public class SheetsTableController {
     private DashboardMainController dashboardMainController;
     private final ObservableList<SheetTableEntry> tableData = FXCollections.observableArrayList();
     private List<SheetMetaData> sheetMetaDataList;
+    private final BooleanProperty isWriteAccessPendingForCurrentSelectedSheet = new SimpleBooleanProperty(false);
+    private final BooleanProperty isReadAccessPendingForCurrentSelectedSheet = new SimpleBooleanProperty(false);
 
     @FXML
     private TableView<SheetTableEntry> tableView;
@@ -73,21 +77,60 @@ public class SheetsTableController {
 
         tableView.setItems(tableData);
         tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                String accessLevel = newValue.getAccessLevel();
-                PermissionType permissionType = PermissionFactory.permissionName2PermissionType(accessLevel);
-                viewSheetButton.setDisable(permissionType.ordinal() < PermissionType.READ.ordinal());
-                requestReadAccessButton.setDisable(permissionType.ordinal() >= PermissionType.READ.ordinal());
-                requestWriteAccessButton.setDisable(permissionType.ordinal() >= PermissionType.WRITE.ordinal());
-                dashboardMainController.getPermissionsTableController().
-                        populatePermissionsTable(getSheetMetaDataByName(newValue.getSheetName()));
-            }
-            else {
-                viewSheetButton.setDisable(false);
+            if (newValue != oldValue) {
+                if (newValue != null) {
+                    String accessLevel = newValue.getAccessLevel();
+                    PermissionType permissionType = PermissionFactory.permissionName2PermissionType(accessLevel);
+                    boolean doesUserHaveReadPermission = permissionType.ordinal() >= PermissionType.READ.ordinal();
+                    boolean doesUserHaveWritePermission = permissionType.ordinal() >= PermissionType.WRITE.ordinal();
+                    viewSheetButton.setDisable(permissionType.ordinal() < PermissionType.READ.ordinal());
+                    requestReadAccessButton.setDisable(doesUserHaveReadPermission
+                            || isReadAccessPendingForCurrentSelectedSheet.get() || isWriteAccessPendingForCurrentSelectedSheet.get());
+                    requestWriteAccessButton.setDisable(doesUserHaveWritePermission || isWriteAccessPendingForCurrentSelectedSheet.get());
+                    dashboardMainController.getPermissionsTableController().
+                            populatePermissionsTable(getSheetMetaDataByName(newValue.getSheetName()));
+                    checkIfAlreadySubmittedWriteRequestOnSelectedSheet(newValue.getSheetName());
+                    checkIfAlreadySubmittedReadRequestOnSelectedSheet(newValue.getSheetName());
+                }
+                else {
+                    viewSheetButton.setDisable(false);
+                }
             }
         });
 
         startRefreshingTableData();
+    }
+
+    private void checkIfAlreadySubmittedWriteRequestOnSelectedSheet(String sheetName) {
+        String finalUrl = HttpUrl
+                .parse(Constants.IS_EXIST_PENDING_PERMISSION_REQUEST)
+                .newBuilder()
+                .addQueryParameter("name", sheetName)
+                .addQueryParameter("isWrite", String.valueOf(true))
+                .build()
+                .toString();
+
+        HttpClientMessenger.sendGetRequestWithoutBodyAsync(finalUrl, new MyCallBack(statusLabel,
+                (body -> {
+                    boolean isPending = GsonInstance.getGson().fromJson(body, Boolean.class);
+                    if (isPending) isWriteAccessPendingForCurrentSelectedSheet.set(true);
+                })));
+    }
+
+    private void checkIfAlreadySubmittedReadRequestOnSelectedSheet(String sheetName) {
+        String finalUrl = HttpUrl
+                .parse(Constants.IS_EXIST_PENDING_PERMISSION_REQUEST)
+                .newBuilder()
+                .addQueryParameter("name", sheetName)
+                .addQueryParameter("isWrite", String.valueOf(false))
+                .build()
+                .toString();
+
+        HttpClientMessenger.sendGetRequestWithoutBodyAsync(finalUrl, new MyCallBack(statusLabel,
+                (body -> {
+                    boolean isPending = GsonInstance.getGson().fromJson(body, Boolean.class);
+                    if (isPending) isReadAccessPendingForCurrentSelectedSheet.set(true);
+                })));
     }
 
     private SheetMetaData getSheetMetaDataByName(String sheetName) {

@@ -5,6 +5,7 @@ import entities.cell.CoreCell;
 import entities.coordinates.Coordinates;
 import entities.coordinates.CoordinateFactory;
 import entities.permission.PermissionRequest;
+import entities.permission.PermissionStatus;
 import entities.range.Range;
 import entities.sheet.CoreSheet;
 import entities.sheet.DTOSheet;
@@ -17,6 +18,7 @@ import service_exceptions.InvalidXMLException;
 import jakarta.xml.bind.JAXBException;
 import entities.permission.PermissionType;
 import permission.SheetData;
+import service_exceptions.NoExistenceException;
 import utils.Filter;
 import utils.Sorter;
 import utils.Utils;
@@ -301,5 +303,26 @@ public class EngineImpl implements Engine {
         }
         toUpdate.executeCalculationProcedure(originalExpression,editingUsername);
         return generateDTOSheet(cloned);
+    }
+
+    @Override
+    public boolean isExistPendingPermissionRequest(String sheetName, String username, boolean isWrite) {
+        SheetData sheetData = sheetName2SheetDataList.get(sheetName);
+        boolean res = false;
+        if (sheetData == null) {
+            throw new NoExistenceException("Sheet "+sheetName+" does not exist");
+        }
+        else {
+            PermissionRequest permissionRequest = sheetData.getPendingRequest(username);
+            if (permissionRequest != null) {
+                if (isWrite) {
+                    if (permissionRequest.getPermissionType() == PermissionType.WRITE) res = true;
+                }
+                else {
+                    if (permissionRequest.getPermissionType() == PermissionType.READ) res = true;
+                }
+            }
+        }
+        return res;
     }
 }

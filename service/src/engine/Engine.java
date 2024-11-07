@@ -1,6 +1,7 @@
 package engine;
 
 import entities.cell.Cell;
+import entities.permission.PermissionStatus;
 import entities.permission.PermissionType;
 import entities.sheet.Sheet;
 import entities.sheet.SheetMetaData;
@@ -54,4 +55,6 @@ public interface Engine {
     public void applyAccessDecision(String usernameWithPendingRequest, String sheetName, PermissionType permissionType, boolean isAccessAllowed);
 
     public Sheet previewSpecificUpdateOnCell(String cellName, String originalExpression, String sheetName, int sheetVersion, String editingUsername);
+
+    public boolean isExistPendingPermissionRequest(String sheetName, String username, boolean isWrite);
 }

@@ -71,4 +71,5 @@ public class Constants {
     public final static String ADD_PERMISSION_REQUEST = FULL_SERVER_PATH + "/permissions/request";
     public final static String DECIDE_PERMISSION_REQUEST = FULL_SERVER_PATH + "/permissions/decide";
     public final static String CELL_UPDATE_PREVIEW = FULL_SERVER_PATH + "/update/preview";
+    public final static String IS_EXIST_PENDING_PERMISSION_REQUEST = FULL_SERVER_PATH + "/permissions/is-pending";
 }
