@@ -5,6 +5,7 @@ import gui.utils.Utils;
 import http.HttpClientMessenger;
 import http.MyCallBack;
 import constants.Constants;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +15,9 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import okhttp3.HttpUrl;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.Objects;
 
 public class LoginController {
     private ClientApp clientApp;
@@ -47,21 +51,23 @@ public class LoginController {
 
         progressIndicator.setVisible(true);
 
-        String finalUrl = HttpUrl
-                .parse(Constants.LOGIN)
-                .newBuilder()
-                .addQueryParameter("username", userName)
-                .build()
-                .toString();
+
+            String finalUrl = HttpUrl
+                            .parse(Constants.LOGIN)
+                            .newBuilder()
+                            .addQueryParameter("username", userName)
+                            .build()
+                            .toString();
+
 
         Task<Void> task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
                 Thread.sleep(2000);
-
                 HttpClientMessenger.sendGetRequestWithoutBodyAsync(finalUrl, new MyCallBack(errorLabel,
                         (body -> {
                             try {
+                                Platform.runLater(()->{errorLabel.setText("Im switch scene");});
                                 switchSceneToDashboard(userName);
                             } catch (Exception ignored) {}
                         })));
