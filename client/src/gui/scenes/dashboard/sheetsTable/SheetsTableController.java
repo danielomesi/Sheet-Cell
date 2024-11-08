@@ -77,25 +77,25 @@ public class SheetsTableController {
 
         tableView.setItems(tableData);
         tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != oldValue) {
-                if (newValue != null) {
-                    String accessLevel = newValue.getAccessLevel();
-                    PermissionType permissionType = PermissionFactory.permissionName2PermissionType(accessLevel);
-                    boolean doesUserHaveReadPermission = permissionType.ordinal() >= PermissionType.READ.ordinal();
-                    boolean doesUserHaveWritePermission = permissionType.ordinal() >= PermissionType.WRITE.ordinal();
-                    viewSheetButton.setDisable(permissionType.ordinal() < PermissionType.READ.ordinal());
-                    requestReadAccessButton.setDisable(doesUserHaveReadPermission
-                            || isReadAccessPendingForCurrentSelectedSheet.get() || isWriteAccessPendingForCurrentSelectedSheet.get());
-                    requestWriteAccessButton.setDisable(doesUserHaveWritePermission || isWriteAccessPendingForCurrentSelectedSheet.get());
-                    dashboardMainController.getPermissionsTableController().
-                            populatePermissionsTable(getSheetMetaDataByName(newValue.getSheetName()));
-                    checkIfAlreadySubmittedWriteRequestOnSelectedSheet(newValue.getSheetName());
-                    checkIfAlreadySubmittedReadRequestOnSelectedSheet(newValue.getSheetName());
-                }
-                else {
-                    viewSheetButton.setDisable(false);
-                }
+            if (newValue != null) {
+                String accessLevel = newValue.getAccessLevel();
+                PermissionType permissionType = PermissionFactory.permissionName2PermissionType(accessLevel);
+                boolean doesUserHaveReadPermission = permissionType.ordinal() >= PermissionType.READ.ordinal();
+                boolean doesUserHaveWritePermission = permissionType.ordinal() >= PermissionType.WRITE.ordinal();
+                boolean isReadAccessPending = isReadAccessPendingForCurrentSelectedSheet.get();
+                boolean isWriteAccessPending = isWriteAccessPendingForCurrentSelectedSheet.get();
+                viewSheetButton.setDisable(permissionType.ordinal() < PermissionType.READ.ordinal());
+                requestReadAccessButton.setDisable(doesUserHaveReadPermission || isReadAccessPending);
+                requestWriteAccessButton.setDisable(doesUserHaveWritePermission || isWriteAccessPending);
+                dashboardMainController.getPermissionsTableController().
+                        populatePermissionsTable(getSheetMetaDataByName(newValue.getSheetName()));
+                checkIfAlreadySubmittedWriteRequestOnSelectedSheet(newValue.getSheetName());
+                checkIfAlreadySubmittedReadRequestOnSelectedSheet(newValue.getSheetName());
             }
+            else {
+                viewSheetButton.setDisable(false);
+            }
+
         });
 
         startRefreshingTableData();
@@ -113,7 +113,7 @@ public class SheetsTableController {
         HttpClientMessenger.sendGetRequestWithoutBodyAsync(finalUrl, new MyCallBack(statusLabel,
                 (body -> {
                     boolean isPending = GsonInstance.getGson().fromJson(body, Boolean.class);
-                    if (isPending) isWriteAccessPendingForCurrentSelectedSheet.set(true);
+                    isWriteAccessPendingForCurrentSelectedSheet.set(isPending);
                 })));
     }
 
@@ -129,7 +129,7 @@ public class SheetsTableController {
         HttpClientMessenger.sendGetRequestWithoutBodyAsync(finalUrl, new MyCallBack(statusLabel,
                 (body -> {
                     boolean isPending = GsonInstance.getGson().fromJson(body, Boolean.class);
-                    if (isPending) isReadAccessPendingForCurrentSelectedSheet.set(true);
+                   isReadAccessPendingForCurrentSelectedSheet.set(isPending);
                 })));
     }
 

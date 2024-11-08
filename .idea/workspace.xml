@@ -9,14 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Managed to make a working jar out of the client">
-      <change afterPath="$PROJECT_DIR$/server/src/servlets/IsExistPendingPermissionRequestServlet.java" afterDir="false" />
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Some updates, but need another bug fixing...">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/constants/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/constants/Constants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/SheetsTableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/SheetsTableController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/permission/SheetData.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/permission/SheetData.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,36 +69,36 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Application.App.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Application.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Client.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Ex3.executor&quot;: &quot;Run&quot;,
-    &quot;Application.GUI.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Tomcat Server.Server.executor&quot;: &quot;Debug&quot;,
-    &quot;Tomcat Server.Tomcat 10.1.26.executor&quot;: &quot;Run&quot;,
-    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/omesi/IdeaProjects/Sheet-Cell/lib/javafx-sdk-22.0.2/lib&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.App.executor": "Run",
+    "Application.Application.executor": "Run",
+    "Application.Client.executor": "Run",
+    "Application.Ex3.executor": "Run",
+    "Application.GUI.executor": "Run",
+    "Application.Unnamed.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Tomcat Server.Server.executor": "Run",
+    "Tomcat Server.Tomcat 10.1.26.executor": "Run",
+    "extract.method.default.visibility": "private",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/omesi/IdeaProjects/Sheet-Cell/lib/javafx-sdk-22.0.2/lib",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\omesi\IdeaProjects\Sheet-Cell\client\src\gui\scenes\styles" />
@@ -311,15 +306,7 @@
       <workItem from="1730988922985" duration="2792000" />
       <workItem from="1730991739471" duration="1289000" />
       <workItem from="1730993042189" duration="13978000" />
-      <workItem from="1731007218909" duration="521000" />
-    </task>
-    <task id="LOCAL‎-00061" summary="Fixed bug in sort/filter show...">
-      <option name="closed" value="true" />
-      <created>1726864384751</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL‎-00061" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1726864384751</updated>
+      <workItem from="1731007218909" duration="1572000" />
     </task>
     <task id="LOCAL‎-00062" summary="Thing are working great for now :)">
       <option name="closed" value="true" />
@@ -705,7 +692,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1731003636176</updated>
     </task>
-    <option name="localTasksCounter" value="110" />
+    <task id="LOCAL‎-00110" summary="Some updates, but need another bug fixing...">
+      <option name="closed" value="true" />
+      <created>1731007761422</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL‎-00110" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1731007761423</updated>
+    </task>
+    <option name="localTasksCounter" value="111" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -724,7 +719,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added range adding option and also added interface for handling responses in client" />
     <MESSAGE value="Implemented http interface for sub sheet for filter and sort features" />
     <MESSAGE value="Both filter and sort are now working..." />
     <MESSAGE value="Made a nice progress..." />
@@ -749,7 +743,8 @@
     <MESSAGE value="Changed some things..." />
     <MESSAGE value="Some bugs fixed" />
     <MESSAGE value="Managed to make a working jar out of the client" />
-    <option name="LAST_COMMIT_MESSAGE" value="Managed to make a working jar out of the client" />
+    <MESSAGE value="Some updates, but need another bug fixing..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Some updates, but need another bug fixing..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -769,9 +764,19 @@
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/service/src/permission/SheetData.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/service/src/engine/EngineImpl.java</url>
-          <line>315</line>
-          <option name="timeStamp" value="21" />
+          <line>309</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/SheetsTableController.java</url>
+          <line>114</line>
+          <option name="timeStamp" value="31" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
