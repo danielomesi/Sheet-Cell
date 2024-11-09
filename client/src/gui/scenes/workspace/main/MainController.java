@@ -1,5 +1,6 @@
 package gui.scenes.workspace.main;
 
+import entities.cell.Cell;
 import entities.coordinates.Coordinates;
 import entities.permission.PermissionType;
 import entities.sheet.DTOSheet;
@@ -13,6 +14,7 @@ import gui.scenes.workspace.sheet.SheetController;
 import gui.scenes.workspace.header.HeaderController;
 import gui.scenes.workspace.commands.CommandsController;
 import gui.scenes.workspace.appearance.AppearanceController;
+import gui.scenes.workspace.sheet.cell.CellController;
 import gui.scenes.workspace.sort.SortController;
 import gui.builder.ControllersBuilder;
 import gui.core.DataModule;
@@ -28,6 +30,10 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import json.GsonInstance;

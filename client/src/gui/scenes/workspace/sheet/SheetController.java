@@ -23,6 +23,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
@@ -59,6 +61,8 @@ public class SheetController {
     private Button syncButton;
     @FXML
     private Label originalValueLabel;
+    @FXML
+    private Button copyOriginalExpressionButton;
     @FXML
     private VBox selectedCellsVbox;
     @FXML
@@ -97,6 +101,8 @@ public class SheetController {
         if (mainController != null) {
             SheetController sheetController = mainController.getSheetController();
             BooleanProperty isSheetLoadedProperty = mainController.getIsSheetLoaded();
+            copyOriginalExpressionButton.disableProperty().bind(isSheetLoadedProperty.not().or(sheetController.getSelectedCellController().isNull()).
+                    or(isSheetSynced.not()).or(mainController.getIsWriteAccessAllowed().not()));
             updateButton.disableProperty().bind(isSheetLoadedProperty.not().or(sheetController.getSelectedCellController().isNull()).
                     or(isSheetSynced.not()).or(mainController.getIsWriteAccessAllowed().not()));
             syncButton.visibleProperty().bind(isSheetSynced.not());
@@ -240,12 +246,16 @@ public class SheetController {
         String cellID = cellCoordinates.getCellID();
         currentCellIDLabel.setText(cellID);
         Cell cell = mainController.getCurrentLoadedSheet().getCell(cellCoordinates.getRow(), cellCoordinates.getCol());
-        String originalExpression = cell != null ? cell.getOriginalExpression() : NON_EXISTING_CELL_NAME;
+        String originalExpression = getOriginalExpressionFromCell(cell);
         int lastUpdatedVersion = cell != null ? cell.getVersion() : 0;
         String lastEditor = cell != null ? cell.getLastEditor() : NO_LAST_EDITOR_FOUND_MESSAGE;
         originalValueLabel.setText(originalExpression);
         lastUpdatedVersionLabel.setText(String.valueOf(lastUpdatedVersion));
         lastEditorLabel.setText(lastEditor);
+    }
+
+    public String getOriginalExpressionFromCell(Cell cell) {
+        return cell != null ? cell.getOriginalExpression() : NON_EXISTING_CELL_NAME;
     }
 
     public void initActionLineControls() {
@@ -322,6 +332,16 @@ public class SheetController {
         is2ValidCellsSelected.set(false);
         isSelectingFirstCell.set(true);
         isSelectingSecondCell.set(true);
+    }
+
+    @FXML
+    void copyOriginalExpressionButtonClicked(ActionEvent event) {
+        if (getSelectedCellController().get()!=null) {
+            Clipboard clipboard = Clipboard.getSystemClipboard();
+            ClipboardContent content = new ClipboardContent();
+            content.putString(originalValueLabel.getText());
+            clipboard.setContent(content);
+        }
     }
 
     @FXML

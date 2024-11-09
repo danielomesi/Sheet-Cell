@@ -21,6 +21,7 @@
                   <Separator orientation="VERTICAL" />
                   <Label text="Original Value:" />
                   <Label fx:id="originalValueLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
+                  <Button fx:id="copyOriginalExpressionButton" mnemonicParsing="false" onAction="#copyOriginalExpressionButtonClicked" text="Copy" />
                   <Separator orientation="VERTICAL" />
                   <Label text="New Value:" />
                   <TextField fx:id="newValueTextField" promptText="Action Line" />

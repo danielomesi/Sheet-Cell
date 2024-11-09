@@ -24,6 +24,8 @@ import okhttp3.HttpUrl;
 import java.util.ArrayList;
 import java.util.List;
 
+import static constants.Constants.CSS_DEFINITION_FOR_RED_COLOR;
+
 public class AnalyzeController {
 
     private MainController mainController;
@@ -111,9 +113,11 @@ public class AnalyzeController {
             startAnalyze(minVal,maxVal,step);
         }
         catch (NumberFormatException e) {
+            statusLabel.setStyle(CSS_DEFINITION_FOR_RED_COLOR);
             statusLabel.setText("All values must be numbers");
         }
         catch  (Exception e) {
+            statusLabel.setStyle(CSS_DEFINITION_FOR_RED_COLOR);
             statusLabel.setText(e.getMessage());
         }
     }
