@@ -36,7 +36,10 @@ public class DTOCellAdapter implements JsonSerializer<DTOCell>, JsonDeserializer
 
         Coordinates coordinates = context.deserialize(jsonObject.get("coordinates"), Coordinates.class);
         int version = jsonObject.get("version").getAsInt();
-        String lastEditor = jsonObject.get("lastEditor").getAsString();
+        JsonElement lastEditorElement = jsonObject.get("lastEditor");
+        String lastEditor = (lastEditorElement != null && !lastEditorElement.isJsonNull())
+                ? lastEditorElement.getAsString()
+                : null;
         Object effectiveValue = new EffectiveValueAdapter().deserialize(jsonObject.get("effectiveValue"), Object.class,context);
         JsonElement jsonElementOfOriginalExpression = jsonObject.get("originalExpression");
         String originalExpression = jsonElementOfOriginalExpression != null?  jsonElementOfOriginalExpression.getAsString() : null;

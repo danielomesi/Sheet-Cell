@@ -2,19 +2,20 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
+      <artifact name="client:jar" />
+      <artifact name="common:jar" />
       <artifact name="server" />
+      <artifact name="server archive" />
+      <artifact name="service:jar" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Fixed bug of pending requests disabling the request permissions buttons...">
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added copy button">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/analyze/AnalyzeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/analyze/AnalyzeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/SheetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/SheetController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/sheet.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sheet/sheet.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/json/adapters/DTOCellAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/json/adapters/DTOCellAdapter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,36 +73,36 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.App.executor": "Run",
-    "Application.Application.executor": "Run",
-    "Application.Client.executor": "Run",
-    "Application.Ex3.executor": "Run",
-    "Application.GUI.executor": "Run",
-    "Application.Unnamed.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Tomcat Server.Server.executor": "Run",
-    "Tomcat Server.Tomcat 10.1.26.executor": "Run",
-    "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/omesi/IdeaProjects/Sheet-Cell/lib/javafx-sdk-22.0.2/lib",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.App.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Application.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Client.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Ex3.executor&quot;: &quot;Run&quot;,
+    &quot;Application.GUI.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Tomcat Server.Server.executor&quot;: &quot;Run&quot;,
+    &quot;Tomcat Server.Tomcat 10.1.26.executor&quot;: &quot;Run&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/omesi/IdeaProjects/Sheet-Cell/lib/javafx-sdk-22.0.2/lib&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\omesi\IdeaProjects\Sheet-Cell\client\src\gui\scenes\styles" />
@@ -111,7 +112,7 @@
       <recent name="C:\Users\omesi\IdeaProjects\Sheet-Cell\service\src\entities\stl" />
     </key>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Server">
+  <component name="RunManager" selected="Application.Client">
     <configuration name="Client" type="Application" factoryName="Application" singleton="false">
       <option name="ALTERNATIVE_JRE_PATH" value="21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -310,15 +311,12 @@
       <workItem from="1730991739471" duration="1289000" />
       <workItem from="1730993042189" duration="13978000" />
       <workItem from="1731007218909" duration="2221000" />
-      <workItem from="1731145395162" duration="2654000" />
-    </task>
-    <task id="LOCAL‎-00063" summary="Fixed some styles...">
-      <option name="closed" value="true" />
-      <created>1726871202436</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL‎-00063" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1726871202436</updated>
+      <workItem from="1731145395162" duration="2927000" />
+      <workItem from="1731148909695" duration="975000" />
+      <workItem from="1731149967798" duration="8000" />
+      <workItem from="1731526849955" duration="37000" />
+      <workItem from="1731526903175" duration="19000" />
+      <workItem from="1731530002850" duration="750000" />
     </task>
     <task id="LOCAL‎-00064" summary="Added another theme...">
       <option name="closed" value="true" />
@@ -704,7 +702,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1731086943586</updated>
     </task>
-    <option name="localTasksCounter" value="112" />
+    <task id="LOCAL‎-00112" summary="Added copy button">
+      <option name="closed" value="true" />
+      <created>1731148317375</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL‎-00112" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1731148317376</updated>
+    </task>
+    <option name="localTasksCounter" value="113" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -723,7 +729,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Both filter and sort are now working..." />
     <MESSAGE value="Made a nice progress..." />
     <MESSAGE value="Made auto updates of new sheets loaded" />
     <MESSAGE value="Added feature of update notification alert..." />
@@ -748,7 +753,8 @@
     <MESSAGE value="Managed to make a working jar out of the client" />
     <MESSAGE value="Some updates, but need another bug fixing..." />
     <MESSAGE value="Fixed bug of pending requests disabling the request permissions buttons..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug of pending requests disabling the request permissions buttons..." />
+    <MESSAGE value="Added copy button" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added copy button" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -766,11 +772,6 @@
           <url>file://$PROJECT_DIR$/service/src/permission/SheetData.java</url>
           <line>42</line>
           <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/service/src/engine/EngineImpl.java</url>
-          <line>309</line>
-          <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
