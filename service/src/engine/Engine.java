@@ -38,6 +38,8 @@ public interface Engine {
 
     public void setSubSheet(String sheetName, String fromCellID, String toCellID, String username);
 
+    String getXMLOfSheet(String sheetName);
+
     public Cell getSpecificCell(String sheetName, String cellName);
 
     public void updateSpecificCell(String cellName, String originalExpression, String sheetName, String editingUsername);

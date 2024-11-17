@@ -2,20 +2,27 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="client:jar" />
-      <artifact name="common:jar" />
       <artifact name="server" />
-      <artifact name="server archive" />
-      <artifact name="service:jar" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added copy button">
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Fixed bug of filter/sort option not opening">
+      <change afterPath="$PROJECT_DIR$/server/src/servlets/SheetXMLServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/json/adapters/DTOCellAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/json/adapters/DTOCellAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/client/client.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/constants/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/constants/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/header/HeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/header/HeaderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/header/header.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/header/header.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/Engine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/engine/FileIOHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/FileIOHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/range/Range.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/range/Range.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/stl/STLCells.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/stl/STLCells.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/entities/stl/STLRanges.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/entities/stl/STLRanges.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/utils/Utils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,36 +80,36 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Application.App.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Application.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Client.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Ex3.executor&quot;: &quot;Run&quot;,
-    &quot;Application.GUI.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Tomcat Server.Server.executor&quot;: &quot;Run&quot;,
-    &quot;Tomcat Server.Tomcat 10.1.26.executor&quot;: &quot;Run&quot;,
-    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/omesi/IdeaProjects/Sheet-Cell/lib/javafx-sdk-22.0.2/lib&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.App.executor": "Run",
+    "Application.Application.executor": "Run",
+    "Application.Client.executor": "Run",
+    "Application.Ex3.executor": "Run",
+    "Application.GUI.executor": "Run",
+    "Application.Unnamed.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Tomcat Server.Server.executor": "Run",
+    "Tomcat Server.Tomcat 10.1.26.executor": "Run",
+    "extract.method.default.visibility": "private",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/omesi/IdeaProjects/Sheet-Cell/lib/javafx-sdk-22.0.2/lib",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\omesi\IdeaProjects\Sheet-Cell\client\src\gui\scenes\styles" />
@@ -316,15 +323,9 @@
       <workItem from="1731149967798" duration="8000" />
       <workItem from="1731526849955" duration="37000" />
       <workItem from="1731526903175" duration="19000" />
-      <workItem from="1731530002850" duration="750000" />
-    </task>
-    <task id="LOCAL‎-00064" summary="Added another theme...">
-      <option name="closed" value="true" />
-      <created>1726912979264</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL‎-00064" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1726912979265</updated>
+      <workItem from="1731530002850" duration="807000" />
+      <workItem from="1731530839782" duration="526000" />
+      <workItem from="1731862858147" duration="5568000" />
     </task>
     <task id="LOCAL‎-00065" summary="In the way to finish...">
       <option name="closed" value="true" />
@@ -710,7 +711,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1731148317376</updated>
     </task>
-    <option name="localTasksCounter" value="113" />
+    <task id="LOCAL‎-00113" summary="Fixed bug of filter/sort option not opening">
+      <option name="closed" value="true" />
+      <created>1731530807695</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL‎-00113" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1731530807696</updated>
+    </task>
+    <option name="localTasksCounter" value="114" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -729,7 +738,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Made a nice progress..." />
     <MESSAGE value="Made auto updates of new sheets loaded" />
     <MESSAGE value="Added feature of update notification alert..." />
     <MESSAGE value="Added in dashboard the disabling view sheet button in case of no permissions" />
@@ -754,7 +762,8 @@
     <MESSAGE value="Some updates, but need another bug fixing..." />
     <MESSAGE value="Fixed bug of pending requests disabling the request permissions buttons..." />
     <MESSAGE value="Added copy button" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added copy button" />
+    <MESSAGE value="Fixed bug of filter/sort option not opening" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug of filter/sort option not opening" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

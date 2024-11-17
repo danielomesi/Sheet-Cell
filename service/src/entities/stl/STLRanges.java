@@ -77,4 +77,8 @@ public class STLRanges {
         return this.stlRange;
     }
 
+    public void setSTLRange(List<STLRange> value) {
+        this.stlRange = value;
+    }
+
 }

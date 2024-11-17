@@ -77,4 +77,8 @@ public class STLCells {
         return this.stlCell;
     }
 
+    public void setSTLCell(List<STLCell> value) {
+        this.stlCell = value;
+    }
+
 }

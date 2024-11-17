@@ -5,7 +5,6 @@ import entities.cell.CoreCell;
 import entities.coordinates.Coordinates;
 import entities.coordinates.CoordinateFactory;
 import entities.permission.PermissionRequest;
-import entities.permission.PermissionStatus;
 import entities.range.Range;
 import entities.sheet.CoreSheet;
 import entities.sheet.DTOSheet;
@@ -187,6 +186,13 @@ public class EngineImpl implements Engine {
         else {
             throw new ExistingSheetException("A sheet with the same name already exists");
         }
+    }
+
+    @Override
+    public String getXMLOfSheet(String sheetName) {
+        CoreSheet coreSheet = sheetName2SheetDataList.get(sheetName).getSheetVersions().getLast();
+
+        return FileIOHandler.getXMLOfObject(coreSheet);
     }
 
     private void validateXMLSheetLayout(STLSheet stlSheet) {

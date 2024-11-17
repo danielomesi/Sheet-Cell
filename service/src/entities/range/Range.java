@@ -45,6 +45,31 @@ public class Range implements RangeInterface {
         }
     }
 
+    private Coordinates findExtreme(Comparator<Coordinates> comparator) {
+        if (cells == null || cells.isEmpty()) {
+            throw new IllegalArgumentException("The set of coordinates cannot be null or empty");
+        }
+
+        return cells.stream()
+                .min(comparator)
+                .orElseThrow(); // This should never happen since the set is not empty
+    }
+
+    public Coordinates findMostLeftUpper() {
+        return findExtreme(Comparator.comparingInt(Coordinates::getCol).thenComparingInt(Coordinates::getRow));
+    }
+
+    public Coordinates findMostBottomRight() {
+        return findExtreme((c1, c2) -> {
+            int columnComparison = Integer.compare(c2.getCol(), c1.getCol());
+            if (columnComparison != 0) {
+                return columnComparison;
+            }
+            return Integer.compare(c2.getRow(), c1.getRow());
+        });
+    }
+
+
     public static Map<String,Range> generateRangesFromSTLRanges(STLSheet stlSheet, Sheet sheet) {
         Map<String,Range> rangesMap = new HashMap<>();
         List<STLRange> stlRanges = stlSheet.getSTLRanges().getSTLRange();
