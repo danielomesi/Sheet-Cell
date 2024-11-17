@@ -157,4 +157,16 @@ public class Utils {
             parent.getStylesheets().add(secondResource.toExternalForm());
         }
     }
+
+    public static String removeExtension(String fileName) {
+        int lastDotIndex = fileName.lastIndexOf('.');
+
+        // If there is a dot in the file name, remove the extension
+        if (lastDotIndex > 0) {
+            return fileName.substring(0, lastDotIndex);
+        } else {
+            // If there's no extension, return the original file name
+            return fileName;
+        }
+    }
 }

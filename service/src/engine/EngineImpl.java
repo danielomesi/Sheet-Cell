@@ -189,10 +189,10 @@ public class EngineImpl implements Engine {
     }
 
     @Override
-    public String getXMLOfSheet(String sheetName) {
+    public String getXMLOfSheet(String sheetName,String fileName) {
         CoreSheet coreSheet = sheetName2SheetDataList.get(sheetName).getSheetVersions().getLast();
 
-        return FileIOHandler.getXMLOfObject(coreSheet);
+        return FileIOHandler.getXMLOfObject(coreSheet,fileName);
     }
 
     private void validateXMLSheetLayout(STLSheet stlSheet) {

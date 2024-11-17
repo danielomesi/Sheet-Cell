@@ -38,7 +38,7 @@ public interface Engine {
 
     public void setSubSheet(String sheetName, String fromCellID, String toCellID, String username);
 
-    String getXMLOfSheet(String sheetName);
+    String getXMLOfSheet(String sheetName, String fileName);
 
     public Cell getSpecificCell(String sheetName, String cellName);
 

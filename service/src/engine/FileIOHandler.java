@@ -43,7 +43,7 @@ public class FileIOHandler {
         }
     }
 
-    public static String getXMLOfObject(CoreSheet coreSheet) {
+    public static String getXMLOfObject(CoreSheet coreSheet, String fileName) {
         if (coreSheet == null) {
             throw new IllegalArgumentException("The object to save cannot be null");
         }
@@ -89,7 +89,7 @@ public class FileIOHandler {
         }
 
         STLSheet stlSheet = new STLSheet();
-        stlSheet.setName(Utils.generateNameWithDateTime(coreSheet.getName()));
+        stlSheet.setName(fileName);
         stlSheet.setSTLCells(stlCells);
         stlSheet.setSTLRanges(stlRanges);
         stlSheet.setSTLLayout(stlLayout);

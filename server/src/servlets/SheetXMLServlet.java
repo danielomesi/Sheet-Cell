@@ -27,9 +27,9 @@ public class SheetXMLServlet extends HttpServlet {
                 return;
             }
             String sheetName = request.getParameter("name"); // Retrieve the sheet name
-
+            String fileName = request.getParameter("file");
             Engine engine = (Engine) getServletContext().getAttribute("engine");
-            String xml = engine.getXMLOfSheet(sheetName);
+            String xml = engine.getXMLOfSheet(sheetName,fileName);
 
             Gson gson = GsonInstance.getGson();
             response.setContentType("text/plain");

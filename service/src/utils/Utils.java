@@ -24,15 +24,4 @@ public class Utils {
                     + String.valueOf(start+1) + " and " + String.valueOf(end), String.valueOf(toCheck + 1));
         }
     }
-
-    public static String generateNameWithDateTime(String input) {
-        // Create a SimpleDateFormat to format the current date and time
-        SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyyHHmm");
-
-        // Get the current date and time
-        String dateTime = dateFormat.format(new Date());
-
-        // Concatenate the input string with the formatted date-time string
-        return input + "_" + dateTime;
-    }
 }
