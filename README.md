@@ -1,5 +1,9 @@
 # ShtiCell - A Multi-User Spreadsheet System
-As part of a Java Development course, I independently developed an application for managing spreadsheets. The system allows each cell to hold static values, reference other cells, or result from complex function compositions. It supports function composition, enabling cells to derive values from multiple functions applied across different cells, facilitating intricate relationships and calculations.
+As part of a Java Development course, I independently built a spreadsheet management application using JavaFX.
+
+The system enables each cell to store static values, reference other cells, or derive its value from complex function compositions. It supports function composition, allowing cells to compute values based on multiple functions applied across different cells, enabling advanced relationships and calculations.
+
+This application runs with a server in the background using Tomcat. For this project, I utilized several libraries, including JavaFX, OkHttp, Gson, and more.
 
 ## Login
 Log in to your account here.
