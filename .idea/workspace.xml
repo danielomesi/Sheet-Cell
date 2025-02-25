@@ -2,22 +2,33 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
+      <artifact name="client:jar" />
+      <artifact name="common:jar" />
       <artifact name="server" />
+      <artifact name="server archive" />
+      <artifact name="service:jar" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added option to save an xml file of the sheet">
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Changed naming of saved file from date to chosen name by user">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme-images/customize options.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme-images/dark mode.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme-images/dashbord.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme-images/dynamic analyaze.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme-images/grant permission.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme-images/login.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme-images/multiple functions.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme-images/new version message.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme-images/request permission.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme-images/sheet view.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme-images/sort.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme-images/sum example.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme-images/view sheet button.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/header/HeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/header/HeaderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/utils/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/servlets/SheetXMLServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/servlets/SheetXMLServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/EngineImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/engine/FileIOHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/engine/FileIOHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/utils/Utils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -321,15 +332,10 @@
       <workItem from="1731530002850" duration="807000" />
       <workItem from="1731530839782" duration="526000" />
       <workItem from="1731862858147" duration="5594000" />
-      <workItem from="1731868564633" duration="420000" />
-    </task>
-    <task id="LOCAL‎-00066" summary="Minor changes">
-      <option name="closed" value="true" />
-      <created>1726922099176</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL‎-00066" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1726922099176</updated>
+      <workItem from="1731868564633" duration="456000" />
+      <workItem from="1731869422220" duration="33000" />
+      <workItem from="1732471810756" duration="11000" />
+      <workItem from="1740508954392" duration="33000" />
     </task>
     <task id="LOCAL‎-00067" summary="Reverted to working app">
       <option name="closed" value="true" />
@@ -715,7 +721,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1731868496036</updated>
     </task>
-    <option name="localTasksCounter" value="115" />
+    <task id="LOCAL‎-00115" summary="Changed naming of saved file from date to chosen name by user">
+      <option name="closed" value="true" />
+      <created>1731869018594</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL‎-00115" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1731869018594</updated>
+    </task>
+    <option name="localTasksCounter" value="116" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -734,7 +748,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added feature of update notification alert..." />
     <MESSAGE value="Added in dashboard the disabling view sheet button in case of no permissions" />
     <MESSAGE value="Added request permission option" />
     <MESSAGE value="Made some progress in handling permissions..." />
@@ -759,7 +772,8 @@
     <MESSAGE value="Added copy button" />
     <MESSAGE value="Fixed bug of filter/sort option not opening" />
     <MESSAGE value="Added option to save an xml file of the sheet" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added option to save an xml file of the sheet" />
+    <MESSAGE value="Changed naming of saved file from date to chosen name by user" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed naming of saved file from date to chosen name by user" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
