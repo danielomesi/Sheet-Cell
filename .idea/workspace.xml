@@ -13,23 +13,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Changed naming of saved file from date to chosen name by user">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme-images/customize options.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme-images/dark mode.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme-images/dashbord.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme-images/dynamic analyaze.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme-images/grant permission.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme-images/login.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme-images/multiple functions.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme-images/new version message.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme-images/request permission.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme-images/sheet view.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme-images/sort.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme-images/sum example.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme-images/view sheet button.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Added readme" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -335,15 +319,7 @@
       <workItem from="1731868564633" duration="456000" />
       <workItem from="1731869422220" duration="33000" />
       <workItem from="1732471810756" duration="11000" />
-      <workItem from="1740508954392" duration="33000" />
-    </task>
-    <task id="LOCAL‎-00067" summary="Reverted to working app">
-      <option name="closed" value="true" />
-      <created>1726923210098</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL‎-00067" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1726923210100</updated>
+      <workItem from="1740508954392" duration="62000" />
     </task>
     <task id="LOCAL‎-00068" summary="Final version">
       <option name="closed" value="true" />
@@ -729,7 +705,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1731869018594</updated>
     </task>
-    <option name="localTasksCounter" value="116" />
+    <task id="LOCAL‎-00116" summary="Added readme">
+      <option name="closed" value="true" />
+      <created>1740509005818</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL‎-00116" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1740509005819</updated>
+    </task>
+    <option name="localTasksCounter" value="117" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -748,7 +732,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added in dashboard the disabling view sheet button in case of no permissions" />
     <MESSAGE value="Added request permission option" />
     <MESSAGE value="Made some progress in handling permissions..." />
     <MESSAGE value="Added write/read mode caption in workspace area" />
@@ -773,7 +756,8 @@
     <MESSAGE value="Fixed bug of filter/sort option not opening" />
     <MESSAGE value="Added option to save an xml file of the sheet" />
     <MESSAGE value="Changed naming of saved file from date to chosen name by user" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed naming of saved file from date to chosen name by user" />
+    <MESSAGE value="Added readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added readme" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
