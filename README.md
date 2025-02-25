@@ -4,7 +4,7 @@ As part of a Java Development course, I independently developed an application f
 Login
 Log in to your account here.
 
-[login image]
+![App Screenshot](./readme-images/login.png)
 
 Dashboard
 This page provides an overview of all the sheets in the system and shows the current permissions assigned to different users.
