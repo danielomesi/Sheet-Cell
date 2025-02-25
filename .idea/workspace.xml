@@ -13,17 +13,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Changed images file names and readme">
-      <change afterPath="$PROJECT_DIR$/readme-images/customize-options.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme-images/dashboard.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme-images/dynamic-analyze.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme-images/sum-example.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme-images/view-sheet-button.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/readme-images/customize options.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/readme-images/dashbord.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/readme-images/dynamic-analyaze.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/readme-images/sum example.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/readme-images/view sheet button.png" beforeDir="false" />
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Changed images file names and readme again">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -331,15 +322,7 @@
       <workItem from="1731869422220" duration="33000" />
       <workItem from="1732471810756" duration="11000" />
       <workItem from="1740508954392" duration="62000" />
-      <workItem from="1740509398245" duration="293000" />
-    </task>
-    <task id="LOCAL‎-00070" summary="First step in ex3....">
-      <option name="closed" value="true" />
-      <created>1728048968942</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL‎-00070" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1728048968943</updated>
+      <workItem from="1740509398245" duration="369000" />
     </task>
     <task id="LOCAL‎-00071" summary="Small progress...">
       <option name="closed" value="true" />
@@ -725,7 +708,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1740509501531</updated>
     </task>
-    <option name="localTasksCounter" value="119" />
+    <task id="LOCAL‎-00119" summary="Changed images file names and readme again">
+      <option name="closed" value="true" />
+      <created>1740509702282</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL‎-00119" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1740509702282</updated>
+    </task>
+    <option name="localTasksCounter" value="120" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -744,7 +735,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Made some progress in handling permissions..." />
     <MESSAGE value="Added write/read mode caption in workspace area" />
     <MESSAGE value="Added write/read mode restrictions when in a workspace" />
     <MESSAGE value="Added constants one-single-point in client" />
@@ -769,7 +759,8 @@
     <MESSAGE value="Changed naming of saved file from date to chosen name by user" />
     <MESSAGE value="Added readme" />
     <MESSAGE value="Changed images file names and readme" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed images file names and readme" />
+    <MESSAGE value="Changed images file names and readme again" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed images file names and readme again" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
