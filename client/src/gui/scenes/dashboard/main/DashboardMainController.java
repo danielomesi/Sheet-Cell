@@ -5,6 +5,7 @@ import gui.core.ClientApp;
 import gui.scenes.dashboard.header.DashboardHeaderController;
 import gui.scenes.dashboard.permissionsTable.PermissionsTableController;
 import gui.scenes.dashboard.sheetsTable.SheetsTableController;
+import gui.utils.Utils;
 import http.HttpClientMessenger;
 import http.MyCallBack;
 import http.RequestScheduler;
@@ -28,6 +29,10 @@ public class DashboardMainController implements Closeable {
     private DashboardHeaderController headerController;
     private SheetsTableController sheetsTableController;
     private PermissionsTableController permissionsTableController;
+
+    public void initialize() {
+        Utils.setStyle(mainScrollPane, DEFAULT_STYLE);
+    }
 
     @FXML
     private BorderPane mainBorderPane;

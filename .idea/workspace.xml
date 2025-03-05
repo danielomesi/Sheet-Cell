@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="client:jar" />
-      <artifact name="common:jar" />
       <artifact name="server" />
-      <artifact name="server archive" />
-      <artifact name="service:jar" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
@@ -14,7 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Changed headers size in readme again">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/DashboardMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/DashboardMainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/sheetsTable.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/sheetsTable.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/login/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/login/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/styles/Generic Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/styles/Generic Style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +34,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="console-app" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -72,36 +72,36 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Application.App.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Application.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Client.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Ex3.executor&quot;: &quot;Run&quot;,
-    &quot;Application.GUI.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Tomcat Server.Server.executor&quot;: &quot;Run&quot;,
-    &quot;Tomcat Server.Tomcat 10.1.26.executor&quot;: &quot;Run&quot;,
-    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/omesi/IdeaProjects/Sheet-Cell/lib/javafx-sdk-22.0.2/lib&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.App.executor": "Run",
+    "Application.Application.executor": "Run",
+    "Application.Client.executor": "Run",
+    "Application.Ex3.executor": "Run",
+    "Application.GUI.executor": "Run",
+    "Application.Unnamed.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Tomcat Server.Server.executor": "Run",
+    "Tomcat Server.Tomcat 10.1.26.executor": "Run",
+    "extract.method.default.visibility": "private",
+    "git-widget-placeholder": "styling",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/omesi/Downloads/google-cloud-aiplugin-1.10.1-241.zip",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\omesi\IdeaProjects\Sheet-Cell\client\src\gui\scenes\styles" />
@@ -322,15 +322,10 @@
       <workItem from="1731869422220" duration="33000" />
       <workItem from="1732471810756" duration="11000" />
       <workItem from="1740508954392" duration="62000" />
-      <workItem from="1740509398245" duration="764000" />
-    </task>
-    <task id="LOCAL‎-00073" summary="Added session using cookies! :)">
-      <option name="closed" value="true" />
-      <created>1728144806348</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL‎-00073" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1728144806348</updated>
+      <workItem from="1740509398245" duration="1024000" />
+      <workItem from="1740557943972" duration="89000" />
+      <workItem from="1740558046263" duration="81000" />
+      <workItem from="1741170046859" duration="3691000" />
     </task>
     <task id="LOCAL‎-00074" summary="Added some preparations for user and permission modules in engine...">
       <option name="closed" value="true" />
@@ -716,7 +711,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1740509866857</updated>
     </task>
-    <option name="localTasksCounter" value="122" />
+    <task id="LOCAL‎-00122" summary="Changed headers size in readme again">
+      <option name="closed" value="true" />
+      <created>1740510174001</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL‎-00122" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1740510174001</updated>
+    </task>
+    <option name="localTasksCounter" value="123" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

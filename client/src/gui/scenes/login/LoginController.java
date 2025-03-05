@@ -19,6 +19,9 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Objects;
 
+import static constants.Constants.DEFAULT_STYLE;
+import static constants.Constants.GENERIC_STYLE_CSS_PATH;
+
 public class LoginController {
     private ClientApp clientApp;
 
@@ -40,6 +43,11 @@ public class LoginController {
     private void switchSceneToDashboard(String username) throws IOException {
         clientApp.switchSceneToDashboard(username);
     }
+
+    public void initialize() {
+        Utils.setStyle(componentWrapper, DEFAULT_STYLE);
+    }
+
 
     @FXML
     void loginButtonClicked(ActionEvent event) {
