@@ -12,6 +12,8 @@ import gui.scenes.workspace.commands.CommandsController;
 import gui.scenes.workspace.header.HeaderController;
 import gui.scenes.workspace.main.MainController;
 import gui.scenes.workspace.sheet.SheetController;
+import gui.utils.CustomWindow;
+import gui.utils.Utils;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;

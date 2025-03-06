@@ -5,6 +5,14 @@ import entities.types.undefined.Undefined;
 import entities.types.undefined.UndefinedBoolean;
 import entities.types.undefined.UndefinedNumber;
 import entities.types.undefined.UndefinedString;
+import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import javafx.stage.StageStyle;
 import service_exceptions.ServiceException;
 import gui.exceptions.GUIException;
 import javafx.concurrent.Task;
@@ -170,3 +178,5 @@ public class Utils {
         }
     }
 }
+
+
