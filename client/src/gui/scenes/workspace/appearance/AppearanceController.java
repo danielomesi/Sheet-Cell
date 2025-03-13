@@ -91,7 +91,7 @@ public class AppearanceController {
     public void initStylesComboBox() {
         ObservableList<String> stylesList = FXCollections.observableArrayList(DEFAULT_STYLE, DARK_STYLE, MACCABI_STYLE);
         stylesComboBox.setItems(stylesList);
-        stylesComboBox.getSelectionModel().selectFirst();
+        //stylesComboBox.getSelectionModel().selectFirst();
         styleInStylesComboBoxSelected(null);
     }
 

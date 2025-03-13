@@ -2,6 +2,7 @@ package gui.scenes.workspace.sort;
 
 import gui.builder.DynamicSheet;
 import gui.builder.DynamicSheetBuilder;
+import gui.scenes.Themable;
 import gui.scenes.workspace.main.MainController;
 import gui.utils.Utils;
 import http.HttpClientMessenger;
@@ -24,7 +25,7 @@ import okhttp3.HttpUrl;
 
 import java.util.List;
 
-public class SortController {
+public class SortController implements Themable {
 
     private MainController mainController;
     private String fromCellID;
@@ -62,7 +63,7 @@ public class SortController {
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
         if (mainController != null) {
-            setStyle(mainController.getAppearanceController().getSelectedStyle());
+            setStyle(mainController.getCurrentStyle());
         }
     }
     public void setDynamicSheetTable(DynamicSheet dynamicSheet) {
@@ -82,7 +83,7 @@ public class SortController {
     }
 
     //getters
-    public ScrollPane getWrapper() {
+    public ScrollPane GetThemeWrapper() {
         return wrapperScrollPane;
     }
 

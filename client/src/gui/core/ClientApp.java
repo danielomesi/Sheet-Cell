@@ -61,9 +61,9 @@ public class ClientApp extends Application {
         loadDashBoard();
     }
 
-    public void switchSceneToWorkspace(Sheet sheet, PermissionType permissionType) throws IOException {
+    public void switchSceneToWorkspace(Sheet sheet, PermissionType permissionType,String currentStyle) throws IOException {
         dashboardMainController.stopRefresher();
-        loadWorkspace(sheet,permissionType);
+        loadWorkspace(sheet,permissionType,currentStyle);
     }
 
     public void loadLogin() throws IOException {
@@ -141,8 +141,8 @@ public class ClientApp extends Application {
         root.setBottom(permissionsTableNode);
     }
 
-    public void loadWorkspace(Sheet sheet, PermissionType permissionType) throws IOException {
-        Parent root = setupAndGetWorkspaceMainComponent(sheet,permissionType);
+    public void loadWorkspace(Sheet sheet, PermissionType permissionType,String currentStyle) throws IOException {
+        Parent root = setupAndGetWorkspaceMainComponent(sheet,permissionType,currentStyle);
         Scene scene = new Scene(root);
         primaryStage.setTitle(WORKSPACE_SCENE_TITLE + " [" + username + "]");
         primaryStage.setScene(scene);
@@ -150,13 +150,14 @@ public class ClientApp extends Application {
         primaryStage.centerOnScreen();
     }
 
-    private Parent setupAndGetWorkspaceMainComponent(Sheet sheet, PermissionType permissionType) throws IOException {
+    private Parent setupAndGetWorkspaceMainComponent(Sheet sheet, PermissionType permissionType,String currentStyle) throws IOException {
         FXMLLoader mainLoader = new FXMLLoader(getClass().getResource(WORKSPACE_MAIN_FXML));
         ScrollPane root = mainLoader.load();
         workspaceMainController = mainLoader.getController();
         workspaceMainController.setStage(primaryStage);
         workspaceMainController.setClientApp(this);
         workspaceMainController.setAccessAttributes(permissionType);
+        workspaceMainController.setStyle(currentStyle);
 
         loadSubControllersOfWorkspace(sheet);
         return root;
@@ -208,8 +209,9 @@ public class ClientApp extends Application {
         workspaceMainController.toDoOnSuccessfulFileLoad(sheet);
     }
 
-    public void switchSceneBackToDashboardFromWorkspace() {
+    public void switchSceneBackToDashboardFromWorkspace(String currentStyle) {
         dashboardMainController.startRefresher();
+        dashboardMainController.setStyle(currentStyle);
         primaryStage.setTitle(DASHBOARD_SCENE_TITLE + " [" + username + "]");
         primaryStage.setScene(dashboardScene);
         primaryStage.show();
