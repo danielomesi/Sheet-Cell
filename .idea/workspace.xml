@@ -9,19 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Changed sizing of action line to fit in screen">
-      <change afterPath="$PROJECT_DIR$/client/src/gui/scenes/Themable.java" afterDir="false" />
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Made the themes be consistent between different scenes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/core/ClientApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/DashboardMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/main/DashboardMainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/SheetsTableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/dashboard/sheetsTable/SheetsTableController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/login/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/login/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/analyze/AnalyzeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/analyze/AnalyzeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/appearance/AppearanceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/appearance/AppearanceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/commands/CommandsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/commands/CommandsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/filter/FilterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/filter/FilterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/main/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sort/SortController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/workspace/sort/SortController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/styles/Generic Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/styles/Generic Style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -336,15 +326,7 @@
       <workItem from="1741252131008" duration="6545000" />
       <workItem from="1741336201440" duration="57000" />
       <workItem from="1741859637907" duration="2554000" />
-      <workItem from="1741862222397" duration="899000" />
-    </task>
-    <task id="LOCAL‎-00076" summary="Adding a module for dtos...">
-      <option name="closed" value="true" />
-      <created>1728553407701</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL‎-00076" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1728553407701</updated>
+      <workItem from="1741862222397" duration="1316000" />
     </task>
     <task id="LOCAL‎-00077" summary="Small updates...">
       <option name="closed" value="true" />
@@ -730,7 +712,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1741258713971</updated>
     </task>
-    <option name="localTasksCounter" value="125" />
+    <task id="LOCAL‎-00125" summary="Made the themes be consistent between different scenes">
+      <option name="closed" value="true" />
+      <created>1741863155141</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL‎-00125" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1741863155142</updated>
+    </task>
+    <option name="localTasksCounter" value="126" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -749,7 +739,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added option for dynamic analyze" />
     <MESSAGE value="Dynamic analyze improved and login scene too" />
     <MESSAGE value="Added feature of modifying username data stored on update per cell" />
     <MESSAGE value="Changed user manager" />
@@ -774,7 +763,8 @@
     <MESSAGE value="Changed headers size in readme again" />
     <MESSAGE value="Changed styling" />
     <MESSAGE value="Changed sizing of action line to fit in screen" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed sizing of action line to fit in screen" />
+    <MESSAGE value="Made the themes be consistent between different scenes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Made the themes be consistent between different scenes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
