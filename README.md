@@ -68,7 +68,7 @@ There's also an option to filter rows based on specific column values (showing o
 ## Dynamic Analyze
 This feature allows you to select a specific cell and define a maximum, minimum, and step. A slider appears, and as you drag it, the value of the cell changes while the table dynamically reflects the updated values.
 
-![App Screenshot](./readme-images/dynamic-analyze.png)
+![App Screenshot](./readme-images/dynamic-analyze-settings.png)
 
 Visualization:
 
