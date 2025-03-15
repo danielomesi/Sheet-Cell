@@ -9,9 +9,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Made the themes be consistent between different scenes">
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Fixed bad coloring of table text in dark mode">
+      <change afterPath="$PROJECT_DIR$/readme-images/cell-selection-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme-images/cell-selection-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme-images/cell-selection-shown.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme-images/commands-after-cell-selection.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme-images/dashboard-after-permission-given.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme-images/dashboard-before-permission-given.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme-images/dashboard-on-permission-decision.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme-images/dsahboard-dark-mode.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme-images/gif.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme-images/range-selected-shown.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme-images/range-text-box-selected.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme-images/sheet-view-write-mode.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gui/scenes/styles/Generic Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gui/scenes/styles/Generic Style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme-images/dashboard.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme-images/login.png" beforeDir="false" afterPath="$PROJECT_DIR$/readme-images/login.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,36 +83,36 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.App.executor": "Run",
-    "Application.Application.executor": "Run",
-    "Application.Client.executor": "Run",
-    "Application.Ex3.executor": "Run",
-    "Application.GUI.executor": "Run",
-    "Application.Unnamed.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Tomcat Server.Server.executor": "Run",
-    "Tomcat Server.Tomcat 10.1.26.executor": "Run",
-    "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "styling",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/omesi/Downloads/google-cloud-aiplugin-1.10.1-241.zip",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.App.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Application.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Client.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Ex3.executor&quot;: &quot;Run&quot;,
+    &quot;Application.GUI.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Tomcat Server.Server.executor&quot;: &quot;Run&quot;,
+    &quot;Tomcat Server.Tomcat 10.1.26.executor&quot;: &quot;Run&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;styling&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/omesi/Downloads/google-cloud-aiplugin-1.10.1-241.zip&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\omesi\IdeaProjects\Sheet-Cell\client\src\gui\scenes\styles" />
@@ -326,15 +340,8 @@
       <workItem from="1741252131008" duration="6545000" />
       <workItem from="1741336201440" duration="57000" />
       <workItem from="1741859637907" duration="2554000" />
-      <workItem from="1741862222397" duration="1316000" />
-    </task>
-    <task id="LOCAL‎-00077" summary="Small updates...">
-      <option name="closed" value="true" />
-      <created>1728577305984</created>
-      <option name="number" value="00077" />
-      <option name="presentableId" value="LOCAL‎-00077" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1728577305984</updated>
+      <workItem from="1741862222397" duration="1344000" />
+      <workItem from="1742034695766" duration="2329000" />
     </task>
     <task id="LOCAL‎-00078" summary="Finally fixed the tomcat launch error...">
       <option name="closed" value="true" />
@@ -720,7 +727,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1741863155142</updated>
     </task>
-    <option name="localTasksCounter" value="126" />
+    <task id="LOCAL‎-00126" summary="Fixed bad coloring of table text in dark mode">
+      <option name="closed" value="true" />
+      <created>1741863567610</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL‎-00126" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1741863567610</updated>
+    </task>
+    <option name="localTasksCounter" value="127" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -739,7 +754,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Dynamic analyze improved and login scene too" />
     <MESSAGE value="Added feature of modifying username data stored on update per cell" />
     <MESSAGE value="Changed user manager" />
     <MESSAGE value="Thank you good lord for being able to fix the gson error..." />
@@ -764,7 +778,8 @@
     <MESSAGE value="Changed styling" />
     <MESSAGE value="Changed sizing of action line to fit in screen" />
     <MESSAGE value="Made the themes be consistent between different scenes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Made the themes be consistent between different scenes" />
+    <MESSAGE value="Fixed bad coloring of table text in dark mode" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed bad coloring of table text in dark mode" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
