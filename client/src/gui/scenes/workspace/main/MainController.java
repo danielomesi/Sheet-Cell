@@ -1,6 +1,5 @@
 package gui.scenes.workspace.main;
 
-import entities.cell.Cell;
 import entities.coordinates.Coordinates;
 import entities.permission.PermissionType;
 import entities.sheet.DTOSheet;
@@ -8,13 +7,13 @@ import entities.sheet.Sheet;
 import gui.builder.DynamicSheetBuilder;
 import gui.builder.DynamicSheet;
 import gui.core.ClientApp;
+import gui.scenes.Themable;
 import gui.scenes.workspace.analyze.AnalyzeController;
 import gui.scenes.workspace.filter.FilterController;
 import gui.scenes.workspace.sheet.SheetController;
 import gui.scenes.workspace.header.HeaderController;
 import gui.scenes.workspace.commands.CommandsController;
 import gui.scenes.workspace.appearance.AppearanceController;
-import gui.scenes.workspace.sheet.cell.CellController;
 import gui.scenes.workspace.sort.SortController;
 import gui.builder.ControllersBuilder;
 import gui.core.DataModule;
@@ -29,11 +28,8 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.Control;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.KeyCodeCombination;
-import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import json.GsonInstance;
@@ -42,7 +38,7 @@ import okhttp3.*;
 import java.io.Closeable;
 import java.util.List;
 
-public class MainController implements Closeable {
+public class MainController implements Closeable, Themable {
     private String currentSheetName;
     private Sheet currentLoadedSheet;
     private BooleanProperty isSheetLoaded;
@@ -68,6 +64,12 @@ public class MainController implements Closeable {
     private ScrollPane mainScrollPane;
     @FXML
     private BorderPane mainBorderPane;
+    private String currentStyle;
+
+    @Override
+    public Control GetThemeWrapper() {
+        return mainScrollPane;
+    }
 
 
     //getters
@@ -108,6 +110,8 @@ public class MainController implements Closeable {
     public String getCurrentSheetName() {
         return currentSheetName;
     }
+
+    public String getCurrentStyle() {return currentStyle;}
 
     //setters
     public void setClientApp(ClientApp clientApp) {this.clientApp = clientApp;}
@@ -282,7 +286,7 @@ public class MainController implements Closeable {
                     sortController = ControllersBuilder.buildSortController(mainController, dynamicSheet, fromCellID, toCellID);
                     List<String> colNames = Utils.getLettersFromAToTheNLetter(subSheet.getNumOfCols());
                     sortController.populateListViewOfAllCols(colNames);
-                    Utils.openWindow(sortController.getWrapper(), "Sort Dialog");
+                    Utils.openWindow(sortController.GetThemeWrapper(), "Sort Dialog");
                 })));
     }
 
@@ -315,12 +319,13 @@ public class MainController implements Closeable {
                     DynamicSheet dynamicSheet = DynamicSheetBuilder.buildSubDynamicSheetFromMainSheet(currentLoadedSheet,sheetController.getDynamicSheetTable(),fromCellID,toCellID);
                     filterController = ControllersBuilder.buildFilterController(mainController, dynamicSheet,fromCellID,toCellID);
                     filterController.populateColComboBox(subSheet.getNumOfCols());
-                    Utils.openWindow(filterController.getWrapper(), "Filter Dialog");
+                    Utils.openWindow(filterController.GetThemeWrapper(), "Filter Dialog");
                 })));
     }
 
     public void setStyle(String styleFileName) {
         Utils.setStyle(mainScrollPane, styleFileName);
+        this.currentStyle = styleFileName;
     }
 
     @Override

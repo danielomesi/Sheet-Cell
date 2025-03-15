@@ -2,6 +2,7 @@ package gui.scenes.workspace.filter;
 
 import gui.builder.DynamicSheetBuilder;
 import gui.builder.DynamicSheet;
+import gui.scenes.Themable;
 import gui.scenes.workspace.main.MainController;
 import gui.utils.Utils;
 import http.HttpClientMessenger;
@@ -29,7 +30,7 @@ import okhttp3.HttpUrl;
 
 import java.util.*;
 
-public class FilterController {
+public class FilterController implements Themable {
 
     private MainController mainController;
     private String fromCellID;
@@ -70,13 +71,13 @@ public class FilterController {
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
         if (mainController!=null) {
-            setStyle(mainController.getAppearanceController().getSelectedStyle());
+            setStyle(mainController.getCurrentStyle());
         }
     }
     public void setDynamicSheetTable(DynamicSheet dynamicSheet) {this.dynamicSheet = dynamicSheet;}
     public void setFromCellID(String fromCellID) {this.fromCellID = fromCellID;}
     public void setToCellID(String toCellID) {this.toCellID = toCellID;}
-    public ScrollPane getWrapper() {return wrapperScrollPane;}
+    public ScrollPane GetThemeWrapper() {return wrapperScrollPane;}
     public void setTable(GridPane gridPane) {tableScrollPane.setContent(gridPane);}
     public void setStyle(String styleFileName) {
         Utils.setStyle(wrapperScrollPane,styleFileName);

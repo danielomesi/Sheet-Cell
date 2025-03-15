@@ -1,6 +1,7 @@
 package gui.scenes.login;
 
 import gui.core.ClientApp;
+import gui.scenes.Themable;
 import gui.utils.Utils;
 import http.HttpClientMessenger;
 import http.MyCallBack;
@@ -9,17 +10,17 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressIndicator;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import okhttp3.HttpUrl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Objects;
 
-public class LoginController {
+import static constants.Constants.DEFAULT_STYLE;
+import static constants.Constants.GENERIC_STYLE_CSS_PATH;
+
+public class LoginController implements Themable {
     private ClientApp clientApp;
 
     @FXML
@@ -40,6 +41,11 @@ public class LoginController {
     private void switchSceneToDashboard(String username) throws IOException {
         clientApp.switchSceneToDashboard(username);
     }
+
+    public void initialize() {
+        Utils.setStyle(componentWrapper, DEFAULT_STYLE);
+    }
+
 
     @FXML
     void loginButtonClicked(ActionEvent event) {
@@ -95,6 +101,11 @@ public class LoginController {
         };
 
         new Thread(task).start();
+    }
+
+    @Override
+    public Control GetThemeWrapper() {
+        return componentWrapper;
     }
 }
 

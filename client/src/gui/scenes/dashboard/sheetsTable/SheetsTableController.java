@@ -202,7 +202,8 @@ public class SheetsTableController {
     }
 
     public void  switchSceneToWorkspace(Sheet sheet, PermissionType permissionType) throws IOException {
-        dashboardMainController.getClientApp().switchSceneToWorkspace(sheet,permissionType);
+        String currentStyle = dashboardMainController.getCurrentStyle();
+        dashboardMainController.getClientApp().switchSceneToWorkspace(sheet,permissionType,currentStyle);
     }
 
     public SheetMetaData getCurrentlySelectedSheetMetaData() {

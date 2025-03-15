@@ -154,7 +154,8 @@ public class CommandsController {
 
     @FXML
     void backToDashboardButtonClicked(ActionEvent event) {
-        mainController.getClientApp().switchSceneBackToDashboardFromWorkspace();
+        String selectedStyle = mainController.getCurrentStyle();
+        mainController.getClientApp().switchSceneBackToDashboardFromWorkspace(selectedStyle);
     }
 
 

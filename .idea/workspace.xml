@@ -2,18 +2,15 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="client:jar" />
-      <artifact name="common:jar" />
       <artifact name="server" />
-      <artifact name="server archive" />
-      <artifact name="service:jar" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Changed headers size in readme again">
+    <list default="true" id="9ab0045c-6604-4c61-a04e-58f04e1bf4ad" name="Changes" comment="Changed image in readme">
+      <change afterPath="$PROJECT_DIR$/readme-images/dynamic-analyze-settings.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,7 +31,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="console-app" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -86,10 +83,10 @@
     &quot;Tomcat Server.Server.executor&quot;: &quot;Run&quot;,
     &quot;Tomcat Server.Tomcat 10.1.26.executor&quot;: &quot;Run&quot;,
     &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;styling&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/omesi/IdeaProjects/Sheet-Cell/lib/javafx-sdk-22.0.2/lib&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/omesi/Downloads/google-cloud-aiplugin-1.10.1-241.zip&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -111,7 +108,7 @@
       <recent name="C:\Users\omesi\IdeaProjects\Sheet-Cell\service\src\entities\stl" />
     </key>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Server">
+  <component name="RunManager" selected="Application.Client">
     <configuration name="Client" type="Application" factoryName="Application" singleton="false">
       <option name="ALTERNATIVE_JRE_PATH" value="21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -322,63 +319,15 @@
       <workItem from="1731869422220" duration="33000" />
       <workItem from="1732471810756" duration="11000" />
       <workItem from="1740508954392" duration="62000" />
-      <workItem from="1740509398245" duration="764000" />
-    </task>
-    <task id="LOCAL‎-00073" summary="Added session using cookies! :)">
-      <option name="closed" value="true" />
-      <created>1728144806348</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL‎-00073" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1728144806348</updated>
-    </task>
-    <task id="LOCAL‎-00074" summary="Added some preparations for user and permission modules in engine...">
-      <option name="closed" value="true" />
-      <created>1728297146638</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL‎-00074" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1728297146638</updated>
-    </task>
-    <task id="LOCAL‎-00075" summary="Another progress...">
-      <option name="closed" value="true" />
-      <created>1728545060203</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL‎-00075" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1728545060203</updated>
-    </task>
-    <task id="LOCAL‎-00076" summary="Adding a module for dtos...">
-      <option name="closed" value="true" />
-      <created>1728553407701</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL‎-00076" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1728553407701</updated>
-    </task>
-    <task id="LOCAL‎-00077" summary="Small updates...">
-      <option name="closed" value="true" />
-      <created>1728577305984</created>
-      <option name="number" value="00077" />
-      <option name="presentableId" value="LOCAL‎-00077" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1728577305984</updated>
-    </task>
-    <task id="LOCAL‎-00078" summary="Finally fixed the tomcat launch error...">
-      <option name="closed" value="true" />
-      <created>1728579148159</created>
-      <option name="number" value="00078" />
-      <option name="presentableId" value="LOCAL‎-00078" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1728579148159</updated>
-    </task>
-    <task id="LOCAL‎-00079" summary="Populated Sheets Table">
-      <option name="closed" value="true" />
-      <created>1728638365353</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL‎-00079" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1728638365354</updated>
+      <workItem from="1740509398245" duration="1024000" />
+      <workItem from="1740557943972" duration="89000" />
+      <workItem from="1740558046263" duration="81000" />
+      <workItem from="1741170046859" duration="3727000" />
+      <workItem from="1741252131008" duration="6545000" />
+      <workItem from="1741336201440" duration="57000" />
+      <workItem from="1741859637907" duration="2554000" />
+      <workItem from="1741862222397" duration="1344000" />
+      <workItem from="1742034695766" duration="2643000" />
     </task>
     <task id="LOCAL‎-00080" summary="Populated Sheets Table with actual data from server">
       <option name="closed" value="true" />
@@ -716,7 +665,63 @@
       <option name="project" value="LOCAL‎" />
       <updated>1740509866857</updated>
     </task>
-    <option name="localTasksCounter" value="122" />
+    <task id="LOCAL‎-00122" summary="Changed headers size in readme again">
+      <option name="closed" value="true" />
+      <created>1740510174001</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL‎-00122" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1740510174001</updated>
+    </task>
+    <task id="LOCAL‎-00123" summary="Changed styling">
+      <option name="closed" value="true" />
+      <created>1741173787235</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL‎-00123" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1741173787236</updated>
+    </task>
+    <task id="LOCAL‎-00124" summary="Changed sizing of action line to fit in screen">
+      <option name="closed" value="true" />
+      <created>1741258713970</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL‎-00124" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1741258713971</updated>
+    </task>
+    <task id="LOCAL‎-00125" summary="Made the themes be consistent between different scenes">
+      <option name="closed" value="true" />
+      <created>1741863155141</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL‎-00125" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1741863155142</updated>
+    </task>
+    <task id="LOCAL‎-00126" summary="Fixed bad coloring of table text in dark mode">
+      <option name="closed" value="true" />
+      <created>1741863567610</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL‎-00126" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1741863567610</updated>
+    </task>
+    <task id="LOCAL‎-00127" summary="Changed readme">
+      <option name="closed" value="true" />
+      <created>1742037168201</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL‎-00127" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1742037168201</updated>
+    </task>
+    <task id="LOCAL‎-00128" summary="Changed image in readme">
+      <option name="closed" value="true" />
+      <created>1742037337239</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL‎-00128" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1742037337239</updated>
+    </task>
+    <option name="localTasksCounter" value="129" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -735,12 +740,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added constants one-single-point in client" />
-    <MESSAGE value="Changed styling of dashboard" />
-    <MESSAGE value="Added option for dynamic analyze" />
-    <MESSAGE value="Dynamic analyze improved and login scene too" />
-    <MESSAGE value="Added feature of modifying username data stored on update per cell" />
-    <MESSAGE value="Changed user manager" />
     <MESSAGE value="Thank you good lord for being able to fix the gson error..." />
     <MESSAGE value="It works for now..." />
     <MESSAGE value="Fixed gson error..." />
@@ -760,7 +759,13 @@
     <MESSAGE value="Changed images file names and readme again" />
     <MESSAGE value="Changed headers size in readme" />
     <MESSAGE value="Changed headers size in readme again" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed headers size in readme again" />
+    <MESSAGE value="Changed styling" />
+    <MESSAGE value="Changed sizing of action line to fit in screen" />
+    <MESSAGE value="Made the themes be consistent between different scenes" />
+    <MESSAGE value="Fixed bad coloring of table text in dark mode" />
+    <MESSAGE value="Changed readme" />
+    <MESSAGE value="Changed image in readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed image in readme" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -778,6 +783,11 @@
           <url>file://$PROJECT_DIR$/service/src/permission/SheetData.java</url>
           <line>42</line>
           <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/client/src/gui/core/ClientApp.java</url>
+          <line>159</line>
+          <option name="timeStamp" value="29" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -70,7 +70,7 @@ public class AnalyzeController {
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
         if (mainController != null) {
-            Utils.setStyle(wrapper, mainController.getAppearanceController().getSelectedStyle());
+            Utils.setStyle(wrapper, mainController.getCurrentStyle());
         }
     }
     public void setSheetName(String sheetName) {this.sheetName = sheetName;}
